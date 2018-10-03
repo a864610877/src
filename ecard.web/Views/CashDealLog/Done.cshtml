@@ -1,0 +1,18 @@
+﻿@model EcardModelItem<DoneCashDealLog>
+@using (Html.BeginForm())
+{  
+     <div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">@Model.Localize("title")</a></li>
+    </ul>
+</div>
+    <ul  class="forminfo" style="padding-top:10px;">
+        @Html.EditorFor(x => x.Item)
+        
+    </ul>
+     <div class="submitDiv"> <input type="submit" class="scbtn" value="提交" />
+           @Html.ActionLink("List") </div>
+    
+}

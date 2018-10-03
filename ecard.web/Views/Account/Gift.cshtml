@@ -1,0 +1,198 @@
+﻿@model GiftAccount
+<style>
+    .dl_03_item div
+    {
+        margin-top: 3px;
+        text-align: center;
+    }
+    .dl_03_item
+    {
+        float: left;
+        margin: 5px 20px 5px 20px;
+    }
+    #sort div
+    {
+        float: left;
+    }
+    #sort
+    {
+        padding: 20px;
+    }
+    .page-and-sort div
+    {
+        display: inline-block;
+    }
+    .stop-it
+    {
+        color: red;
+    }
+</style>
+<script>
+    $(function () {
+        $("#btnClear").click(function (evt) {
+            $("#accountName").val('');
+            $('#@(Html.ViewData.TemplateInfo.GetFullHtmlFieldId("AccountName"))').val("");
+           
+            $("#gift-panel form").trigger("submit");
+        });
+        $("#btnQuery").click(function (evt) {
+            var posType = $('#testSelect option:selected').text();
+                       var account = readAccount();
+                        if (account == null) {
+                            alert("读卡失败");
+                            return;
+                        }
+
+//            var account = $("#accountInput").bindto();
+//            account.accountToken = '@Model.Site.AccountToken';
+//                        if (account.accountName.trim() == "") {
+//                            account = $("#accountInput").bindto();
+//                            
+                        //                        }
+                  $("#accountName").val(account.accountName);
+                  $('#@(Html.ViewData.TemplateInfo.GetFullHtmlFieldId("AccountName"))').val(account.accountName);
+//                $("#gift-panel form").trigger("submit");
+      });
+
+        $(".show-gift").live("click", function (evt) {
+            evt.preventDefault();
+            var $this = $(this);
+            $.get($this.attr("href") + "?tm=" + new Date(), function (data) {
+
+                if (!data)
+                    alert("获取奖品失败");
+                else {
+                   $("#dialog-gift").bindfrom(data); 
+                    $(".ShowHide").fadeIn(100);
+                    $("#dialog-gift").attr("display", "display").fadeIn(100);
+                  
+                }
+            });
+        });
+    });
+
+    function alertPwdDiv() {
+        $("#passwordUserInputed").val("");
+        inputPassword(1);
+        $("#dialog-gift").fadeOut(100)
+    }
+    function doGetGift(password) {
+        var doGiftUrl = '@Url.Action("doGift", "account")';
+    
+            //                        var account = readAccount();
+            //                        if (account == null) {
+            //                            alert("读卡失败");
+            //                            return;
+            //                        }
+            //                        if (account.accountName.trim() == "") {
+            //                            account.accountName = $("#accountName").val();
+            //                            account.accountToken = '@Model.Site.AccountToken';
+            //                        }
+        var account = $("#accountInput").bindto();
+        var PointGiftId = $("#GiftId").val();
+            account.accountToken = '@Model.Site.AccountToken';
+            var token = $("#Token").val();
+            var postData = { Key: token, password: password, accountName: account.accountName, accountToken: account.accountToken, giftId: PointGiftId };
+            $.post(doGiftUrl + "?tm=" + new Date(), postData, function (doGiftResult) {
+                if (doGiftResult.Success) {
+                    alert("兑换成功!");
+                    $("#Token").val(doGiftResult.Key);
+                    fideOutDiv();
+                } else {
+                    alert(doGiftResult.Message);
+                    $("#Token").val(doGiftResult.Key);
+                }
+            }); 
+    }
+</script>
+  <div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">@Model.Localize("title")</a></li>
+    </ul>
+</div>
+<ul id="accountInput" style=" text-align:center; margin-top:10px;">
+    <li>
+        <label class="desc" for="Name">
+            卡号</label>
+        <input type="text" id="accountName" name="accountName" data-field="accountName" class="scinput InputSerach" maxlength="@Model.Site.AccountNameLength" />
+        <button id="btnQuery" class="scbtn">
+            读卡</button>
+        <button id="btnClear" class="scbtn">
+            清除</button>
+    </li>
+</ul>
+@*<input type="hidden" id="Token" value="@Model.Key" data-field="Token" />*@
+<div id="gift-panel" class="rightinfo">
+    @using (Ajax.BeginForm("gift", "Account", new AjaxOptions() { UpdateTargetId = "gift-panel" }))
+    {
+        @Html.HiddenFor(x => x.AccountName)
+       
+      @*   <table id="selectTd">
+              <tr> 
+              <td><label>排序</label></td>
+                   @Html.SorterSelect(new { Point = "积分", DisplayName = "显示名称" })
+              </tr>
+    </table>
+           
+           @Html.Pager()*@
+           
+            @Html.HiddenPagerAndSortter()
+        <div class="blk_01">
+            @foreach (var item in Model.List)
+            {
+                var css = Model.CurrentPoint < item.Point ? "stop-it" : "";
+                var disabled = Model.CurrentPoint < item.Point ? "disabled='disabled'" : "";
+                var href = @Url.Action("GetGift", "PointGift", new { id = item.PointGiftId });
+                <div class="dl_03_item">
+                    <div>
+                        <a class="show-gift" href='@href' data-key='@item.PointGiftId' title="@item.DisplayName" target="_blank" @Html.Raw(@disabled)>
+                            <img height="100" width="100" alt="@item.DisplayName" src='@Url.Content("~/content/pointgiftphotos/" + item.Photo)'></a></div>
+                    <div class="@css">@item.Category</div>
+                    <div class="@css">@item.DisplayName</div>
+                    <div class="@css">@item.Point 分</div>
+                </div> 
+
+            }
+            @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+            {
+                <div class="response-msg error ui-corner-all ui-click-hidden">
+                    <span>错误</span>
+                    @Model.ErrorMessage
+                </div>
+            }
+        </div>
+    }
+</div>
+<div id="dialog-gift" class="tipDiv" >
+<div class='tipDivTop'><span>兑换奖品</span><a></a></div>
+  
+            <input type="text" id="GiftId" data-field="PointGiftId"  style="display:none" class="scinput"/>
+    <div style="display: inline-block; vertical-align: top;">
+        <p style=" padding:20px 10px 10px 10px;">
+            奖品名称:
+            <input type="text" data-field="DisplayName" disabled="disabled"  class="scinput"/></p>
+        <p style=" padding:10px;">
+            奖品描述:
+            <input type="text" data-field="Description" disabled="disabled" class="scinput"/></p>
+        <p style=" padding:10px;">
+            所需积分:
+            <input type="text" data-field="Point" disabled="disabled" class="scinput"/></p>
+    </div>
+    <div style="display: inline-block; vertical-align: top; padding: 20px 20px;">
+        <img data-field="Photo" height="100" width="100" data-field-format="/content/pointgiftphotos/{0}" /></div>
+         <div class="tipDivBtn">
+                <input name="" type="button" class="scbtn" onclick="alertPwdDiv();" value="确定" />&nbsp;&nbsp;
+                <input name="" type="button" class="cancel" onclick="fideOutDiv()"  value="取消" />
+            </div>
+</div>
+@Html.Partial("PasswordInput")
+<style>
+.tipDiv{width: 486px; height: 280px; border: #999999 1px solid; background: #fff; color: #333; position: fixed; top: 50%; left: 50%; margin-left: -243px; margin-top: -120px; z-index: 2999; filter: progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=4); -moz-box-shadow: 2px 2px 10px #909090; -webkit-box-shadow: 2px 2px 10px #909090; box-shadow: 2px 2px 10px #909090; display:none;}
+.tipDivTop{height:40px; line-height:40px; background:url(../images/tcbg.gif)  repeat-x; cursor:pointer;}
+.tipDivTop span{font-size:14px; font-weight:bold; color:#fff;float:left; text-indent:20px;}
+.tipDivTop a{display:block; background:url(../images/close.png) no-repeat; width:22px; height:22px;float:right;margin-right:7px; margin-top:10px; cursor:pointer;}
+.tipDivTop a:hover{background:url(../images/close1.png) no-repeat}
+.tipDivBtn{ margin-top:25px; text-align:center;}
+</style>

@@ -1,0 +1,135 @@
+﻿@model EcardModelItem<CancelPayAccount>
+<style>
+    .commoditiesTable
+    {
+        width: 100%;
+    }
+    .commoditiesTable tr
+    {
+        height: 25px;
+    }
+</style>
+<div class="two-column">
+    <input type="hidden" value="@Model.Item.PosName" id="posName"/>
+    <div class="column" style="width: 40%">
+        <div class="portlet form-bg ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"
+            id="dealInfo">
+            <div class="portlet-header ui-widget-header">
+                刷卡信息</div>
+            <div class="portlet-content">
+                <ul><li>
+                        <label class="desc">
+                            @Model.Localize("Amount.Name"):
+                        </label>
+                        <div>
+                            <input type="text" data-field="amount" id="amount" tabindex="1" maxlength="255" value="0"
+                                class="field text full">
+                        </div>
+                    </li> 
+                    <li id="accountInput">
+                        <label class="desc">
+                            请输入卡号:
+                        </label>
+                        <div>
+                            <input type="text" data-field="accountName" tabindex="1"  value=""  maxlength="@Model.Site.AccountNameLength"
+                                class="field text full">
+                            <input type="hidden"  data-field="accountToken" value="@Model.Site.AccountToken" />
+                        </div>
+                    </li>
+                    <li id="accountInput">
+                        <label class="desc">
+                            请输入交易号:
+                        </label>
+                        <div>
+                            <input type="text" data-field="serialNo" tabindex="1"  value="" 
+                                class="field text full"> 
+                        </div>
+                    </li> 
+                    <li class="buttons"> 
+                        <button class="ui-state-default ui-corner-all" href="cancelPay" >@Model.Localize("cancelPay.Text")</button>
+                    </li>
+                </ul>
+                <div class="linetop clearfix">
+                </div>
+                <p id="numbermsg">
+                </p>
+            </div>
+        </div>
+        <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all">
+            <div class="portlet-header ui-widget-header">
+                操作提示 ...</div>
+            <div class="portlet-content" style="display: block;">
+                <p>
+                    网页发卡版用户撤消消费时，请插入卡片，点击 [@Model.Localize("cancelPay.Text")].</p>
+                <p>
+                    自助发卡版用户撤消消费时，请直接输入卡号，并点击 [@Model.Localize("cancelPay.Text")](请确保发卡阶段卡标识字段为系统默认).</p>
+            </div>
+        </div>
+    </div>
+    <div class="column" style="width: 60%">
+        @Html.Partial("AccountInfoPub", "accountInfo")
+    </div>
+</div> 
+<script>
+   
+    (function ($) {
+        $("#numbermsg").text('@Model.Localize("waitingForInsertCard")');
+        if ($("#posName").val().length == 0) {
+            alert('@Model.Localize("noPosHere")');
+        };
+        $(function () {
+            $("button").click(function (e) {
+                $("#numbermsg").css("color", "red");
+                $("#accountInfo").bindfrom({});
+                e.preventDefault();
+
+                var $this = $(this);
+
+                var account = readAccount();
+                if (account == null) {
+                    $("#numbermsg").text('@Model.Localize("failToReadAccount")');
+                    return;
+                }
+                if (account.accountName) {
+                    $("#accountInput").bindfrom(account);
+                }
+
+                $("#numbermsg").css("color", "");
+                $this.attr("disabled", "disabled");
+                $("#numbermsg").text('@Model.Localize("waitingForCommunicate")');
+                var postData = $.extend($("#dealInfo").bindto(), { posName: $("#posName").val() });
+                var completed = function(password) {
+                    postData.Password = password;
+                    $.post($this.attr("href") + "?tm=" + new Date(), postData
+                        , function (data) {
+                            $("#numbermsg").text(data.CodeText);
+                            $("#accountInfo").bindfrom(data);
+                            if (data.Code == 0) {
+                                $("#numbermsg").css("color", "green");
+                                $("#accountInput").bindfrom({});
+
+                                $("tr", $("#commodities")).remove();
+                                printTicket(data.CodeText);
+                                $("#numbermsg").text('@Model.Localize("waitingForInsertCard")');
+                                $("#numbermsg").css("color", "green");
+                            }
+                            else {
+                                $("#numbermsg").css("color", "red");
+                                alert(data.CodeText);
+                                $("#numbermsg").text(data.CodeText);
+                            }
+                            $("[data-field='amount']").val('0');
+                            $("[data-field='serialNo']").val('');
+                            $("#accountInput").bindfrom({});
+                            $("[data-field='accountToken']").val('@Model.Site.AccountToken');
+                            $this.attr("disabled", false);
+                        });
+                    };
+
+                    inputPassword(completed, function () {
+                        $this.attr("disabled", false);
+                    });
+            });
+        });
+    })(jQuery);
+</script>

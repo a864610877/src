@@ -1,0 +1,490 @@
+﻿@model EcardModelItem<SystemPayAccount>
+           <style type="text/css">
+             .tabelSystemPay td{ padding:10px;}
+             .tabelSystemPay1 td{ padding:5px;}
+             hr {display: block; margin:8px; border-style: inset;border-width: 1px;}
+           </style>
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">@Model.Localize("title")</a></li>
+    </ul>
+</div>
+<div style=" padding-top: 10px">
+
+    <table border="1"   style="margin-left: 30px;"  class="tabelSystemPay">
+        <tr >
+            <td align="right" >
+            金额：
+            </td>
+            <td align="left" >
+               <input type="text"  id="amount" tabindex="1" maxlength="9" value="0" class="scinput InputSerach" />
+            </td>
+            <td rowspan="3">
+            <table border="2" cellpadding="1" style="font-size:14px;margin-left: 100px;" class="tabelSystemPay1" >
+             <tr><th colspan="6">会员信息</th></tr>
+             <tr><td>姓 名</td><td><input type="text"  id="Name" disabled  class="scinput InputSerach" /></td><td>性 别</td><td><input type="text"  id="Sex" disabled  class="scinput InputSerach" /></td>
+             <td>身份证</td><td><input type="text"  id="Identity" disabled  class="scinput InputSerach" /></td></tr>
+             <tr><td>卡号</td><td><input type="text"  id="AcountName2" disabled  class="scinput InputSerach" /></td><td>手机号</td><td><input type="text"  id="mobile2" disabled  class="scinput InputSerach" /></td>
+             <td>状态</td><td><input type="text"  id="State" disabled  class="scinput InputSerach" /></td></tr>
+             <tr><td>余额</td><td><input type="text"  id="AccountAmount2" disabled  class="scinput InputSerach" /></td><td>积分</td><td><input type="text"  id="Point2" disabled  class="scinput InputSerach" /></td></tr>
+            </table> 
+            </td>
+        </tr>
+        <tr >
+         <td align="right"  id="accountInput">
+                 卡号/手机号码：
+            </td>
+            <td align="left">
+                <input type="text" id="AccountName" tabindex="1"  value=""  maxlength="@Model.Site.AccountNameLength" class="scinput InputSerach" />
+                <input type="hidden" name="token" id="AccountToken" value="@Model.Site.AccountToken" />
+            </td>
+        </tr>
+        <tr >
+            <td align="right" >付款方式：
+            </td>
+            
+            <td align="left" > 
+<div class="uew-select">
+    <div class="uew-select-value ue-state-default" style="width: 118px;">
+  
+    <em class="uew-select-text">现金支付
+    </em><em class="uew-icon uew-icon-triangle-1-s"></em></div>
+               <select id="fkfs" class="select1">
+                <option value="1" selected="selected">现金支付</option>
+                <option value="2">会员卡支付</option>
+               </select>
+               </div>
+            </td>
+        </tr>
+        <tr >
+            <td colspan="2">
+                <div align="center" style=" margin-left: 80px;">
+                    <br />  <button id="SubmitBut" class="scbtn" href="systempay" data-success-message='@Model.Localize("pay.success")'>确认消费</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                     <button id="cx" class="scbtn"  >查 询</button>
+                </div>
+            </td>
+            <td colspan="2"></td>
+        </tr>
+        <tr class="epay">
+            <td colspan="4">
+                <div align="center">
+                    <p id="numbermsg">
+                    </p>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<script src='@Url.Content("~/Scripts/spin.js")' type="text/javascript"></script>
+<script src='@Url.Content("~/Scripts/LodopFuncs.js")' type="text/javascript"></script>
+<div id="dialog-password" class="tipDiv"  style="height: 200px;display: none">
+ <div class="tipDivTop"><span>密码检验</span><a onclick="closeDiv(this)"></a></div>
+  <div class="InputPwdStyle"><label>请输入密码<label>&nbsp;&nbsp;
+  <input id="pwdd" type="password"  data-field="password" class="scinput" data-field="password"/>
+  &nbsp;&nbsp;<input type="button" class="scbtn" id="qr" value="确定" onclick="qrjy()">
+  <div style=" float:right;" ><span id="foo"></span>
+  </div>
+  </div>
+  </div>
+<div id="dialog-account" class="tipDiv" style="display: none" >
+<div class="tipDivTop"><span>交易信息</span><a onclick="closeDiv(this)"></a></div>
+ <table border="1" cellspacing="0" cellpadding="0" style="width:500px; height:350px; margin: 0 auto">
+	@*<tr>
+            <td colspan="4">
+                <div style="margin-top: 15px; border-bottom-style: solid; border-bottom-width: thin;
+                    border-bottom-color: #99CCFF; border-top-style: solid; border-top-width: thin;
+                    border-top-color: #99CCFF;" align="center">
+                    交易信息</div>
+            </td>
+        </tr>*@
+        <tr class="epay">
+            <td class="lefttd">
+                流水号
+            </td>
+            <td class="righttd" colspan="3" >
+                <input type="text" data-field="SeriaNo" id="SeriaNo" disabled="disabled" tabindex="1" maxlength="50"
+                    value="" class="scinput InputSerach" style=" width:250px;" />
+            </td>
+           
+        </tr>
+        <tr class="epay">
+            <td class="lefttd">
+                卡号
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="AccountName" id="AccountName1" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="scinput InputSerach" />
+            </td>
+            <td class="lefttd">
+                会员类型 
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="AccountType" disabled="disabled" tabindex="1"
+                    value="" class="scinput InputSerach" />
+            </td>
+        </tr>
+        <tr class="epay">
+        <td class="lefttd">
+                有效期
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="ExpiredDate" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="scinput InputSerach" />
+            </td>
+            <td class="lefttd">
+                姓名
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="OwnerDisplayName" disabled="disabled" tabindex="1"
+                    maxlength="16" value="" class="scinput InputSerach" />
+            </td>
+        </tr>
+        <tr class="epay">
+        <td class="lefttd">
+                交易金额：
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="OldAmount" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="scinput InputSerach" />
+            </td>
+            <td class="lefttd">
+                折扣比例：
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="Rebate" disabled="disabled" tabindex="1"
+                    maxlength="16" value="" class="scinput InputSerach" />
+            </td>
+        </tr>
+ <tr class="epay">
+            <td class="lefttd">
+               卡余额
+            </td>
+            <td class="righttd">
+                 <input type="text" data-field="Amount" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="scinput InputSerach" />
+            </td>
+             <td class="lefttd">
+               本次交易应收金额
+            </td>
+            <td class="righttd">
+                 <input type="text" data-field="DealAmount" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="scinput InputSerach" />
+            </td>
+           @*<td class="lefttd">
+                可用次数
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="MeteringPayCount" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="field text full" />
+            </td>*@
+        </tr>
+         <tr class="epay">
+        <td class="lefttd">
+                卡积分
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="Point" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="scinput InputSerach" />
+            </td>
+           <td class="lefttd">
+             本次交易可得积分
+            </td>
+            <td class="righttd">
+                <input type="text"  data-field="PayPoint" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="scinput InputSerach" />
+            </td>
+            
+        </tr>
+        <tr class="epay">
+            <td class="lefttd">
+               @* 有效期*@
+            </td>
+            <td class="righttd">
+                @*<input type="text" data-field="ExpiredDate" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="field text full" />*@
+                    <input id="pwd" type="hidden"  data-field="pwd"  />
+            </td>
+            
+        </tr>
+       <tr class="epay">
+         <td colspan="4">
+          <input type="submit" class="scbtn" value="确认交易" id="jyy"  style="margin-left: 150px;margin-right: 50px;" /><input type="submit" class="scbtn" value="关闭" id="qx"  /><div><span id="foo1"></span></div>
+         </td>
+       </tr>
+       
+</table>
+</div>
+<div id="dialog-account1" class="tipDiv" style="display: none" >
+<div class="tipDivTop"><span>交易类型</span><a onclick="closeDiv(this)"></a></div>
+<div id="JqPrint" style=" text-align:left;padding: 10px;">
+
+</div>
+<table border="0" cellspacing="0" cellpadding="0" style="text-align: center;margin: 0 auto;">
+	 <tr >
+            <td colspan="1">
+                <div align="center">
+                    <p id="msg">
+                    </p>
+                </div>
+            </td>
+        </tr>
+       <tr class="epay">
+         <td colspan="1" style="text-align:left; padding-left:5px;" >
+         <input type="submit" class="scbtn"  value="退  出" id="tc" onclick="qx()" style="margin-right: 20px;" /><input  type="submit" class="scbtn" value="打 印" id="dy" onclick="prn1_preview()"  />
+         </td>
+       </tr>
+</table>
+</div>
+ <div id="mask" class="ShowHide">
+    </div>
+<script>
+    function qx() {
+        $(".ShowHide").fadeOut(100);
+     $("#dialog-account1").css("display", "none");
+        $("#JqPrint").append("");
+    }
+function date2str(x, y) {
+    var z = { M: x.getMonth() + 1, d: x.getDate(), h: x.getHours(), m: x.getMinutes(), s: x.getSeconds() };
+    y = y.replace(/(M+|d+|h+|m+|s+)/g, function (v) { return ((v.length > 1 ? "0" : "") + eval('z.' + v.slice(-1))).slice(-2) });
+    return y.replace(/(y+)/g, function (v) { return x.getFullYear().toString().slice(-v.length) });
+       }
+var LODOP=getLodop();
+function prn1_preview() {
+                CreateOneFormPage();
+                LODOP.PREVIEW();
+    };
+    function CreateOneFormPage() {
+       LODOP.SET_PRINT_TEXT_STYLE(1, "宋体", 15, 1, 0, 0, 1);
+       LODOP.SET_PRINT_PAGESIZE(3, 600, 2, "");
+       LODOP.ADD_PRINT_HTM(0, 0, 0, 700, document.getElementById("JqPrint").innerHTML);
+    };
+var spinnerOpts = {
+    lines: 13, // 共有几条线组成
+    length: 4, // 每条线的长度
+    width: 2, // 每条线的粗细
+    radius: 5, // 内圈的大小
+    corners: 1, // 圆角的程度
+    rotate: 0, // 整体的角度（因为是个环形的，所以角度变不变其实都差不多）
+    color: '#FF0000', // 颜色 #rgb 或 #rrggbb
+    speed: 1, // 速度：每秒的圈数
+    trail: 60, // 高亮尾巴的长度
+    shadow: false, // 是否要阴影
+    hwaccel: false, // 是否用硬件加速
+    className: 'spinner', // class的名字
+    zIndex: 7, // z-index的值 2e9（默认为2000000000）
+    top: '90', // 样式中的top的值（以像素为单位，写法同css）
+    left: 'auto' // 样式中的left的值（以像素为单位，写法同css）
+};
+      $("#pwdd").keyup(function (evt) {
+if (evt.keyCode == "13") {
+var pwd = $(this).val();
+pwww(pwd);
+}
+});
+ function qrjy()
+ {
+   $("#qr").attr("disabled",　"disabled");
+   var pwd = $("#pwdd").val();
+   pwww(pwd);
+ }
+
+
+function  pwww(pwd) {
+            var req = new Object();
+            var se1=$("#dkq option:selected").text();
+            if(se1=="none")
+            {
+               if($("#AccountName").val()=="")
+               {
+                 alert("请输入卡号");
+                return;
+               }
+               req.AccountName = $("#AccountName").val();
+               req.AccountToken = $("#AccountToken").val();
+            }
+            else
+            {
+                req=readAccount();
+                if(req==null)
+                {
+                  alert("读卡失败");
+                  return;
+                }
+                $("#AccountName").val(req.AccountName)
+            }
+            req.Amount = $("#amount").val();
+            req.AccountPwd =pwd; 
+            req.PayWay=$('#fkfs option:selected').val();
+            var passwordDlg = $("#dialog-account");
+            $("#numbermsg").css("color", "");
+            var target = document.getElementById('foo');
+             var JP=document.getElementById('JqPrint');
+            var aa='@Model.Site.DisplayName';
+           var spinner = new Spinner(spinnerOpts).spin(target);
+           $.post('@Url.Action("ShowPay", "Account")', req, function (data) {
+               if (data.Code == 0) {
+                   $("[data-field='SeriaNo']").val(data.SeriaNo);
+                   $("[data-field='AccountName']").val(data.AccountName);
+                   $("[data-field='pwd']").val(pwd);
+                   $("[data-field='Amount']").val(data.Amount);
+                   $("[data-field='ExpiredDate']").val(data.ExpiredDate);
+                   $("[data-field='OwnerDisplayName']").val(data.OwnerDisplayName);
+                   $("[data-field='Point']").val(data.Point);
+                   $("[data-field='MeteringPayCount']").val(data.MeteringPayCount);
+                   $("[data-field='AccountType']").val(data.AccountTypeName);
+                   $("[data-field='DealAmount']").val(data.DealAmount);
+                   $("[data-field='OldAmount']").val(data.OldAmount);
+                   $("[data-field='Rebate']").val(data.Rebate);
+                   $("[data-field='PayPoint']").val(data.PayPoint);
+                   $("#dialog-password").css("display", "none"); 
+                   passwordDlg.css("display", "block").css("width", "600px").css("height", "400px").css("top", "40%");
+                   $(this).val("");
+                   //                  passwordDlg.dialog({
+                   //                   title: "交易信息",
+                   //                   resizable: false,
+                   //                   autoOpen: true,
+                   //                   width: 500,
+                   //                   height:500,
+                   //                   modal: true
+                   //                   }); 
+                   target.innerHTML = "";
+                   $("#numbermsg").css("color", "");
+                   $("#numbermsg").text('交易确认中...');
+                   $("#jyy").attr("disabled", false);
+                   var myDate = new Date();
+                   JP.innerHTML = "<table id='ww' style='text-align: center;margin: 0 auto;' border='0' cellspacing='0' cellpadding='0'><tr><td colspan='2' style='text-align:center'>" + aa + "</td></tr><tr><td><hr  style='width: 270px;'/><td></tr><tr><td style='text-align:left; padding-left:25px;'>交易类型</td></tr><tr><td style='text-align:left; padding-left:30px;'>消费</td></tr> <tr><td style='text-align:left; padding-left:25px;'>流水号</td></tr> <tr> <td style='text-align:left;padding-left:30px;'> " + data.SeriaNo + "</td></tr><tr><td style='text-align:left; padding-left:25px;'>卡号</td></tr><tr> <td style=' text-align:left;padding-left:30px;'> " + data.AccountName + "</td></tr> <tr><td style='text-align:left; padding-left:25px;'>交易金额</td> </tr><tr><td style=' text-align:left;padding-left:30px;'>" + data.OldAmount + "</td></tr> <tr><td style='text-align:left; padding-left:25px;'>折扣(%)</td></tr><tr><td style='text-align:left;padding-left:30px;'>" + data.Rebate + "</td></tr> <tr><td style='text-align:left; padding-left:25px;'>折后金额</td></tr><tr><td style=' text-align:left;padding-left:30px;'>" + data.DealAmount + "</td></tr> <tr><td style='text-align:left; padding-left:25px;'>积分</td></tr><tr><td style=' text-align:left;padding-left:30px;'>" + data.PayPoint + "</td></tr><tr><td style='text-align:left; padding-left:25px;'>日期</td></tr><tr><td style=' text-align:left;padding-left:30px;'> " + date2str(myDate, "yyyy-MM-dd hh:mm:ss") + "</td> </tr>  </table><hr /> <table style='text-align: center;margin: 0 auto;'><tr><td style='text-align:left;padding-left:5px;'>备注：</td> </tr><tr><td style='text-align:left;padding-left:5px;'>持卡人签名：</td></tr><tr><td style='text-align:left;padding-left:5px;'>本人同意以上交易，同意将其记入本卡账户</td></tr></table><hr />";
+               }
+               else {
+                   if (data.Code != 0) {
+                       alert(data.CodeText);
+                       $("#numbermsg").text(data.CodeText);
+
+                   }
+                   else {
+                       alert('交易错误');
+                       $("#numbermsg").text('交易错误');
+                   }
+                   $("#numbermsg").css("color", "red");
+                   target.innerHTML = "";
+                   $("#dialog-password").css("display", "none");
+               }
+           });
+        }
+(function ($) {
+        var cancel = function () {
+        alert("请输入密码");
+              }
+  $(function () {
+      $("#SubmitBut").click(function (e) {
+          $("#pwdd").val("");
+                e.preventDefault();
+                var $this = $(this);
+               $("#AccountToken").val('@Model.Site.AccountToken');
+              // $("#qr").attr("disabled",　false);
+                $("#qr").attr("disabled",　"");
+                $(".ShowHide").fadeIn(100);
+              $("#dialog-password").css("display","block");
+            });
+            $("#cx").click(function(){
+                var req = new Object();
+
+                var se1 = $("#dkq option:selected").text();
+                if (se1 == "none") {
+                    if ($("#AccountName").val() == "") {
+                        alert("请输入卡号");
+                        return;
+                    }
+                    req.AccountName = $("#AccountName").val(); 
+                }
+                else {
+                    req = readAccount();
+                    if (req == null) {
+                        alert("读卡失败");
+                        return;
+                    }
+                    $("#AccountName").val(req.accountName)
+                } 
+            $.post('@Url.Action("QueryWithoutToken", "Account")', req,function(data){
+             if (data.Code == 0) 
+             {
+                $("#Name").val(data.OwnerDisplayName);
+                $("#Sex").val(data.Sex);
+                $("#Identity").val(data.Identity);
+                $("#AcountName2").val(data.AccountName);
+                $("#mobile2").val(data.Mobile);
+                $("#State").val(data.State);
+                $("#AccountAmount2").val(data.Amount);
+                $("#Point2").val(data.Point);
+             }
+          });
+
+            });
+            $("#jyy").click(function(){
+            $("#jyy").attr("disabled",　true);
+            var target = document.getElementById('foo1');
+            var spinner = new Spinner(spinnerOpts).spin(target);
+            var req = new Object();
+            req.Amount = $("#amount").val();
+            req.AccountPwd = $("[data-field='pwd']").val();
+            req.SeriaNo =$("[data-field='SeriaNo']").val();
+            req.AccountName = $("#AccountName1").val();
+            req.AccountToken = $("#AccountToken").val();
+            req.PayWay=$('#fkfs option:selected').val();
+            var AccountDlg = $("#dialog-account1");
+             $.post('@Url.Action("SystemPay", "Account")', req,
+                function (data) {
+                    if (data.Code == 0) {
+                            $("#amount").val('0');
+                            $("#AccountName").val("");
+                            alert("交易成功！");
+                           // printTicket(data.CodeText);
+                            $("#numbermsg").text(data.CodeText);
+                            $("#numbermsg").css("color", "green");
+                            $("[data-field='pwd']").val("");
+                            $("[data-field='AccountName']").val("");
+                            $("[data-field='Amount']").val(0);
+                            $("[data-field='ExpiredDate']").val("");
+                            $("[data-field='Point']").val(0);
+                            $("[data-field='MeteringPayCount']").val(0);
+                            $("[data-field='AccountType']").val("");
+                            $("[data-field='DealAmount']").val(0);
+                            $("[data-field='OldAmount']").val(data.OldAmount);
+                            $("[data-field='Rebate']").val(data.Rebate);
+                            $("[data-field='PayPoint']").val(0);
+                            $("#dialog-account").css("display", "none");
+                            AccountDlg.css("display", "block").css("width", "300px").css("height", "500px").css("top", "30%");
+                            }
+                            else {
+                            $("#numbermsg").css("color", "red");
+                            alert(data.CodeText);
+                            $("#numbermsg").text(data.CodeText);
+                            }
+                            target.innerHTML="";
+                        });
+            });
+
+             $("#qx").click(function(){
+                 $(".ShowHide").fadeOut(100);
+                    $("[data-field='pwd']").val("");
+                    $("[data-field='AccountName']").val("");
+                    $("[data-field='Amount']").val(0);
+                    $("[data-field='ExpiredDate']").val("");
+                    $("[data-field='Point']").val(0);
+                    $("[data-field='MeteringPayCount']").val(0);
+                    $("[data-field='AccountType']").val("");
+                    $("[data-field='DealAmount']").val(0);
+                    $("[data-field='Rebate']").val(0);
+                    $("[data-field='PayPoint']").val(0);
+                    $("#dialog-account").css("display", "none"); 
+                    $("#numbermsg").css("color", "red");
+                    $("#numbermsg").text('交易取消');
+                 var target1 = document.getElementById('foo1');
+                 target1.innerHTML="";
+             });
+        });
+    })(jQuery);
+   
+</script>

@@ -1,0 +1,37 @@
+﻿@model PageModel
+@{
+    Layout = "~/Views/Shared/_fullWidth.cshtml"; 
+}
+@section scripts{
+    <script src="/Content/themes/t/scripts/shopLiquidate.js" type="text/javascript"></script>
+}
+<div class="sec_pan" id="shopLiquidates"> 
+    @using (Html.BeginForm())
+    {
+        <div class="title-box">
+            <h3>
+                商户对账</h3>
+        </div>
+        <div id="deallogs-panel">
+            @Html.Action("ShopDealLogs")
+        </div> 
+        <div class="buttons">
+            <a href="#" class="small" id="btnCreateLiquidate">创建清算</a>
+            <a href="#" class="small" id="btnCreateRollback">申请冲正</a>
+        </div>
+        <div  class="tab" >
+            <ul class="clearfix">
+                <li class="on"><a href="#liquidates-panel" >清算请求</a></li>
+                <li><a href="#rollbacks-panel">撤消请求</a></li>
+            </ul>
+            <div  class="tab-panel" >
+                <div id="liquidates-panel" class="clearfix">
+                    @Html.Action("ShopLiquidates")
+                </div>
+                <div id="rollbacks-panel" class="clearfix">
+                    @Html.Action("ShopRollbacks")
+                </div>
+            </div>
+        </div> 
+    }
+</div>

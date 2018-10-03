@@ -1,0 +1,45 @@
+﻿@model PageModel
+@{
+    Layout = null;// "~/Views/Shared/_AccountLayout.cshtml";
+}
+<div class="sec_pan" id="cancelPayAccount">
+   @using (Html.BeginForm())
+   {
+        <div class="title-box">
+        <h3>
+            在线撤消</h3>
+    </div>
+    <div class="">
+        <div class="">
+            @Html.Partial("cancelPayProcessing", "accountselector")
+        </div>
+        <fieldset>
+            <legend>在线撤消</legend>
+            <div class="mainInput">
+                <div class="fieldInput">
+                    <label class="large" for="accountName">
+                        卡号:</label>
+                    <input type="text" readonly="readonly" name="accountName" id="accountName" class="t_ipt_fc largeInput" maxlength="@Model.Site.AccountNameLength" />
+                             <input type="hidden" name="accountToken" id="accountToken"/> 
+                        <a id="btnReadAccount" href="#accountInputCtrl">重新刷卡</a>
+                </div> 
+            </div>
+            <div id="account">
+                @Html.Action("Account", "Account")
+            </div>
+        </fieldset>
+    </div>
+    <div class="buttons rtl">
+        <a id="next" href="CancelPayConfirm" class="post large disabled" target="#secbox" >
+            下一步</a></div>
+    <div class="point_list">
+        <h3>
+            用户提示</h3>
+        <ol class="list_hasnum">
+            <li>输入卡号或直接读卡信息。</li>
+            <li>点击下一步。</li>
+        </ol>
+    </div> 
+    @Html.Hidden("serverSerialNo", ViewData["serverSerialNo"])
+   }
+</div> 

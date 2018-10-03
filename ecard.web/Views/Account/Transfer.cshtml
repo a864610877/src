@@ -1,0 +1,555 @@
+﻿@model EcardModelItem<TransferAccount>
+<style>
+    .pay td
+    {
+       
+        padding:8px;
+        vertical-align: top;
+    }
+    .pay .odd
+    {
+        background-color: #ffffff;
+    }
+    .pay .even
+    {
+        background-color: #ffffff;
+    }
+    .bpay td
+    {
+        font-size: 18px;
+        vertical-align: middle;
+    }
+    .epay
+    {
+    }
+    .righttd
+    {
+        text-align: left;
+    }
+    .lefttd
+    {
+        text-align: right;
+    }
+    input
+    {
+        border: 2px solid #528082;
+    }
+</style>
+
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">@Model.Localize("title")</a></li>
+    </ul>
+</div>
+<div class="formbody" style="padding:10px 19px">
+    
+    <ul class="forminfo" id="operationPanel">
+    
+    
+    </li>
+
+
+    <div class="paydiv" style="float:left">
+<div class="transfer" id="account1" style="float:left;border:solid thin #99CCFF;">
+    <table class="pay" id="operationPanel">
+    <div class="portlet-content">
+        <tr>
+            <td colspan="4">
+                <div 
+                    align="center">
+                    会员信息1</div>
+            </td>
+        </tr>
+       
+        <tr class="bpay" id="accountInput">
+            <td colspan="4" class="lefttd">
+                <div  align="center">
+                    请输入卡号
+                
+                  <input type="text" id="currentaccountName" data-field="accountName" tabindex="1"  maxlength="@Model.Site.AccountNameLength" value="" class="scinput InputSerach">
+                </div>
+            </td>
+           
+            <div align="center">
+              
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" style="text-align:center;">
+              
+           
+             <button class="scbtn" style="width: 70px;height: 25px" href="../Account/QueryWithoutToken" data-waiting-message='@Model.Localize("waitingForQuery")'>@Model.Localize("Query.Text")</button>
+                <button data-transfer-to="#account2" class="scbtn  tranfer-account" style="width: 70px;height: 25px"  href="../Account/Transfer"  data-print="true"  data-success-message='@Model.Localize("success")' data-waiting-message='@Model.Localize("waitingForTransfer")'>@Model.Localize("Transfer.Text")</button>
+            </td>
+        </tr>
+        <tr class="epay">
+            <td colspan="4">
+                <div align="center">
+                    <p class="numbermsg"></p>
+                </div>
+            </td>
+        </tr>
+    </div>
+        <tr>
+            <td colspan="4">
+                <div style="margin-top: 15px; border-top-style: solid; border-top-width: thin;
+                    border-top-color: #99CCFF;" align="center">
+                    会员信息1</div>
+            </td>
+        </tr>
+        <tr class="epay">
+            <td class="lefttd">
+                卡号
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="AccountName" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="scinput InputSerach" />
+            </td>
+            <td class="lefttd">
+                金额
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="Amount" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="scinput InputSerach" />
+            </td>
+        </tr>
+        <tr class="epay">
+            <td class="lefttd">
+                姓名
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="OwnerDisplayName" disabled="disabled" tabindex="1"
+                    maxlength="16" value="" class="scinput InputSerach" />
+            </td>
+            <td class="lefttd">
+                积分
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="Point" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="scinput InputSerach" />
+            </td>
+        </tr>
+        <tr class="epay">
+            <td class="lefttd">
+                有效期
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="ExpiredDate" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="scinput InputSerach" />
+            </td>
+            <td class="lefttd">
+                相片
+            </td>
+            <td class="righttd">
+                <img width="120" data-field="Photo" data-field-format="@Paths.UserPhotoFormat" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="transfer" id="account2" style="float:left;border:solid thin #99CCFF;margin-left:40px">
+    <table class="pay" id="operationPanel">
+        <tr>
+            <td colspan="4" >
+                <div                     align="center">
+                    会员信息2</div>
+            </td>
+        </tr>
+
+        <tr class="bpay" id="accountInput" >
+            <td class="lefttd" colspan="4">
+                <div align="center">
+                    请输入卡号
+                     <input type="text" id="currentaccountName" data-field="accountName" tabindex="1"  maxlength="@Model.Site.AccountNameLength" value="" class="scinput InputSerach">
+                </div>
+           
+               
+               
+            </td>
+        </tr>
+         
+        <tr>
+            <td colspan="4" style="text-align:center;">
+                <button class="scbtn" style="width: 70px;height: 25px" href="../Account/QueryWithoutToken" data-waiting-message='@Model.Localize("waitingForQuery")'>@Model.Localize("Query.Text")</button>
+            
+                <button data-transfer-to="#account1" style="width: 70px;height: 25px" class="scbtn" href="../Account/Transfer"  data-print="true"  data-success-message='@Model.Localize("success")' data-waiting-message='@Model.Localize("waitingForTransfer")'>@Model.Localize("Transfer.Text")</button>
+            </td>
+        </tr>
+        <tr class="epay">
+            <td colspan="4">
+                <div align="center">
+                    <p class="numbermsg"></p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <div style="margin-top: 15px;  border-top-style: solid; border-top-width: thin;
+                    border-top-color: #99CCFF;" align="center">
+                    会员信息2</div>
+            </td>
+        </tr>
+        <tr class="epay">
+            <td class="lefttd">
+                卡号
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="AccountName" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="scinput InputSerach" />
+            </td>
+            <td class="lefttd">
+                金额
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="Amount" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="scinput InputSerach" />
+            </td>
+        </tr>
+        <tr class="epay">
+            <td class="lefttd">
+                姓名
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="OwnerDisplayName" disabled="disabled" tabindex="1"
+                    maxlength="16" value="" class="scinput InputSerach" />
+            </td>
+            <td class="lefttd">
+                积分
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="Point" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="scinput InputSerach" />
+            </td>
+        </tr>
+        <tr class="epay">
+            <td class="lefttd">
+                有效期
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="ExpiredDate" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="scinput InputSerach" />
+            </td>
+            <td class="lefttd">
+                相片
+            </td>
+            <td class="righttd">
+                <img width="120" data-field="Photo" data-field-format="@Paths.UserPhotoFormat" />
+            </td>
+        </tr>
+    </table>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+@*<div class="paydiv" style="float:left">
+<div class="transfer" id="account1" style="float:left">
+    <table class="pay" id="operationPanel">
+    <div class="portlet-content">
+        <tr>
+            <td colspan="4">
+                <div style="border-bottom-style: solid; border-bottom-width: thin; border-bottom-color: #99CCFF;
+                    border-top-style: solid; border-top-width: thin; border-top-color: #99CCFF;"
+                    align="center">
+                    会员信息1</div>
+            </td>
+        </tr>
+        <tr class="bpay" id="accountInput">
+            <td class="lefttd">
+                <div align="center">
+                    请输入卡号
+                </div>
+            </td>
+            <td class="righttd">
+            <div align="center">
+                <input type="text" id="currentaccountName" data-field="accountName" tabindex="1"  maxlength="@Model.Site.AccountNameLength" value="" class="field text full">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button class="ui-state-default ui-corner-all query-account" href="../Account/QueryWithoutToken" data-waiting-message='@Model.Localize("waitingForQuery")'>@Model.Localize("Query.Text")</button>
+            </td>
+            <td colspan="2">
+                <button data-transfer-to="#account2" class="ui-state-default ui-corner-all tranfer-account" href="../Account/Transfer"  data-print="true"  data-success-message='@Model.Localize("success")' data-waiting-message='@Model.Localize("waitingForTransfer")'>@Model.Localize("Transfer.Text")</button>
+            </td>
+        </tr>
+        <tr class="epay">
+            <td colspan="4">
+                <div align="center">
+                    <p class="numbermsg"></p>
+                </div>
+            </td>
+        </tr>
+    </div>
+        <tr>
+            <td colspan="4">
+                <div style="margin-top: 15px; border-bottom-style: solid; border-bottom-width: thin;
+                    border-bottom-color: #99CCFF; border-top-style: solid; border-top-width: thin;
+                    border-top-color: #99CCFF;" align="center">
+                    会员信息1</div>
+            </td>
+        </tr>
+        <tr class="epay">
+            <td class="lefttd">
+                卡号
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="AccountName" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="field text full" />
+            </td>
+            <td class="lefttd">
+                金额
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="Amount" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="field text full" />
+            </td>
+        </tr>
+        <tr class="epay">
+            <td class="lefttd">
+                姓名
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="OwnerDisplayName" disabled="disabled" tabindex="1"
+                    maxlength="16" value="" class="field text full" />
+            </td>
+            <td class="lefttd">
+                积分
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="Point" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="field text full" />
+            </td>
+        </tr>
+        <tr class="epay">
+            <td class="lefttd">
+                有效期
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="ExpiredDate" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="field text full" />
+            </td>
+            <td class="lefttd">
+                相片
+            </td>
+            <td class="righttd">
+                <img width="120" data-field="Photo" data-field-format="@Paths.UserPhotoFormat" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="transfer" id="account2" style="float:left">
+    <table class="pay" id="operationPanel">
+        <tr>
+            <td colspan="4">
+                <div style="border-bottom-style: solid; border-bottom-width: thin; border-bottom-color: #99CCFF;
+                    border-top-style: solid; border-top-width: thin; border-top-color: #99CCFF;"
+                    align="center">
+                    会员信息2</div>
+            </td>
+        </tr>
+        <tr class="bpay" id="accountInput">
+            <td class="lefttd">
+                <div align="center">
+                    请输入卡号
+                </div>
+            </td>
+            <td class="righttd">
+            <div align="center">
+                <input type="text" id="currentaccountName" data-field="accountName" tabindex="1"  maxlength="@Model.Site.AccountNameLength" value="" class="field text full">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button class="ui-state-default ui-corner-all query-account" href="../Account/QueryWithoutToken" data-waiting-message='@Model.Localize("waitingForQuery")'>@Model.Localize("Query.Text")</button>
+            </td>
+            <td colspan="2">
+                <button data-transfer-to="#account1" class="ui-state-default ui-corner-all tranfer-account" href="../Account/Transfer"  data-print="true"  data-success-message='@Model.Localize("success")' data-waiting-message='@Model.Localize("waitingForTransfer")'>@Model.Localize("Transfer.Text")</button>
+            </td>
+        </tr>
+        <tr class="epay">
+            <td colspan="4">
+                <div align="center">
+                    <p class="numbermsg"></p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <div style="margin-top: 15px; border-bottom-style: solid; border-bottom-width: thin;
+                    border-bottom-color: #99CCFF; border-top-style: solid; border-top-width: thin;
+                    border-top-color: #99CCFF;" align="center">
+                    会员信息2</div>
+            </td>
+        </tr>
+        <tr class="epay">
+            <td class="lefttd">
+                卡号
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="AccountName" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="field text full" />
+            </td>
+            <td class="lefttd">
+                金额
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="Amount" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="field text full" />
+            </td>
+        </tr>
+        <tr class="epay">
+            <td class="lefttd">
+                姓名
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="OwnerDisplayName" disabled="disabled" tabindex="1"
+                    maxlength="16" value="" class="field text full" />
+            </td>
+            <td class="lefttd">
+                积分
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="Point" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="field text full" />
+            </td>
+        </tr>
+        <tr class="epay">
+            <td class="lefttd">
+                有效期
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="ExpiredDate" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="field text full" />
+            </td>
+            <td class="lefttd">
+                相片
+            </td>
+            <td class="righttd">
+                <img width="120" data-field="Photo" data-field-format="@Paths.UserPhotoFormat" />
+            </td>
+        </tr>
+    </table>
+</div>
+</div>*@
+<script>
+    $(function () {
+        var btn = $("button");
+        $(".numbermsg").text('@Model.Localize("waitingForInsertCard")');
+
+        $(".tranfer-account").click(function () {
+            var $this = $(this);
+            var parent = $this.parents(".transfer");
+            var other = $($this.attr('data-transfer-to'));
+            $(".numbermsg", parent).css("color", "red").css("color", "").text($this.attr("data-waiting-message"));
+            $this.attr("disabled", "disabled");
+            var account = $("#operationPanel", parent).bindto();
+            var accountTo = $("#operationPanel", other).bindto();
+            var amount = prompt('@Model.Localize("inputAmount", "请输入转帐金额，不输入则将全部金额转入对方帐户")');
+            if (amount == null) {
+                $this.attr("disabled", false);
+                return;
+            }
+            if (!amount)
+                amount = 0;
+            else
+                amount = parseInt(amount);
+            if (!confirm(String.format('@Model.Localize("confirmTransfer")', amount == 0 ? "全部" : (amount + " 元"), account.accountName, accountTo.accountName))) {
+                $this.attr("disabled", false);
+                return;
+            }
+            var success = function (password) {
+                $.post($this.attr("href") + "?tm=" + new Date(), { accountName: account.accountName, accountNameTo: accountTo.accountName, password: password, amount: amount }
+            , function (data) {
+                $(".account-info", parent).bindfrom(data);
+                $this.attr("disabled", false);
+
+                if (!data.Success) {
+                    $(".numbermsg", parent).css("color", "red").text(data.Message);
+                }
+                else {
+                    $(".numbermsg", parent).css("color", "green");
+                    if (data.Data1)
+                        printTicket(data.Data1);
+                    else
+                        alert('@Model.Localize("success.Transfer")');
+                    $(".numbermsg", parent).text('@Model.Localize("waitingForInsertCard")');
+                } 
+            });
+            };
+            var cancel = function () {
+                $this.attr("disabled", false);
+            };
+
+            inputPassword_new(success, cancel);
+        });
+
+
+        btn.click(function () {
+            var $this = $(this);
+            var parent = $this.parents(".transfer");
+            var other = $($this.attr('data-transfer-to'));
+            $(".numbermsg", parent).css("color", "red").css("color", "").text($this.attr("data-waiting-message"));
+            var account = $("#accountInput", parent).bindto();
+            account.accountName = $("#currentaccountName").val();
+            //            if (!account.accountName || account.accountName.trim().length != @Model.Site.AccountNameLength) {
+            //                account = readAccount();
+            //            }
+            if (account == null) {
+                $(".numbermsg", parent).text('@Model.Localize("卡号不存在")');
+                return;
+            }
+
+            if (account.accountName) {
+                $("#accountInput").bindfrom(account);
+            }
+            //                if (account.accountName.trim().length != @Model.Site.AccountNameLength) {
+            //                $(".numbermsg", parent).text('@Model.Localize("请输入卡号")');
+            //                return;
+            //            }
+            $(".numbermsg", parent).css("color", "");
+
+            $(".numbermsg", parent).text($(this).attr("data-waiting-message"));
+            account = $("#operationPanel", parent).bindto();
+            account.Amount = $("#currentAmount", parent).val();
+            $.post($(this).attr("href") + "?tm=" + new Date(), account
+                , function (data, status) {
+                    if (status == "success") {
+                        $("[data-field='AccountName']", parent).val(data.AccountName);
+                        $("[data-field='Amount']", parent).val(data.Amount);
+                        $("[data-field='ExpiredDate']", parent).val(data.ExpiredDate);
+                        $("[data-field='OwnerDisplayName']", parent).val(data.OwnerDisplayName);
+                        $("[data-field='Point']", parent).val(data.Point);
+                        $("[data-field='Photo']", parent).attr("src", "/content/userphotos/" + data.Photo);
+                        //交易成功！
+                        if (data.Code != 0) {
+                            $(".numbermsg", parent).css("color", "red");
+                            $(".numbermsg", parent).text(data.CodeText);
+                        }
+                        else {
+                            $(".numbermsg", parent).css("color", "green");
+                            $("#currentAmount", parent).val("0");
+                            $(".numbermsg", parent).text('操作成功');
+                            $("[data-field='accountName']", parent).val(data.AccountName);
+                            if ($this.attr("data-print") == 'true') {
+                                alert("操作成功");
+                                printTicket2(data.CodeText);
+                            } else
+                                alert(data.CodeText);
+                        }
+                    }
+                });
+        });
+    })(jQuery);
+</script>

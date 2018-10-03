@@ -1,0 +1,29 @@
+﻿@model EcardModelItem<GetAccountTypeById> 
+           <div class="hastable">
+<table class="sort-table">
+    <thead>
+        <tr>
+            <th class="header">@Model.Localize("DisplayName.text")</th>
+            <th class="header">@Model.Localize("Point.text")</th>
+            <th class="header">@Model.Localize("Amount.text")</th>
+            <th class="header">@Model.Localize("ExpiredMonths.text")</th>
+            <th class="header">@Model.Localize("IsRecharging.text")</th>
+            <th class="header">@Model.Localize("IsRenew.text")</th>
+            <th class="header">@Model.Localize("RenewMonths.text")</th>
+            <th class="header">@Model.Localize("DepositAmount.text")</th>
+        </tr>
+    </thead>
+    <tbody>  
+            
+                <tr>
+                    <td>@Model.Item.DisplayName</td>
+                    <td>@Model.Item.Point</td>
+                    <td>@Model.Item.Amount</td>
+                    <td>@Model.Item.ExpiredMonths</td>
+                    <td>@Html.Display("Item.IsRecharging")</td>
+                    <td>@Html.Display("Item.IsRenew")</td>
+                    <td>@Model.Item.RenewMonths</td>
+                    <td>@Model.Item.DepositAmount</td>
+                </tr>    
+    </tbody>
+</table></div>

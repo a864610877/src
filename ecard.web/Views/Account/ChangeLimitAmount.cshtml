@@ -1,0 +1,49 @@
+﻿@model PageModel
+@{
+    Layout = Html.GetLayout("~/Views/Shared/_AccountLayout.cshtml");
+}
+@section scripts{
+    @* <script src="/Content/themes/t/scripts/swfobject.js" type="text/javascript"></script>
+    <script src="/Content/themes/t/scripts/components.js" type="text/javascript"></script>*@
+    <script src="/Content/themes/t/scripts/account.js" type="text/javascript"></script>
+}
+<div class="sec_pan" id="changeLimitAmount">
+    <form onsubmit="return false;">
+    <div class="title-box">
+        <h3>
+            修改信用额度</h3>
+    </div>
+    <div class="">
+        <fieldset>
+            <legend>会员信息</legend>
+            <div class="mainInput">
+                <div class="fieldInput">
+                    <label class="large" for="accountName">
+                        卡号:</label>
+                    <input type="text" name="accountName" value="@ViewData["accountName"]" data-field="accountName" id="accountName" class="t_ipt_fc largeInput" />
+                    <input type="hidden" name="accountToken" data-field="accountToken" id="accountToken"  value="@ViewData["accountToken"]" />
+                    <a id="btnResetAccount">重新刷卡</a>
+                </div>
+                <div class="fieldInput">
+                    <label class="large" for="accountName">
+                        额度:</label>
+                    <input name="limitAmount" id="limitAmount" data-field="limitAmount" class="t_ipt_fc largeInput" />
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div id="accountInfo">
+    </div>
+    <div class="buttons rtl clearfix">
+        <a id="save" href="ChangeLimitAmount" class="large disabled" target="#secbox">保存</a>
+    </div>
+    <div class="point_list">
+        <h3>
+            用户提示</h3>
+        <ol class="list_hasnum">
+            <li>输入卡号信息。</li>
+            <li>设置会员信用额度，点击保存。</li>
+        </ol>
+    </div>
+    </form>
+</div>

@@ -1,0 +1,34 @@
+﻿@using Moonlit
+@model  Ecard.Mvc.Models.GoodandOrder.ListGoods
+@using (Html.BeginForm("List", "Good"))
+{ 
+    @Html.EditorForModel("condition")
+    @Html.Submit(Model.Localize("query"))
+    <div class="hastable deallogs">
+        @Html.ToolbarOfList(Model.GetToolbarActions())
+        <table class="sort-table">
+            <thead>
+                <tr>
+                    @Html.Th(Ths.Select)
+                    @Html.Ths(Model.List, Model.GetItemType())
+                    @Html.Th(Ths.Operation, new { width = "64px" })
+                </tr>
+            </thead>
+            <tbody>
+                @using (var scope = new IteratorScope())
+                {
+                    foreach (var item in Model.List)
+                    {
+                        <tr>
+                            @Html.Td(Ths.Select, item.GoodId)
+                            @Html.Tds(item, Model.GetItemType())
+                            @Html.ToolbarOfItem(Model.GetItemToobalActions(item))
+                        </tr>
+                        scope.Next();
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    @Html.Pager()
+}

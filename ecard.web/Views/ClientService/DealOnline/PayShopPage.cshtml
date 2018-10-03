@@ -1,0 +1,49 @@
+﻿@model PageModel
+@{
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+@section scripts{
+    <script src="/Content/themes/t/scripts/swfobject.js" type="text/javascript"></script>
+    <script src="/Content/themes/t/scripts/components.js" type="text/javascript"></script>
+    <script src="/Content/themes/t/scripts/dealonline.js" type="text/javascript"></script>
+}
+<div class="sec_pan" id="payShop">
+    <form onsubmit="return false;">
+    <div class="title-box">
+        <h3>
+            在线支付</h3>
+    </div>
+    <div class="">
+        <div class="">
+            @Html.Partial("payProcessing", "shopselector")
+        </div>
+        <fieldset>
+            <legend>在线支付</legend>
+            <div class="mainInput">
+                <div class="fieldInput">
+                    <label class="large" for="shopName">
+                        商户:</label>
+                    <input type="text" name="shopName" id="shopName" class="t_ipt_fc largeInput focused" />
+                </div>
+            </div>
+            <div id="shop">
+                @Html.Action("Shop")
+            </div>
+            <div id="shops">
+                @Html.Action("Shops")
+            </div>
+        </fieldset>
+    </div>
+    <div class="buttons rtl clearfix">
+        <a id="next" href="PayAccountPage" class="post large disabled" target="#secbox">下一步</a>
+    </div>
+    <div class="point_list">
+        <h3>
+            用户提示</h3>
+        <ol class="list_hasnum">
+            <li>输入商户编码、手机号，查询商户信息。</li>
+            <li>当查询结果只有一条匹配的记录的时候，点击下一步。</li>
+        </ol>
+    </div>
+    </form>
+</div>

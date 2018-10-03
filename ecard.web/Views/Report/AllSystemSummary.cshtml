@@ -1,0 +1,21 @@
+﻿@using System.Data
+@using Moonlit
+@model  AllSystemSummaryReport
+@using (Html.BeginForm("AllSystemSummary", "Report"))
+{  
+      <div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">@Model.Localize("title")</a></li>
+    </ul>
+</div>
+    <div class="rightinfo">
+    @Html.EditorForModel("condition")
+    @Html.Submit(Model.Localize("query"))
+    <div class="hastable">
+        @Html.Partial("Templates/datatable", Model)
+    </div>
+   @Html.Pager(Model)
+   </div>
+}

@@ -1,0 +1,34 @@
+﻿@using Moonlit
+@model  ListAccounts
+@using (Html.BeginForm("SetDistributor", "Account"))
+{ 
+   @* @Html.EditorForModel("condition")
+    @Html.Submit(Model.Localize("query"))*@
+    <div class="hastable">
+        @Html.ToolbarOfList(Model.GetToolbarActions())
+        <table class="tablelist">
+            <thead>
+                <tr>
+                    @Html.Th(Ths.Select)
+                    @Html.Ths(Model.List, Model.GetItemType())
+                    @Html.Th(Ths.Operation, new { width = "134px" })
+                </tr>
+            </thead>
+            <tbody>
+                @using (var scope = new IteratorScope())
+                {
+                    foreach (var item in Model.List)
+                    {
+                        <tr>
+                            @Html.Td(Ths.Select, item.AccountId)
+                            @Html.Tds(item, Model.GetItemType())
+                            @Html.ToolbarOfItem(Model.GetItemToobalActions(item))
+                        </tr>
+                       scope.Next();
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    @Html.Pager()
+}

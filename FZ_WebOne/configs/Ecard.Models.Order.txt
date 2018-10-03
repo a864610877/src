@@ -1,0 +1,8 @@
+﻿AccountId.name=AccountId
+AccountId.order=1
+description=Ecard.Models.Order
+name=Ecard.Models.Order
+OrderId.name=OrderId
+OrderId.order=1
+OrderId.shortName=OrderId
+OrderId.shortNameFormat={0}

@@ -1,0 +1,115 @@
+﻿@using Ecard.Mvc.Models.GoodandOrder
+@model EcardModelItem<ViewOrder>
+@using (Html.BeginForm())
+{ 
+    <ul>
+        <li><span style="width: 200px; padding-left: 20px">
+            <label class="desc">
+                订单号：</label>@Model.Item.OrderId
+        </span>
+            <label class="desc">
+                总金额：</label>@Model.Item.TotalMoney
+            <hr style="border-width: 1px; border-bottom-style: dotted; min-width: 200px;" />
+        </li>
+        <li><span style="width: 200px; padding-left: 20px">
+            <label class="desc">
+                会员卡号：</label>@Model.Item.AccountName
+        </span>
+            <label class="desc">
+                会员名字：</label>@Model.Item.AccountDiaplayName
+            <hr style="border-width: 1px; border-bottom-style: dotted; min-width: 200px;" />
+        </li>
+        <li><span style="width: 200px; padding-left: 20px">
+            <label class="desc">
+                下单人：</label>@Model.Item.Creater</span>
+            <label class="desc">
+                下单时间：</label>@Model.Item.CreateDate
+            <hr style="border-width: 1px; border-bottom-style: dotted; min-width: 200px;" />
+        </li>
+        <li><span style="width: 200px; padding-left: 20px">
+            <label class="desc">
+                当前状态：</label>@Model.Item.State</span>
+            <label class="desc">
+                派送员：</label>@Model.Item.Sender
+            <hr style="border-width: 1px; border-bottom-style: dotted; min-width: 200px;" />
+        </li>
+        <li><span style="width: 200px; padding-left: 20px">
+            <label class="desc">
+                联系电话：</label>@Model.Item.Phone
+        </span>
+            <label class="desc">
+            </label>
+            <hr style="border-width: 1px; border-bottom-style: dotted; min-width: 200px;" />
+        </li>
+        <li><span style="width: 200px; padding-left: 20px">
+            <label class="desc">
+                派送地址：</label>@Model.Item.Address</span>
+            <label class="desc">
+            </label>
+            <hr style="border-width: 1px; border-bottom-style: dotted; min-width: 200px;" />
+        </li>
+        <li>
+            <div class="hastable">
+                <table class="sort-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                商品编码
+                            </th>
+                            <th>
+                                商品名称
+                            </th>
+                            <th>
+                                价格
+                            </th>
+                            <th>
+                                数量
+                            </th>
+                            <th>
+                                小计
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @using (var scope = new IteratorScope())
+                        {
+                            foreach (var item in Model.Item.Detials)
+                            {
+                            <tr>
+                                <td>
+                                    @item.GoodName
+                                </td>
+                                <td>
+                                    @item.DisplayName
+                                </td>
+                                <td>
+                                    @item.price.ToString("C")
+                                </td>
+                                <td>
+                                    @item.Amount.ToString()
+                                </td>
+                                <td>
+                                    @item.Total.ToString("C")
+                                </td>
+                            </tr>
+                               scope.Next();
+                            }
+                        }
+                        <tr>
+                            <td colspan="3" align="center">
+                                汇总
+                            </td>
+                            <td>@Model.Item.Detials.Sum(x => x.Amount).ToString("N")
+                            </td>
+                            <td>@Model.Item.Detials.Sum(x => x.Total).ToString("C")
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </li>
+        <li class="buttons">
+            @Html.ActionLink("List")
+        </li>
+    </ul>
+}

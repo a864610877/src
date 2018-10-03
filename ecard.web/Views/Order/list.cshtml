@@ -1,0 +1,165 @@
+﻿@*@using Moonlit
+@model  Ecard.Mvc.Models.GoodandOrder.listOrders
+@using (Html.BeginForm("List", "Order"))
+{ 
+    @Html.EditorForModel("condition")
+    @Html.Submit(Model.Localize("query"))
+    <div class="hastable deallogs">
+        @Html.ToolbarOfList(Model.GetToolbarActions())
+        <table class="sort-table">
+            <thead>
+                <tr>
+                    @Html.Th(Ths.Select)
+                    @Html.Ths(Model.List, Model.GetItemType())
+                    @Html.Th(Ths.Operation, new { width = "64px" })
+                </tr>
+            </thead>
+            <tbody>
+                @using (var scope = new IteratorScope())
+                {
+                    foreach (var item in Model.List)
+                    {
+                    <tr>
+                        @Html.Td(Ths.Select, item.Serialnumber)
+                        @Html.Tds(item, Model.GetItemType())
+                        @Html.ToolbarOfItem(Model.GetItemToobalActions(item))
+                    </tr>
+                   scope.Next();
+                    }
+                }
+            </tbody>
+        </table>
+        @{
+                var items = from x in Model.Senders.Items
+                            select new SelectListItem() { Selected = Model.Senders.Key == x.Key, Text = x.Name, Value = Model.Senders.GetKey(x.Key) };
+                IDictionary<string, object> htmlAttributes = new ViewDataDictionary();
+                htmlAttributes.Add("style", "width:120px;text-align:center; margin-top: 12px; margin-left: 40px;");
+                htmlAttributes.Add("class", "dropDownListClass");
+                if (!string.IsNullOrEmpty(Model.Senders.Callback))
+                {
+                    htmlAttributes.Add("data-change-callback", Model.Senders.Callback);
+                }
+        }
+        <div id="SenderSelect" style="display: none; position: absolute; width: 200px; height: 200px;">
+            @Html.DropDownList("Key", items, htmlAttributes)
+            <input type="hidden" id="tempOrderId" value="" />
+            <div style="margin-top: 3px;" data-callback-accepter="@ViewData.TemplateInfo.GetFullHtmlFieldName("Key")">
+                <input type="button" value="提交" onclick="setState()" style="margin-top: 12px; margin-left: 40px;" />
+            </div>
+        </div>
+    </div>
+    @Html.Pager()
+}*@
+@using Moonlit
+@model  Ecard.Mvc.Models.GoodandOrder.listOrders
+@using (Html.BeginForm("List", "Order"))
+{ 
+         <div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">@Model.Localize("title")</a></li>
+    </ul>
+</div>
+   <div class="rightinfo">
+       
+         <table id="selectTd">
+           <tr>
+                        @Html.EditorForModel("condition")
+                        <td>@Html.Submit(Model.Localize("query"))</td>
+                       
+         </tr>
+      </table>
+                <div class="searchCommand">@Html.ToolbarOfList(Model.GetToolbarActions())
+                </div> 
+    <div class="listbox">
+      
+        <table class="tablelist">
+            <thead style="border-color: #5ec2f9; border-bottom-style: solid">
+                <tr>
+                   @* @Html.Th(Ths.Select)*@
+                    @Html.Ths(Model.List, Model.GetItemType())
+                    @Html.Th(Ths.Operation, new { width = "134px" })
+                </tr>
+            </thead>
+            <tbody>
+                @using (var scope = new IteratorScope())
+                {
+
+                    foreach (var item in Model.List)
+                    {
+                        
+                    <tr >
+                        @*@Html.Td(Ths.Select, item.)*@
+                        @Html.Tds(item, Model.GetItemType())
+                        <div>@Html.ToolbarOfItem(Model.GetItemToobalActions(item))</div>
+                    </tr>
+                        scope.Next();
+                    }
+                }
+            </tbody>
+        </table>
+         @{
+                var items = from x in Model.Senders.Items
+                            select new SelectListItem() { Selected = Model.Senders.Key == x.Key, Text = x.Name, Value = Model.Senders.GetKey(x.Key) };
+                IDictionary<string, object> htmlAttributes = new ViewDataDictionary();
+                htmlAttributes.Add("style", "width:120px;text-align:center; margin-top: 12px; margin-left: 40px;");
+                htmlAttributes.Add("class", "dropDownListClass");
+                if (!string.IsNullOrEmpty(Model.Senders.Callback))
+                {
+                    htmlAttributes.Add("data-change-callback", Model.Senders.Callback);
+                }
+        }
+        <div id="SenderSelect" style="display: none; position: absolute; width: 200px; height: 200px;">
+            @Html.DropDownList("Key", items, htmlAttributes)
+            <input type="hidden" id="tempOrderId" value="" />
+            <div style="margin-top: 3px;" data-callback-accepter="@ViewData.TemplateInfo.GetFullHtmlFieldName("Key")">
+                <input type="button" value="提交" onclick="setState()" style="margin-top: 12px; margin-left: 40px;" />
+            </div>
+        </div>
+        @Html.Pager()
+    </div>
+</div>
+    
+}
+  <link href="../../Scripts/core.css" rel="stylesheet" type="text/css" />
+        <script src="../../Scripts/XYTipsWindow-3.0-dev.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $("a[name='Carry']").live("click", function () {
+                if ($(this).attr("href") == "javascript:void(0);") {
+                    $("#tempOrderId").val($(this).attr("href1"));
+                }
+                else {
+                    $("#tempOrderId").val($(this).attr("href"));
+                    $(this).attr("href1", $(this).attr("href"));
+                    $(this).attr("href", "javascript:void(0);")
+                }
+
+                Util.Dialog({
+                    boxID: "CarryOrderBox",
+                    title: "订单派送",
+                    width: 300,
+                    height: 100,
+                    content: "text:" + $("#SenderSelect").html(),
+                    showbg: true,
+                    closestyle: "orange"
+                });
+                return false;
+            });
+            function setState() {
+                if ($("#CarryOrderBox .dropDownListClass").val() == -10001) {
+                    alert("请先选择派送员");
+                }
+                else {
+                    $.post($("#tempOrderId").val(), { "senderId": $("#CarryOrderBox .dropDownListClass").val() }, function (data, status) {
+                        if (status == "success") {
+                            alert(data);
+                            $("a[href1=" + $("#tempOrderId").val() + "]").parent().parent().find("td").eq(7).text("派送中");
+                            var selectValue = $("#CarryOrderBox option[value=" + $("#CarryOrderBox .dropDownListClass").val() + "]").text();
+                            $("a[href1=" + $("#tempOrderId").val() + "]").parent().parent().find("td").eq(8).text(selectValue);
+                        }
+                        else { alert("通讯错误！请重新登陆系统再试。") }
+                    }, null);
+                }
+            }
+        </script>

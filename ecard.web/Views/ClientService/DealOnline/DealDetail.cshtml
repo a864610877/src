@@ -1,0 +1,61 @@
+﻿@model DealDetail 
+           <script src="/Scripts/printers/@(Model.HostSite.PrinterType).js" type="text/javascript"></script>
+<div class="sec_pan" id="detailOfPay">
+    <div class="title-box">
+        <h3>
+            在线支付</h3>
+    </div>
+    <div class="clearfix"> 
+    @if (Model.Code == 0)
+    {
+        <div class="amount">
+            <label>
+                交易信息:</label>   
+            
+        <div class="onlinePayPanel clearfix"> 
+            <div class="dealSuccess">
+                <p><h3>交易成功!</h3></p>
+                <p>
+                    <label for="serialNo">
+                        金额: </label><span>@Model.Amount 元</span></p>  
+                <p>
+                    <label for="serialNo">
+                        参考号: </label><span>@Model.ServerSerialNo</span></p>  
+                <p>
+                    <label for="serialNo">
+                        交易号: </label><span>@Model.SerialNo</span></p>  
+                <p>
+                    <label for="submitDate">
+                        交易日期:</label><span>@DateTime.Now.ToLongDateString()</span></p> 
+                <p>
+                    <label for="printer">
+                        打印小票:</label>
+                        <span>
+                        @if (!string.IsNullOrWhiteSpace(@Model.Ticket))
+                        {
+                            <a href='@Model.Ticket' class="focused" id="ticketPrinter" name="ticketPrinter">打印小票</a>
+                        }
+                        </span>
+                        </p> 
+            </div>
+        </div> 
+        </div>
+        <div id="accountOfPay">
+            <label>
+                会员信息:</label>
+            @Html.Action("Account", "Account", Model)
+        </div>
+        <div id="accountOfPay">
+            <label>
+                商户信息:</label>
+            @Html.Action("Shop", Model)
+        </div>
+    }
+    else
+    {
+        <div class="dealFailed">
+            <h2>@Model.Error</h2>
+        </div>
+    }
+    </div> 
+</div>

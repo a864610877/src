@@ -1,0 +1,19 @@
+﻿@using Ecard.Mvc.Models.DealOnlines
+@model Shops
+@{
+    Layout = null;
+}
+<ul>
+    @foreach (var shop in Model.Items)
+    {
+        <li>
+            <ul class="shop clearfix">
+                <li class="img"></li>
+                <li class="name">@shop.Name<br />@shop.DisplayName</li>
+                <li class="address">@shop.Address</li>
+                <li class="mobile">@shop.Mobile</li>
+                <li class="select"><a href="@shop.Name">选择</a></li>
+            </ul>
+        </li>
+    }
+</ul>

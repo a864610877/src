@@ -1,0 +1,44 @@
+﻿@using Ecard.Mvc.Models.DealOnlines
+@model PayConfirm
+<div class="sec_pan" id="confirmOfPay">
+    @using (Html.BeginForm())
+    {
+        <div class="title-box">
+            <h3>
+                在线支付</h3>
+        </div>
+        <div class="clearfix">
+            <div class="">
+                @Html.Partial("payProcessing", "confirm")
+            </div>
+            <div id="accountOfPay">
+                <label>
+                    会员信息:</label>
+                @Html.Action("Account", "Account")
+            </div>
+            <div id="accountOfPay">
+                <label>
+                    商户信息:</label>
+                @Html.Action("Shop")
+            </div>
+            <div class="amount">
+                <label>
+                    交易金额:</label>
+                <span>@Model.Amount</span>
+            </div>
+        </div>
+        <div class="buttons rtl">
+            <a id="payDone" href="PayDone" target="#secbox" class="large focused" accesskey="n">确认</a></div>
+        <div class="point_list">
+            <h3>
+                用户提示</h3>
+            <ol class="list_hasnum">
+                <li>确认交易信息，点击确认。</li>
+            </ol>
+        </div> 
+        @Html.HiddenFor(x => x.ShopName);
+        @Html.HiddenFor(x => x.AccountName);
+        @Html.HiddenFor(x => x.AccountToken);
+        @Html.HiddenFor(x => x.Amount);
+    }
+</div>

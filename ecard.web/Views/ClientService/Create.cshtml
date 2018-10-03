@@ -1,0 +1,12 @@
+﻿@using Ecard.Mvc.Models.GoodandOrder
+@model EcardModelItem<CreateClientOrder>
+@using (Html.BeginForm())
+{  
+    <ul>
+        @Html.EditorFor(x => x.Item)
+        <li class="buttons">
+            <input type="submit" class="ui-state-default ui-corner-all" value="提交" />
+            @Html.ActionLink("订单列表", "List", "Order")
+        </li>
+    </ul>
+}

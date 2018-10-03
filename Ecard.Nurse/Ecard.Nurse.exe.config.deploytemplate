@@ -1,0 +1,41 @@
+﻿<?xml version="1.0"?>
+<configuration>
+  <connectionStrings>
+    <add name="ecard" connectionString="%connection-ecard%" providerName="System.Data.SqlClient"/>
+  </connectionStrings>
+  <appSettings>
+    <add key="runIn" value="release" />
+  </appSettings>
+
+
+  <system.serviceModel>
+    <bindings />
+    <client>
+      <endpoint address="http://%sms-svc-address%" binding="wsHttpBinding"
+        bindingConfiguration="" contract="Moonlit.ServiceModel.ISmsService"
+        name="" kind="" endpointConfiguration="">
+        <identity>
+          <dns value="localhost" />
+          <certificateReference storeName="My" storeLocation="LocalMachine"
+            x509FindType="FindBySubjectDistinguishedName" />
+        </identity>
+      </endpoint>
+    </client>
+    <behaviors>
+      <endpointBehaviors>
+        <behavior name="WebBehavior">
+          <webHttp />
+        </behavior>
+      </endpointBehaviors>
+      <serviceBehaviors>
+        <behavior name="">
+          <serviceMetadata httpGetEnabled="true" />
+          <serviceDebug includeExceptionDetailInFaults="false" />
+        </behavior>
+      </serviceBehaviors>
+    </behaviors> 
+  </system.serviceModel>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/>
+  </startup>
+</configuration>

@@ -1,0 +1,514 @@
+﻿@model EcardModelItem<Ecard.Mvc.Models.Accounts.RechargingAccount>
+<style>
+    .pay td
+    {
+        vertical-align: top;
+    }
+    .pay .odd
+    {
+        background-color: #ffffff;
+    }
+    .pay .even
+    {
+        background-color: #ffffff;
+    }
+    tbody tr.even
+    {
+        background-color: #FFFFFF;
+    }
+    .bpay td
+    {
+        font-size: 13px;
+        vertical-align: middle;
+        padding: 5px;
+    }
+    .epay
+    {
+    }
+    .righttd
+    {
+        text-align: left;
+    }
+    .lefttd
+    {
+        text-align: right;
+    }
+    input
+    {
+        border: 2px solid #528082;
+    }
+</style>
+     <div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">@Model.Localize("title")</a></li>
+    </ul>
+</div>
+<div id="usual1" class="usual paydiv">
+
+        <table id="operationPanel" style="width: 550px; height: 300px; text-align: center;
+           margin:20px; float: left;">
+            <tr class="bpay">
+                <td class="lefttd" style="width: 204px;">
+                    @Model.Localize("RechargeAmount.Name")
+                </td>
+                <td class="righttd">
+                    <input type="text" id="currentAmounts" tabindex="1" maxlength="255" value="0" class="scinput InputSerach" style="width: 155px"
+                        data-field="Amount" />
+                </td>
+            </tr>
+            <tr class="bpay">
+                <td class="lefttd">
+                  起始号码
+                </td>
+                <td class="righttd">
+                    <input type="text" id="startNum" tabindex="1" maxlength="255" value="0" class="scinput InputSerach" style="width: 155px"
+                        data-field="startNum" />
+                </td>
+            </tr>
+             <tr class="bpay">
+                <td class="lefttd" >
+                  结束号码
+                </td>
+                <td class="righttd">
+                    <input type="text" id="EndNum" tabindex="1" maxlength="255" value="0" class="scinput InputSerach" style="width: 155px"
+                        data-field="EndNum" />
+                </td>
+            </tr>
+             <tr class="bpay">
+                <td class="lefttd">
+                  卡号格式
+                </td>
+                <td class="righttd">
+                    <input type="text" id="AccountName"  maxlength="16"  class="scinput InputSerach" style="width: 155px"
+                        data-field="AccountName" value="0000000000000000" />
+                </td>
+            </tr>
+            <tr class="bpay">
+                <td class="lefttd">
+                    @Model.Localize("HowToDeal.Name")
+                </td>
+                <td class="righttd">
+                           <div class="vocation">
+<div class="uew-select">
+    <div class="uew-select-value ue-state-default" style="width: 128px;">
+    <em class="uew-select-text"></em><em class="uew-icon uew-icon-triangle-1-s"></em></div>
+                    <select tabindex="1" value="" data-field="howToDeal" id="howToDeals" class="select1" style="width: 155px;">
+                        @foreach (var dealWay in Model.Item.DealWays)
+                        {
+                            <option value="@dealWay.DealWayId">@dealWay.DisplayName</option>
+                        }
+                    </select>
+                    </div>
+    </div>
+                </td>
+            </tr>
+            <tr class="bpay">
+                <td class="lefttd">
+                    @Model.Localize("HasReceipt.Name")
+                </td>
+                <td class="righttd">
+                    <input type="checkbox" tabindex="1" maxlength="255" value="0" class="field checkbox"
+                        id="HasReceipts" data-field="HasReceipt" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" class="scbtn" style="margin-left: 120px;" href="../Account/AreaRecharing"  data-print="true"  data-success-message='@Model.Localize("success")' value="充值" id="recharg" />
+                </td>
+            </tr>
+            <tr class="epay">
+                <td colspan="2">
+                    <div align="center">
+                        <p id="numbermsgs">
+                        </p>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table class="tablelist" style="width: 550px">
+                        <tr>
+                            <td colspan="6">
+                                <div style=" border-bottom-style: solid; border-bottom-width: thin;
+                                    border-bottom-color: #99CCFF; border-top-style: solid; border-top-width: thin;
+                                    border-top-color: #99CCFF;" align="center">
+                                    充值信息</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                卡号
+                            </td>
+                            <td>
+                                余额
+                            </td>
+                            <td>
+                                姓名
+                            </td>
+                            <td>
+                                充值金额
+                            </td>
+                            <td>
+                                充值后卡余额
+                            </td>
+                            <td>
+                                备注
+                            </td>
+                        </tr>
+                        <tbody id="trBoyd">
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr><td colspan="2"><div id="pagehtml">
+           </div></td>  </tr>
+        </table>
+</div>
+
+
+
+
+ 
+ <input type="hidden" id="tatolCount"  />
+
+
+<script type="text/javascript">
+
+    var pageS = 10;
+    function selectInput(choose) {
+        pageS = choose.value;
+        submitClicks(choose);
+
+    }
+
+    function submitClicks(obj) {
+        var pageIndex, pageSize, AccountName;
+        var serialNoAll = $("#serialNoAll").val();
+        var tatolCount = $("#tatolCount").val();
+
+        if (obj.getAttribute("value") > 0) {
+            pageIndex = obj.getAttribute("value");
+        } else if (obj.getAttribute("value") == "prev") {
+            pageIndex = parseInt($(".current a").attr("value")) - 1;
+        } else if (obj.getAttribute("value") == "next") {
+            pageIndex = parseInt($(".current a").attr("value")) + 1;
+        }
+        if (pageS > 10) {
+            pageSize = pageS;
+        }
+
+        //提交表单到服务器
+        $.ajax({
+            url: "/Account/RecharingLog",
+            data: { pageIndex: pageIndex, PageSize: pageSize, AccountName: serialNoAll, tatolCount: tatolCount },
+            type: "post",
+            //cache: false, 
+            dataType: "json",
+
+            success: function (data) {
+
+                bindTableLink(data);
+            }
+        })
+    }
+    //对输入域是否是整数的校验,即只包含字符0123456789 
+    function isInteger(strValue) {
+        return regExpTest(strValue, /\d+/);
+    }
+
+    function regExpTest(source, re) {
+        var result = false;
+
+        if (source == null || source == "")
+            return false;
+
+        if (source == re.exec(source))
+            result = true;
+
+        return result;
+    }
+
+    //验证卡号
+    function isAccountNumber(val) {
+        var myreg = /^(\d{16})$/;
+        return (myreg.test(val));
+    }
+
+
+
+
+    function bindTableLink(data) {
+        //清理之前的标签
+        $("#trBoyd tr").remove();
+
+        if (data.ModelList.length > 0) {
+
+            var strTr = "";
+
+            for (var i = 0; i < data.ModelList.length; i++) {
+                var item = data.ModelList[i];
+
+                if (item.State == 1) {
+                    if (i == 0) {
+
+
+                        strTr += "<tr > <td ><input type='hidden' id='serialNoAll' value='" + item.serialNoAll + "' />" + item.AccountName + "</td><td>" + item.AccountAmount + "</td><td>" + item.Name + "</td><td>" + item.RechargingAmount + "</td><td>" + item.RechargAccountAmount + "</td><td>充值成功</td></tr>";
+                    } else {
+                        strTr += "<tr > <td >" + item.AccountName + "</td><td>" + item.AccountAmount + "</td><td>" + item.Name + "</td><td>" + item.RechargingAmount + "</td><td>" + item.RechargAccountAmount + "</td><td>充值成功</td></tr>";
+
+                    }
+
+
+                }
+
+
+            }
+
+            $("#trBoyd").append(strTr);
+
+        }
+        if (data.html) {
+            $("#pagehtml").html("");
+            $("#pagehtml").append(data.html);
+        }
+    }
+    </script>
+ <script type="text/javascript">
+
+     $(function () {
+
+         $("#Tab1").text("号码段充值");
+         $("#recharg").click(function () {
+             var Amount = $("#currentAmounts").val();
+
+             if (!isInteger(Amount)) {
+                 $("#numbermsgs").text("充值金额无效，必须是大于0的数字");
+                 $("#numbermsgs").css("color", "red");
+                 return;
+             }
+
+
+             if (Amount <= 0) {
+                 $("#numbermsgs").text("充值金额无效，必须大于0");
+                 $("#numbermsgs").css("color", "red");
+                 return;
+             }
+             var startNum = parseInt($("#startNum").val());
+
+             if (!isInteger(startNum)) {
+                 $("#numbermsgs").text("起始号码无效，必须是大于或等于0的数字");
+                 $("#numbermsgs").css("color", "red");
+                 return;
+             }
+             if (startNum < 0) {
+                 $("#numbermsgs").text("起始号码无效，必须大于或等于0");
+                 $("#numbermsgs").css("color", "red");
+                 return;
+             }
+
+             var EndNum = parseInt($("#EndNum").val());
+             if (!isInteger(EndNum)) {
+                 $("#numbermsgs").text("结束号码无效，必须是大于或等于0的数字");
+                 $("#numbermsgs").css("color", "red");
+                 return;
+             }
+
+             if (EndNum < 0) {
+                 $("#numbermsgs").text("结束号码无效，必须大于或等于0");
+                 $("#numbermsgs").css("color", "red");
+                 return;
+             }
+
+             if (startNum > EndNum) {
+                 $("#numbermsgs").text("输入有误，起始号码必须小于或等于结束号码");
+                 $("#numbermsgs").css("color", "red");
+                 return;
+             }
+
+             var AccountName = $("#AccountName").val();
+
+             if (!isAccountNumber(AccountName)) {
+                 $("#numbermsgs").text("卡号格式输入有误，必须是16位的数字");
+                 $("#numbermsgs").css("color", "red");
+                 return;
+
+             }
+
+
+
+             var howToDeals = $("#howToDeals").val();
+             $("#numbermsgs").css("color", "red");
+             $("#numbermsgs").text("通讯中...");
+             $("#pagehtml").html("");
+             $.post($(this).attr("href") + "?tm=" + new Date(), { AccountName: AccountName, Amount: Amount, HowToDeal: howToDeals, HasReceipt: $("#HasReceipts").attr("checked"), startNum: startNum, EndNum: EndNum }
+                    , function (data, status) {
+                        if (status == "success") {
+                            $("#trBoyd tr").remove();
+                            if (data.ModelList.length > 0) {
+                                var leng = data.ModelList.length;
+                                var index = 0;
+                                var strTr = "";
+                                var flag = false;
+
+                                for (var i = 0; i < data.ModelList.length; i++) {
+
+                                    var item = data.ModelList[i];
+                                    if (item.State == 1) {
+                                        if (i == 0) {
+
+                                            strTr += "<tr > <td ><input type='hidden' id='serialNoAll' value='" + item.serialNoAll + "' />" + item.AccountName + "</td><td>" + item.AccountAmount + "</td><td>" + item.Name + "</td><td>" + item.RechargingAmount + "</td><td>" + item.RechargAccountAmount + "</td><td>充值成功</td></tr>";
+                                        } else {
+                                            strTr += "<tr > <td >" + item.AccountName + "</td><td>" + item.AccountAmount + "</td><td>" + item.Name + "</td><td>" + item.RechargingAmount + "</td><td>" + item.RechargAccountAmount + "</td><td>充值成功</td></tr>";
+
+                                        }
+
+                                        index++;
+                                    } else if (item.State == 11112) {
+                                        flag = true;
+                                        strTr += "<tr > <td >" + item.AccountName + "</td><td>" + item.AccountAmount + "</td><td>" + item.Name + "</td><td>" + item.RechargingAmount + "</td><td>" + item.RechargAccountAmount + "</td><td>充值失败,帐户类型不存在</td></tr>";
+                                    } else if (item.State == 111) {
+                                        flag = true;
+                                        $("#numbermsgs").css("color", "red");
+                                        $("#numbermsgs").text("无效的金额");
+
+                                    } else {
+                                        flag = true;
+                                        strTr += "<tr > <td >" + item.AccountName + "</td><td>" + item.AccountAmount + "</td><td>" + item.Name + "</td><td>" + item.RechargingAmount + "</td><td>" + item.RechargAccountAmount + "</td><td>充值失败</td></tr>";
+
+                                    }
+
+                                }
+
+                                if (!flag) {
+                                    $("#trBoyd").append(strTr);
+                                    if (data.tatolCount) {
+                                        $("#tatolCount").val(data.tatolCount);
+                                    }
+
+                                    if (data.html) {
+
+                                        $("#pagehtml").append(data.html);
+                                    }
+
+                                    if (leng == index) {
+                                        alert("充值成功");
+                                        $("#numbermsgs").css("color", "green");
+                                        $("#numbermsgs").text('充值成功');
+                                    } else {
+                                        $("#numbermsgs").css("color", "red");
+                                        $("#numbermsgs").text("充值成功" + index + "条，失败" + (leng - index) + "条");
+                                    }
+                                } else {
+
+
+                                }
+
+
+                            } else {
+                                $("#numbermsgs").css("color", "red");
+                                $("#numbermsgs").text("未能找到该号码段对应的卡");
+                            }
+                        }
+
+
+                    })
+
+
+         })
+
+
+     })
+	  
+</script>
+<style>
+    
+  
+
+
+.pagin .paginList .paginItem{float:left;}
+.pagin .paginList .paginItem a{float:left;width:20px;height:20px;border:1px solid #DDD; text-align:center;line-height:20px;border-left:none;color:#3399d5;}
+.pagin .paginList .paginItem:first-child a{border-left:1px solid #DDD;}
+.pagin .paginList .paginItem:first-child a{border-bottom-left-radius:5px;border-top-left-radius:5px;}
+.pagin .paginList .paginItem:last-child a{border-bottom-right-radius:5px;border-top-right-radius:5px;}
+.pagin .paginList .paginItem.current,.pagin .paginList .paginItem.current a{background:#f5f5f5; cursor:default;color:#737373;}
+.pagin .paginList .paginItem:hover{background:#f5f5f5; cursor:pointer;}
+.pagin .paginList .paginItem.more,.pagin .paginList .paginItem.more a:hover{ cursor:default;}
+.pagin .paginList .paginItem.more:hover{background:#FFF;}
+.pagin .paginList .paginItem.more a{color:#737373;}
+
+.pagepre{background:url(../../Content/images/pre.gif) no-repeat center center; width:20px; height:20px;}
+.pagenxt{background:url(../../Content/images/next.gif) no-repeat center center; width:20px; height:20px;}
+
+
+   
+   
+    .ui-widget-content
+    {
+        border: 0px;
+    }
+    /*tab*/
+    .itab
+    {
+        height: 36px;
+        border-bottom: solid 1px #d0dee5;
+        position: relative;
+        border-left: solid 1px #d3dbde;
+    }
+    .itab ul
+    {
+        margin-left: -40px;
+    }
+    .classTopline
+    {
+        border-top: solid 1px #d3dbde;
+    }
+    .itab ul li
+    {
+        float: left;
+        height: 37px;
+        line-height: 37px;
+        border-right: solid 1px #d3dbde;
+    }
+    .itab ul li a
+    {
+        font-size: 14px;
+        color: #000;
+        padding-left: 25px;
+        padding-right: 25px;
+        text-decoration: none;
+    }
+    .itab ul li a.selected
+    {
+        height: 37px;
+        display: block;
+        background: url(../../Content/images/itabbg.png) repeat-x;
+        font-weight: bold;
+    }
+    .tabson
+    {
+        margin: 18px 0px;
+    }
+    .formtext
+    {
+        height: 45px;
+        padding-left: 25px;
+        line-height: 20px;
+        color: #848383;
+    }
+    .formtext b
+    {
+        color: #d70101;
+    }
+    .forminfo b
+    {
+        color: #ea2020;
+        padding-left: 3px;
+    }
+    .hidd
+    {
+        display: none;
+    }
+</style>
+

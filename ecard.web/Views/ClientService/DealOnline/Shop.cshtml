@@ -1,0 +1,44 @@
+﻿@using Ecard.Mvc.Models.DealOnlines
+@model PayShop
+@{
+    Layout = null;
+}
+    <div class="onlinePayPanel clearfix">
+@if (Model.Shop == null)
+{
+    @Html.Raw( "请选择商户")
+}
+else
+{
+       
+            <div class="photo nophoto">
+            @if (Model.ShopOwner != null && !string.IsNullOrWhiteSpace(Model.ShopOwner.Photo))
+            { 
+                <img src="@Url.UserPhoto(Model.ShopOwner.Photo)"/>
+            }
+            </div>
+        <div class="info">
+            <p>
+                <label for="accountName">
+                    商户号: </label><span>@Model.Shop.Name</span></p>
+            <p>
+                <label for="accountName">
+                    商户名称: </label><span>@Model.Shop.DisplayName</span></p>
+            
+              
+                <p>
+                    <label for="ownerName">
+                        店主姓名:</label><span>@(Model.ShopOwner == null ? "" : Model.ShopOwner.DisplayName)</span></p>
+               
+            <p>
+                <label for="address">
+                    地址:</label><span>@Model.Shop.Address</span></p>
+            <p>
+                <label for="mobile">
+                    联系电话:</label><span>@Model.Shop.Mobile</span></p>
+            <p>
+                <label for="description">
+                    描述:</label><span>@Model.Shop.Description</span></p> 
+        </div>
+}
+    </div> 

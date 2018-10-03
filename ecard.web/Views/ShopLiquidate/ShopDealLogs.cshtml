@@ -1,0 +1,65 @@
+﻿@using Ecard.Mvc.Models.ShopLiquidates
+@model ShopDealLogs
+@{
+    Layout = null;
+} 
+@if (Model.Items.Count == 0)
+{
+    <div class="nonfound">
+        没有需要清算的交易</div>
+}
+else
+{
+    <table>
+        <thead>
+            <tr >
+                <th class="sel">
+                    <input type="checkbox" name="name" class="ckall" />
+                </th>
+                <th class="submitTime">
+                    交易时间
+                </th>
+                <th class="serialNo">
+                    流水号
+                </th>
+                <th  class="accountName">
+                    交易卡号
+                </th>
+                <th  class="dealType">
+                    交易类型
+                </th>
+                <th class="amount">
+                    交易金额
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <div class="items">
+    
+    <table>
+        <tbody>
+            @foreach (var shopDealLog in Model.Items)
+            {
+                <tr   class="deallog">
+                    <td class="sel">
+                        <input type="checkbox" name="name" value="@shopDealLog.ShopDealLogId" />
+                    </td>
+                    <td class="submitTime">
+                        @shopDealLog.SubmitTime.ToString("yyyy-MM-dd") @shopDealLog.SubmitTime.ToString("HH:mm")
+                    </td>
+                    <td class="serialNo">@shopDealLog.SerialNo
+                    </td>
+                    <td class="accountName">@shopDealLog.AccountName
+                    </td>
+                    <td class="dealType">@ModelHelper.GetBoundText(shopDealLog, x=>x.DealType)
+                    </td>
+                    <td class="amount">
+                        ￥@shopDealLog.Amount
+                    </td>
+                </tr>
+        
+            }
+        </tbody>
+    </table>
+    </div>
+} 

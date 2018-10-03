@@ -1,0 +1,12 @@
+﻿AdmissionTicketNoExisting=操作成功
+Data.name=创建时间
+Data.order=1
+Name.name=门票名称
+Name.order=1
+OrderBy.order=1
+pageHtml.order=1
+PageIndex.order=1
+PageSize.order=1
+State.name=状态
+State.order=1
+title=门票列表

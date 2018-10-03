@@ -1,0 +1,41 @@
+﻿@using Ecard.Mvc.Models.DealOnlines
+@model CancelPayConfirm
+<div class="sec_pan" id="confirmOfPay">
+    @using (Html.BeginForm())
+    {
+        <div class="title-box">
+            <h3>
+                在线撤消</h3>
+        </div>
+        <div class="clearfix">
+            <div class="">
+                @Html.Partial("cancelPayProcessing", "confirm")
+            </div>
+            <div id="deal">
+                <label>
+                    交易信息:</label>
+                @Html.Action("DealLog", "DealOnline", new { SerialNo = Model.ServerSerialNo})
+            </div>
+            <div id="accountOfPay">
+                <label>
+                    会员信息:</label>
+                @Html.Action("Account", "Account", new { AccountName = Model.AccountName })
+            </div>
+            <div id="shop">
+                <label>
+                    商户信息:</label>
+                @Html.Action("Shop", "DealOnline", new { ShopName = Model.ShopName })
+            </div>
+        </div>
+        <div class="buttons rtl">
+            <a id="cancelPayDone" href="cancelPayDone" target="#secbox" class="large focused">确认</a></div>
+        <div class="point_list">
+            <h3>
+                用户提示</h3>
+            <ol class="list_hasnum">
+                <li>确认交易信息，点击确认。</li>
+            </ol>
+        </div> 
+        @Html.HiddenFor(x => x.ServerSerialNo);
+    }
+</div>

@@ -1,0 +1,85 @@
+﻿@*@using Moonlit
+@model  ListPointRebateLogs
+@using (Html.BeginForm("List", "PointRebateLog"))
+{ 
+    @Html.EditorForModel("condition")
+    @Html.Submit(Model.Localize("query"))
+    <div class="hastable">
+        @Html.ToolbarOfList(Model.GetToolbarActions())
+        <table class="sort-table">
+            <thead>
+                <tr>
+                    @Html.Ths(Model.List, Model.GetItemType())
+                </tr>
+            </thead>
+            <tbody>
+                @using (var scope = new IteratorScope())
+                {
+                    foreach (var item in Model.List)
+                    {
+                        <tr>
+                            @Html.Tds(item, Model.GetItemType())
+                        </tr>
+                        scope.Next();
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    @Html.Pager()
+}
+*@
+
+@using Moonlit
+@model  ListPointRebateLogs
+@using (Html.BeginForm("List", "PointRebateLog"))
+{ 
+          <div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">@Model.Localize("title")</a></li>
+    </ul>
+</div>
+   <div class="rightinfo">
+       
+         <table id="selectTd">
+           <tr>
+                        @Html.EditorForModel("condition")
+                        <td>@Html.Submit(Model.Localize("query"))</td>
+                       
+         </tr>
+      </table>
+                <div class="searchCommand">@Html.ToolbarOfList(Model.GetToolbarActions())
+                </div> 
+    <div class="listbox">
+      
+        <table class="tablelist">
+            <thead style="border-color: #5ec2f9; border-bottom-style: solid">
+                <tr>
+                  @*  @Html.Th(Ths.Select)*@
+                    @Html.Ths(Model.List, Model.GetItemType())
+                    @Html.Th(Ths.Operation, new { width = "134px" })
+                </tr>
+            </thead>
+            <tbody>
+                @using (var scope = new IteratorScope())
+                {
+
+                    foreach (var item in Model.List)
+                    {
+                        
+                    <tr >
+                        @*@Html.Td(Ths.Select, item.)*@
+                        @Html.Tds(item, Model.GetItemType())
+                        <div>@Html.ToolbarOfItem(Model.GetItemToobalActions(item))</div>
+                    </tr>
+                        scope.Next();
+                    }
+                }
+            </tbody>
+        </table>
+        @Html.Pager()
+    </div>
+</div>
+}

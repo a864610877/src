@@ -1,0 +1,74 @@
+﻿@using Moonlit
+@model  ListPrintTickets
+@using (Html.BeginForm("List", "PrintTicket"))
+{ 
+     <div style="width: 98%; margin: 6px 10px 10px 16px; float: left">
+        <div>
+            <div class="searchmainDiv">
+                <div class="searchtext">
+                    <ul>
+                        @Html.EditorForModel("condition")
+                        <li>@Html.Submit(Model.Localize("query"))</li>
+                    </ul>
+                </div>
+                <br />
+                <div class="searchCommand">@Html.ToolbarOfList(Model.GetToolbarActions())
+                </div>
+        </div>
+    </div>
+    <div style="clear: both;">
+    </div>
+    <div class="listbox">
+        <div class="listbox_tital">
+            <div style="float: left; display: inline-block;">
+                @Model.Localize("title")</div>
+            <div style="float: right;">
+                <input type="submit" value="查询结果" class="label_button_up button" onclick="return false;" />
+            </div>
+        </div>
+        <table class="sort-table" style="width: 100%; margin-bottom: 12px;border-collapse: collapse">
+            <thead style="border-color: #5ec2f9; border-bottom-style: solid">
+                <tr>
+                    @Html.Th(Ths.Select)
+                    @Html.Ths(Model.List, Model.GetItemType())
+                    @Html.Th(Ths.Operation, new { width = "134px" })
+                </tr>
+            </thead>
+            <tbody>
+                @using (var scope = new IteratorScope())
+                {
+
+                    foreach (var item in Model.List)
+                    {
+                        
+                    <tr >
+                        @Html.Td(Ths.Select, item.PrintTicketId)
+                        @Html.Tds(item, Model.GetItemType())
+                        <div>@Html.ToolbarOfItem(Model.GetItemToobalActions(item))</div>
+                    </tr>
+                        scope.Next();
+                    }
+                }
+            </tbody>
+        </table>
+        @Html.Pager()
+    </div>
+</div>
+}
+<script>
+    $("[name='Print']").live("click",
+        function (evt) {
+            var $this = $(this);
+            $this.setCancel();
+            evt.preventDefault();
+            evt.stopPropagation();
+            if (!confirm("您是否要打印小票?")) return false;
+            $.post($this.attr("href") + "?tm=" + new Date(), {}, function (data) {
+                if (data.Success) {
+                    printTicket(data.Data1);
+                } else {
+                    alert(data.Message);
+                }
+            });
+        }); 
+</script>

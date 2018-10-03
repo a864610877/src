@@ -1,0 +1,14 @@
+﻿Create.description=添加
+Create.name=添加
+Delete.description=删除
+Deletes.description=删除
+description=Ecard.Mvc.Controllers.AdmissionTicketController
+Edit.description=编辑
+Edit.name=编辑
+List.description=门票列表
+List.name=门票列表
+name=Ecard.Mvc.Controllers.AdmissionTicketController
+Resume.description=启用
+Resumes.description=批量启用
+Suspend.description=停售
+Suspends.description=批量停售

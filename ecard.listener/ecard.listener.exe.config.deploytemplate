@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<configuration>
+  <configSections>
+    <section name="cachingConfiguration" type="Microsoft.Practices.EnterpriseLibrary.Caching.Configuration.CacheManagerSettings, Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" requirePermission="true" />
+  </configSections>
+  <connectionStrings>
+    <add name="ecard" connectionString="%connection-ecard%" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  <appSettings>
+    <add key="port" value="%deallistener-port%"/>
+    <add key="i8583_version" value="v2"/>
+  </appSettings>
+  <cachingConfiguration defaultCacheManager="Cache Manager">
+    <cacheManagers>
+      <add name="Cache Manager" type="Microsoft.Practices.EnterpriseLibrary.Caching.CacheManager, Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+        expirationPollFrequencyInSeconds="3600" maximumElementsInCacheBeforeScavenging="10000"
+        numberToRemoveWhenScavenging="100" backingStoreName="NullBackingStore" />
+    </cacheManagers>
+    <backingStores>
+      <add type="Microsoft.Practices.EnterpriseLibrary.Caching.BackingStoreImplementations.NullBackingStore, Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+        name="NullBackingStore" />
+    </backingStores>
+  </cachingConfiguration>
+
+
+  <system.serviceModel>
+    <bindings />
+    <client>
+      <endpoint address="http://%sms-svc-address%" binding="wsHttpBinding"
+        bindingConfiguration="" contract="Moonlit.ServiceModel.ISmsService"
+        name="" kind="" endpointConfiguration="">
+        <identity>
+          <dns value="localhost" />
+          <certificateReference storeName="My" storeLocation="LocalMachine"
+            x509FindType="FindBySubjectDistinguishedName" />
+        </identity>
+      </endpoint>
+    </client>
+    <behaviors>
+      <endpointBehaviors>
+        <behavior name="WebBehavior">
+          <webHttp />
+        </behavior>
+      </endpointBehaviors>
+      <serviceBehaviors>
+        <behavior name="">
+          <serviceMetadata httpGetEnabled="true" />
+          <serviceDebug includeExceptionDetailInFaults="false" />
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>
+    <services>
+      <service name="PI8583.WebCacheService">
+        <endpoint address="" binding="webHttpBinding" behaviorConfiguration="WebBehavior"  contract="PI8583.IWebCacheService">
+          <identity>
+            <dns value="localhost" />
+          </identity>
+        </endpoint>
+        <endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange" />
+        <host>
+          <baseAddresses>
+            <add baseAddress="http://%cache-svc-address%" />
+          </baseAddresses>
+        </host>
+      </service>
+
+      <service name="PI8583.EcardOnlineService">
+        <endpoint address=""
+          binding="wsHttpBinding" bindingConfiguration="" contract="Ecard.IAccountDealService">
+          <identity>
+            <dns value="localhost" />
+          </identity>
+        </endpoint>
+        <endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange" />
+        <host>
+          <baseAddresses>
+            <add baseAddress="http://%ecardonline-svc-address%" />
+          </baseAddresses>
+        </host>
+      </service>  
+    </services>
+  </system.serviceModel>
+  
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/>
+  </startup>
+</configuration>

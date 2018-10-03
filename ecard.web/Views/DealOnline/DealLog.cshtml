@@ -1,0 +1,35 @@
+﻿@using Ecard.Mvc.Models.DealOnlines
+@model DealLogModel
+@{
+    Layout = null;
+}
+<div class="onlinePayPanel clearfix">
+    @if (Model.DealLog == null)
+    {
+        <div id="dealNonFound">@Html.Raw("请输入参考号")</div>
+    }
+    else
+    { 
+        <div class="info">
+            <p>
+                <label for="accountName">
+                    交易卡号:
+                </label>
+                <span>@Model.DealLog.AccountName</span></p>
+            <p>
+                <label for="accountName">
+                    商户编号:
+                </label>
+                <span>@Model.DealLog.ShopName</span></p>
+            <p>
+                <label for="amount">
+                    金额:</label><span>@Model.DealLog.Amount</span></p>
+            <p>
+                <label for="submitDate">
+                    交易时间:</label><span>@Model.DealLog.SubmitTime.ToLongDateString() @Model.DealLog.SubmitTime.ToLongTimeString()</span></p> 
+            <p>
+                <label for="type">
+                    交易类型:</label><span>消费</span></p> 
+        </div>
+    }
+</div>

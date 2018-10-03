@@ -1,0 +1,54 @@
+﻿@model Ecard.Mvc.Models.ShopLiquidates.ShopLiquidates
+@{
+    Layout = null;
+} 
+@if (Model.Items.Count == 0)
+{
+    <div class="nonfound">没有等待清算的请求</div>
+}
+else
+{
+    <table>
+        <thead>
+            <tr> 
+                <th class="submitTime">
+                    提交时间
+                </th>
+                <th class="dealAmount">
+                    交易金额
+                </th>
+                <th  class="cancelDealAmount">
+                    撤消金额
+                </th>  
+                <th  class="dealCount">
+                    交易数
+                </th>  
+                <th class="operation">相关操作</th>
+            </tr>
+        </thead>
+    </table>
+    <div class="items">
+    
+    <table>
+        <tbody>
+            @foreach (var liquidate in Model.Items)
+            {
+                <tr> 
+                    <td class="submitTime">
+                        @liquidate.SubmitTime.ToString("yyyy-MM-dd") 
+                    </td>
+                    <td class="dealAmount">@liquidate.DealAmount
+                    </td>
+                    <td class="cancelDealAmount">@liquidate.CancelAmount
+                    </td>  
+                    <td class="dealCount">@liquidate.Count
+                    </td>  
+                    <td class="operation">
+                    <a class="deleteLiquidate" href="@Url.Action("DeleteLiquidate", new { LiquidateId = liquidate.LiquidateId })">删除</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+} 

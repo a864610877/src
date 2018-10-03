@@ -1,0 +1,587 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BFA99EE0-2B71-48C2-AC63-C0017EDCB23E}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FZ_WebOne</RootNamespace>
+    <AssemblyName>FZ_WebOne</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\..\libs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Moonlit">
+      <HintPath>..\..\libs\Moonlit.dll</HintPath>
+    </Reference>
+    <Reference Include="Moonlit.Data">
+      <HintPath>..\..\libs\Moonlit.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.3.0.20105.1\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.1.0.20105.408\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnityDependencyResolver.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\css\admin.css" />
+    <Content Include="assets\css\amazeui.css" />
+    <Content Include="assets\css\amazeui.flat.css" />
+    <Content Include="assets\css\amazeui.flat.min.css" />
+    <Content Include="assets\css\amazeui.min.css" />
+    <Content Include="assets\css\app.css" />
+    <Content Include="assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\i\app-icon72x72%402x.png" />
+    <Content Include="assets\i\examples\admin-chrome.png" />
+    <Content Include="assets\i\examples\admin-firefox.png" />
+    <Content Include="assets\i\examples\admin-ie.png" />
+    <Content Include="assets\i\examples\admin-opera.png" />
+    <Content Include="assets\i\examples\admin-safari.png" />
+    <Content Include="assets\i\examples\adminPage.png" />
+    <Content Include="assets\i\examples\blogPage.png" />
+    <Content Include="assets\i\examples\landing.png" />
+    <Content Include="assets\i\examples\landingPage.png" />
+    <Content Include="assets\i\examples\loginPage.png" />
+    <Content Include="assets\i\examples\sidebarPage.png" />
+    <Content Include="assets\i\favicon.png" />
+    <Content Include="assets\i\startup-640x1096.png" />
+    <Content Include="assets\js\amazeui.ie8polyfill.js" />
+    <Content Include="assets\js\amazeui.ie8polyfill.min.js" />
+    <Content Include="assets\js\amazeui.js" />
+    <Content Include="assets\js\amazeui.min.js" />
+    <Content Include="assets\js\amazeui.widgets.helper.js" />
+    <Content Include="assets\js\amazeui.widgets.helper.min.js" />
+    <Content Include="assets\js\app.js" />
+    <Content Include="assets\js\handlebars.min.js" />
+    <Content Include="assets\js\jquery.min.js" />
+    <Content Include="configs\Ecard.Commands.LimitAmountCommand.txt" />
+    <Content Include="configs\Ecard.Commands.RechargingCommand.txt" />
+    <Content Include="configs\Ecard.Infrastructure.ResponseCode.txt" />
+    <Content Include="configs\Ecard.Models.Account.txt" />
+    <Content Include="configs\Ecard.Models.AccountStates.txt" />
+    <Content Include="configs\Ecard.Models.AccountType.txt" />
+    <Content Include="configs\Ecard.Models.AdminUser.txt" />
+    <Content Include="configs\Ecard.Models.CashDealLogSummaryStates.txt" />
+    <Content Include="configs\Ecard.Models.CashDealLogTypes.txt" />
+    <Content Include="configs\Ecard.Models.DealLogStates.txt" />
+    <Content Include="configs\Ecard.Models.DealTypes.txt" />
+    <Content Include="configs\Ecard.Models.DistributorBrokerage.txt" />
+    <Content Include="configs\Ecard.Models.DistributorUser.txt" />
+    <Content Include="configs\Ecard.Models.Genders.txt" />
+    <Content Include="configs\Ecard.Models.LiquidateStates.txt" />
+    <Content Include="configs\Ecard.Models.LogTypes.txt" />
+    <Content Include="configs\Ecard.Models.MenuItem.txt" />
+    <Content Include="configs\Ecard.Models.MobileStates.txt" />
+    <Content Include="configs\Ecard.Models.Order.txt" />
+    <Content Include="configs\Ecard.Models.OrderState.txt" />
+    <Content Include="configs\Ecard.Models.PageContainers.PageContainer.txt" />
+    <Content Include="configs\Ecard.Models.PosEndPoint.txt" />
+    <Content Include="configs\Ecard.Models.PrePayStates.txt" />
+    <Content Include="configs\Ecard.Models.Role.txt" />
+    <Content Include="configs\Ecard.Models.RollbackShopDealLogState.txt" />
+    <Content Include="configs\Ecard.Models.Shop.txt" />
+    <Content Include="configs\Ecard.Models.ShopDealLogStates.txt" />
+    <Content Include="configs\Ecard.Models.ShopDealLogTypes.txt" />
+    <Content Include="configs\Ecard.Models.ShopUser.txt" />
+    <Content Include="configs\Ecard.Models.Site.txt" />
+    <Content Include="configs\Ecard.Models.Sites.SmsParam.txt" />
+    <Content Include="configs\Ecard.Models.States.txt" />
+    <Content Include="configs\Ecard.Models.SystemDealLogStates.txt" />
+    <Content Include="configs\Ecard.Models.SystemDealLogTypes.txt" />
+    <Content Include="configs\Ecard.Models.TaskStates.txt" />
+    <Content Include="configs\Ecard.Mvc.ActionFilters.DistributorUserModel.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.AccountController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.AccountLevelPolicyController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.AccountTypeController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.AdminUserController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.AmountRateController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.CashDealLogController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.CashDealLogSummaryController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.ClientServiceController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.CommodityController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.DealLogController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.DealOnlineController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.DealWayController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.DistributorBrokerageController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.DistributorController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.GoodController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.HomeController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.LiquidateController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.LogController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.MessageTemplateController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.OrderController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.PointGiftController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.PointPolicyController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.PointRebateController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.PointRebateLogController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.PosEndPointController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.PrePayController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.PrintTicketController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.ReportController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.RoleController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.RollbackController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.ShopController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.ShopDealLogController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.ShopLiquidateController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.SiteController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.SystemDealLogController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.TaskController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.UnityController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.UserController.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.AccountLevelPolicies.CreateAccountLevelPolicy.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.AccountLevelPolicies.EditAccountLevelPolicy.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.AccountLevelPolicies.ListAccountLevelPolicies.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.AccountLevelPolicies.ListAccountLevelPolicy.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.CancelPayAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.ChangeNameAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.ChangePasswordAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.CloseAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.CreateAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.DoGiftAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.DonePrePayAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.GiftAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.InitAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.ListAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.ListAccounts.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.OpenAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.OwnerAccount+Mobiles.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.OwnerAccount+PhoneNumbers.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.OwnerAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.PayAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.PhoneNumbers.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.PrePayAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.RebateAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.RechargingAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.RenewAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.ResumeAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.SuspendAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.SystemPayAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.TransferAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.UnPayAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Accounts.ViewAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.AccountTypes.CreateAccountType.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.AccountTypes.EditAccountType.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.AccountTypes.GetAccountTypeById.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.AccountTypes.ListAccountType.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.AccountTypes.ListAccountTypes.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.AdminUsers.CreateAdminUser.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.AdminUsers.EditAdminUser.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.AdminUsers.ListAdminUser.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.AdminUsers.ListAdminUsers.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.AdminUsers.ListUser.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.AdminUserWithCash.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.AmountRates.CreateAmountRate.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.AmountRates.EditAmountRate.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.AmountRates.ListAmountRate.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.AmountRates.ListAmountRates.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.ApplyToModel.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.CashDealLogs.CreateCashDealLog.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.CashDealLogs.DoneCashDealLog.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.CashDealLogs.ListCashDealLog.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.CashDealLogs.ListCashDealLogs.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.CashDealLogSummarys.ListCashDealLogSummary.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.CashDealLogSummarys.ListCashDealLogSummarys.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Commodities.CreateCommodity.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Commodities.EditCommodity.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Commodities.ListCommodities.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Commodities.ListCommodity.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.DealLogs.ListDealLog.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.DealLogs.ListDealLogs.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.DealWays.CreateDealWay.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.DealWays.EditDealWay.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.DealWays.ListDealWay.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.DealWays.ListDealWays.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.DistributorBrokerages.ListDistributorBrokerage.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.DistributorBrokerages.ListDistributorBrokerages.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Distributors.CreateDistributor.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Distributors.DistributorAccountLevelRate.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Distributors.EditDistributor.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Distributors.ListDistributor.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Distributors.ListDistributors.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.GoodandOrder.CreateClientOrder.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.GoodandOrder.CreateGood.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.GoodandOrder.CreateOrder.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.GoodandOrder.EditGood.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.GoodandOrder.EditOrder.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.GoodandOrder.ListGood.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.GoodandOrder.ListGoods.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.GoodandOrder.ListOrder.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.GoodandOrder.listOrders.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.GoodandOrder.OrderDetialBase.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.GoodandOrder.OrderDetialModelBase.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.GoodandOrder.ViewOrder.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Homes.DashboardHome.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Liquidates.DoneLiquidate.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Liquidates.LiquidateModel.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Liquidates.ListLiquidate.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Liquidates.ListLiquidates.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Liquidates.ListShopDealLog.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Logs.ListLog.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Logs.ListLogs.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.MessageTemplates.CreateMessageTemplate.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.MessageTemplates.EditMessageTemplate.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.MessageTemplates.ListMessageTemplate.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.MessageTemplates.ListMessageTemplates.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Mobiles.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Permissions.ListPermission.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PointGifts.CreatePointGift.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PointGifts.EditPointGift.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PointGifts.ListPointGift.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PointGifts.ListPointGifts.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PointPolicies.CreatePointPolicy.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PointPolicies.EditPointPolicy.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PointPolicies.ListPointPolicies.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PointPolicies.ListPointPolicy.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PointRebateLogs.ListPointRebateLog.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PointRebateLogs.ListPointRebateLogs.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PointRebates.CreatePointRebate.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PointRebates.EditPointGift.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PointRebates.EditPointRebate.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PointRebates.ListPointGift.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PointRebates.ListPointGifts.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PointRebates.ListPointRebate.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PointRebates.ListPointRebates.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PosEndPointes.CreatePosEndPoint.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PosEndPointes.EditPosEndPoint.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PosEndPointes.ListPosEndPoint.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PosEndPointes.ListPosEndPoints.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PrePays.ListPrePay.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PrePays.ListPrePays.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PrePays.ViewPrePay.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PrintTickets.ListPrintTicket.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.PrintTickets.ListPrintTickets.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Reports.AccountDealsForAccountReport.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Reports.AccountDealsListReport.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Reports.AccountDealsReport.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Reports.AccountMonthReport.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Reports.Accounts2Report.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Reports.AccountsReport.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Reports.AllSystemSummaryReport.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Reports.CreateAccountListReport.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Reports.CreateAccountReport.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Reports.ExpiredAccountsReport.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Reports.MakeCardReport.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Reports.PrePayListReport.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Reports.RechargingListReport.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Reports.RechargingReport.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Reports.SaleAccountListReport.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Reports.SaleAccountReport.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Reports.ShopDealAccountTypeReport.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Reports.ShopDealsReport.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Reports.ShopMonthReport.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Reports.SystemDealLogByUserReport.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Reports.SystemDealLogDayReport.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Roles.CreateRole.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Roles.EditRole.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Roles.ListRole.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Roles.ListRoles.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Rollbacks.AddRollback.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Rollbacks.ListRollback.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Rollbacks.ListRollbacks.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Rollbacks.RollbackModel.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.ShopDealLogs.DoneShopDealLog.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.ShopDealLogs.ListShopDealLog.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.ShopDealLogs.ListShopDealLogs.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.ShopDealLogs.ShopDealLogPrinter.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Shops.CreateShop.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Shops.EditShop.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Shops.ListShop.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Shops.ListShops.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Shops.ShopDealLogTypeModel.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Shops.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Shops.ViewShop.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Sites.AccountMessagePanel.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Sites.EditMessageTemplate.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Sites.EditSite.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Sites.EditTicketTemplate.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Sites.ListMessageAccount.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Sites.MessagePanel.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.SystemDealLogs.CloseRecharging.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.SystemDealLogs.ListSystemDealLog.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.SystemDealLogs.ListSystemDealLogs.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Tasks.ApproveTask.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Tasks.AssignRolesCommandEditModel.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Tasks.ClearRolesCommandCreateModel.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Tasks.ClearRolesCommandEditModel.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Tasks.CreateTask.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Tasks.EditTask.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Tasks.ListAssignRoleTask.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Tasks.ListAssignRoleTasks.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Tasks.ListTask.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Tasks.ListTasks.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Tasks.OpenAccountCommandViewTask.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Tasks.RechargingCommandViewTask.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Tasks.StopTask.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Tasks.ViewTask.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Users.CreateDog.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Users.EditProfile.txt" />
+    <Content Include="configs\Ecard.Policies.IntervalAccountCreator.txt" />
+    <Content Include="configs\Ecard.Services.DealLogQueryTypes.txt" />
+    <Content Include="configs\Ecard.Web.Controllers.HomeController.txt" />
+    <Content Include="configs\global.txt" />
+    <Content Include="configs\messages.txt" />
+    <Content Include="Content\js\Site.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="sql\account.DisableMessageOfDeal.sql" />
+    <Content Include="sql\account.query.sql" />
+    <Content Include="sql\account.QueryAccount.sql" />
+    <Content Include="sql\account.queryAccountWithOwner.sql" />
+    <Content Include="sql\account.queryByNames.sql" />
+    <Content Include="sql\account.QueryByOwnerId.sql" />
+    <Content Include="sql\account.QueryForName.sql" />
+    <Content Include="sql\accountType.Query.sql" />
+    <Content Include="sql\AmountRate.Query.sql" />
+    <Content Include="sql\CashDealLogSummary.query.sql" />
+    <Content Include="sql\Commodity.Query.sql" />
+    <Content Include="sql\deallog.getbyaddin.sql" />
+    <Content Include="sql\deallog.query.sql" />
+    <Content Include="sql\log.Query.sql" />
+    <Content Include="sql\PointRebate.DeleteAccountLevelsForRebate.sql" />
+    <Content Include="sql\PointRebate.Query.sql" />
+    <Content Include="sql\PointRebate.QueryForUser.sql" />
+    <Content Include="sql\PosEndPoint.query.sql" />
+    <Content Include="sql\prepay.query.sql" />
+    <Content Include="sql\printticket.Query.sql" />
+    <Content Include="sql\report.accountdeals.sql" />
+    <Content Include="sql\report.accountdeals.summary1.sql" />
+    <Content Include="sql\report.AccountDealsForAccount.sql" />
+    <Content Include="sql\report.AccountDealsList.sql" />
+    <Content Include="sql\report.AccountDealsList.summary1.sql" />
+    <Content Include="sql\report.accountmonth.sql" />
+    <Content Include="sql\report.accounts.sql" />
+    <Content Include="sql\report.accounts2.sql" />
+    <Content Include="sql\report.accounts2.summary1.sql" />
+    <Content Include="sql\report.AllSystemSummary.sql" />
+    <Content Include="sql\report.createaccount.sql" />
+    <Content Include="sql\report.createaccount.summary1.sql" />
+    <Content Include="sql\report.createaccountlist.sql" />
+    <Content Include="sql\report.ExpiredAccounts.sql" />
+    <Content Include="sql\report.PrepayList.sql" />
+    <Content Include="sql\report.PrepayList.summary1.sql" />
+    <Content Include="sql\report.Recharging.sql" />
+    <Content Include="sql\report.RechargingList.sql" />
+    <Content Include="sql\report.RechargingList.summary1.sql" />
+    <Content Include="sql\report.saleaccount.sql" />
+    <Content Include="sql\report.saleaccount.summary1.sql" />
+    <Content Include="sql\report.saleaccountlist.sql" />
+    <Content Include="sql\report.shopdeals.sql" />
+    <Content Include="sql\report.shopdeals.summary1.sql" />
+    <Content Include="sql\report.systemdeallogbyday.sql" />
+    <Content Include="sql\report.systemdeallogbyuser.sql" />
+    <Content Include="sql\report.systemdeallogbyuser.summary1.sql" />
+    <Content Include="sql\shop.GetShopByMobileNumber.sql" />
+    <Content Include="sql\ShopDealLog.query.sql" />
+    <Content Include="sql\site.query.sql" />
+    <Content Include="sql\systemdeallog.query.sql" />
+    <Content Include="sql\TemporaryTokenkey.GetToken.sql" />
+    <Content Include="sql\TemporaryTokenkey.queryByUser.sql" />
+    <Content Include="sql\user.GetUserByMobile.sql" />
+    <Content Include="sql\user.GetUserByPhoneNumber.sql" />
+    <Content Include="sql\user.sales.sql" />
+    <Content Include="sql\userofShop.query.sql" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ecard.infrastructure\Ecard.Infrastructure.csproj">
+      <Project>{de740218-c859-4f0d-9e83-19df8a9861b6}</Project>
+      <Name>Ecard.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ecard.mvc\Ecard.Mvc.csproj">
+      <Project>{fa829c5e-e6ef-4029-891d-32d3f72693d0}</Project>
+      <Name>Ecard.Mvc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ecard\Ecard.csproj">
+      <Project>{d54af39d-cb43-4d32-a89d-d55ee924ab57}</Project>
+      <Name>Ecard</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\LogOn.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\fonts\fontawesome-webfont.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\fonts\fontawesome-webfont.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\fonts\fontawesome-webfont.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\fonts\fontawesome-webfont.woff2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\fonts\FontAwesome.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="menu.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="log4net.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Role\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Templates\Th.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Templates\Td.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>7087</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:4752/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,98 @@
+﻿@using Moonlit
+@model  ListSystemDealLogs
+@using (Html.BeginForm("List", "SystemDealLog"))
+{ 
+        <div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">@Model.Localize("title")</a></li>
+    </ul>
+</div>
+   <div class="rightinfo">
+       
+         <table id="selectTd">
+           <tr>
+                        @Html.EditorForModel("condition")
+                        <td>@Html.Submit(Model.Localize("query"))</td>
+                       
+         </tr>
+      </table>
+                <div class="searchCommand">@Html.ToolbarOfList(Model.GetToolbarActions())
+                </div> 
+    <div class="listbox">
+      
+        <table class="tablelist">
+            <thead style="border-color: #5ec2f9; border-bottom-style: solid">
+                <tr>
+                    @Html.Th(Ths.Select)
+                    @Html.Ths(Model.List, Model.GetItemType())
+                    @Html.Th(Ths.Operation, new { width = "134px" })
+                </tr>
+            </thead>
+            <tbody>
+                @using (var scope = new IteratorScope())
+                {
+
+                    foreach (var item in Model.List)
+                    {
+                        
+                    <tr >
+                        @Html.Td(Ths.Select, item.SystemDealLogId)
+                        @Html.Tds(item, Model.GetItemType())
+                        <div>@Html.ToolbarOfItem(Model.GetItemToobalActions(item))</div>
+                    </tr>
+                        scope.Next();
+                    }
+                }
+            </tbody>
+        </table>
+        @Html.Pager()
+    </div>
+</div>
+}
+<script>
+    var urlStr = "";
+    $("[name='CloseRecharging']").live("click",
+        function (evt) {
+            var $this = $(this);
+            $this.setCancel();
+            evt.preventDefault();
+            evt.stopPropagation();
+            if (!confirm("您是否要撤消充值?")) return false;
+            var success = function (password) {
+                $.post(urlStr + "?tm=" + new Date(), { password: password }, function (data) {
+                    if (data.Success) {
+                        $this.remove();
+                        alert("撤消充值成功");
+                    } else {
+                        alert(data.Message);
+                    }
+                });
+            };
+            inputPassword_new(success);
+        });
+    $("[name='OpenReceipt']").live("click",
+        function (evt) {
+            evt.preventDefault();
+            evt.stopPropagation();
+            if (!confirm("您是否要开具发票?")) return false;
+            var $this = $(this);
+            $.get(urlStr + "?tm=" + new Date(), function (data) {
+                if (data.Success) {
+                    $this.remove();
+                    alert("开具发票成功");
+                } else {
+                    alert(data.Message);
+                }
+            });
+        });
+        function OperatorThis(RName, RUrl) {
+            urlStr = RUrl;
+            switch (RName) {
+                case "export":
+                    window.location.href = RUrl;
+                    break;
+            }
+        }
+</script>

@@ -1,0 +1,45 @@
+﻿@model EcardModelItem<CreateCommodity>
+@using (Html.BeginForm())
+{  
+@*    <div class="create_div">
+   <table class="createTable">
+        @Html.EditorFor(x => x.Item)
+    </table>
+    <div style=" clear:both" />
+    <div style=" text-align:left; margin-left:45px; margin-top:15px;"> <input type="submit" class="ui-state-default ui-corner-all" value="提交" />
+           @Html.ActionLink("List") </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $(".create_field input").focus(function () {
+                $("[forprop='" + $(this).attr("id") + "']").show("1500");
+            });
+            $(".create_field select").click(function () {
+                $("[forprop='" + $(this).attr("id") + "_Key']").show("1500");
+            });
+            $(".create_field input").blur(function () {
+                $("[forprop='" + $(this).attr("id") + "']").hide("1500");
+            });
+            $(".create_field select").mouseleave(function () {
+                $("[forprop='" + $(this).attr("id") + "_Key']").hide("1500");
+            });
+        });
+    
+    </script>*@
+    
+    <div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">@Model.Localize("title")</a></li>
+    </ul>
+    </div>
+    <div class="formbody">
+    <div class="formtitle"><span>@Model.Localize("title")</span></div>
+    <ul class="forminfo">
+      @Html.EditorFor(x => x.Item)
+     <li><label>&nbsp;</label><input name="" type="button"  onclick="okClick();" class="btn" value="确认保存"/></li>
+    <ul>
+    </div>
+ 
+}

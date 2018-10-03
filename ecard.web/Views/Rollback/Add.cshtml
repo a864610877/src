@@ -1,0 +1,15 @@
+﻿@using Ecard.Mvc.Models.Rollbacks
+@model EcardModelItem<AddRollback>
+@using (Html.BeginForm())
+{ 
+    <ul>
+        @Html.EditorFor(x => x.Item)
+        <li class="buttons">
+            @Html.ActionLink("query") 
+            @if (!Model.Item.DisableApply)
+            {
+                @Html.ActionLink("doapply")
+            }
+        </li>
+    </ul>
+}

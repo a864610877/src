@@ -1,0 +1,30 @@
+﻿@using Ecard.Mvc.Models.Rollbacks
+@using Moonlit
+@model  ListRollbacks
+@using (Html.BeginForm("List", "Rollback"))
+{ 
+    @Html.EditorForModel("condition")
+    @Html.Submit("查询")
+    <div class="hastable">
+        <table class="sort-table">
+            <thead>
+                <tr>
+                    @Html.Ths(Model.List, Model.GetItemType()) 
+                </tr>
+            </thead>
+            <tbody>
+                @using (var scope = new IteratorScope())
+                {
+                    foreach (var item in Model.List)
+                    {
+                        <tr>
+                            @Html.Tds(item, Model.GetItemType()) 
+                        </tr>
+                        scope.Next();
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    @Html.Pager() 
+}

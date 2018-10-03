@@ -1,0 +1,88 @@
+﻿@model CreateAccount
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">@Model.Localize("title")</a></li>
+    </ul>
+</div>
+<div class="two-column">
+    <div class="column" style="width: 30%; float:left;">
+        <div class="portlet form-bg ui-widget ui-widget-content ui-helper-clearfix ui-corner-all">
+            <div class="portlet-header ui-widget-header " style=" text-align:center; padding-top:10px;"><span style="font-size: 15px; color: Red;text-align: center; padding-bottom:10px;">@Model.Localize("titleOfAccounts")</span> </div>
+            <div class="portlet-content">
+                <ul id="numbers" style="min-height:300px">
+                    @foreach (var account in Model.List)
+                    {
+                        <li style="text-align: center">
+                            <div  style="height: 24px; font-size: 16px;" class="number" data-account-name='@account.Name' data-account-token='@account.AccountToken'>
+                                @account.Name
+                            </div>  
+                        </li>
+                    }
+                </ul>
+                <div class="linetop clearfix">
+                </div>
+                <p>@Model.Localize("footerOfAccounts").</p>
+            </div>
+        </div>
+    </div>
+    <div class="column" style=""  id="accountInfo">
+        <div class="portlet-content" style="float: left;height: 300px;padding-top:10px;">
+            <span style="font-size: 20px; color: Red;text-align: center;">@Model.Localize("titleOfCurrent")</span>
+            <div class="linetop clearfix" style="margin: 12px 0px 40px 0px">
+            </div>
+            <p style="font-size: 20px; text-align: center; margin-bottom: 20px;" id="numbermsg">
+            </p>
+            <p style="font-size: 50px; color: Blue; text-align: center; margin: 0px auto 30px auto;" data-field="accountName">
+            </p>
+            <input type="hidden" data-field="accountToken" value="@Model.Site.AccountToken"/> 
+            <div style="margin: 0px auto; text-align: center">
+                <button id="btnCreateCard" class="scbtn" href="../Account/doCreate" >@Model.Localize("Create.Text")</button> 
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    (function ($) {
+        var msgbox = $("#numbermsg");
+        var numbers = $("#numbers li");
+        var btn = $("#btnCreateCard");
+        function loadFirstNumber() {
+            numbers = $("#numbers li");
+            if (numbers.length == 0) window.location = "../Account/List";
+            var number = $(".number", numbers.first());
+            var item = { accountName: number.attr("data-account-name"), accountToken: number.attr("data-account-token") };
+            $("#accountInfo").bindfrom(item);
+            msgbox.text('@Model.Localize("waitingForInsertCard")');
+        }
+        $(function () {
+            btn.click(function () {
+                var account = $("#accountInfo").bindto();
+
+                if (!writeAccount(account)) {
+                    alert('@Model.Localize("failedToWriteAccount")');
+                    return;
+                }
+                btn.attr("disabled", "disabled");
+                msgbox.text('@Model.Localize("waitingForCommunicate")');
+                var url = $(this).attr("href") + "?tm=" + new Date();
+                $.post(url, account, function (data) {
+                    if (data.error) {
+                        msgbox.text(data.error);
+                        btn.attr("disabled", false);
+                    }
+                    else {
+                        numbers.first().hide("slow", function () {
+                            numbers.first().remove();
+                            numbers = $("#numbers li");
+                            loadFirstNumber();
+                            btn.attr("disabled", false);
+                        });
+                    }
+                });
+            });
+            loadFirstNumber();
+        });
+    })(jQuery);
+</script>  

@@ -1,0 +1,10 @@
+﻿ActivityReservation.description=ActivityReservation
+ActivityReservation.name=ActivityReservation
+Create.description=添加
+Create.name=添加
+Delete.description=删除
+description=Ecard.Mvc.Controllers.ArticlesController
+Edit.description=编辑
+List.description=文章列表
+List.name=文章列表
+name=Ecard.Mvc.Controllers.ArticlesController

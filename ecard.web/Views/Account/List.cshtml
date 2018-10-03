@@ -1,0 +1,307 @@
+﻿@using Moonlit
+@model  ListAccounts
+ @{
+                
+   }
+@*@using (Html.BeginForm("List", "Account"))
+{
+       <div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">@Model.Localize("title")</a></li>
+    </ul>
+</div>
+    <div class="rightinfo">
+   
+        
+     <table id="selectTd">
+              <tr> 
+                        @Html.EditorForModel("condition")
+                        <td>@Html.Submit(Model.Localize("query"))</td>
+                        
+               </tr>
+     </table>
+                <div class="searchCommand">@Html.ToolbarOfList(Model.GetToolbarActions())
+                </div> 
+        <div class="listbox"> 
+            <table class="tablelist">
+                <thead style="border-color: #5ec2f9; border-bottom-style: solid">
+                    <tr>
+                       <th><input id="ckAll" type="checkbox" onclick="selectAll()" /></th> 
+                        @Html.Ths(Model.List, Model.GetItemType())
+                        @Html.Th(Ths.Operation, new { width = "134px" })
+                    </tr>
+                </thead>
+                <tbody id="tbodysNum">
+                    @using (var scope = new IteratorScope())
+                    {
+
+                        foreach (var item in Model.List)
+                        {
+                        
+                        <tr>
+                            @Html.Td(Ths.Select, item.AccountId)
+                            @Html.Tds(item, Model.GetItemType())
+                            <div>@Html.ToolbarOfItem(Model.GetItemToobalActions(item))</div>
+                        </tr>
+                            scope.Next();
+                        }
+                    }
+                </tbody>
+            </table>
+            @Html.Pager()
+        </div>
+    </div>
+}*@
+  <div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">@Model.Localize("title")</a></li>
+    </ul>
+</div>
+    <div class="rightinfo">
+   
+        
+     <table id="selectTd">
+              <tr> 
+                        @Html.EditorForModel("condition")
+                        <td>
+       <input name="" type="button" onclick="submitClicks(this);" class="scbtn" style="height: 29px;" value="查询" />
+   </td>
+                        
+               </tr>
+     </table>
+                <div class="searchCommand">@Html.ToolbarOfList(Model.GetToolbarActions())
+                </div> 
+        <div class="listbox"> 
+            <table class="tablelist">
+                <thead id="TabelThead" style="border-color: #5ec2f9; border-bottom-style: solid">
+                    <tr>
+                       <th><input id="ckAll" type="checkbox" onclick="selectAll()" /></th> 
+                        @Html.Ths(Model.List, Model.GetItemType())
+                        @Html.Th(Ths.Operation, new { width = "134px" })
+                    </tr>
+                </thead>
+                <tbody id="tbodysNum">
+                
+                    @using (var scope = new IteratorScope())
+                    {
+                        if (Model.List !=null && Model.List.Count > 0)
+                        { 
+                         foreach (var item in Model.List)
+                        {
+                        
+                        <tr>
+                        <td><input name="selectBox" type="checkbox" value=@item.AccountId  /></td>
+                            @Html.Tds(item, Model.GetItemType())
+                            <div>@Html.ToolbarOfItem(Model.GetItemToobalActions(item))</div>
+                        </tr>
+                            scope.Next();
+                        }
+                        }
+
+                    }
+                </tbody>
+            </table>
+          <div id="pagehtml">
+           @(ViewBag.pageHtml == null ? "" : ViewBag.pageHtml)</div>
+        </div>
+    </div> 
+<script type="text/javascript">
+ 
+    var pageS = 10;
+    var index = 0;
+    var ActionName = "";
+    var ActionUrl = "";
+    var jsonData = "";
+    function selectInput(choose) {
+        pageS = choose.value;
+        submitClicks(choose);
+    } 
+    //获取数据 
+    function AjaxGetData(PageIndex, PageSize) {
+        var hasStartPwd = false,hasAccountToken=false;
+        var Name = $('#Name').val();
+        var DisplayName = $('#DisplayName').val();
+        var State = $("[id=State.Key]").val();
+        var Content = $('#Content').val();
+        var MobileState = "";
+        var mobilestate = $("[id=MobileState.Key]").val();
+        if (mobilestate!="1") {
+            MobileState = mobilestate;
+        }
+        var ShopId = "";
+        var Id = $("[id=Distributor.Key]").val();
+        if (ShopId != "0") {
+            ShopId = Id;
+        }
+        $("#TabelThead  tr").each(function () {
+            $(this).find("th").each(function () {
+                var thisVal = $(this).text().replace(/(<br[^>]*>|  |\s*)/g,'');
+                if (thisVal == "初始密码") {
+                    hasStartPwd = true;
+                }
+                if (thisVal == "识别码") {
+                    hasAccountToken = true;
+                }
+            })
+
+        }) 
+        $.ajax({
+            url: "/Account/ListPost",
+            data: { PageIndex: PageIndex, PageSize: PageSize, Name: Name, DisplayNameWith: DisplayName, State: State, MobileState: MobileState, ShopId: Id, Mobile: Content },
+            type: "post",
+            //cache: false, 
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                var listVal = new Array();
+                listVal.push("AccountId");
+                listVal.push("Name");
+                listVal.push("DisplayName");
+                listVal.push("Mobile");
+                listVal.push("Frequency");
+                listVal.push("FrequencyUsed");
+                //if (hasStartPwd) {
+                //    listVal.push("InitPassword");
+                //}
+                //listVal.push("Amount");
+                //listVal.push("TotalAmount");
+                //listVal.push("Point");
+                //listVal.push("DepositAmount");
+                listVal.push("ExpiredDate");
+                //listVal.push("AccountLevelName");
+                listVal.push("OpenTime");
+                //if (hasAccountToken) {
+                //    listVal.push("AccountToken");
+                //}
+                listVal.push("LastDealTime");
+                listVal.push("AccountType");
+                listVal.push("DistributorName");
+                listVal.push("State");
+                listVal.push("boor");
+                $.GetstrTrs(data, listVal, "AccountId");
+            },
+            error: function () {
+                window.location.href = "/Home/UserError";
+            }
+        })
+    }
+ //操作
+    function OperatorThis(RName, RUrl) {
+        ActionName = RName;
+        ActionUrl = RUrl;
+        switch (RName) {
+            case "Init":
+                window.location.href = RUrl;
+                break;
+            case "Rebate":
+                window.location.href = RUrl;
+                break;
+            case "Owner":
+                window.location.href = RUrl;
+                break;
+            case "Edit":
+                window.location.href = RUrl;
+                break;
+            case "Export":
+                window.location.href = RUrl;
+                break;
+            case "DeriveTXT":
+                window.location.href = RUrl;
+                break;
+            case "Create":
+                jsonData = getChecks();
+                if (jsonData != null && jsonData != "") {
+                    window.location.href = RUrl + "?data=" + jsonData;
+                }
+                break;
+            case "Opens":
+                jsonData = getChecks();
+                $(".tip p").text("您确定对选中卡片进行会员卡发放操作吗？");
+                $(".ShowHide").fadeIn(100);
+                $(".tip").fadeIn(200);
+                break;
+            case "Approves":
+                jsonData = getChecks();
+                $(".tip p").text("您确认该卡可以进入会员卡发放阶段吗？");
+                $(".ShowHide").fadeIn(100);
+                $(".tip").fadeIn(200);
+                break;
+            case "Creates":
+                jsonData = getChecks();
+                $(".tip p").text("您确定对选中的卡号进行批量建卡吗？");
+                $(".ShowHide").fadeIn(100);
+                $(".tip").fadeIn(200);
+                break;
+            case "Suspend":
+                $(".tip p").text("你确定要停用当前商户吗？");
+                $(".ShowHide").fadeIn(100);
+                $(".tip").fadeIn(200);
+                break;
+            case "Suspends":
+                jsonData = getChecks();
+                $(".tip p").text("您确定停用所有选择的卡号？");
+                $(".ShowHide").fadeIn(100);
+                $(".tip").fadeIn(200);
+                break;
+            case "Resume":
+                $(".tip p").text("你确定要启用当前商户吗？");
+                $(".ShowHide").fadeIn(100);
+                $(".tip").fadeIn(200);
+                break;
+            case "Resumes":
+                jsonData = getChecks();
+                $(".tip p").text("您确定启用所有选择的卡号？");
+                $(".ShowHide").fadeIn(100);
+                $(".tip").fadeIn(200);
+                break;
+            case "Delete":
+                $(".tip p").text("您确定要删除当前会员?");
+                $(".ShowHide").fadeIn(100);
+                $(".tip").fadeIn(200); 
+                break;
+            case "Deletes":
+                jsonData = getChecks();
+                $(".tip p").text("您确定要删除所选中的卡?");
+                $(".ShowHide").fadeIn(100);
+                $(".tip").fadeIn(200);
+                break;
+            case "SetDistributor":
+                $(".tip p").text("您确定要更改经销商?");
+                var sh_Id = $("[id=Distributor.Key]").val();
+                var obj = "{ \"ShopId\":"+sh_Id+" }"
+                $(".ShowHide").fadeIn(100);
+                $(".tip").fadeIn(200);
+                $("#btn_Sure").attr("onClick", "Sure_Args('" + obj + "')");
+                break;
+            case "SetDistributors":
+                jsonData = getChecks();
+                var ShopId = $("[id=Distributor.Key]").val();
+                if (jsonData != null && jsonData != "") {
+                    var obj = "{\"strIds\": \"" + jsonData + "\", \"ShopId\":" + ShopId + " }"
+                    $(".tip p").text("您确定要更改所选会员的经销商?");
+                    $(".ShowHide").fadeIn(100);
+                    $(".tip").fadeIn(200);
+                    $("#btn_Sure").attr("onClick", "Sure_Args('" + obj + "')");
+                }
+                break;
+        }
+    }
+//    var ActionUrl = "";
+//    $(function () {
+//        $("[data-confirm]").live("click", function (evt) {
+//            var $this = $(this);
+//            if ($this.attr("data-confirm").length == 0) return true;
+//            var hre = $this.attr("onclick");
+//            var str = hre.toString().split("'")
+//            ActionUrl = str[3];
+//            $(".tipaa p").text($this.attr("data-confirm"));
+//            $(".ShowHide").fadeIn(100);
+//            $(".tipaa").fadeIn(200);
+//        });
+//    })
+   
+</script>

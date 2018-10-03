@@ -1,0 +1,674 @@
+2015-10-09 10:43:12,506 1 [1] DEBUG app - sql store updated
+2015-10-09 10:43:12,648 1 [1] DEBUG app - SetupContiner
+2015-10-09 10:43:12,729 1 [1] DEBUG app - SetupSite
+2015-10-09 10:43:13,014 1 [1] DEBUG app - RegisterRoutes
+2015-10-09 10:43:13,022 1 [1] DEBUG app - registerActionFilters
+2015-10-09 10:43:13,026 1 [1] DEBUG app - registerModelBinders
+2015-10-09 10:43:13,026 1 [1] DEBUG app - registerViewEngines
+2015-10-09 10:43:13,027 1 [1] DEBUG app - registerControllerFactory
+2015-10-09 10:43:13,811 1 [1] DEBUG app - BuildSiteCss
+2015-10-09 10:43:13,811 1 [1] DEBUG app - SetResolver
+2015-10-09 10:43:13,811 1 [1] DEBUG app - RegisterAdapter
+2015-10-09 10:43:13,811 1 [1] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2015-10-09 10:43:13,958 12 [12] DEBUG RunWatcher - 耗时: 1
+执行方法: UserController -- LogOn
+2015-10-09 10:44:29,084 1 [1] DEBUG app - sql store updated
+2015-10-09 10:44:29,224 1 [1] DEBUG app - SetupContiner
+2015-10-09 10:44:29,302 1 [1] DEBUG app - SetupSite
+2015-10-09 10:44:29,584 1 [1] DEBUG app - RegisterRoutes
+2015-10-09 10:44:29,593 1 [1] DEBUG app - registerActionFilters
+2015-10-09 10:44:29,596 1 [1] DEBUG app - registerModelBinders
+2015-10-09 10:44:29,597 1 [1] DEBUG app - registerViewEngines
+2015-10-09 10:44:29,598 1 [1] DEBUG app - registerControllerFactory
+2015-10-09 10:44:30,381 1 [1] DEBUG app - BuildSiteCss
+2015-10-09 10:44:30,382 1 [1] DEBUG app - SetResolver
+2015-10-09 10:44:30,382 1 [1] DEBUG app - RegisterAdapter
+2015-10-09 10:44:30,382 1 [1] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2015-10-09 10:44:30,546 9 [9] DEBUG RunWatcher - 耗时: 1
+执行方法: UserController -- LogOn
+2015-10-09 10:46:58,299 16 [16] DEBUG RunWatcher - 耗时: 0
+执行方法: UserController -- LogOn
+2015-10-09 10:46:58,741 10 [10] DEBUG RunWatcher - 耗时: 10
+执行方法: UtilityController -- Code
+2015-10-09 10:47:34,481 6 [6] DEBUG RunWatcher - 耗时: 0
+执行方法: UserController -- LogOn
+2015-10-09 10:48:28,665 16 [16] DEBUG RunWatcher - 耗时: 0
+执行方法: UserController -- LogOn
+2015-10-09 10:48:28,955 16 [16] DEBUG RunWatcher - 耗时: 1
+执行方法: UtilityController -- Code
+2015-10-09 10:48:53,260 12 [12] DEBUG RunWatcher - 耗时: 0
+执行方法: UserController -- LogOn
+2015-10-09 10:48:53,571 10 [10] DEBUG RunWatcher - 耗时: 0
+执行方法: UtilityController -- Code
+2015-10-09 10:49:02,364 7 [7] DEBUG RunWatcher - 耗时: 196
+执行方法: UserController -- LogOn
+2015-10-09 10:49:02,644 12 [12] DEBUG RunWatcher - 耗时: 223
+执行方法: HomeController -- Index
+2015-10-09 10:59:37,356 1 [1] DEBUG app - sql store updated
+2015-10-09 10:59:37,558 1 [1] DEBUG app - SetupContiner
+2015-10-09 10:59:37,639 1 [1] DEBUG app - SetupSite
+2015-10-09 10:59:37,680 1 [1] DEBUG app - RegisterRoutes
+2015-10-09 10:59:37,688 1 [1] DEBUG app - registerActionFilters
+2015-10-09 10:59:37,691 1 [1] DEBUG app - registerModelBinders
+2015-10-09 10:59:37,691 1 [1] DEBUG app - registerViewEngines
+2015-10-09 10:59:37,692 1 [1] DEBUG app - registerControllerFactory
+2015-10-09 10:59:38,204 1 [1] DEBUG app - BuildSiteCss
+2015-10-09 10:59:38,204 1 [1] DEBUG app - SetResolver
+2015-10-09 10:59:38,205 1 [1] DEBUG app - RegisterAdapter
+2015-10-09 10:59:38,205 1 [1] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2015-10-09 10:59:38,647 6 [6] DEBUG RunWatcher - 耗时: 168
+执行方法: HomeController -- Index
+2015-10-09 11:01:30,435 9 [9] DEBUG RunWatcher - 耗时: 8
+执行方法: HomeController -- Index
+2015-10-09 11:02:12,143 12 [12] DEBUG RunWatcher - 耗时: 7
+执行方法: HomeController -- Index
+2015-10-09 11:03:26,654 9 [9] DEBUG RunWatcher - 耗时: 7
+执行方法: HomeController -- Index
+2015-10-09 11:04:02,434 10 [10] DEBUG RunWatcher - 耗时: 7
+执行方法: HomeController -- Index
+2015-10-09 11:04:27,791 11 [11] DEBUG RunWatcher - 耗时: 7
+执行方法: HomeController -- Index
+2015-10-09 11:04:34,088 9 [9] DEBUG RunWatcher - 耗时: 7
+执行方法: HomeController -- Index
+2015-10-09 11:08:40,278 11 [11] DEBUG RunWatcher - 耗时: 8
+执行方法: HomeController -- Index
+2015-10-09 11:09:15,239 19 [19] DEBUG RunWatcher - 耗时: 7
+执行方法: HomeController -- Index
+2015-10-09 11:10:43,855 11 [11] DEBUG RunWatcher - 耗时: 6
+执行方法: HomeController -- Index
+2015-10-09 11:11:05,934 10 [10] DEBUG RunWatcher - 耗时: 6
+执行方法: HomeController -- Index
+2015-10-09 11:12:27,469 11 [11] DEBUG RunWatcher - 耗时: 312
+执行方法: DealLogController -- List
+2015-10-09 11:12:29,145 25 [25] DEBUG RunWatcher - 耗时: 7
+执行方法: HomeController -- Index
+2015-10-09 11:13:14,595 20 [20] DEBUG RunWatcher - 耗时: 7
+执行方法: HomeController -- Index
+2015-10-09 11:13:58,804 19 [19] DEBUG RunWatcher - 耗时: 6
+执行方法: HomeController -- Index
+2015-10-09 11:18:32,173 28 [28] DEBUG RunWatcher - 耗时: 6
+执行方法: HomeController -- Index
+2015-10-09 11:19:26,250 19 [19] DEBUG RunWatcher - 耗时: 6
+执行方法: HomeController -- Index
+2015-10-09 11:19:50,609 19 [19] DEBUG RunWatcher - 耗时: 39
+执行方法: RoleController -- List
+2015-10-09 11:20:35,840 1 [1] DEBUG app - sql store updated
+2015-10-09 11:20:35,916 1 [1] DEBUG app - SetupContiner
+2015-10-09 11:20:35,980 1 [1] DEBUG app - SetupSite
+2015-10-09 11:20:35,986 1 [1] DEBUG app - RegisterRoutes
+2015-10-09 11:20:35,988 1 [1] DEBUG app - registerActionFilters
+2015-10-09 11:20:35,989 1 [1] DEBUG app - registerModelBinders
+2015-10-09 11:20:35,989 1 [1] DEBUG app - registerViewEngines
+2015-10-09 11:20:35,990 1 [1] DEBUG app - registerControllerFactory
+2015-10-09 11:20:36,457 1 [1] DEBUG app - BuildSiteCss
+2015-10-09 11:20:36,457 1 [1] DEBUG app - SetResolver
+2015-10-09 11:20:36,457 1 [1] DEBUG app - RegisterAdapter
+2015-10-09 11:20:36,457 1 [1] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2015-10-09 11:25:38,878 1 [1] DEBUG app - sql store updated
+2015-10-09 11:25:38,970 1 [1] DEBUG app - SetupContiner
+2015-10-09 11:25:39,049 1 [1] DEBUG app - SetupSite
+2015-10-09 11:25:39,057 1 [1] DEBUG app - RegisterRoutes
+2015-10-09 11:25:39,060 1 [1] DEBUG app - registerActionFilters
+2015-10-09 11:25:39,061 1 [1] DEBUG app - registerModelBinders
+2015-10-09 11:25:39,061 1 [1] DEBUG app - registerViewEngines
+2015-10-09 11:25:39,062 1 [1] DEBUG app - registerControllerFactory
+2015-10-09 11:25:39,580 1 [1] DEBUG app - BuildSiteCss
+2015-10-09 11:25:39,581 1 [1] DEBUG app - SetResolver
+2015-10-09 11:25:39,581 1 [1] DEBUG app - RegisterAdapter
+2015-10-09 11:25:39,581 1 [1] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2015-10-09 11:25:39,927 7 [7] DEBUG RunWatcher - 耗时: 54
+执行方法: RoleController -- List
+2015-10-09 11:34:20,903 13 [13] DEBUG app - sql store updated
+2015-10-09 11:34:20,993 13 [13] DEBUG app - SetupContiner
+2015-10-09 11:34:21,068 13 [13] DEBUG app - SetupSite
+2015-10-09 11:34:21,074 13 [13] DEBUG app - RegisterRoutes
+2015-10-09 11:34:21,078 13 [13] DEBUG app - registerActionFilters
+2015-10-09 11:34:21,078 13 [13] DEBUG app - registerModelBinders
+2015-10-09 11:34:21,078 13 [13] DEBUG app - registerViewEngines
+2015-10-09 11:34:21,079 13 [13] DEBUG app - registerControllerFactory
+2015-10-09 11:34:21,576 13 [13] DEBUG app - BuildSiteCss
+2015-10-09 11:34:21,576 13 [13] DEBUG app - SetResolver
+2015-10-09 11:34:21,576 13 [13] DEBUG app - RegisterAdapter
+2015-10-09 11:34:21,576 13 [13] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2015-10-09 11:42:47,539 32 [32] DEBUG app - sql store updated
+2015-10-09 11:42:47,619 32 [32] DEBUG app - SetupContiner
+2015-10-09 11:42:47,684 32 [32] DEBUG app - SetupSite
+2015-10-09 11:42:47,690 32 [32] DEBUG app - RegisterRoutes
+2015-10-09 11:42:47,692 32 [32] DEBUG app - registerActionFilters
+2015-10-09 11:42:47,692 32 [32] DEBUG app - registerModelBinders
+2015-10-09 11:42:47,692 32 [32] DEBUG app - registerViewEngines
+2015-10-09 11:42:47,693 32 [32] DEBUG app - registerControllerFactory
+2015-10-09 11:42:48,175 32 [32] DEBUG app - BuildSiteCss
+2015-10-09 11:42:48,175 32 [32] DEBUG app - SetResolver
+2015-10-09 11:42:48,175 32 [32] DEBUG app - RegisterAdapter
+2015-10-09 11:42:48,175 32 [32] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2015-10-09 11:42:48,282 29 [29] DEBUG RunWatcher - 耗时: 32
+执行方法: RoleController -- List
+2015-10-09 11:47:05,886 29 [29] DEBUG RunWatcher - 耗时: 2
+执行方法: RoleController -- List
+2015-10-09 11:55:04,567 33 [33] DEBUG RunWatcher - 耗时: 10
+执行方法: RoleController -- List
+2015-10-09 11:55:37,303 11 [11] DEBUG RunWatcher - 耗时: 2
+执行方法: RoleController -- List
+2015-10-09 13:56:34,260 58 [58] DEBUG RunWatcher - 耗时: 10
+执行方法: RoleController -- List
+2015-10-09 13:57:05,410 62 [62] DEBUG RunWatcher - 耗时: 2
+执行方法: RoleController -- List
+2015-10-09 13:58:12,278 63 [63] DEBUG RunWatcher - 耗时: 2
+执行方法: RoleController -- List
+2015-10-09 13:58:33,167 61 [61] DEBUG RunWatcher - 耗时: 2
+执行方法: RoleController -- List
+2015-10-09 13:58:46,251 59 [59] DEBUG RunWatcher - 耗时: 2
+执行方法: RoleController -- List
+2015-10-09 13:58:48,155 60 [60] DEBUG RunWatcher - 耗时: 33
+执行方法: AdminUserController -- List
+2015-10-09 13:58:49,492 58 [58] DEBUG RunWatcher - 耗时: 2
+执行方法: RoleController -- List
+2015-10-09 13:59:00,753 62 [62] DEBUG RunWatcher - 耗时: 2
+执行方法: RoleController -- List
+2015-10-09 14:00:36,745 58 [58] DEBUG RunWatcher - 耗时: 2
+执行方法: RoleController -- List
+2015-10-09 14:01:20,349 63 [63] DEBUG RunWatcher - 耗时: 2
+执行方法: RoleController -- List
+2015-10-09 14:01:59,521 59 [59] DEBUG RunWatcher - 耗时: 2
+执行方法: RoleController -- List
+2015-10-09 14:29:19,957 32 [32] DEBUG app - sql store updated
+2015-10-09 14:29:20,097 32 [32] DEBUG app - SetupContiner
+2015-10-09 14:29:20,171 32 [32] DEBUG app - SetupSite
+2015-10-09 14:29:20,354 32 [32] DEBUG app - RegisterRoutes
+2015-10-09 14:29:20,363 32 [32] DEBUG app - registerActionFilters
+2015-10-09 14:29:20,363 32 [32] DEBUG app - registerModelBinders
+2015-10-09 14:29:20,363 32 [32] DEBUG app - registerViewEngines
+2015-10-09 14:29:20,364 32 [32] DEBUG app - registerControllerFactory
+2015-10-09 14:29:21,111 32 [32] DEBUG app - BuildSiteCss
+2015-10-09 14:29:21,111 32 [32] DEBUG app - SetResolver
+2015-10-09 14:29:21,111 32 [32] DEBUG app - RegisterAdapter
+2015-10-09 14:29:21,111 32 [32] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2015-10-09 14:29:29,218 76 [76] DEBUG RunWatcher - 耗时: 136
+执行方法: RoleController -- List
+2015-10-09 14:30:11,126 1 [1] DEBUG app - sql store updated
+2015-10-09 14:30:11,307 1 [1] DEBUG app - SetupContiner
+2015-10-09 14:30:11,389 1 [1] DEBUG app - SetupSite
+2015-10-09 14:30:11,409 1 [1] DEBUG app - RegisterRoutes
+2015-10-09 14:30:11,417 1 [1] DEBUG app - registerActionFilters
+2015-10-09 14:30:11,423 1 [1] DEBUG app - registerModelBinders
+2015-10-09 14:30:11,424 1 [1] DEBUG app - registerViewEngines
+2015-10-09 14:30:11,424 1 [1] DEBUG app - registerControllerFactory
+2015-10-09 14:30:11,922 1 [1] DEBUG app - BuildSiteCss
+2015-10-09 14:30:11,922 1 [1] DEBUG app - SetResolver
+2015-10-09 14:30:11,923 1 [1] DEBUG app - RegisterAdapter
+2015-10-09 14:30:11,923 1 [1] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2015-10-09 14:32:50,094 13 [13] DEBUG RunWatcher - 耗时: 94
+执行方法: RoleController -- List
+2015-10-09 14:34:06,403 1 [1] DEBUG app - sql store updated
+2015-10-09 14:34:06,546 1 [1] DEBUG app - SetupContiner
+2015-10-09 14:34:06,624 1 [1] DEBUG app - SetupSite
+2015-10-09 14:34:06,908 1 [1] DEBUG app - RegisterRoutes
+2015-10-09 14:34:06,916 1 [1] DEBUG app - registerActionFilters
+2015-10-09 14:34:06,919 1 [1] DEBUG app - registerModelBinders
+2015-10-09 14:34:06,919 1 [1] DEBUG app - registerViewEngines
+2015-10-09 14:34:06,920 1 [1] DEBUG app - registerControllerFactory
+2015-10-09 14:34:07,704 1 [1] DEBUG app - BuildSiteCss
+2015-10-09 14:34:07,705 1 [1] DEBUG app - SetResolver
+2015-10-09 14:34:07,705 1 [1] DEBUG app - RegisterAdapter
+2015-10-09 14:34:07,705 1 [1] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2015-10-09 14:34:08,030 9 [9] DEBUG RunWatcher - 耗时: 145
+执行方法: HomeController -- Index
+2015-10-09 14:34:54,488 9 [9] DEBUG RunWatcher - 耗时: 59
+执行方法: RoleController -- List
+2015-10-09 14:40:24,165 22 [22] DEBUG app - sql store updated
+2015-10-09 14:40:24,247 22 [22] DEBUG app - SetupContiner
+2015-10-09 14:40:24,311 22 [22] DEBUG app - SetupSite
+2015-10-09 14:40:24,317 22 [22] DEBUG app - RegisterRoutes
+2015-10-09 14:40:24,319 22 [22] DEBUG app - registerActionFilters
+2015-10-09 14:40:24,319 22 [22] DEBUG app - registerModelBinders
+2015-10-09 14:40:24,319 22 [22] DEBUG app - registerViewEngines
+2015-10-09 14:40:24,320 22 [22] DEBUG app - registerControllerFactory
+2015-10-09 14:40:24,793 22 [22] DEBUG app - BuildSiteCss
+2015-10-09 14:40:24,793 22 [22] DEBUG app - SetResolver
+2015-10-09 14:40:24,793 22 [22] DEBUG app - RegisterAdapter
+2015-10-09 14:40:24,793 22 [22] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2015-10-09 14:40:24,998 13 [13] DEBUG RunWatcher - 耗时: 50
+执行方法: RoleController -- List
+2015-10-09 14:52:51,928 1 [1] DEBUG app - sql store updated
+2015-10-09 14:52:52,065 1 [1] DEBUG app - SetupContiner
+2015-10-09 14:52:52,142 1 [1] DEBUG app - SetupSite
+2015-10-09 14:52:52,431 1 [1] DEBUG app - RegisterRoutes
+2015-10-09 14:52:52,440 1 [1] DEBUG app - registerActionFilters
+2015-10-09 14:52:52,445 1 [1] DEBUG app - registerModelBinders
+2015-10-09 14:52:52,445 1 [1] DEBUG app - registerViewEngines
+2015-10-09 14:52:52,446 1 [1] DEBUG app - registerControllerFactory
+2015-10-09 14:52:53,225 1 [1] DEBUG app - BuildSiteCss
+2015-10-09 14:52:53,226 1 [1] DEBUG app - SetResolver
+2015-10-09 14:52:53,226 1 [1] DEBUG app - RegisterAdapter
+2015-10-09 14:52:53,226 1 [1] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2015-10-09 14:52:53,561 10 [10] DEBUG RunWatcher - 耗时: 134
+执行方法: HomeController -- Index
+2015-10-09 14:54:07,189 13 [13] DEBUG RunWatcher - 耗时: 58
+执行方法: RoleController -- List
+2015-10-09 14:54:11,469 13 [13] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost
+2015-10-09 14:54:36,002 13 [13] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- List
+2015-10-09 14:54:38,488 5 [5] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 14:55:11,237 18 [18] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- List
+2015-10-09 14:55:13,327 20 [20] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:02,971 21 [21] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- List
+2015-10-09 14:56:05,584 20 [20] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:10,110 21 [21] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:11,037 19 [19] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:12,331 19 [19] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:13,252 20 [20] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:13,997 18 [18] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:17,901 20 [20] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:18,995 19 [19] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:19,548 21 [21] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:20,181 21 [21] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:21,040 17 [17] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:21,363 21 [21] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:21,789 20 [20] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:22,803 17 [17] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:23,373 15 [15] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:23,710 11 [11] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:24,010 21 [21] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:24,357 17 [17] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:25,459 17 [17] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:25,892 5 [5] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:26,459 11 [11] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:26,900 5 [5] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:27,265 11 [11] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:27,969 17 [17] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:29,100 11 [11] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:29,458 17 [17] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:29,793 11 [11] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:30,185 21 [21] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:31,861 21 [21] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:32,484 17 [17] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:33,147 21 [21] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 14:56:34,902 17 [17] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 14:57:57,676 23 [23] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- List
+2015-10-09 14:58:00,993 30 [30] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:01,972 30 [30] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:02,701 27 [27] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:03,388 30 [30] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:04,091 30 [30] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:05,314 27 [27] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:06,050 11 [11] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:06,789 17 [17] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:07,539 27 [27] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:08,500 28 [28] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:09,236 29 [29] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:10,267 27 [27] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:10,844 30 [30] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:11,492 28 [28] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:12,732 30 [30] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:13,939 11 [11] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:15,180 30 [30] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:16,453 23 [23] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:17,622 23 [23] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:18,724 28 [28] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:19,789 28 [28] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:20,576 29 [29] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:21,322 31 [31] DEBUG RunWatcher - 耗时: 10
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:23,108 34 [34] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:24,172 33 [33] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:24,812 34 [34] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:25,596 33 [33] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:26,076 31 [31] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:26,486 33 [33] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:26,938 29 [29] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:27,731 33 [33] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:30,678 33 [33] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:35,805 33 [33] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:37,805 24 [24] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:38,779 24 [24] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:39,516 33 [33] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:41,205 32 [32] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:41,722 24 [24] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:42,236 11 [11] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:43,228 33 [33] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:43,516 31 [31] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:43,722 24 [24] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:43,931 33 [33] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:44,388 5 [5] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:45,035 25 [25] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:45,292 31 [31] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:46,605 33 [33] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:47,626 34 [34] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 14:58:48,666 34 [34] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 15:00:24,341 45 [45] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 15:00:26,211 45 [45] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 15:00:27,404 42 [42] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:00:28,235 36 [36] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 15:00:29,652 45 [45] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:00:30,643 42 [42] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 15:00:31,275 43 [43] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 15:00:31,770 44 [44] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 15:00:32,405 43 [43] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 15:00:33,219 45 [45] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 15:00:34,076 44 [44] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 15:00:35,595 44 [44] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 15:00:37,075 44 [44] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 15:00:38,011 40 [40] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 15:06:03,067 70 [70] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 15:06:03,893 64 [64] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:06:06,391 64 [64] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:13:56,018 54 [54] DEBUG RunWatcher - 耗时: 20
+执行方法: RoleController -- List
+2015-10-09 15:13:58,494 55 [55] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 15:13:59,580 52 [52] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 15:14:53,308 66 [66] DEBUG RunWatcher - 耗时: 28242
+执行方法: RoleController -- ListPost
+2015-10-09 15:16:29,011 38 [38] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- List
+2015-10-09 15:16:40,477 35 [35] DEBUG RunWatcher - 耗时: 9759
+执行方法: RoleController -- ListPost
+2015-10-09 15:16:45,840 36 [36] DEBUG RunWatcher - 耗时: 2607
+执行方法: RoleController -- ListPost
+2015-10-09 15:16:48,093 38 [38] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost
+2015-10-09 15:16:48,965 39 [39] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:16:49,792 36 [36] DEBUG RunWatcher - 耗时: 16
+执行方法: RoleController -- ListPost
+2015-10-09 15:16:50,716 47 [47] DEBUG RunWatcher - 耗时: 10
+执行方法: RoleController -- ListPost
+2015-10-09 15:16:51,844 42 [42] DEBUG RunWatcher - 耗时: 22
+执行方法: RoleController -- ListPost
+2015-10-09 15:16:52,715 40 [40] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:16:53,305 39 [39] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:16:53,911 42 [42] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost
+2015-10-09 15:16:54,461 38 [38] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:16:55,150 40 [40] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:16:56,883 42 [42] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:16:58,065 45 [45] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 15:16:58,797 38 [38] DEBUG RunWatcher - 耗时: 15
+执行方法: RoleController -- ListPost
+2015-10-09 15:16:59,462 47 [47] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:17:00,026 38 [38] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:17:01,003 43 [43] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:18:55,385 34 [34] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 15:18:55,980 43 [43] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:18:57,409 32 [32] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:19:47,497 32 [32] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost
+2015-10-09 15:19:48,084 57 [57] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:19:48,754 38 [38] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:19:49,319 57 [57] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost
+2015-10-09 15:19:49,845 32 [32] DEBUG RunWatcher - 耗时: 11
+执行方法: RoleController -- ListPost
+2015-10-09 15:19:50,412 57 [57] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:19:51,666 38 [38] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:19:52,068 43 [43] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:19:52,268 57 [57] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 15:19:52,469 43 [43] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:19:52,646 57 [57] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:19:52,841 38 [38] DEBUG RunWatcher - 耗时: 11
+执行方法: RoleController -- ListPost
+2015-10-09 15:19:53,014 57 [57] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:19:53,216 32 [32] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:19:53,380 43 [43] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 15:19:59,398 57 [57] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:20:00,510 32 [32] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:00,782 43 [43] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- List
+2015-10-09 15:21:23,795 43 [43] DEBUG RunWatcher - 耗时: 10
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:24,645 38 [38] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:25,270 32 [32] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:26,169 32 [32] DEBUG RunWatcher - 耗时: 10
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:26,860 25 [25] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:27,855 38 [38] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:28,286 31 [31] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:28,548 25 [25] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:28,771 38 [38] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:28,980 25 [25] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:29,194 38 [38] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:29,373 25 [25] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:29,575 38 [38] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:30,798 25 [25] DEBUG RunWatcher - 耗时: 10
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:31,846 25 [25] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:32,565 38 [38] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:33,124 25 [25] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:33,662 31 [31] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:34,218 38 [38] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:34,685 43 [43] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:35,141 25 [25] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:21:35,853 38 [38] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost
+2015-10-09 15:23:03,440 25 [25] DEBUG RunWatcher - 耗时: 15
+执行方法: RoleController -- ListPost
+2015-10-09 15:23:04,335 38 [38] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost
+2015-10-09 15:23:05,439 25 [25] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:23:06,559 27 [27] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:24:20,315 29 [29] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:24:23,238 28 [28] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:24:24,316 38 [38] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost
+2015-10-09 15:24:25,907 29 [29] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- List
+2015-10-09 15:24:28,625 38 [38] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- List
+2015-10-09 15:24:30,431 30 [30] DEBUG RunWatcher - 耗时: 11
+执行方法: RoleController -- ListPost
+2015-10-09 15:24:37,381 28 [28] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:24:44,625 29 [29] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- List
+2015-10-09 15:24:47,111 38 [38] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- List
+2015-10-09 15:26:47,396 27 [27] DEBUG RunWatcher - 耗时: 5
+执行方法: RoleController -- ListPost
+2015-10-09 15:26:50,016 28 [28] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost
+2015-10-09 15:26:50,657 38 [38] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost
+2015-10-09 15:26:51,286 43 [43] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:26:51,952 38 [38] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:26:52,598 24 [24] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost
+2015-10-09 15:26:53,102 43 [43] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:26:53,720 43 [43] DEBUG RunWatcher - 耗时: 26
+执行方法: RoleController -- ListPost
+2015-10-09 15:26:54,149 38 [38] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:26:55,452 25 [25] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:26:56,414 43 [43] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost
+2015-10-09 15:26:57,407 25 [25] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost
+2015-10-09 15:26:58,230 43 [43] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:26:58,687 25 [25] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 15:26:59,070 28 [28] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost
+2015-10-09 15:26:59,281 38 [38] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- ListPost
+2015-10-09 15:26:59,501 28 [28] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 16:10:28,563 79 [79] DEBUG RunWatcher - 耗时: 14
+执行方法: RoleController -- List
+2015-10-09 16:11:57,992 7 [7] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- List
+2015-10-09 16:15:32,558 16 [16] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- List
+2015-10-09 16:16:07,081 16 [16] DEBUG RunWatcher - 耗时: 7
+执行方法: RoleController -- List
+2015-10-09 16:17:42,243 20 [20] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- List
+2015-10-09 16:19:13,240 16 [16] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- List
+2015-10-09 16:22:13,894 16 [16] DEBUG RunWatcher - 耗时: 6
+执行方法: RoleController -- ListPost
+2015-10-09 16:22:16,438 16 [16] DEBUG RunWatcher - 耗时: 13
+执行方法: RoleController -- ListPost
+2015-10-09 16:22:18,194 23 [23] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 16:22:19,097 20 [20] DEBUG RunWatcher - 耗时: 8
+执行方法: RoleController -- ListPost
+2015-10-09 16:22:19,865 23 [23] DEBUG RunWatcher - 耗时: 14
+执行方法: RoleController -- ListPost
+2015-10-09 16:22:20,491 19 [19] DEBUG RunWatcher - 耗时: 9
+执行方法: RoleController -- ListPost

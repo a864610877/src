@@ -1,0 +1,340 @@
+﻿@model EcardModelItem<Ecard.Mvc.Models.Accounts.RechargingAccount>
+         
+ <div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">@Model.Localize("title")</a></li>
+    </ul>
+</div>
+
+<div class="formbody">
+    
+    <ul class="forminfo" id="operationPanel">
+       <li><label>@Model.Localize("RechargeAmount.Name")</label><input id="currentAmount" tabindex="1" maxlength="255" value="0" type="text"  data-field="Amount"   class="scinput InputSerach"></li>
+          <li><label id="accountInput"> 卡号/手机号</label><input id="currentaccountName"   data-field="accountName" tabindex="1" maxlength="@Model.Site.AccountNameLength" type="text" class="scinput InputSerach"> <input type="hidden" value="@Model.Site.AccountToken" data-field="accountToken" /></li>
+             <li><label>@Model.Localize("HowToDeal.Name")</label>
+              <div class="vocation">
+<div class="uew-select">
+    <div class="uew-select-value ue-state-default" style="width: 118px;">
+  
+    <em class="uew-select-text">@(Model.Item.DealWays != null && Model.Item.DealWays.Count>0?Model.Item.DealWays[0].DisplayName:"")</em><em class="uew-icon uew-icon-triangle-1-s"></em></div>
+  
+    <select class="select1" tabindex="1" value="" data-field="howToDeal" >
+     @foreach (var dealWay in Model.Item.DealWays)
+                                {
+                                    <option value="@dealWay.DealWayId">@dealWay.DisplayName</option>
+                                }
+</select>
+    </div>
+    </div></li>
+    
+     <li><label> @Model.Localize("HasReceipt.Name")</label><input  type="checkbox" tabindex="1" maxlength="255" value="0" 
+                    data-field="HasReceipt" ></li>
+
+ <li><label>&nbsp;</label>
+
+  @if (Model.CheckPermission(Permissions.AccountQueryWithoutToken))
+                {
+                    <button class="scbtn" style="width: 70px;height: 25px" href="../Account/QueryWithoutToken" data-waiting-message='@Model.Localize("waitingForQuery")'>@Model.Localize("Query.Text")</button>
+                }
+           
+                <button class="scbtn" style="width: 70px;height: 25px" href="../Account/recharging"  data-print="true"  data-success-message='@Model.Localize("success")' data-waiting-message='@Model.Localize("waitingForRecharge")'>@Model.Localize("Recharging.Text")</button>
+            
+            </li>
+    
+         <li><label>&nbsp;</label> <p id="numbermsg">
+                </p></li>
+                <li  style="border-bottom-style: solid; border-bottom-width: thin; border-bottom-color: #99CCFF;
+                    border-top-style: solid; border-top-width: thin; border-top-color: #99CCFF;"
+                    align="center">
+                
+                  
+                   
+                
+                 <table id="accountMsg" >
+                 <tr>
+                 <td  colspan="2">&nbsp; </td><td colspan="2">会员信息 </td>
+                 </tr>
+                 <tr>
+            <td colspan="2" class="righttd">
+                <label>
+                    卡号:
+                </label>
+            
+                <input type="text" data-field="AccountName" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="scinput InputSerach" />
+             </td>
+              <td colspan="2" class="lefttd">
+                <label style="text-align: left; padding-left: 45px;width:30px">
+                    金额:
+                </label> 
+           
+           
+                <input type="text" data-field="Amount" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="scinput InputSerach" />
+            </td>
+        </tr>
+        <tr >
+            <td >
+             <label>
+                    姓名:
+                </label>
+                
+            </td>
+            <td >
+                <input type="text" data-field="OwnerDisplayName" disabled="disabled" tabindex="1"
+                    maxlength="16" value="" class="scinput InputSerach" />
+            </td>
+            <td>
+              <label style="text-align: left; padding-left: 45px;width:30px">
+                    积分:
+                </label>
+                
+            </td>
+            <td >
+                <input type="text" data-field="Point" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="scinput InputSerach" />
+            </td>
+        </tr>
+        <tr>
+            <td >
+              <label>
+                    有效期:
+                </label>
+                
+            </td>
+            <td >
+                <input type="text" data-field="ExpiredDate" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="scinput InputSerach" />
+            </td>
+            <td >
+              <label style="text-align: left; padding-left: 45px;width:30px">
+                    相片:
+                </label>
+                
+            </td>
+            <td>
+                <img width="120" data-field="Photo" data-field-format="@Paths.UserPhotoFormat" />
+            </td>
+        </tr>
+
+
+                 </table>
+                   </li>
+    
+    </ul>
+    
+  
+    </div>
+             
+             
+             
+         
+
+@*<div class="paydiv">
+    <table class="pay" id="operationPanel">
+        <tr class="bpay">
+            <td class="lefttd">
+                @Model.Localize("RechargeAmount.Name"):
+            </td>
+            <td class="righttd">
+                <input type="text" id="currentAmount" tabindex="1" maxlength="255" value="0" class="field text full"
+                    data-field="Amount" />
+            </td>
+            <td class="lefttd" id="accountInput">
+               卡号/手机号
+            </td>
+            <td class="righttd">
+                <input type="text"  id="currentaccountName"   data-field="accountName" tabindex="1" maxlength="@Model.Site.AccountNameLength"
+                                value="" class="field text full"/>
+                <input type="hidden" value="@Model.Site.AccountToken" data-field="accountToken" />
+            </td>
+        </tr>
+        <tr class="bpay">
+            <td class="lefttd">
+                @Model.Localize("HowToDeal.Name"):
+            </td>
+            <td class="righttd">
+                <select tabindex="1" value="" data-field="howToDeal" class="field text full">
+                    @foreach (var dealWay in Model.Item.DealWays)
+                                {
+                                    <option value="@dealWay.DealWayId">@dealWay.DisplayName</option>
+                                }
+                </select>
+            </td>
+            <td class="lefttd">
+                @Model.Localize("HasReceipt.Name"):
+            </td>
+            <td class="righttd">
+                <input type="checkbox" tabindex="1" maxlength="255" value="0" class="field checkbox"
+                    data-field="HasReceipt" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @if (Model.CheckPermission(Permissions.AccountQueryWithoutToken))
+                {
+                    <button class="ui-state-default ui-corner-all" href="../Account/QueryWithoutToken" data-waiting-message='@Model.Localize("waitingForQuery")'>@Model.Localize("Query.Text")</button>
+                }
+            </td>
+            <td colspan="2">
+                <button class="ui-state-default ui-corner-all" href="../Account/recharging"  data-print="true"  data-success-message='@Model.Localize("success")' data-waiting-message='@Model.Localize("waitingForRecharge")'>@Model.Localize("Recharging.Text")</button>
+            </td>
+        </tr>
+        <tr class="epay">
+            <td colspan="4">
+                <div align="center">
+                    <p id="numbermsg">
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <div class="portlet form-bg ui-widget ui-widget-content ui-helper-clearfix ui-corner-all account-info" id="@Model">
+        <tr>
+            <td colspan="4">
+                <div style="margin-top: 15px; border-bottom-style: solid; border-bottom-width: thin;
+                    border-bottom-color: #99CCFF; border-top-style: solid; border-top-width: thin;
+                    border-top-color: #99CCFF;" align="center">
+                    会员信息</div>
+            </td>
+        </tr>
+        <tr class="epay">
+            <td class="lefttd">
+                卡号
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="AccountName" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="field text full" />
+            </td>
+            <td class="lefttd">
+                金额
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="Amount" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="field text full" />
+            </td>
+        </tr>
+        <tr class="epay">
+            <td class="lefttd">
+                姓名
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="OwnerDisplayName" disabled="disabled" tabindex="1"
+                    maxlength="16" value="" class="field text full" />
+            </td>
+            <td class="lefttd">
+                积分
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="Point" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="field text full" />
+            </td>
+        </tr>
+        <tr class="epay">
+            <td class="lefttd">
+                有效期
+            </td>
+            <td class="righttd">
+                <input type="text" data-field="ExpiredDate" disabled="disabled" tabindex="1" maxlength="16"
+                    value="" class="field text full" />
+            </td>
+            <td class="lefttd">
+                相片
+            </td>
+            <td class="righttd">
+                <img width="120" data-field="Photo" data-field-format="@Paths.UserPhotoFormat" />
+            </td>
+        </tr>
+        </div>
+    </table>
+</div>*@
+
+<script>
+    (function ($) {
+        var btn = $("button");
+        $("#numbermsg").text('@Model.Localize("waitingForInsertCard")');
+
+        $(function () {
+            btn.click(function () {
+                var $this = $(this);
+                $("#numbermsg").css("color", "red");
+                var account = $("#accountInput").bindto();
+                account.accountName = $("#currentaccountName").val();
+
+                var se1 = $("#dkq option:selected").text();
+                if (se1 == "none") {
+                    if ($("#currentaccountName").val() == "") {
+                        alert("请输入卡号");
+                        return;
+                    }
+                    account.AccountName = $("#currentaccountName").val();
+                    account.AccountToken = $("#AccountToken").val();
+                }
+                else {
+
+                    account = readAccount();
+                    if (account == null) {
+                        alert("读卡失败");
+                        return;
+                    }
+                    $("#currentaccountName").val(account.AccountName)
+                }
+             
+                $("#numbermsg").css("color", "");
+                
+                $("#numbermsg").text($(this).attr("data-waiting-message"));
+               // account = $("#operationPanel").bindto();
+                account.Amount=$("#currentAmount").val();
+                $.post($(this).attr("href") + "?tm=" + new Date(), account
+                    , function (data,status) {
+                    if (status == "success") {
+                        $("[data-field='AccountName']").val(data.AccountName);
+                        $("[data-field='Amount']").val(data.Amount);
+                        $("[data-field='ExpiredDate']").val(data.ExpiredDate);
+                        $("[data-field='OwnerDisplayName']").val(data.OwnerDisplayName);
+                        $("[data-field='Point']").val(data.Point);
+                        $("[data-field='Photo']").attr("src", "/content/userphotos/" + data.Photo);
+                        //交易成功！右侧显示余额信息。
+                    if (data.Code != 0) {
+                     $("#numbermsg").css("color", "red");
+                            $("#numbermsg").text(data.CodeText);
+                    }
+                    else {
+                            $("#numbermsg").css("color", "green");
+                             $("#currentAmount").val("0");
+                          
+//                            $("[data-field='accountName']").val("");
+                            if ($this.attr("data-print") == 'true') {
+                                $("#numbermsg").text('充值成功');
+                                alert("充值成功");
+                               // printTicket2(data.CodeText);
+                            } else
+                                $("#numbermsg").text('查询已完成，充值请继续');
+                                alert(data.CodeText);
+                           
+                            }
+                            }
+//                        $("#accountInfo").bindfrom(data);
+//                        btn.attr("disabled", false);
+
+//                        if (data.Code !== 0) {
+//                            $("#numbermsg").css("color", "red");
+//                            $("#numbermsg").text(data.CodeText);
+//                        }
+//                        else {
+//                            $("#numbermsg").css("color", "green");
+//                            if ($this.attr("data-print") == 'true') {
+//                                alert("充值成功");
+//                                printTicket2(data.CodeText);
+//                            } else
+//                                alert(data.CodeText);
+//                            $("#currentAmount").val("0");
+//                            $("#numbermsg").text('@Model.Localize("waitingForInsertCard")');
+//                            $("[data-field='accountName']").val("");
+//                        }
+                    });
+            });
+        });
+    })(jQuery);
+</script>

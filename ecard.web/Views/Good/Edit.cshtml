@@ -1,0 +1,11 @@
+﻿@model EcardModelItem<Ecard.Mvc.Models.GoodandOrder.EditGood>
+@using (Html.BeginForm())
+{ 
+    <ul>
+       @Html.EditorFor(x=>x.Item)
+        <li class="buttons">
+            <input type="submit" class="ui-state-default ui-corner-all" value="提交" />
+            @Html.ActionLink("List")
+        </li>
+    </ul>
+}
