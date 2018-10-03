@@ -231,6 +231,7 @@
     <Compile Include="Services\IDistributorService.cs" />
     <Compile Include="Services\IEcardOnlineService.cs" />
     <Compile Include="Services\ILiquidateService.cs" />
+    <Compile Include="Services\ILog4netService.cs" />
     <Compile Include="Services\IOrderService.cs" />
     <Compile Include="Services\IPosKeyService.cs" />
     <Compile Include="Services\IRechargingLogService.cs" />

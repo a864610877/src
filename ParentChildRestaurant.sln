@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "base", "base", "{C6564F00-4741-4F5B-801D-972BA98A8AF7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecard.Web", "ecard.web\Ecard.Web.csproj", "{63FF16D1-12D3-41BB-80E8-8588E6794303}"
@@ -27,10 +29,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FZ_Web", "FZ_Web\FZ_Web.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FZ_WebOne", "FZ_WebOne\FZ_WebOne.csproj", "{BFA99EE0-2B71-48C2-AC63-C0017EDCB23E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroMall", "MicroMall\MicroMall.csproj", "{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}"
+EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = ecard.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -290,6 +291,38 @@ Global
 		{BFA99EE0-2B71-48C2-AC63-C0017EDCB23E}.stage|Mixed Platforms.Build.0 = Release|Any CPU
 		{BFA99EE0-2B71-48C2-AC63-C0017EDCB23E}.stage|Win32.ActiveCfg = Release|Any CPU
 		{BFA99EE0-2B71-48C2-AC63-C0017EDCB23E}.stage|x86.ActiveCfg = Release|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Debug|Win32.Build.0 = Debug|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Debug|x86.Build.0 = Debug|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Default|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Default|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Default|Win32.ActiveCfg = Debug|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Default|Win32.Build.0 = Debug|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Default|x86.ActiveCfg = Debug|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Default|x86.Build.0 = Debug|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Release|Win32.ActiveCfg = Release|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Release|Win32.Build.0 = Release|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Release|x86.ActiveCfg = Release|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.Release|x86.Build.0 = Release|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.stage|Any CPU.ActiveCfg = Release|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.stage|Any CPU.Build.0 = Release|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.stage|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.stage|Mixed Platforms.Build.0 = Release|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.stage|Win32.ActiveCfg = Release|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.stage|Win32.Build.0 = Release|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.stage|x86.ActiveCfg = Release|Any CPU
+		{1AC6B214-BFE7-4AE6-9948-2D0BF2422F33}.stage|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -302,5 +335,11 @@ Global
 		{01C82D7F-5427-4EE6-873B-53665C7EB70B} = {C6564F00-4741-4F5B-801D-972BA98A8AF7}
 		{4A8B38FC-5380-41F1-AFC5-68CB4E7F4C2C} = {C6564F00-4741-4F5B-801D-972BA98A8AF7}
 		{676C3737-031A-4D54-ADBF-B5FD5923003B} = {C6564F00-4741-4F5B-801D-972BA98A8AF7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A31BCA19-1E51-406F-9B56-0AFC8F67AD9E}
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = ecard.vsmdi
 	EndGlobalSection
 EndGlobal

@@ -188,6 +188,7 @@
     <Compile Include="Controllers\UnityController.cs" />
     <Compile Include="Controllers\RollbackController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="Controllers\WeChat\RegisterController.cs" />
     <Compile Include="Models\AccountName.cs" />
     <Compile Include="Models\Accounts\ChangeLimitAmount.cs" />
     <Compile Include="Models\Accounts\ShowPay.cs" />

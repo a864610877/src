@@ -26,6 +26,17 @@ namespace Ecard.Models
     public class AccountUser : User
     {
         public DateTime? SignOnTime { get; set; }
+        /// <summary>
+        /// ±¦±¦ĞÕÃû
+        /// </summary>
+        public string babyName { get; set; }
+        /// <summary>
+        /// ±¦±¦ĞÕÃû
+        /// </summary>
+        public int babySex { get; set; }
+        public DateTime babyBirthDate { get; set; }
+
+        public string openId { get; set; }
     }
 
     public class AdminUser : User
