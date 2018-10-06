@@ -181,6 +181,9 @@
     <Compile Include="ActionFilters\IActionFilterCriteria.cs" />
     <Compile Include="ActionFilters\IActionFilterRegistry.cs" />
     <Compile Include="ActionFilters\UserActionFilter.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PersonalCentreController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions\ButtonTypes.cs" />
     <Compile Include="Extensions\HttpContextExtensions.cs" />
@@ -208,6 +211,7 @@
     <Compile Include="Models\ContainerFactory.cs" />
     <Compile Include="Models\EcardControllerFactory.cs" />
     <Compile Include="Models\Map.cs" />
+    <Compile Include="Models\PersonalCentres\CardModel.cs" />
     <Compile Include="Models\PerWebRequestLifetimeManager.cs" />
     <Compile Include="Models\Registers\register.cs" />
     <Compile Include="Models\ResponseResult.cs" />

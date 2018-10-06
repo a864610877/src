@@ -30,6 +30,7 @@ namespace Ecard.Services
         QueryObject<User> GetByIds(int[] ids);
         IEnumerable<int> GetUerIdsByRoleIds(int[] ids);
         User GetByMobile(string number);
+        User GetByOpenId(string openId);
 
         
         

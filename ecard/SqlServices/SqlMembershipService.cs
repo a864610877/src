@@ -230,5 +230,11 @@ and (@State is null or State = @State)
             string sql = "select top 1 * from users where  Mobile=@number and Discriminator='AccountUser'";
             return new QueryObject<User>(_databaseInstance, sql, new { number = number }).FirstOrDefault();
         }
+
+        public User GetByOpenId(string openId)
+        {
+            string sql = "select * from users where openId=@openId and Discriminator='AccountUser'";
+            return new QueryObject<User>(_databaseInstance,sql,new { openId=openId }).FirstOrDefault();
+        }
     }
 }

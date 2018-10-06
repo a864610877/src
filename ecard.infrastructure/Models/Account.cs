@@ -72,7 +72,7 @@ namespace Ecard.Models
         public DateTime ExpiredDate { get; set; }
 
         /// <summary>
-        /// 可使用次数
+        /// 剩余使用次数
         /// </summary>
         public int Frequency { get; set; }
         /// <summary>
