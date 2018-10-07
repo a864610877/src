@@ -13,8 +13,8 @@ namespace Ecard.Services
         private readonly IAccountDealDal _accountDealDal;
         private readonly IDealTracker _dealTracker;
         private readonly IPosKeyService _posKeyService;
-        private SqlOrderService OrderService { get; set; }
-        public AccountDealService(IAccountDealDal accountDealDal, IDealTracker dealTracker, SqlOrderService orderService, IPosKeyService posKeyService)
+        private SqlOrder1Service OrderService { get; set; }
+        public AccountDealService(IAccountDealDal accountDealDal, IDealTracker dealTracker, SqlOrder1Service orderService, IPosKeyService posKeyService)
         {
             _accountDealDal = accountDealDal;
             _dealTracker = dealTracker;

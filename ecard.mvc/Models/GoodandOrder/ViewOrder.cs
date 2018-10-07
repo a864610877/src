@@ -11,18 +11,18 @@ namespace Ecard.Mvc.Models.GoodandOrder
 {
     public class ViewOrder : ViewModelBase
     {
-        private  Order _innerObject;
+        private  Order1 _innerObject;
         [NoRender]
-        public Order InnerObject { get { return this._innerObject; } }
+        public Order1 InnerObject { get { return this._innerObject; } }
         public ViewOrder()
         {
-            _innerObject = new Order();
+            _innerObject = new Order1();
         }
         [NoRender, Dependency]
-        public IOrderService OrderService { get; set; }
+        public IOrder1Service OrderService { get; set; }
         [Dependency, NoRender]
         public IAccountService AccountService { get; set; }
-        public ViewOrder(Order order)
+        public ViewOrder(Order1 order)
         {
             _innerObject = order;
         }
@@ -68,7 +68,7 @@ namespace Ecard.Mvc.Models.GoodandOrder
             }
         }
 
-        public void SetInnerObject(Order item)
+        public void SetInnerObject(Order1 item)
         {
             _innerObject = item;
         }

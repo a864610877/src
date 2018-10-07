@@ -37,10 +37,10 @@ namespace Ecard.Mvc.Controllers
             var ss = model.Detial.Count;
             int num = 0;
             string phone = model.InnerObject.Phone;
-            List<OrderDetial> detials = new List<OrderDetial>();
+            List<OrderDetial1> detials = new List<OrderDetial1>();
             for (int i = 0; i < ss; i++)
             {
-                OrderDetial detial = new OrderDetial();
+                OrderDetial1 detial = new OrderDetial1();
                 if (Request.Form["Item.Detial[" + i.ToString() + "].Checked"].ToLower().IndexOf("true") > -1)
                 {
                     num++;

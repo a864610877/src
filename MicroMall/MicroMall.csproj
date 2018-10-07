@@ -183,6 +183,7 @@
     <Compile Include="ActionFilters\UserActionFilter.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ParentingController.cs" />
     <Compile Include="Controllers\PersonalCentreController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions\ButtonTypes.cs" />
@@ -211,6 +212,7 @@
     <Compile Include="Models\ContainerFactory.cs" />
     <Compile Include="Models\EcardControllerFactory.cs" />
     <Compile Include="Models\Map.cs" />
+    <Compile Include="Models\Parentings\TicketResult.cs" />
     <Compile Include="Models\PersonalCentres\CardModel.cs" />
     <Compile Include="Models\PerWebRequestLifetimeManager.cs" />
     <Compile Include="Models\Registers\register.cs" />
@@ -855,22 +857,15 @@
     <Content Include="Views\JuMeiMall\JuMeiMallSearchIndex.cshtml" />
     <Content Include="Views\Regists\Regist.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\PersonalCentre\Index.cshtml" />
     <Content Include="Views\Withdraw\Withdraw.cshtml" />
-    <Content Include="Views\PersonalCentre\MyAddress.cshtml" />
-    <Content Include="Views\PersonalCentre\UpdatePassword.cshtml" />
     <Content Include="Views\JuMeiMall\GetShoppingCart.cshtml" />
-    <Content Include="Views\PersonalCentre\PersonalInfo.cshtml" />
     <Content Include="Views\JuMeiMall\BuyDetails.cshtml" />
-    <Content Include="Views\PersonalCentre\AddAddress.cshtml" />
-    <Content Include="Views\PersonalCentre\EditAddres.cshtml" />
-    <Content Include="Views\PersonalCentre\MyOrder.cshtml" />
-    <Content Include="Views\PersonalCentre\MyQR.cshtml" />
-    <Content Include="Views\PersonalCentre\CodeBgImg.cshtml" />
     <Content Include="Views\Shared\_Top.cshtml" />
     <Content Include="Views\User\RecommendLog.cshtml" />
     <Content Include="Views\Commodity\AddReview.cshtml" />
     <Content Include="Views\JuMeiMall\SecondKill.cshtml" />
+    <Content Include="Views\PersonalCentre\Index.cshtml" />
+    <Content Include="Views\PersonalCentre\BuyTicket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ecard.infrastructure\Ecard.Infrastructure.csproj">

@@ -7,10 +7,10 @@ using Ecard.Models.GoodandOrder;
 
 namespace Ecard.Services
 {
-    public interface IOrderService
+    public interface IOrder1Service
     {
         ClientAccount GetAccountByPhone(string phone);
-        QueryObject<Order> QueryOrder(OrderRequest request);
+        QueryObject<Order1> QueryOrder(OrderRequest request);
         QueryObject<Good> QueryGood(GoodRequest request);
         Good GetById(int id);
         /// <summary>
@@ -18,7 +18,7 @@ namespace Ecard.Services
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>
-        QueryObject<OrderDetial> GetByorderId(string orderId);
+        QueryObject<OrderDetial1> GetByorderId(string orderId);
         /// <summary>
         /// 取得指定商品
         /// </summary>
@@ -30,21 +30,21 @@ namespace Ecard.Services
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        QueryObject<Order> GetOrderByAccountId(int accountId);
+        QueryObject<Order1> GetOrderByAccountId(int accountId);
         /// <summary>
         /// 取得当天订单流水号
         /// </summary>
         /// <returns></returns>
         string GetOrderSerialnumber();
         void CreateGood(Good item);
-        void CreateOrder(Order item);
-        void AddOrderDetial(OrderDetial item);
+        void CreateOrder(Order1 item);
+        void AddOrderDetial(OrderDetial1 item);
         void UpdateGood(Good item);
-        void UpdateOrder(Order item);
-        void EditOrderDetial(OrderDetial item);
-        void DeleteOrder(Order item);
+        void UpdateOrder(Order1 item);
+        void EditOrderDetial(OrderDetial1 item);
+        void DeleteOrder(Order1 item);
         void DeleteGood(Good item);
-        void DeleteOrderDetial(OrderDetial item);
+        void DeleteOrderDetial(OrderDetial1 item);
         int DeleteOrderDetials(string OrderId);
     }
     public class GoodRequest
@@ -61,7 +61,7 @@ namespace Ecard.Services
         public DateTime? Edate { get; set; }
 
     }
-    public class SqlOrderService : IOrderService
+    public class SqlOrder1Service : IOrder1Service
     {
         private readonly DatabaseInstance _databaseInstance;
         private const string OrderTable = "Orders";
@@ -69,18 +69,18 @@ namespace Ecard.Services
         private const string GoodTable = "Goods";
 
 
-        public SqlOrderService(DatabaseInstance databaseInstance)
+        public SqlOrder1Service(DatabaseInstance databaseInstance)
         {
             _databaseInstance = databaseInstance;
         }
 
-        public QueryObject<Order> QueryOrder(OrderRequest request)
+        public QueryObject<Order1> QueryOrder(OrderRequest request)
         {
             string sql = @"select * from Orders where 1=1
                          and (@AccountId is null or AccountId=@AccountId)
                          and (@OrderId is null or OrderId=@OrderId) and (@Serialnumber is null or Serialnumber=@Serialnumber)
                          and (@Bdate is null or SubmitTime >= @Bdate) and (@Edate is null or SubmitTime < @Edate)";
-            return new QueryObject<Order>(this._databaseInstance, sql, request);
+            return new QueryObject<Order1>(this._databaseInstance, sql, request);
         }
 
         public QueryObject<Good> QueryGood(GoodRequest request)
@@ -97,12 +97,12 @@ namespace Ecard.Services
             return new QueryObject<Good>(_databaseInstance, sql, arg).FirstOrDefault();
         }
 
-        public QueryObject<OrderDetial> GetByorderId(string orderId)
+        public QueryObject<OrderDetial1> GetByorderId(string orderId)
         {
             var arg = new { OrderId = orderId };
             string sql = @"select * from OrderDetial where 1=1
                            and (@orderId is null or OrderId=@orderId)";
-            return new QueryObject<OrderDetial>(this._databaseInstance, sql, arg);
+            return new QueryObject<OrderDetial1>(this._databaseInstance, sql, arg);
         }
 
         public QueryObject<Good> GetGoodsByIds(int[] ids)
@@ -110,9 +110,9 @@ namespace Ecard.Services
             return new QueryObject<Good>(_databaseInstance, "select * from Goods where Goodid in (@ids)", new { ids = ids });
         }
 
-        public QueryObject<Order> GetOrderByAccountId(int accountId)
+        public QueryObject<Order1> GetOrderByAccountId(int accountId)
         {
-            return new QueryObject<Order>(_databaseInstance, "select * from Orders where AccountId =@accountId", new { AccountId = accountId });
+            return new QueryObject<Order1>(_databaseInstance, "select * from Orders where AccountId =@accountId", new { AccountId = accountId });
         }
 
         public void CreateGood(Good item)
@@ -120,12 +120,12 @@ namespace Ecard.Services
             _databaseInstance.Insert(item, GoodTable);
         }
 
-        public void CreateOrder(Order item)
+        public void CreateOrder(Order1 item)
         {
             _databaseInstance.Insert(item, OrderTable);
         }
 
-        public void AddOrderDetial(OrderDetial item)
+        public void AddOrderDetial(OrderDetial1 item)
         {
             _databaseInstance.Insert(item, OrderDetialTable);
         }
@@ -135,17 +135,17 @@ namespace Ecard.Services
             _databaseInstance.Update(item, GoodTable);
         }
 
-        public void UpdateOrder(Order item)
+        public void UpdateOrder(Order1 item)
         {
             _databaseInstance.Update(item, OrderTable);
         }
 
-        public void EditOrderDetial(OrderDetial item)
+        public void EditOrderDetial(OrderDetial1 item)
         {
             _databaseInstance.Update(item, OrderDetialTable);
         }
 
-        public void DeleteOrder(Order item)
+        public void DeleteOrder(Order1 item)
         {
             _databaseInstance.Delete(item, OrderTable);
         }
@@ -155,7 +155,7 @@ namespace Ecard.Services
             _databaseInstance.Delete(item, GoodTable);
         }
 
-        public void DeleteOrderDetial(OrderDetial item)
+        public void DeleteOrderDetial(OrderDetial1 item)
         {
             _databaseInstance.Delete(item, OrderDetialTable);
         }

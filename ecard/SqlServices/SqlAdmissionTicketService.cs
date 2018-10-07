@@ -61,5 +61,11 @@ namespace Ecard.SqlServices
         {
             _databaseInstance.Delete(item, TableName);
         }
+
+        public List<AdmissionTicket> GetNormalALL()
+        {
+            string sql = "select * from AdmissionTicket where state=@state";
+            return new QueryObject<AdmissionTicket>(_databaseInstance, sql, new { state = AdmissionTicketState.Normal }).ToList();
+        }
     }
 }

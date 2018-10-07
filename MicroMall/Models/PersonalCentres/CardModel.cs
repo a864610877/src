@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ecard.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,6 +8,22 @@ namespace MicroMall.Models.PersonalCentres
 {
     public class CardModel
     {
+
+        public CardModel()
+        {
+
+        }
+
+        public CardModel(AccountWithOwner item)
+        {
+          this.cardName = item.AccountTypeName;
+          this.name = item.OwnerDisplayName;
+          this.mobile = item.OwnerMobileNumber;
+          this.babyName = item.BabyName;
+          this.babySex = item.BabySex == 1 ? "男孩" : "女孩";
+          this.expiredDate = item.ExpiredDate.ToString("yyyy-MM-dd");
+          this.frequency = item.Frequency;
+        }
         /// <summary>
         /// 卡片名称
         /// </summary>

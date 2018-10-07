@@ -9,7 +9,7 @@ namespace Ecard.Models
     /// Orders:实体类(属性说明自动提取数据库字段的描述信息)
     /// </summary>
     [Serializable]
-    public class Order
+    public class Order1
     {
         #region Model
         /// <summary>

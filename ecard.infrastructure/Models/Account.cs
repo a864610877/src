@@ -121,6 +121,8 @@ namespace Ecard.Models
 
         public string Remark1 { get; set; }
 
+        public string useScope { get; set; }
+
         /// <summary>
         /// 现金交易，不需要从账户中扣减余额，增加消费总额，增加积分。
         /// </summary>
@@ -264,7 +266,11 @@ namespace Ecard.Models
     {
         public string OwnerDisplayName { get; set; }
         public string OwnerMobileNumber { get; set; }
+        public string BabyName { get; set; }
+        public int BabySex { get; set; }
+        public string AccountTypeName { get; set; }
     }
+
     public class ShopWithOwner : Shop
     {
         public string OwnerDisplayName { get; set; }

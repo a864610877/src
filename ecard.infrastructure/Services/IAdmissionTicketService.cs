@@ -20,5 +20,8 @@ namespace Ecard.Services
 
         void Create(AdmissionTicket item);
         void Delete(AdmissionTicket item);
+
+        List<AdmissionTicket> GetNormalALL();
+
     }
 }

@@ -188,7 +188,7 @@
     <Compile Include="Controllers\UnityController.cs" />
     <Compile Include="Controllers\RollbackController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
-    <Compile Include="Controllers\WeChat\RegisterController.cs" />
+    <Compile Include="Controllers\WeChatController.cs" />
     <Compile Include="Models\AccountName.cs" />
     <Compile Include="Models\Accounts\ChangeLimitAmount.cs" />
     <Compile Include="Models\Accounts\ShowPay.cs" />
@@ -236,6 +236,7 @@
     <Compile Include="Models\Rollbacks\DoneRollback.cs" />
     <Compile Include="Models\Rollbacks\LiquidateModel.cs" />
     <Compile Include="Models\Rollbacks\ListRollback.cs" />
+    <Compile Include="Models\SetWeChats\EditSetWeChat.cs" />
     <Compile Include="Models\Sites\SmsParam.cs" />
     <Compile Include="Models\Tasks\ListTasks.cs" />
     <Compile Include="Models\Tasks\ListTask.cs" />

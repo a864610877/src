@@ -19,7 +19,7 @@ namespace Ecard.Mvc.Models.GoodandOrder
         }
 
         [Dependency, NoRender]
-        public IOrderService OrderService { get; set; }
+        public IOrder1Service OrderService { get; set; }
 
        private string _goodName;
         public string GoodName

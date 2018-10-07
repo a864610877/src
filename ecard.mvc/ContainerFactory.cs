@@ -96,11 +96,12 @@ namespace Ecard.Mvc
                 .RegisterType<ICashDealLogSummaryService, SqlCashDealLogSummaryService>()
                 .RegisterType<ISmsService, SqlSmsService>()
                 .RegisterType<IPosKeyService,SqlPosKeyService>()
-                .RegisterType<IOrderService, SqlOrderService>()
+                .RegisterType<IOrder1Service, SqlOrder1Service>()
                 .RegisterType<IRechargingLogService, SqlRechargingLogService>()
                 .RegisterType<IAdmissionTicketService,SqlAdmissionTicketService>()
                 .RegisterType<ICouponsService,SqlCouponsService>()
                 .RegisterType<IArticlesService, SqlArticlesService>()
+                .RegisterType<ISetWeChatService, SqlSetWeChatService>()
                 .RegisterType<IDashboardItemRepository, DashboardItemRepository>(new ContainerControlledLifetimeManager())
                 .RegisterType<IRegisterRoutes, EcardRoutes>(
                     new InjectionConstructor(

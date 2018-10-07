@@ -14,8 +14,16 @@ namespace MicroMall.Controllers
         {          
             if (Request.Cookies[SessionKeys.USERID] == null || Request.Cookies[SessionKeys.USERID].Value.ToString() == "")
             {
-                RedirectToAction("Index", "login");
-                //return Json(new ResultMessage() { Code = -2, Msg = "/login/Index" });
+                if (Request.IsAjaxRequest())
+                {
+                    Json(new ResultMessage() { Code = -2, Msg = "/login/Index" });
+                }
+                else
+                {
+                    RedirectToAction("Index", "login");
+                }
+               
+                //
             }
             base.OnActionExecuting(filterContext);
         }

@@ -167,6 +167,7 @@
     <Compile Include="Commands\OpenAccountCommand.cs" />
     <Compile Include="Commands\RechargingCommand.cs" />
     <Compile Include="DashboardItemRepository.cs" />
+    <Compile Include="DateHelper.cs" />
     <Compile Include="EcardContext.cs" />
     <Compile Include="Expressions\ColumnMetadate.cs" />
     <Compile Include="Expressions\DefaultMetadateAnalyzer.cs" />
@@ -201,8 +202,11 @@
     <Compile Include="SqlServices\SqlDistributorService.cs" />
     <Compile Include="SqlServices\SqlLiquidateService.cs" />
     <Compile Include="SqlServices\SqlLog4netService.cs" />
+    <Compile Include="SqlServices\SqlOrderDetialService.cs" />
+    <Compile Include="SqlServices\SqlOrdersService.cs" />
     <Compile Include="SqlServices\SqlPointPolicyService.cs" />
     <Compile Include="SqlServices\SqlRechargingLogService.cs" />
+    <Compile Include="SqlServices\SqlSetWeChatService.cs" />
     <Compile Include="SqlServices\SqlSiteService.cs" />
     <Compile Include="SqlServices\SqlReportService.cs" />
     <Compile Include="SqlServices\SqlAccountLevelPolicyService.cs" />
@@ -239,6 +243,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routing\RouteDirectionConstraint.cs" />
     <Compile Include="PermissionService.cs" />
+    <Compile Include="SqlServices\SqlTicketsService.cs" />
+    <Compile Include="SqlServices\SqlUseCouponslogService.cs" />
+    <Compile Include="SqlServices\SqlUserCouponsService.cs" />
     <Compile Include="TaskCommandFactory.cs" />
     <Compile Include="TransactionHelper.cs" />
     <Compile Include="Validation\IValidator.cs" />

@@ -11,23 +11,23 @@ namespace Ecard.Mvc.Models.GoodandOrder
 {
     public class OrderModelBase:ViewModelBase
     {
-         private Order _innerObject;
+         private Order1 _innerObject;
 
          public OrderModelBase()
         {
-            _innerObject = new Order();
+            _innerObject = new Order1();
         }
 
-         public OrderModelBase(Order order)
+         public OrderModelBase(Order1 order)
         {
             _innerObject = order;
         }
         [NoRender]
-        public Order InnerObject
+        public Order1 InnerObject
         {
             get { return _innerObject; }
         }
-        protected void SetInnerObject(Order item)
+        protected void SetInnerObject(Order1 item)
         {
             _innerObject = item;
         }
@@ -45,14 +45,14 @@ namespace Ecard.Mvc.Models.GoodandOrder
         }
 
         [NoRender]
-        public List<OrderDetial> Detials { get; set; }
+        public List<OrderDetial1> Detials { get; set; }
         [Dependency, NoRender]
-        public IOrderService OrderService { get; set; }
+        public IOrder1Service OrderService { get; set; }
         [Dependency, NoRender]
         public ICommodityService CommodityService { get; set; }
         [Dependency, NoRender]
         public IAccountService AccountService { get; set; }
-        protected void OnSave(Order order)
+        protected void OnSave(Order1 order)
         {
             //order.AccountId = AccountId;
             order.Demo = OrderDemo;
@@ -60,7 +60,7 @@ namespace Ecard.Mvc.Models.GoodandOrder
             order.SubmitTime = DateTime.Now;
             order.TotalMoney = Detials.Sum(x => x.price * x.Amount);
         }
-        protected void AddDetial(OrderDetial item)
+        protected void AddDetial(OrderDetial1 item)
         {
             Detials.Add(item);
         }

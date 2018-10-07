@@ -8,13 +8,13 @@ namespace Ecard.Mvc.Models.GoodandOrder
 {
     public class ListOrder
     {
-        public readonly Order _innerObject;
+        public readonly Order1 _innerObject;
         [NoRender]
-        public Order InnerObject { get { return this._innerObject; } }
+        public Order1 InnerObject { get { return this._innerObject; } }
 
         public ListOrder()
-        { _innerObject = new Order(); }
-        public ListOrder(Order order)
+        { _innerObject = new Order1(); }
+        public ListOrder(Order1 order)
         {
             _innerObject = order;
         }

@@ -36,7 +36,7 @@ namespace Ecard.Models
         /// </summary>
         public decimal deductibleAmount { get; set; }
         /// <summary>
-        /// 满减金额 满金额，当支付金额达到满金额时可减 减金额额
+        /// 满减金额 满金额，当支付金额达到满金额时可减 满金额
         /// </summary>
         public decimal fullAmount { get; set; }
         /// <summary>
@@ -80,6 +80,22 @@ namespace Ecard.Models
         /// 满减卷 3
         /// </summary>
         public const int FullVolumeReduction = 3;
+
+        public static string GetName(int value)
+        {
+            switch (value)
+            {
+                case DiscountedVolume:
+                    return "折扣卷";
+                case OffsetRoll:
+                    return "抵扣卷";
+                case FullVolumeReduction:
+                    return "满减卷";
+                default:
+                    return "";
+            }
+        }
+
         /// <summary>
         /// 全部 100000
         /// </summary>

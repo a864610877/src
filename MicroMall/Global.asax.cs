@@ -57,7 +57,7 @@ namespace MicroMall
         System.Timers.Timer AutoOrderCancelmaticTimer;
 
         private ISiteService ISiteService { get; set; }
-        public IOrderService IOrderService { get; set; }
+        public IOrder1Service IOrderService { get; set; }
 
         public ICommodityService ICommodityService { get; set; }
 
@@ -126,7 +126,7 @@ namespace MicroMall
 
             var container = getContainer();
             _databaseInstance = container.Resolve<DatabaseInstance>();
-            IOrderService = container.Resolve<IOrderService>();
+            IOrderService = container.Resolve<IOrder1Service>();
             ICommodityService = container.Resolve<ICommodityService>();
 
 

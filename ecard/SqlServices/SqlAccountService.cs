@@ -109,5 +109,10 @@ namespace Ecard.Services
             _databaseInstance.ExecuteNonQuery("account.DisableMessageOfDeal", new { accountTypeId = accountTypeId });
         }
 
+        public QueryObject<AccountWithOwner> GetOwnerId(int ownerId)
+        {
+          string sql = "select a.*,u.DisplayName as OwnerDisplayName,u.Mobile as OwnerMobileNumber,u.BabyName as BabyName,u.BabySex as BabySex,at.DisplayName as AccountTypeName  from accounts a join Users u on a.OwnerId=u.UserId join AccountTypes at on a.AccountTypeId=at.AccountTypeId where OwnerId=@OwnerId";
+          return new QueryObject<AccountWithOwner>(_databaseInstance, sql, new { ownerId= ownerId });
+        }
     }
 }

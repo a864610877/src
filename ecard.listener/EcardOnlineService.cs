@@ -41,7 +41,7 @@ namespace PI8583
         {
             var dal = new CachedSqlAccountDealDal(instance);
             var dealTracker = new SmsDealTracker(dal, new SmsHelper(new SqlSmsService(instance)), dal.GetSite());
-            SqlOrderService OrderService = new SqlOrderService(instance);
+            SqlOrder1Service OrderService = new SqlOrder1Service(instance);
             IPosKeyService PosKeyService = new SqlPosKeyService(instance);
             IAccountDealService accountDealService = new AccountDealService(dal, dealTracker, OrderService, PosKeyService);
             return accountDealService;

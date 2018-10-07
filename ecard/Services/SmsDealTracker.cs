@@ -13,7 +13,7 @@ namespace Ecard.Services
         private readonly SmsHelper _smsHelper;
         private readonly Site _site;
         [Dependency]
-        public IOrderService OrderService { get; set; }
+        public IOrder1Service OrderService { get; set; }
         public SmsDealTracker(IAccountDealDal siteService, SmsHelper smsHelper, Site site)
         {
             _siteService = siteService;

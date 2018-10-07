@@ -17,19 +17,19 @@ namespace WxPayAPI
         static WxPayConfig()
         {
            var _databaseInstance = new DatabaseInstance(new Database("ecard"));
-           //var ISetWeChatService = new SqlSetWeChatService(_databaseInstance);
-           // var item = ISetWeChatService.GeByFirst();
-           // if (item != null)
-           // {
-           //     //WxPayAPI.Log.Debug("WxPayAPI.WxPayConfig", "回调url：" + WxPayConfig.USER_NOTIFY_URL);
-           //     APPID = item.appID;
-           //     MCHID = item.MCHID;
-           //     KEY = item.MCHIDKEY;
-           //     APPSECRET = item.AppSecret;
-           //     NOTIFY_URL = item.NOTIFY_URL;
-           //     USER_NOTIFY_URL = item.USER_NOTIFY_URL;
-           //     USERRegister_NOTIFY_URL = item.USERRegister_NOTIFY_URL;
-           // }
+            var ISetWeChatService = new SqlSetWeChatService(_databaseInstance);
+            var item = ISetWeChatService.GeByFirst();
+            if (item != null)
+            {
+                //WxPayAPI.Log.Debug("WxPayAPI.WxPayConfig", "回调url：" + WxPayConfig.USER_NOTIFY_URL);
+                APPID = item.appID;
+                MCHID = item.MCHID;
+                KEY = item.MCHIDKEY;
+                APPSECRET = item.AppSecret;
+                NOTIFY_URL = item.NOTIFY_URL;
+                USER_NOTIFY_URL = item.USER_NOTIFY_URL;
+                USERRegister_NOTIFY_URL = item.USERRegister_NOTIFY_URL;
+            }
         }
         //=======【基本信息设置】=====================================
         /* 微信公众号信息配置

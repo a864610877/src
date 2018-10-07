@@ -221,7 +221,10 @@ namespace Ecard
         public const string EditArticles = "EditArticles";
         public const string DeleteArticles = "DeleteArticles";
 
-       
+        public const string SetWeChat = "SetWeChat";
+
+
+
 
 
     }

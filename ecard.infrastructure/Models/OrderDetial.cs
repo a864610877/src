@@ -2,37 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.ComponentModel.DataAnnotations;
 
 namespace Ecard.Models
 {
     public class OrderDetial
     {
+        public int id { get; set; }
 
-		#region Model
+        public string orderNo { get; set; }
         /// <summary>
-        /// 流水号
+        /// 单价
         /// </summary>
-        [Key]
-        public int Serialnumber { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-        public string OrderId { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-        public int GoodId { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-        [RegularExpression(@"^\d+$", ErrorMessage = "数量输入有误")]
-        public int Amount { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-        [RegularExpression(@"\d{1,7}(\.\d{2})?", ErrorMessage = "输入的金额有误,负数？超额？")]
-        public decimal price { get; set; }
-		#endregion Model
+        public decimal amount { get; set; }
+        /// <summary>
+        /// 源Id
+        /// </summary>
+        public int sourceId { get; set; }
+        /// <summary>
+        /// 购买数量
+        /// </summary>
+        public int num { get; set; }
+        /// <summary>
+        /// 充值卡号
+        /// </summary>
+        public string cardNo { get; set; }
+        /// <summary>
+        /// 下单时间
+        /// </summary>
+        public DateTime subTime { get; set; }
     }
 }

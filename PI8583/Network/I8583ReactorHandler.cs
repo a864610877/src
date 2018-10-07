@@ -233,7 +233,7 @@ namespace PI8583.Network
 
                         CachedSqlAccountDealDal dal = new CachedSqlAccountDealDal(instance);
                         SmsDealTracker dealTracker = new SmsDealTracker(dal, new SmsHelper(new SqlSmsService(instance)), dal.GetSite());
-                        SqlOrderService sqlOrderService=new SqlOrderService(instance);
+                        SqlOrder1Service sqlOrderService=new SqlOrder1Service(instance);
                         IPosKeyService PosKeyService = new SqlPosKeyService(instance);
                         IAccountDealService accountDealService = new AccountDealService(dal, dealTracker, sqlOrderService, PosKeyService);
                         

@@ -28,7 +28,10 @@ namespace WxPayAPI
         private readonly IAccountService IAccountService;
         private readonly ISiteService ISiteService;
         private readonly ILog4netService ILog4netService;
-
+        private readonly IOrdersService ordersService;
+        private readonly IOrderDetialService orderDetialService;
+        private readonly ITicketsService ticketsService;
+        private readonly IAdmissionTicketService admissionTicketService; 
       
         public ResultNotify(Page page)
             : base(page)
@@ -37,7 +40,10 @@ namespace WxPayAPI
             ILog4netService = new SqlLog4netService();
             ISiteService = new SqlSiteService(_database.OpenInstance());
             IAccountService = new SqlAccountService(_database.OpenInstance());
-            
+            ordersService = new SqlOrdersService(_database.OpenInstance());
+            ticketsService = new SqlTicketsService(_database.OpenInstance());
+            admissionTicketService = new SqlAdmissionTicketService(_database.OpenInstance());
+            orderDetialService = new SqlOrderDetialService(_database.OpenInstance());
         }
 
         public override void ProcessNotify()
@@ -81,10 +87,50 @@ namespace WxPayAPI
                         Log.Debug(this.GetType().ToString(), "订单号 : " + orderNo);
                         if (!string.IsNullOrWhiteSpace(orderNo))
                         {
+                            using (_databaseInstance = new DatabaseInstance(_database))
+                            {
+                                _databaseInstance.BeginTransaction();
+                                var sql = "select * from fz_Orders where orderNo=@orderNo";
+                                var order = new QueryObject<Orders>(_databaseInstance, sql, new { orderNo = orderNo }).FirstOrDefault();
+                                if (order != null && order.orderState == OrderStates.awaitPay)
+                                {
+                                    order.orderState = OrderStates.paid;
+                                    order.payTime = DateTime.Now;
+                                    _databaseInstance.Update(order, "fz_Orders");
+                                    var list = orderDetialService.GetOrderNo(orderNo);
+                                    if (list != null)
+                                    {
+                                        if (order.type == OrderTypes.ticket)
+                                        {
+                                            foreach (var item in list)
+                                            {
+                                                var admissionTicket = admissionTicketService.GetById(item.sourceId);
+                                                for (var i = 0; i < item.num; i++)
+                                                {
+                                                    var ticket = new Tickets();
+                                                    ticket.AdmissionTicketId = admissionTicket.id;
+                                                    ticket.orderNo = orderNo;
+                                                    ticket.Price = item.amount;
+                                                    ticket.State = TicketsState.NotUse;
+                                                    ticket.UserId = order.userId;
+                                                    ticket.useScope = order.useScope;
+                                                    ticket.adultNum = admissionTicket.adultNum;
+                                                    ticket.BuyTime = DateTime.Now;
+                                                    ticket.childNum = admissionTicket.childNum;
+                                                    ticket.Code = string.Format("{0:yyyyMMddHHmmssffff}", DateTime.Now) + i.ToString() + order.userId.ToString();
+                                                    ticket.ExpiredDate = DateTime.Now.Date;
+                                                    _databaseInstance.Insert(ticket, "Tickets");
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                }
+                                _databaseInstance.Commit();
+                            }
 
                         }
                     }
-
                     res.SetValue("return_code", "SUCCESS");
                     res.SetValue("return_msg", "OK");
                     Log.Info(this.GetType().ToString(), "order query success : " + res.ToXml());
@@ -94,6 +140,7 @@ namespace WxPayAPI
 
                 catch (Exception ex)
                 {
+
                     if (!(ex is System.Threading.ThreadAbortException))
                     {
                         res.SetValue("return_code", "FAIL");
@@ -103,6 +150,11 @@ namespace WxPayAPI
                         page.Response.End();
                     }
 
+                }
+                finally
+                {
+                    if (_databaseInstance != null)
+                        _databaseInstance.Dispose();
                 }
 
 

@@ -26,7 +26,7 @@ namespace PI8583
             //return new MockAccountDealService(shop, pos, accounts);
             CachedSqlAccountDealDal dal = new CachedSqlAccountDealDal(databaseInstance);
             SmsDealTracker dealTracker = new SmsDealTracker(dal, new SmsHelper(new SqlSmsService(databaseInstance)), dal.GetSite());
-            SqlOrderService OrderService = new SqlOrderService(databaseInstance);
+            SqlOrder1Service OrderService = new SqlOrder1Service(databaseInstance);
             IPosKeyService PosKeyService = new SqlPosKeyService(databaseInstance);
             IAccountDealService accountDealService = new AccountDealService(dal, dealTracker, OrderService,PosKeyService);
             return accountDealService;

@@ -22,6 +22,7 @@ namespace Ecard.Services
         QueryObject<Account> QueryByNames(string[] accountNames);
         IEnumerable<Account> QueryByOwnerId(AccountUser accountUser);
         QueryObject<Account> GetByIds(int[] ids);
+        QueryObject<AccountWithOwner> GetOwnerId(int ownerId);
     }
 
 

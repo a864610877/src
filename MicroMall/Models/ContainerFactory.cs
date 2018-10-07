@@ -70,13 +70,16 @@ namespace MicroMall.Models
                 .RegisterType<ILogService, SqlLogService>()
                 .RegisterType<ISmsService, SqlSmsService>()
                 .RegisterType<ICacheService, CompositeCacheService>()
-               
                 .RegisterType<ICommodityService, SqlCommodityService>()
                 .RegisterType<IAccountService, SqlAccountService>()
-               
-                .RegisterType<IOrderService, SqlOrderService>()
-               
+                .RegisterType<IOrder1Service, SqlOrder1Service>()
+                .RegisterType<ITicketsService, SqlTicketsService>()
                 .RegisterType<IArticlesService,SqlArticlesService>()
+                .RegisterType<ISetWeChatService, SqlSetWeChatService>()
+                .RegisterType<IUserCouponsService, SqlUserCouponsService>()
+                .RegisterType<IOrdersService,SqlOrdersService>()
+                .RegisterType<IOrderDetialService,SqlOrderDetialService>()
+                .RegisterType<IUseCouponslogService,SqlUseCouponslogService>()
                 .RegisterType<IDashboardItemRepository, DashboardItemRepository>(new ContainerControlledLifetimeManager())
                 .RegisterType<IRegisterRoutes, EcardRoutes>(
                     new InjectionConstructor(
@@ -84,8 +87,6 @@ namespace MicroMall.Models
                         new ResolvedParameter<AppSettingsHelper>(),
                         new ResolvedParameter<Site>()
                         ));
-
-
             // TODO: CreateChildContainer?
             IUnityContainer oxiteContainer = parentContainer.CreateChildContainer();
 

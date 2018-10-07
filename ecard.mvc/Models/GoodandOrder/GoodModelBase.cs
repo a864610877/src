@@ -28,7 +28,7 @@ namespace Ecard.Mvc.Models.GoodandOrder
         }
 
         [Dependency, NoRender]
-        public IOrderService OrderService { get; set; }
+        public IOrder1Service OrderService { get; set; }
 
         protected void OnSave(Good good)
         {

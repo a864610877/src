@@ -14,7 +14,7 @@ namespace Ecard.Mvc.Models.GoodandOrder
     public class listOrders : EcardModelListRequest<ListOrder>
     {
         [Dependency, NoRender]
-        public IOrderService OrderService { get; set; }
+        public IOrder1Service OrderService { get; set; }
         [Dependency, NoRender]
         public IAccountService AccountService { get; set; }
         [Dependency,NoRender]
@@ -48,7 +48,7 @@ namespace Ecard.Mvc.Models.GoodandOrder
                 if (_state == null)
                 {
                     //_state = Bounded.Create<Order>("State", OrderState.All);
-                    var ss = Bounded.Create<Order>("State", UserStates.Normal).Items.OrderBy(c => c.Key).ToList();
+                    var ss = Bounded.Create<Order1>("State", UserStates.Normal).Items.OrderBy(c => c.Key).ToList();
                     _state = new Bounded(OrderState.All,ss);
                 }
                     

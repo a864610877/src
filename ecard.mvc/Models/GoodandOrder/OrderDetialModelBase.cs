@@ -11,36 +11,36 @@ namespace Ecard.Mvc.Models.GoodandOrder
 {
     public class OrderDetialModelBase : ViewModelBase
     {
-         private OrderDetial _innerObject;
+         private OrderDetial1 _innerObject;
          public OrderDetialModelBase()
         {
-            _innerObject = new OrderDetial();
+            _innerObject = new OrderDetial1();
         }
 
          public OrderDetialModelBase(string orderId)
         {
-            _innerObject = new OrderDetial() {  OrderId=orderId};
+            _innerObject = new OrderDetial1() {  OrderId=orderId};
         }
-         public OrderDetialModelBase(OrderDetial item)
+         public OrderDetialModelBase(OrderDetial1 item)
          {
              _innerObject = item;
          }
         [NoRender]
-        public OrderDetial InnerObject
+        public OrderDetial1 InnerObject
         {
             get { return _innerObject; }
         }
-        protected void SetInnerObject(OrderDetial item)
+        protected void SetInnerObject(OrderDetial1 item)
         {
             _innerObject = item;
         }
 
         [Dependency, NoRender]
-        public IOrderService OrderService { get; set; }
+        public IOrder1Service OrderService { get; set; }
         [Dependency,NoRender]
         public ICommodityService CommodityService { get; set; }
 
-        protected void OnSave(OrderDetial detial)
+        protected void OnSave(OrderDetial1 detial)
         {
             detial.GoodId = GoodBounded;
             detial.price = this.InnerObject.price;
@@ -63,9 +63,9 @@ namespace Ecard.Mvc.Models.GoodandOrder
         }
     }
 
-    public class OrderDetialBase:OrderDetial
+    public class OrderDetialBase:OrderDetial1
     {
-        public OrderDetialBase(OrderDetial item)
+        public OrderDetialBase(OrderDetial1 item)
         {
             this.Amount = item.Amount;
             this.GoodId = item.GoodId;

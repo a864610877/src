@@ -20,7 +20,7 @@ namespace Ecard.Mvc.Controllers
         [Dependency]
         public IAccountService AccountService { get; set; }
         [Dependency]
-        public IOrderService OrderService { get; set; }
+        public IOrder1Service OrderService { get; set; }
         [Dependency]
         public IMembershipService MenbershipService { get; set; }
         public OrderController(IUnityContainer unityContainer)
@@ -117,10 +117,10 @@ namespace Ecard.Mvc.Controllers
 
             var ss = model.Detial.Count;
             int num = 0;
-            List<OrderDetial> detials = new List<OrderDetial>();
+            List<OrderDetial1> detials = new List<OrderDetial1>();
             for (int i = 0; i < ss; i++)
             {
-                OrderDetial detial = new OrderDetial();
+                OrderDetial1 detial = new OrderDetial1();
                 if (Request.Form["Item.Detial[" + i.ToString() + "].Checked"].ToLower().IndexOf("true") > -1)
                 {
                     num++;
@@ -241,11 +241,11 @@ namespace Ecard.Mvc.Controllers
             var ss = model.AllCommodity.Count;
             int num = 0;
             int serialnumber = model.Serialnumber;
-            model.Detials = new List<OrderDetial>();
-            List<OrderDetial> detials = new List<OrderDetial>();
+            model.Detials = new List<OrderDetial1>();
+            List<OrderDetial1> detials = new List<OrderDetial1>();
             for (int i = 0; i < ss; i++)
             {
-                OrderDetial detial = new OrderDetial();
+                OrderDetial1 detial = new OrderDetial1();
                 if (Request.Form["Item.AllCommodity[" + i.ToString() + "].Checked"].ToLower().IndexOf("true") > -1)
                 {
                     num++;
