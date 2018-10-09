@@ -28,11 +28,13 @@ namespace MicroMall.Controllers
         private readonly IOrderDetialService orderDetialService;
         private readonly IUseCouponslogService useCouponslogService;
         private readonly IMembershipService membershipService;
+        private readonly IAccountTypeService accountTypeService;
 
         public PersonalCentreController(IAccountService accountService, ITicketsService ticketsService
             , IAdmissionTicketService admissionTicketService, IUserCouponsService userCouponsService,
             ICouponsService couponsService, TransactionHelper transactionHelper, IOrdersService ordersService,
-            IOrderDetialService orderDetialService, IUseCouponslogService useCouponslogService, IMembershipService membershipService)
+            IOrderDetialService orderDetialService, IUseCouponslogService useCouponslogService, IMembershipService membershipService
+            , IAccountTypeService accountTypeService)
         {
             this.accountService = accountService;
             this.ticketsService = ticketsService;
@@ -44,6 +46,7 @@ namespace MicroMall.Controllers
             this.orderDetialService = orderDetialService;
             this.useCouponslogService = useCouponslogService;
             this.membershipService = membershipService;
+            this.accountTypeService = accountTypeService;
         }
 
         public ActionResult Index()
@@ -59,7 +62,10 @@ namespace MicroMall.Controllers
             }
             return View(result);
         }
-
+        /// <summary>
+        /// 购票
+        /// </summary>
+        /// <returns></returns>
         public ActionResult BuyTicket()
         {
             TicketResult result = new TicketResult();
@@ -84,6 +90,13 @@ namespace MicroMall.Controllers
             result.ListCoupons = userCouponsService.GetUserId(userId).Select(x=>new UseCoupons(x)).ToList();
             return View(result);
         }
+        /// <summary>
+        /// 购票下单
+        /// </summary>
+        /// <param name="admissionTicketId"></param>
+        /// <param name="num"></param>
+        /// <param name="userCouponsId"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult TicketPlaceOrder(int admissionTicketId,int num,int userCouponsId=0)
         {
@@ -163,6 +176,143 @@ namespace MicroMall.Controllers
             orderDetial.subTime = DateTime.Now;
 
             var tran=transactionHelper.BeginTransaction();
+            try
+            {
+                ordersService.Create(order);
+                orderDetialService.Create(orderDetial);
+                if (couponId > 0)
+                {
+                    var useCouponslog = new UseCouponslog();
+                    useCouponslog.amount = deductible;
+                    useCouponslog.couponsId = couponId;
+                    useCouponslog.discount = discount;
+                    useCouponslog.orderNo = orderNo;
+                    useCouponslog.userId = userId;
+                    useCouponslog.useTime = DateTime.Now;
+                    useCouponslogService.Create(useCouponslog);
+                    if (userCoupons != null)
+                    {
+                        userCoupons.state = UserCouponsState.Used;
+                        userCouponsService.Update(userCoupons);
+                    }
+                }
+
+                JsApiPay jsApiPay = new JsApiPay();
+                jsApiPay.openid = user.openId;
+                jsApiPay.total_fee = (int)(order.payAmount * 100);
+                WxPayData unifiedOrderResult = jsApiPay.GetUnifiedOrderResult(order.orderNo);
+                string wxJsApiParam = jsApiPay.GetJsApiParameters();//获取H5调起JS API参数                    
+                WxPayAPI.Log.Debug(this.GetType().ToString(), "wxJsApiParam : " + wxJsApiParam);
+                tran.Commit();
+                return Json(new ResultMessage() { Code = 0, Msg = wxJsApiParam });
+                //在页面上显示订单信息
+                //Response.Write("<span style='color:#00CD00;font-size:20px'>订单详情：</span><br/>");
+                //Response.Write("<span style='color:#00CD00;font-size:20px'>" + unifiedOrderResult.ToPrintStr() + "</span>");
+
+            }
+            catch (Exception ex)
+            {
+                WxPayAPI.Log.Error(this.GetType().ToString(), ex.Message.ToString());
+                return Json(new ResultMessage() { Code = -1, Msg = ex.Message.ToString() });
+                //Response.Write("<span style='color:#FF0000;font-size:20px'>" + "下单失败，请返回重试" + "</span>");
+                //submit.Visible = false;
+            }
+            finally
+            {
+                tran.Dispose();
+            }
+        }
+        /// <summary>
+        /// 购买卡
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BuyCard()
+        {
+            List<AccountType> reslut = null;
+            reslut = accountTypeService.Query(new AccountTypeRequest() { State = AccountTypeStates.Normal }).ToList();
+            return View(reslut);
+        }
+
+        /// <summary>
+        /// 购票下单
+        /// </summary>
+        /// <param name="admissionTicketId"></param>
+        /// <param name="num"></param>
+        /// <param name="userCouponsId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult CardPlaceOrder(int accountTypeId, int userCouponsId = 0)
+        {
+            var accountType = accountTypeService.GetById(accountTypeId);
+            if (accountType == null)
+                return Json(new ResultMessage() { Code = -1, Msg = "你要购买得卡不存在" });
+            if (accountType.State != AccountTypeStates.Normal)
+                return Json(new ResultMessage() { Code = -1, Msg = "此卡已下架，请选择购买其他卡" });
+            int userId = 0;
+            var cookieId = Request.Cookies[SessionKeys.USERID].ToString();
+            int.TryParse(cookieId, out userId);
+            var user = membershipService.GetUserById(userId) as AccountUser;
+            if (user == null)
+                return Json(new ResultMessage() { Code = -1, Msg = "用户不存在" });
+            decimal price = accountType.Amount;//卡单价
+            string orderNo = string.Format("{0:yyyyMMddHHmmssffff}", DateTime.Now) + userId;
+            decimal deductible = 0;//优惠卷抵扣金额
+            decimal discount = 0;//折扣
+            string useScope = "";//指定门店
+            int couponId = 0;//优惠卷id
+            decimal amount = price;
+            UserCoupons userCoupons = null;
+            if (userCouponsId > 0)
+            {
+                userCoupons = userCouponsService.GetById(userCouponsId);
+                if (userCoupons == null)
+                    return Json(new ResultMessage() { Code = -1, Msg = "优惠卷不存在" });
+                if (userCoupons.state != UserCouponsState.NotUse)
+                    return Json(new ResultMessage() { Code = -1, Msg = "优惠卷已失效" });
+                if (userCoupons.userId != userId)
+                    return Json(new ResultMessage() { Code = -1, Msg = "优惠卷不可用" });
+                var coupon = couponsService.GetById(userCoupons.couponsId);
+                if (coupon == null && coupon.state != CouponsState.Normal)
+                    return Json(new ResultMessage() { Code = -1, Msg = "优惠卷不存在" });
+                if (coupon.validity.HasValue && coupon.validity > DateTime.Now.Date)
+                    return Json(new ResultMessage() { Code = -1, Msg = "优惠卷已过期" });
+                if (coupon.couponsType == CouponsType.DiscountedVolume)
+                {
+                    discount = coupon.discount;
+                    deductible = discount * amount;
+                }
+                else if (coupon.couponsType == CouponsType.FullVolumeReduction)
+                {
+                    if (amount >= coupon.fullAmount)
+                        deductible = amount - coupon.reduceAmount;
+                }
+                else if (coupon.couponsType == CouponsType.OffsetRoll)
+                {
+                    deductible = amount - coupon.deductibleAmount;
+                }
+                useScope = coupon.useScope;
+                couponId = coupon.id;
+            }
+            var order = new Orders();
+            order.amount = price;
+            order.orderNo = orderNo;
+            order.deductible = deductible;
+            order.orderState = OrderStates.awaitPay;
+            order.payAmount = order.amount - deductible;
+            order.subTime = DateTime.Now;
+            order.type = OrderTypes.card;
+            order.userId = userId;
+            order.useScope = useScope;
+
+            var orderDetial = new OrderDetial();
+            orderDetial.amount = price;
+            orderDetial.cardNo = "";
+            orderDetial.num = 1;
+            orderDetial.orderNo = orderNo;
+            orderDetial.sourceId = accountType.AccountTypeId;
+            orderDetial.subTime = DateTime.Now;
+
+            var tran = transactionHelper.BeginTransaction();
             try
             {
                 ordersService.Create(order);

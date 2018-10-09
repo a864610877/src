@@ -866,6 +866,7 @@
     <Content Include="Views\JuMeiMall\SecondKill.cshtml" />
     <Content Include="Views\PersonalCentre\Index.cshtml" />
     <Content Include="Views\PersonalCentre\BuyTicket.cshtml" />
+    <Content Include="Views\PersonalCentre\BuyCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ecard.infrastructure\Ecard.Infrastructure.csproj">

@@ -31,8 +31,8 @@ namespace WxPayAPI
         private readonly IOrdersService ordersService;
         private readonly IOrderDetialService orderDetialService;
         private readonly ITicketsService ticketsService;
-        private readonly IAdmissionTicketService admissionTicketService; 
-      
+        private readonly IAdmissionTicketService admissionTicketService;
+
         public ResultNotify(Page page)
             : base(page)
         {
@@ -123,12 +123,57 @@ namespace WxPayAPI
                                                 }
                                             }
                                         }
+                                        else if (order.type == OrderTypes.card)
+                                        {
+                                            string sqlSite = "select * from Sites";
+                                            var site = new QueryObject<Site>(_databaseInstance, sqlSite, null).FirstOrDefault();
+                                            string cardNo = "";
+                                            int minxCode =1;
+                                            Int32.TryParse(site.MixCode, out minxCode);
+                                            int i = 1;
+                                            while (true)
+                                            {
+                                                minxCode = minxCode + i;
+                                                cardNo = string.Format("60000000{0}", minxCode.ToString().PadLeft(8, '0'));
+                                                string sqlCard = "select * from Accounts where Name=@Name";
+                                                var card = new QueryObject<Account>(_databaseInstance, sqlCard, new { Name = cardNo }).FirstOrDefault();
+                                                if (card == null)
+                                                    break;
+                                                i++;
+                                            }
+                                            int shopId = 0;
+                                            if (!string.IsNullOrWhiteSpace(order.useScope))
+                                            {
+                                                string sqlShop = "select * from shops where Name=@Name";
+                                                var shop = new QueryObject<Account>(_databaseInstance, sqlShop, new { Name = order.useScope }).FirstOrDefault();
+                                                if (shop != null)
+                                                    shopId = shop.ShopId;
+                                            }
+                                            var item = list.FirstOrDefault();
+                                            var accountType = _databaseInstance.GetById<AccountType>("AccountTypes", item.sourceId);
+                                            var account = new Account();
+                                            account.AccountLevel = 0;
+                                            account.AccountToken = "11111111";
+                                            account.AccountTypeId = accountType.AccountTypeId;
+                                            account.Amount = 0;
+                                            account.ExpiredDate = DateTime.Now.AddMonths(accountType.ExpiredMonths);
+                                            account.Frequency = accountType.Frequency;
+                                            account.FrequencyUsed = 0;
+                                            account.LastDealTime = DateTime.Now;
+                                            account.Name = cardNo;
+                                            account.OpenTime = DateTime.Now;
+                                            account.OwnerId = order.userId;
+                                            account.ShopId = shopId;
+                                            account.useScope = order.useScope;
+                                            account.State = AccountStates.Normal;
+                                            _databaseInstance.Insert(account, "Accounts");
+                                            site.MixCode = minxCode.ToString();
+                                            _databaseInstance.Update(site, "Sites");
+                                        }
                                     }
-
                                 }
                                 _databaseInstance.Commit();
                             }
-
                         }
                     }
                     res.SetValue("return_code", "SUCCESS");

@@ -1,0 +1,2 @@
+﻿Edit.description=Edit
+Edit.name=Edit
