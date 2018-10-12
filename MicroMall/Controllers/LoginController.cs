@@ -24,9 +24,11 @@ namespace MicroMall.Controllers
 
         public ActionResult Index()
         {
-            if (Session[SessionKeys.USERID] == null)
+            HttpCookie cookie = new HttpCookie(SessionKeys.USERID, "4");
+            Response.Cookies.Add(cookie);
+            if (Request.Cookies[SessionKeys.USERID] == null)
             {
-                string url = "";
+                string url = "/PersonalCentre/index";
                 return Redirect(url);
             }
             return RedirectToAction("index", "PersonalCentre");

@@ -62,6 +62,7 @@ IsSmsSuspend.order=18
 IsSmsTransfer.explain=是否发送转账短信
 IsSmsTransfer.name=是否发送转账短信
 IsSmsTransfer.order=19
+messages.duplicationDisplayName=messages.duplicationDisplayName
 messages.success=创建帐户类型 {0} 成功
 NumberOfPeople.explain=每次可带小孩
 NumberOfPeople.name=每次可带小孩

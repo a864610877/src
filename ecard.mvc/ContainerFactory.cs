@@ -102,6 +102,9 @@ namespace Ecard.Mvc
                 .RegisterType<ICouponsService,SqlCouponsService>()
                 .RegisterType<IArticlesService, SqlArticlesService>()
                 .RegisterType<ISetWeChatService, SqlSetWeChatService>()
+                .RegisterType<IOrdersService, SqlOrdersService>()
+                .RegisterType<IOrderDetialService, SqlOrderDetialService>()
+                .RegisterType<IUseCouponslogService,SqlUseCouponslogService>()
                 .RegisterType<IDashboardItemRepository, DashboardItemRepository>(new ContainerControlledLifetimeManager())
                 .RegisterType<IRegisterRoutes, EcardRoutes>(
                     new InjectionConstructor(

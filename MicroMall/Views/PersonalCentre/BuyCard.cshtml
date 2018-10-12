@@ -1,4 +1,137 @@
 ﻿@{
     ViewBag.Title = "购买卡";
+    Layout = null;
 }
-@model List<Ecard.Models.AccountType>
+@model MicroMall.Models.Parentings.BuyCardResult
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/css/css.css">
+</head>
+
+<body>
+    <div class="gm_one"><img src="/images/img2.png"></div>
+    <ul class="gm_two">
+        <li class="li1" value="1">
+            <div class="left" >
+                <strong>白银气球卡·20次</strong><br>
+                每次最多3个小朋友同时享受此优惠
+            </div>
+            <div class="right">￥@(Model!=null?Convert.ToInt32(Model.accountTypes.Where(x=>x.AccountTypeId==1).FirstOrDefault().Amount):0)</div>
+        </li>
+        <li class="li2" value="2">
+            <div class="left">
+                <strong>黄金气球卡·50次</strong><br>
+                ·全年有效，不限节假日<br>
+                ·每次最多3个小朋友同时享受此优惠
+            </div>
+            <div class="right">￥@(Model != null ? Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 2).FirstOrDefault().Amount) : 0)</div>
+        </li>
+        <li class="li3" value="3">
+            <div class="left">
+                <strong>铂金气球卡·平日畅玩</strong><br>
+                ·1年有效，可使用时段：周一至周五<br>
+                ·每次最多1个小朋友享受此优惠
+            </div>
+            <div class="right">￥@(Model != null ? Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 3).FirstOrDefault().Amount) : 0)</div>
+        </li>
+        <li class="li4" value="4">
+            <div class="left">
+                <strong>黑金气球卡·全年无限畅玩</strong><br>
+                ·1年有效，不限节假日<br>
+                ·每次最多1个小朋友享受此优惠
+            </div>
+            <div class="right">￥@(Model != null ? Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 4).FirstOrDefault().Amount) : 0)</div>
+        </li>
+    </ul>
+    <div class="gm_you"><span>优惠券</span>（@(Model.ListCoupons!=null?Model.ListCoupons.Count():0)  张可用）</div>
+    <div class="gm_price">
+        <div class="div">
+            <div class="left">
+                ￥<span>980</span><i>（已优惠20元）</i>
+            </div>
+            <a href="#" class="a">结 算</a>
+        </div>
+    </div>
+
+    <!--选择优惠券-->
+    <div class="xz_zhe"></div>
+    <div class="xz_yhq">
+        <i class="close"></i>
+        <div class="top">选择优惠券</div>
+        <ul class="yhq_ul">
+            @if (Model.ListCoupons != null && Model.ListCoupons.Count() > 0)
+            {
+                foreach (var item in Model.ListCoupons)
+                {
+                   <li value="@item.UserCouponsId">
+                   <div class="left">
+                       @Html.Raw(item.amount)
+                       <i>@item.couponsType</i>
+                    </div>
+                    <div class="right">
+                       <strong>@item.describe</strong><br>
+                       <span>@item.validity</span><br>
+                       @item.useScope
+                    </div>
+                   </li>
+               }
+            }
+
+            
+            @*<li>
+                <div class="left">
+                    ￥<span>20</span><br>
+                    <i>优惠券</i>
+                </div>
+                <div class="right">
+                    <strong>使用描述</strong><br>
+                    <span>有效期</span><br>
+                    有效范围
+                </div>
+            </li>
+            <li>
+                <div class="left">
+                    ￥<span>20</span><br>
+                    <i>优惠券</i>
+                </div>
+                <div class="right">
+                    <strong>使用描述</strong><br>
+                    <span>有效期</span><br>
+                    有效范围
+                </div>
+            </li>*@
+        </ul>
+    </div>
+
+    <script src="/js/jQuery.js"></script>
+    <script type="text/javascript">
+    $(function(){
+		//选择充值卡
+		$(".gm_two li").click(function(){
+			$(".gm_two li").removeClass("sel");
+			$(this).addClass("sel");
+		})
+
+		//打开优惠券 并选择
+		$(".gm_you").click(function(){
+			$(".xz_zhe").show();
+			$(".xz_yhq").addClass("kai");
+		})
+		$(".xz_yhq .close").click(function(){
+			$(".xz_zhe").hide();
+			$(".xz_yhq").removeClass("kai");
+		})
+		$(".xz_yhq ul li").click(function(){
+			if($(this).attr("class")!="sel")
+				$(this).addClass("sel");
+			else
+				$(this).removeClass("sel");
+		})
+	})
+    </script>
+</body>
+</html>

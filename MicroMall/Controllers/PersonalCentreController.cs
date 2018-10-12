@@ -228,9 +228,13 @@ namespace MicroMall.Controllers
         /// <returns></returns>
         public ActionResult BuyCard()
         {
-            List<AccountType> reslut = null;
-            reslut = accountTypeService.Query(new AccountTypeRequest() { State = AccountTypeStates.Normal }).ToList();
-            return View(reslut);
+            var result = new BuyCardResult();
+            result.accountTypes = accountTypeService.Query(new AccountTypeRequest() { State = AccountTypeStates.Normal }).ToList();
+            int userId = 0;
+            var cookieId = Request.Cookies[SessionKeys.USERID].ToString();
+            int.TryParse(cookieId, out userId);
+            result.ListCoupons = userCouponsService.GetUserId(userId).Select(x => new UseCoupons(x)).ToList();
+            return View(result);
         }
 
         /// <summary>

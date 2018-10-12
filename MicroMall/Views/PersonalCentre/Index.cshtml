@@ -1,5 +1,106 @@
 ﻿@{
     ViewBag.Title = "Index";
+    Layout = null;
 }
 @model List<MicroMall.Models.PersonalCentres.CardModel>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/css/css.css">
+</head>
+
+<body>
+
+    <ul class="qq_one">
+
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                string className = "baiYin";
+                if (item.cardName == "白银气球卡")
+                {
+                    className = "baiYin";
+                }
+                else if (item.cardName == "黄金气球卡")
+                {
+                    className = "huangJin";
+                }
+                else if (item.cardName == "黄金气球卡")
+                {
+                    className = "huangJin";
+                }
+                else if (item.cardName == "黄金气球卡")
+                {
+                    className = "huangJin";
+                }
+                else if (item.cardName == "黑金气球卡")
+                {
+                    className = "heiJin";
+                }
+                <li class="@className">
+                    <h1>@item.cardName</h1>
+                    <div class="zhong">
+                        <img src="/images/img1.jpg" class="wx shiYong">
+                        <div class="left">
+                            <span><i>持卡人</i>@item.name</span>
+                            <p><i>手机</i>@item.mobile</p>
+                            <p><i>宝宝姓名</i>@item.babyName</p>
+                            <p><i>宝宝性别</i>@item.babySex</p>
+                            <p><i>有效期</i>@item.expiredDate</p>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <p>
+                            <span>剩余<i>@item.frequency</i>次</span>
+                            <a href="#">充值</a>
+                        </p>
+                        <p>
+                            <em>成人票</em>
+                            <a href="#">购买</a>
+                        </p>
+                    </div>
+                </li>
+
+
+
+            }
+        }
+    </ul>
+    <div class="qq_two">
+        <p><a href="/PersonalCentre/BuyCard" class="a">购买充值卡</a></p>
+        <p><a href="#" class="aa">历史消费记录</a></p>
+    </div>
+
+    <!--弹二维码-->
+    <div class="tan_wm" style="display:none">
+        <img src="images/img1.jpg">
+    </div>
+    <script src="/js/jQuery.js"></script>
+    <script src="/js/layer/layer.js"></script>
+    <script type="text/javascript">
+    $(function(){
+		//弹二维码
+		$(".shiYong").click(function(){
+			layer.open({
+				type: 1,
+				title: false,
+				closeBtn: 0,
+				area: ['70%', 'auto'],
+				shade : [0.6 , '#000' , false],
+				skin: 'layui-layer-nobg', //没有背景色
+				shadeClose: false,
+				closeBtn:1,
+				content: $(".tan_wm")
+			});
+			return false;
+		})
+	})
+    </script>
+
+</body>
+</html>
 

@@ -26,18 +26,30 @@ namespace MicroMall.Controllers
         }
         public ActionResult Index()
         {
-            string url = "";
-            return View();
+            string url = "/register/register?code=123123";
+            return Redirect(url);
         }
 
         public ActionResult register(string code)
         {
+            //OAuthAccessTokenResult result = Senparc.Weixin.MP.AdvancedAPIs.OAuthApi.GetAccessToken(WxPayConfig.APPID, WxPayConfig.APPSECRET, code);
+            //var openid = result.openid;
+            //var user = membershipService.GetByOpenId(openid);
+            //if (user != null)
+            //{
+            //    HttpCookie cookie = new HttpCookie(SessionKeys.USERID, user.UserId.ToString());
+            //    Response.Cookies.Add(cookie);
+            //    return RedirectToAction("index", "PersonalCentre");
+            //}
+            //ViewData["openId"] = openid;
+            ViewData["openId"] = code;
             return View();
+            
         }
         [HttpPost]
         public ActionResult register(register register)
         {
-            if (string.IsNullOrWhiteSpace(register.code))
+            if (string.IsNullOrWhiteSpace(register.openId))
             {
                 return Json(new ResultMessage() { Code = -1, Msg = "授权失效，请重新进入" });
             }
@@ -70,23 +82,23 @@ namespace MicroMall.Controllers
             var mobileUser = membershipService.GetByMobile(register.mobile);
             if(mobileUser!=null)
                 return Json(new ResultMessage() { Code = -1, Msg = "手机号码已注册" });
-            WxPayAPI.Log.Info(this.GetType().ToString(), string.Format("---进入了用户信息回调---"));
-            WxPayAPI.Log.Info(this.GetType().ToString(), string.Format("---code:{0},state:{1}---", register.code, ""));
+            //WxPayAPI.Log.Info(this.GetType().ToString(), string.Format("---进入了用户信息回调---"));
+            //WxPayAPI.Log.Info(this.GetType().ToString(), string.Format("---code:{0},state:{1}---", register.code, ""));
             //jsApiPay.GetOpenidAndAccessTokenFromCode(code);
-            if (string.IsNullOrEmpty(register.code))
-            {
-                //return Json(new ResultMessage() { Code = -1, Msg = "参数错误，请联系管理员！" });
-                return Content("您拒绝了授权！");
-            }
-            OAuthAccessTokenResult result = null;
+            //if (string.IsNullOrEmpty(register.code))
+            //{
+            //    //return Json(new ResultMessage() { Code = -1, Msg = "参数错误，请联系管理员！" });
+            //    return Content("您拒绝了授权！");
+            //}
+            //OAuthAccessTokenResult result = null;
 
             //通过，用code换取access_token
             try
             {
                 //var model = Iwx_interfaceService.GetModel(new KodyCRM.DomainModels.Query.Admin.wx_interfaceQuery());
-                result = Senparc.Weixin.MP.AdvancedAPIs.OAuthApi.GetAccessToken(WxPayConfig.APPID, WxPayConfig.APPSECRET, register.code);
-                var openid = result.openid;
-                OAuthUserInfo userInfo = Senparc.Weixin.MP.AdvancedAPIs.OAuthApi.GetUserInfo(result.access_token, result.openid);
+                //result = Senparc.Weixin.MP.AdvancedAPIs.OAuthApi.GetAccessToken(WxPayConfig.APPID, WxPayConfig.APPSECRET, register.code);
+                var openid = register.openId;
+               // OAuthUserInfo userInfo = Senparc.Weixin.MP.AdvancedAPIs.OAuthApi.GetUserInfo(result.access_token, result.openid);
                 AccountUser user = new AccountUser();
                 user.Mobile = register.mobile;
                 user.Name = register.mobile;
@@ -104,17 +116,25 @@ namespace MicroMall.Controllers
             }
             catch (Exception ex)
             {
-                WxPayAPI.Log.Info(this.GetType().ToString(), string.Format("---openid:出错---"));
-                return Content("您拒绝了授权！");
+                WxPayAPI.Log.Info(this.GetType().ToString(), string.Format("---出错:{0}---",ex.Message));
+                return Json(new ResultMessage() { Code = -1, Msg = "系统异常请联系管理员" });
             }
-            if (result.errcode != ReturnCode.请求成功)
-            {
-                //return Json(new Result(-2, "请求失效,请重新进入购票"));
-                return Content("错误：" + result.errmsg);
-            }
+            //if (result.errcode != ReturnCode.请求成功)
+            //{
+            //    //return Json(new Result(-2, "请求失效,请重新进入购票"));
+            //    return Content("错误：" + result.errmsg);
+            //}
             return Json(new ResultMessage() {Code=0 });
 
         }
 
+        [HttpPost]
+        public ActionResult SmsRegisterCode(string mobile)
+        {
+            var mobileUser = membershipService.GetByMobile(mobile);
+            if (mobileUser != null)
+                return Json(new ResultMessage() { Code = -1, Msg = "手机号码已注册" });
+            return Json(new ResultMessage() { Code = 0, Msg = "" });
+        }
     }
 }

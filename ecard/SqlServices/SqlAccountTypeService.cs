@@ -18,7 +18,10 @@ namespace Ecard.Services
 
         public QueryObject<AccountType> Query(AccountTypeRequest request)
         {
-            return new QueryObject<AccountType>(_databaseInstance, "accountType.Query", request);
+            string sql = @"select * from accounttypes where 
+(@displayName is null or displayName = @displayName)
+and (@state is null or state = @state) ";
+            return new QueryObject<AccountType>(_databaseInstance, sql, request);
         }
 
         public void Create(AccountType item)

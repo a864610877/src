@@ -102,6 +102,7 @@ create table UserCoupons--用户优惠卷
    useTime datetime,--使用时间
 )
 go
+--drop table UseCouponslog
 create table UseCouponslog--优惠卷使用记录
 (
    id int identity(1,1) primary key,

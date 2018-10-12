@@ -7,7 +7,7 @@ namespace MicroMall.Models.Registers
 {
     public class register
     {
-        public string code { get; set; }
+        public string openId { get; set; }
         /// <summary>
         /// 姓名
         /// </summary>

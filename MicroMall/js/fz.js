@@ -527,3 +527,67 @@ function reduceNum(el) {
     $("#" + el).val(parseInt(num) -1);
 }
 
+
+//短信
+var F_InterValObj; //timer变量，控制时间
+var F_count = 120; //间隔函数，1秒执行
+var F_curCount; //当前剩余秒数
+function F_SetRemainTime() {
+    if (F_curCount == 0) {
+        window.clearInterval(F_InterValObj); //停止计时器
+        $("#sendSms").removeAttr("disabled"); //启用按钮
+        //$("#FbtnSendCode").attr("class", "surebtn");
+        $("#sendSms").val("获取");
+    } else {
+        F_curCount--;
+        $("#sendSms").val(F_curCount + '秒');
+    }
+}
+
+function sendSms() {
+    var moblie = $("#mobile").val();
+    if (moblie == null || moblie == "") {
+        alert("请输入手机号");
+        return;
+    } else {
+        // $("#Mobile").parent().removeClass("formwong");
+    }
+    var re = /^1[34578]\d{9}$/;
+    if (!(re.test(moblie))) {
+        alert("手机号格式错误");
+        return;
+    } else {
+        // $("#Mobile").parent().removeClass("formwong");
+    }
+    $.openLoading("发送中");
+    $.ajax("/Register/SmsRegisterCode", {
+        data: {
+            mobile: moblie
+        },
+        type: "post",
+        dataType: "json",
+        timeout: 0,
+        //headers: {
+        //    'Content-Type': 'application/json'
+        //},
+        success: function (data) {
+            $.closeLoading();
+            if (data.Code == 0) {
+                alert("发送成功");
+                F_curCount = F_count;
+                //设置button效果，开始计时
+                $("#sendSms").attr("disabled", "");
+                $("#sendSms").val(F_curCount + '秒');
+                F_InterValObj = window.setInterval(F_SetRemainTime, 1000);
+            } else {
+                $("#sendSms").removeAttr("disabled");
+                alert(data.Msg);
+            }
+        },
+        error: function (xhr, type, errorThrown) {
+            $.closeLoading();
+            alert("网络错误");
+        }
+
+    });
+}

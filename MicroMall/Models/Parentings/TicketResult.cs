@@ -40,17 +40,17 @@ namespace MicroMall.Models.Parentings
             if (item.couponsType == CouponsType.DiscountedVolume)
             {
                 describe = "折扣卷";
-                amount = Convert.ToInt32(item.deductibleAmount).ToString();
+                amount =string.Format("折<span>{0}</span><br>", Convert.ToInt32(item.deductibleAmount).ToString()) ;
             }
             else if (item.couponsType == CouponsType.FullVolumeReduction)
             {
                 describe = string.Format("满{0}减{1}", item.fullAmount, item.reduceAmount);
-                amount = Convert.ToInt32(item.reduceAmount).ToString();
+                amount = string.Format("￥<span>{0}</span><br>", Convert.ToInt32(item.reduceAmount).ToString());
             }
             else if (item.couponsType == CouponsType.OffsetRoll)
             {
-                describe = "折扣卷";
-                amount = Convert.ToInt32(item.discount * 100) + "折";
+                describe = "抵扣卷";
+                amount = string.Format("￥<span>{0}</span><br>", Convert.ToInt32(item.discount * 100).ToString());
             } 
             else
                 describe = "";
