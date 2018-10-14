@@ -66,6 +66,11 @@ namespace Ecard.Models
         public string createOp { get; set; }
         public DateTime createTime { get; set; }
     }
+
+    public class Couponss: Coupons
+    {
+        public string shopName { get; set; }
+    }
     public class CouponsType
     {
         /// <summary>

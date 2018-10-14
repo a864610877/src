@@ -33,10 +33,17 @@ namespace Ecard
         public Transaction(DbTransaction transaction)
         {
             _transaction = transaction;
+           
         }
         public void Commit()
         {
             _transaction.Commit();
+            
+        }
+
+        public void Rollback()
+        {
+            _transaction.Rollback();
         }
 
         public void Dispose()

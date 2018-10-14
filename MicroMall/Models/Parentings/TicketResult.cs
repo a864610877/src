@@ -33,14 +33,13 @@ namespace MicroMall.Models.Parentings
 
     public class UseCoupons
     {
-
-        public UseCoupons(UserCouponss item)
+        public UseCoupons(Couponss item)
         {
             couponsType = CouponsType.GetName(item.couponsType);
             if (item.couponsType == CouponsType.DiscountedVolume)
             {
                 describe = "折扣卷";
-                amount =string.Format("折<span>{0}</span><br>", Convert.ToInt32(item.deductibleAmount).ToString()) ;
+                amount = string.Format("折<span>{0}</span><br>", Convert.ToInt32(item.discount * 10).ToString());
             }
             else if (item.couponsType == CouponsType.FullVolumeReduction)
             {
@@ -50,23 +49,52 @@ namespace MicroMall.Models.Parentings
             else if (item.couponsType == CouponsType.OffsetRoll)
             {
                 describe = "抵扣卷";
-                amount = string.Format("￥<span>{0}</span><br>", Convert.ToInt32(item.discount * 100).ToString());
-            } 
+                amount = string.Format("￥<span>{0}</span><br>", Convert.ToInt32(item.deductibleAmount).ToString());
+            }
             else
                 describe = "";
             if (item.validity.HasValue)
                 validity = item.validity.Value.ToString("yyyy-MM-dd");
             else
                 validity = "永久有效";
-            useScope = string.IsNullOrWhiteSpace(item.useScope) ? "所有门店" : item.useScope;
+            useScope = string.IsNullOrWhiteSpace(item.useScope) ? "所有门店" : item.shopName;
+            CouponsId = item.id;
+        }
+        public UseCoupons(UserCouponss item)
+        {
+            couponsType = CouponsType.GetName(item.couponsType);
+            if (item.couponsType == CouponsType.DiscountedVolume)
+            {
+                describe = "折扣卷";
+                amount = string.Format("折<span>{0}</span><br>", Convert.ToInt32(item.discount * 10).ToString());
+            }
+            else if (item.couponsType == CouponsType.FullVolumeReduction)
+            {
+                describe = string.Format("满{0}减{1}", item.fullAmount, item.reduceAmount);
+                amount = string.Format("￥<span>{0}</span><br>", Convert.ToInt32(item.reduceAmount).ToString());
+            }
+            else if (item.couponsType == CouponsType.OffsetRoll)
+            {
+                describe = "抵扣卷";
+                amount = string.Format("￥<span>{0}</span><br>", Convert.ToInt32(item.deductibleAmount).ToString());
+            }
+            else
+                describe = "";
+            if (item.validity.HasValue)
+                validity = item.validity.Value.ToString("yyyy-MM-dd");
+            else
+                validity = "永久有效";
+            useScope = string.IsNullOrWhiteSpace(item.useScope) ? "所有门店" : item.shopName;
             UserCouponsId = item.id;
         }
+
+        public int CouponsId { get; set; }
         /// <summary>
         /// 优惠卷id
         /// </summary>
         public int UserCouponsId { get; set; }
         /// <summary>
-        /// 门票类型
+        /// 优惠类型
         /// </summary>
         public string couponsType { get; set; }
         /// <summary>
@@ -85,6 +113,6 @@ namespace MicroMall.Models.Parentings
         /// 使用门店
         /// </summary>
         public string useScope { get; set; }
-
+        
     }
 }

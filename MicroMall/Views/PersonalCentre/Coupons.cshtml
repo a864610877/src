@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "Coupons";
+    Layout = null;
+}
+@model List<MicroMall.Models.PersonalCentres.CouponsModel>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/css/css.css">
+    <link href="/css/weui.min.css" rel="stylesheet" />
+    <script src="/js/jQuery.js"></script>
+    <script src="/js/fz.js"></script>
+    <script type="text/javascript">
+        function ReceiveCoupons(obj) {
+            $.openLoading("领取中");
+            var id = $(obj).attr("value");
+            $.ajax({
+                url: "/PersonalCentre/ReceiveCoupons",
+                data: { id: id },
+                type: "post",
+                success: function (data) {
+                    $.closeLoading();
+                    if (data.Code == 0) {
+                        $.openDialog("领取成功");
+                        $(obj).remove();
+                    } else {
+                        $.openDialog(data.Msg);
+                    }
+                },
+                error: function () {
+                    $.closeLoading();
+                    $.openDialog("领取失败");
+                }
+
+            });
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <div class="gp_one">
+        <a href="#" class="sel">优惠券</a>
+        <a href="#">已使用</a>
+    </div>
+    <ul class="yhq_ul yhq_one">
+        @if (Model != null && Model.Count()>0)
+        {
+            foreach (var item in Model)
+            {
+                <li>
+                  <div class="left">
+                      @Html.Raw(item.amount)
+                      <i>@item.couponsType</i>
+                  </div>
+                  <div class="right">
+                      <strong>@item.describe</strong><br>
+                      <span>@item.validity</span><br>
+                      @item.useScope
+                  </div>
+                  @if (item.UserCouponsId <= 0)
+                  {
+                     <div class="right">
+                         <a href="javascript:void(0);" onclick="ReceiveCoupons(this)" value="@item.CouponsId">领取</a>
+                     </div>
+                  }
+                  
+               </li>
+            }
+        }
+        @*<li>
+            <div class="left">
+                ￥<span>20</span><br>
+                <i>优惠券</i>
+            </div>
+            <div class="right">
+                <strong>使用描述 xxxxxx</strong><br>
+                <span>有效期</span><br>
+                有效范围
+            </div>
+            <div class="right">
+               <a href="#">领取</a>
+            </div>
+        </li>
+        <li>
+            <div class="left">
+                <span>7</span>折<br>
+                <i>折扣券</i>
+            </div>
+            <div class="right">
+                <strong>使用描述</strong><br>
+                <span>有效期</span><br>
+                有效范围
+            </div>
+        </li>
+        <li>
+            <div class="left">
+                ￥<span>20</span><br>
+                <i>优惠券</i>
+            </div>
+            <div class="right">
+                <strong>使用描述</strong><br>
+                <span>有效期</span><br>
+                有效范围
+            </div>
+        </li>*@
+    </ul>
+
+    <img src="/images/img4.png" class="gp_img">
+</body>
+</html>

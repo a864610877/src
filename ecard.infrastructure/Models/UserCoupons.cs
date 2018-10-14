@@ -29,7 +29,7 @@ namespace Ecard.Models
         /// <summary>
         /// 使用时间
         /// </summary>
-        public DateTime useTime { get; set; }
+        public DateTime? useTime { get; set; }
     }
 
     public class UserCouponsState

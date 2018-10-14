@@ -18,5 +18,11 @@ namespace Ecard.Services
 
         void Create(Coupons item);
         void Delete(Coupons item);
+        /// <summary>
+        /// 找出用户可以领取的优惠卷
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        List<Couponss> GetByUserCoupon(int userId);
     }
 }

@@ -206,6 +206,7 @@ CommodityResume.order=1
 CommoditySuspend.content=停用商品 {0}
 CommoditySuspend.name=停用商品
 CommoditySuspend.order=1
+CouponCreate.content=CouponCreate.content
 CouponCreate.name=CouponCreate
 CouponCreate.order=1
 CouponDelete.content=CouponDelete.content

@@ -29,12 +29,13 @@ namespace MicroMall.Controllers
         private readonly IUseCouponslogService useCouponslogService;
         private readonly IMembershipService membershipService;
         private readonly IAccountTypeService accountTypeService;
+        private readonly ILog4netService log4NetService;
 
         public PersonalCentreController(IAccountService accountService, ITicketsService ticketsService
             , IAdmissionTicketService admissionTicketService, IUserCouponsService userCouponsService,
             ICouponsService couponsService, TransactionHelper transactionHelper, IOrdersService ordersService,
             IOrderDetialService orderDetialService, IUseCouponslogService useCouponslogService, IMembershipService membershipService
-            , IAccountTypeService accountTypeService)
+            , IAccountTypeService accountTypeService, ILog4netService log4NetService)
         {
             this.accountService = accountService;
             this.ticketsService = ticketsService;
@@ -47,12 +48,13 @@ namespace MicroMall.Controllers
             this.useCouponslogService = useCouponslogService;
             this.membershipService = membershipService;
             this.accountTypeService = accountTypeService;
+            this.log4NetService = log4NetService;
         }
 
         public ActionResult Index()
         {
             int userId = 0;
-            var cookieId = Request.Cookies[SessionKeys.USERID].ToString();
+            var cookieId = Request.Cookies[SessionKeys.USERID].Value.ToString();
             int.TryParse(cookieId, out userId);
             List<CardModel> result = new List<CardModel>();
             var list = accountService.GetOwnerId(userId);
@@ -77,7 +79,7 @@ namespace MicroMall.Controllers
                 price = DateHelper.m_IsWorkingDay() == true ? x.amount : x.weekendAmount,
             }).ToList();
             int userId = 0;
-            var cookieId = Request.Cookies[SessionKeys.USERID].ToString();
+            var cookieId = Request.Cookies[SessionKeys.USERID].Value.ToString();
             int.TryParse(cookieId, out userId);
             var query = ticketsService.GetList(userId);
             if (query != null)
@@ -108,7 +110,7 @@ namespace MicroMall.Controllers
             if(admissionTicket.state!= AdmissionTicketState.Normal)
                 return Json(new ResultMessage() { Code = -1, Msg = "门票已下架，请选择购买其他门票" });
             int userId = 0;
-            var cookieId = Request.Cookies[SessionKeys.USERID].ToString();
+            var cookieId = Request.Cookies[SessionKeys.USERID].Value.ToString();
             int.TryParse(cookieId, out userId);
             var user = membershipService.GetUserById(userId) as AccountUser;
             if(user==null)
@@ -231,7 +233,7 @@ namespace MicroMall.Controllers
             var result = new BuyCardResult();
             result.accountTypes = accountTypeService.Query(new AccountTypeRequest() { State = AccountTypeStates.Normal }).ToList();
             int userId = 0;
-            var cookieId = Request.Cookies[SessionKeys.USERID].ToString();
+            var cookieId = Request.Cookies[SessionKeys.USERID].Value.ToString();
             int.TryParse(cookieId, out userId);
             result.ListCoupons = userCouponsService.GetUserId(userId).Select(x => new UseCoupons(x)).ToList();
             return View(result);
@@ -253,7 +255,7 @@ namespace MicroMall.Controllers
             if (accountType.State != AccountTypeStates.Normal)
                 return Json(new ResultMessage() { Code = -1, Msg = "此卡已下架，请选择购买其他卡" });
             int userId = 0;
-            var cookieId = Request.Cookies[SessionKeys.USERID].ToString();
+            var cookieId = Request.Cookies[SessionKeys.USERID].Value.ToString();
             int.TryParse(cookieId, out userId);
             var user = membershipService.GetUserById(userId) as AccountUser;
             if (user == null)
@@ -364,5 +366,95 @@ namespace MicroMall.Controllers
             }
         }
 
+        public ActionResult Coupons()
+        {
+            int userId = 0;
+            var cookieId = Request.Cookies[SessionKeys.USERID].Value.ToString();
+            int.TryParse(cookieId, out userId);
+            //var user = membershipService.GetUserById(userId) as AccountUser;
+            //if (user == null)
+            //    return Json(new ResultMessage() { Code = -1, Msg = "用户不存在" });
+            var conupons = couponsService.GetByUserCoupon(userId);//可领
+            var result = new List<CouponsModel>();
+            result.AddRange(conupons.Select(x => new CouponsModel(x)));
+            var con = userCouponsService.GetUserId(userId);
+            result.AddRange(con.Select(x => new CouponsModel(x)));
+            return View(result);
+        }
+        [HttpPost]
+        public ActionResult ReceiveCoupons(int id)
+        {
+            int userId = 0;
+            var cookieId = Request.Cookies[SessionKeys.USERID].Value.ToString();
+            int.TryParse(cookieId, out userId);
+            var user = membershipService.GetUserById(userId) as AccountUser;
+            if (user == null)
+                return Json(new ResultMessage() { Code = -1, Msg = "用户不存在" });
+           var tran= transactionHelper.BeginTransaction();
+            try
+            {
+                var conupon = couponsService.GetById(id);
+                if (conupon == null || conupon.state != CouponsState.Normal)
+                    return Json(new ResultMessage() { Code = -1, Msg = "优惠卷已失效" });
+                if (conupon.validity.HasValue)
+                {
+                    if (conupon.validity > DateTime.Now.Date)
+                        return Json(new ResultMessage() { Code = -1, Msg = "优惠卷已失效" });
+                    if (conupon.quantity - conupon.leadersOfNum <= 0)
+                        return Json(new ResultMessage() { Code = -1, Msg = "优惠卷已领完" });
+                }
+                var userCoupons = new UserCoupons();
+                userCoupons.couponsId = conupon.id;
+                userCoupons.receiveTime = DateTime.Now;
+                userCoupons.state = UserCouponsState.NotUse;
+                userCoupons.userId = userId;
+                userCouponsService.Create(userCoupons);
+                conupon.leadersOfNum += 1;
+                couponsService.Update(conupon);
+                tran.Commit();
+                return Json(new ResultMessage() { Code = 0, Msg = "" });
+            }
+            catch (Exception ex)
+            {
+                tran.Rollback();
+                log4NetService.Insert(ex);
+                return Json(new ResultMessage() { Code = -1, Msg = "领取异常，请联系管理员" });
+            }
+            finally
+            {
+                tran.Dispose();
+            }
+            
+            
+        }
+        [HttpPost]
+        public ActionResult DiscountAmount(decimal amount, int userCouponsId)
+        {
+            decimal discountAmount = 0;
+            var userCoupon = userCouponsService.GetById(userCouponsId);
+            if (userCoupon == null)
+                return Json(new ResultMessage() { Code = 0, Msg = "0" });
+            if(userCoupon.state!= UserCouponsState.NotUse)
+                return Json(new ResultMessage() { Code = 0, Msg = "0" });
+            var coupon = couponsService.GetById(userCoupon.couponsId);
+            if(coupon==null)
+                return Json(new ResultMessage() { Code = 0, Msg = "0" });
+            if(coupon.state!= CouponsState.Normal)
+                return Json(new ResultMessage() { Code = 0, Msg = "0" });
+            if (coupon.couponsType == CouponsType.DiscountedVolume)
+            {
+                discountAmount =amount-(amount * coupon.discount);
+            }
+            else if (coupon.couponsType == CouponsType.FullVolumeReduction)
+            {
+                if (amount >= coupon.fullAmount)
+                    discountAmount = coupon.reduceAmount;
+            }
+            else if (coupon.couponsType == CouponsType.OffsetRoll)
+            {
+                discountAmount = coupon.deductibleAmount;
+            }
+            return Json(new ResultMessage() { Code = 0, Msg = discountAmount.ToString() });
+        }
     }
 }

@@ -84,6 +84,7 @@ namespace MicroMall.Models
                 .RegisterType<ICouponsService, SqlCouponsService>()
                 .RegisterType<IAccountTypeService, SqlAccountTypeService>()
                 .RegisterType<IUseCouponslogService, SqlUseCouponslogService>()
+                .RegisterType<ILog4netService,SqlLog4netService>()
                 .RegisterType<IDashboardItemRepository, DashboardItemRepository>(new ContainerControlledLifetimeManager())
                 .RegisterType<IRegisterRoutes, EcardRoutes>(
                     new InjectionConstructor(
