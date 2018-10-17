@@ -9,7 +9,7 @@
                            $.openDialog("支付成功");
                            //$.closeLoading();
                            //$.openSuccessMessage("支付成功,<a href='/home/index'>去看视频</a>");
-                           window.location.href = '/PersonalCentre/MyOrder'
+                           window.location.href = '/PersonalCentre/Index'
                            //window.location.href = "/WeChat/PaySuccess";
                            //$.openSuccessMessage("支付成功<a href='/TicketType/TicketType'>返 回</a>");
                        }

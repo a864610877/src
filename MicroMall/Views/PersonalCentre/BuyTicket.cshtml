@@ -1,5 +1,290 @@
 ﻿@{
     ViewBag.Title = "购票";
+    Layout = null;
 }
 @model MicroMall.Models.Parentings.TicketResult
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/css/css.css">
+    <link href="/css/weui.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <input type="hidden" id="arrId" value="" />
+    <input type="hidden" id="arrNum" value="" />
+    <input type="hidden" id="userCouponsId" value="0" />
+    <div class="gp_one">
+        <a href="#" class="sel">购票入场</a>
+        <a href="#">已购记录</a>
+    </div>
+    <!--购票入场-->
+    <div class="gp_main">
+        <ul class="gp_two">
+            @if (Model.ListTicket != null)
+            {
+                foreach (var item in Model.ListTicket)
+                {
+                    <li>
+                        <div class="left">
+                            <div class="top">@item.name<span><i>￥</i>@item.price</span></div>
+                            <p>@item.introduce</p>
+                        </div>
+                        <div class="right pr">
+                            <input type="button" class="btn btn_jian">
+                            <input type="number" data-id="@item.admissionTicketId" data-price="@item.price" class="txt num" value="0">
+                            <input type="button" class="btn btn_jia">
+                        </div>
+                    </li>
+                }
+            }
+
+        </ul>
+        <div class="gm_you"><span>优惠券</span><i id="couponText">（@(Model.ListCoupons != null ? Model.ListCoupons.Count() : 0)  张可用）</i></div>
+        <div class="gm_price">
+            <div class="div">
+                <div class="left">
+                    ￥<span id="payAmount">0</span><i id="discountAmount">（已优惠0元）</i>
+                </div>
+                <a href="#" id="tj" class="a">结 算</a>
+            </div>
+        </div>
+    </div>
+
+    <!--已购记录-->
+    <div class="gp_main" style=" display:none">
+        <ul class="gp_three">
+            <li>
+                <a href="#">
+                    <div class="left">
+                        家庭乐园套票<br>
+                        <span>有效期至 2018-11-22 </span>
+                    </div>
+                    <div class="right">
+                        未使用<br>
+                        <i class="shiYong">使用二维码</i>
+                    </div>
+                </a>
+            </li>
+            <li class="yong">
+                <div class="left">下午茶套票</div>
+                <div class="right">2018-11-22 &nbsp; 已使用</div>
+            </li>
+            <li class="yong">
+                <div class="left">成人票</div>
+                <div class="right">2018-11-22 &nbsp; 已使用</div>
+            </li>
+            <li class="yong">
+                <div class="left">下午茶套票</div>
+                <div class="right">2018-11-22 &nbsp; 已使用</div>
+            </li>
+            <li class="yong">
+                <div class="left">成人票</div>
+                <div class="right">2018-11-22 &nbsp; 已使用</div>
+            </li>
+            <li class="yong">
+                <div class="left">下午茶套票</div>
+                <div class="right">2018-11-22 &nbsp; 已使用</div>
+            </li>
+            <li class="yong">
+                <div class="left">下午茶套票</div>
+                <div class="right">2018-11-22 &nbsp; 已使用</div>
+            </li>
+        </ul>
+        <div class="gp_four"><a href="#">更多记录</a></div>
+
+        <img src="/images/bg_17.png" class="gp_img">
+    </div>
+
+    <!--选择优惠券-->
+    <div class="xz_zhe"></div>
+    <div class="xz_yhq">
+        <i class="close"></i>
+        <div class="top">选择优惠券</div>
+        <ul class="yhq_ul">
+            @if (Model.ListCoupons != null && Model.ListCoupons.Count() > 0)
+            {
+                foreach (var item in Model.ListCoupons)
+                {
+                    <li value="@item.UserCouponsId" class="coupon" describe="@item.describe" type="" amount="" useScope="@item.useScope">
+                        <div class="left">
+                            @Html.Raw(item.amount)
+                            <i>@item.couponsType</i>
+                        </div>
+                        <div class="right">
+                            <strong>@item.describe</strong><br>
+                            <span>@item.validity</span><br>
+                            @item.useScope
+                        </div>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+
+    <!--弹二维码-->
+    <div class="tan_wm" style="display:none">
+        <img src="/images/img1.jpg">
+    </div>
+
+    <script src="/js/jQuery.js"></script>
+    <script src="/js/layer/layer.js"></script>
+    <script src="/js/fz.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var countPrice = function () {
+                var amount = 0;//总金额
+                var ids = "";
+                var nums = "";
+                var i = 0;
+                $(".num").each(function () {
+                    var num = $(this).val();
+                    if (parseInt(num) > 0) {
+                        var price = $(this).attr("data-price");
+                        var id = $(this).attr("data-id");
+                        if (i == 0) {
+                            ids = id;
+                            nums = num;
+                            
+                        } else {
+                            ids +="," +id;
+                            nums +=","+ num;
+                        }
+                        i++;
+                        amount += (parseInt(num) * parseInt(price));
+                    }
+                });
+                $("#payAmount").html(amount);
+                $("#arrId").val(ids);
+                $("#arrNum").val(nums);
+                var value = $("#userCouponsId").val();
+                $.ajax({
+                    url: "/PersonalCentre/DiscountAmount",
+                    data: { amount: amount, userCouponsId: value },
+                    type: "post",
+                    success: function (data) {
+                        $("#discountAmount").html("(已优惠" + data.Msg + "元)");
+                    }
+                });
+            }
+            //打开优惠券 并选择
+            $(".gm_you").click(function () {
+                $(".xz_zhe").show();
+                $(".xz_yhq").addClass("kai");
+            })
+            $(".xz_yhq .close").click(function () {
+                $(".xz_zhe").hide();
+                $(".xz_yhq").removeClass("kai");
+            })
+            $(".xz_yhq ul li").click(function () {
+                if ($(this).hasClass("sel") == false) {
+                    $(".coupon").removeClass("sel");
+                    $(this).addClass("sel");
+                    $("#couponText").html($(this).attr("describe") + " 使用：" + $(this).attr("useScope"));
+                    var value = $(this).attr("value");
+                    $("#userCouponsId").val(value);
+                    $(".xz_zhe").hide();
+                    $(".xz_yhq").removeClass("kai");
+                    var amount = $("#payAmount").html();
+                    $.ajax({
+                        url: "/PersonalCentre/DiscountAmount",
+                        data: { amount: amount, userCouponsId: value },
+                        type: "post",
+                        success: function (data) {
+                            $("#discountAmount").html("(已优惠" + data.Msg + "元)");
+                        }
+                    });
+                }
+                else {
+                    $("#userCouponsId").val(0);
+                    $(this).removeClass("sel");
+                    $(".xz_zhe").hide();
+                    $(".xz_yhq").removeClass("kai");
+                    $("#couponText").html("(请选择优惠卷)");
+                    $("#discountAmount").html("(已优惠0元)");
+                }
+
+            })
+
+            $(".gp_one a").click(function () {
+                $(".gp_one a").removeClass("sel");
+                $(this).addClass("sel");
+                $(".gp_main").hide();
+                var a = $(".gp_one a").index($(this));
+                $(".gp_main").eq(a).show();
+                return false;
+            })
+
+            //弹二维码
+            $(".shiYong").click(function () {
+                layer.open({
+                    type: 1,
+                    title: false,
+                    closeBtn: 0,
+                    area: ['70%', 'auto'],
+                    shade: [0.6, '#000', false],
+                    skin: 'layui-layer-nobg', //没有背景色
+                    shadeClose: false,
+                    closeBtn: 1,
+                    content: $(".tan_wm")
+                });
+                return false;
+            });
+            $(".btn_jian").click(function () {
+                var num = $(this).parent().find(".num").val();
+                if (parseInt(num) > 0) {
+                    num = parseInt(num) - 1;
+                } else {
+                    num = 0;
+                }
+                $(this).parent().find(".num").val(num);
+                countPrice();
+            });
+            $(".btn_jia").click(function () {
+                var num = $(this).parent().find(".num").val();
+                num = parseInt(num) + 1;
+                $(this).parent().find(".num").val(num);
+                countPrice();
+            });
+
+            $("#tj").click(function () {
+                var admissionTicketIds = $("#arrId").val();
+                var nums = $("#arrNum").val();
+                var userCouponsId = $("#userCouponsId").val();
+                if (admissionTicketIds == "") {
+                    $.openDialog("请选择你需要购买的门票");
+                    return;
+                }
+                $.openLoading("下单中");
+                $.ajax({
+                    url: "/PersonalCentre/TicketPlaceOrders",
+                    data: { "admissionTicketIds": admissionTicketIds, "nums": nums, "userCouponsId": userCouponsId },
+                    type: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        $.closeLoading();
+                        if (data.Code == 0) {
+                            $.webChatPay(data.Msg);
+                        } else {
+                            $.openDialog(data.Msg);
+                        }
+                    },
+                    error: function () {
+                        $.closeLoading();
+                        $.openDialog("系统异常，请检查网络");
+                    }
+
+                });
+            });
+        })
+    </script>
+    <p class="gou"><img src="/images/img3.png"></p>
+</body>
+</html>
+
 

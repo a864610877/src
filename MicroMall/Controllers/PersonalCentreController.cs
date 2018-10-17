@@ -144,16 +144,16 @@ namespace MicroMall.Controllers
                 if (coupon.couponsType == CouponsType.DiscountedVolume)
                 {
                     discount = coupon.discount;
-                    deductible = discount * amount;
+                    deductible = amount-(discount * amount);
                 }
                 else if (coupon.couponsType == CouponsType.FullVolumeReduction)
                 {
                     if (amount >= coupon.fullAmount)
-                        deductible = amount - coupon.reduceAmount;
+                        deductible = coupon.reduceAmount;
                 }
                 else if (coupon.couponsType == CouponsType.OffsetRoll)
                 {
-                    deductible = amount - coupon.deductibleAmount;
+                    deductible = coupon.deductibleAmount;
                 }
                 useScope = coupon.useScope;
                 couponId = coupon.id;
@@ -224,6 +224,155 @@ namespace MicroMall.Controllers
                 tran.Dispose();
             }
         }
+
+        /// <summary>
+        /// 批量购票下单
+        /// </summary>
+        /// <param name="admissionTicketId"></param>
+        /// <param name="num"></param>
+        /// <param name="userCouponsId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult TicketPlaceOrders(string admissionTicketIds, string nums, int userCouponsId = 0)
+        {
+            var arrId = admissionTicketIds.Split(',');
+            var arrNum = nums.Split(',');
+            int userId = 0;
+            var cookieId = Request.Cookies[SessionKeys.USERID].Value.ToString();
+            int.TryParse(cookieId, out userId);
+            var user = membershipService.GetUserById(userId) as AccountUser;
+            if (user == null)
+                return Json(new ResultMessage() { Code = -1, Msg = "用户不存在" });
+            if (arrId.Length != arrNum.Length)
+                return Json(new ResultMessage() { Code = -1, Msg = "购买异常，请刷出后购买" });
+            List<OrderDetial> OrderDetials = new List<OrderDetial>();
+            string orderNo = string.Format("{0:yyyyMMddHHmmssffff}", DateTime.Now) + userId;
+            decimal amount = 0; //总价格
+            for (int i = 0; i < arrId.Length; i++)
+            {
+                int admissionTicketId = string.IsNullOrWhiteSpace(arrId[i]) ? 0 : Int32.Parse(arrId[i]);
+                int num = string.IsNullOrWhiteSpace(arrNum[i]) ? 0 : Int32.Parse(arrNum[i]);
+                if(admissionTicketId<=0&&num<=0)
+                    return Json(new ResultMessage() { Code = -1, Msg = "购买异常，请刷出后购买" });
+                var admissionTicket = admissionTicketService.GetById(admissionTicketId);
+                if (admissionTicket == null)
+                    return Json(new ResultMessage() { Code = -1, Msg = "门票不存在" });
+                if (admissionTicket.state != AdmissionTicketState.Normal)
+                    return Json(new ResultMessage() { Code = -1, Msg = ""+ admissionTicket .name+ "已下架，请选择购买其他门票" });
+                decimal price = 0;//门票单价
+                if (DateHelper.m_IsWorkingDay())
+                    price = admissionTicket.amount;
+                else
+                    price = admissionTicket.weekendAmount;
+                var orderDetial = new OrderDetial();
+                orderDetial.amount = price;
+                orderDetial.cardNo = "";
+                orderDetial.num = num;
+                orderDetial.orderNo = orderNo;
+                orderDetial.sourceId = admissionTicket.id;
+                orderDetial.subTime = DateTime.Now;
+                OrderDetials.Add(orderDetial);
+                amount += (price * num);
+            }
+            decimal deductible = 0;//优惠卷抵扣金额
+            decimal discount = 0;//折扣
+            string useScope = "";//指定门店
+            int couponId = 0;//优惠卷id
+            UserCoupons userCoupons = null;
+            if (userCouponsId > 0)
+            {
+                userCoupons = userCouponsService.GetById(userCouponsId);
+                if (userCoupons == null)
+                    return Json(new ResultMessage() { Code = -1, Msg = "优惠卷不存在" });
+                if (userCoupons.state != UserCouponsState.NotUse)
+                    return Json(new ResultMessage() { Code = -1, Msg = "优惠卷已失效" });
+                if (userCoupons.userId != userId)
+                    return Json(new ResultMessage() { Code = -1, Msg = "优惠卷不可用" });
+                var coupon = couponsService.GetById(userCoupons.couponsId);
+                if (coupon == null && coupon.state != CouponsState.Normal)
+                    return Json(new ResultMessage() { Code = -1, Msg = "优惠卷不存在" });
+                if (coupon.validity.HasValue && coupon.validity > DateTime.Now.Date)
+                    return Json(new ResultMessage() { Code = -1, Msg = "优惠卷已过期" });
+                if (coupon.couponsType == CouponsType.DiscountedVolume)
+                {
+                    discount = coupon.discount;
+                    deductible = amount-( discount * amount);
+                }
+                else if (coupon.couponsType == CouponsType.FullVolumeReduction)
+                {
+                    if (amount >= coupon.fullAmount)
+                        deductible = coupon.reduceAmount;
+                }
+                else if (coupon.couponsType == CouponsType.OffsetRoll)
+                {
+                    deductible = coupon.deductibleAmount;
+                }
+                useScope = coupon.useScope;
+                couponId = coupon.id;
+            }
+            var order = new Orders();
+            order.amount = amount;
+            order.orderNo = orderNo;
+            order.deductible = deductible;
+            order.orderState = OrderStates.awaitPay;
+            order.payAmount = amount - deductible;
+            order.subTime = DateTime.Now;
+            order.type = OrderTypes.ticket;
+            order.userId = userId;
+            order.useScope = useScope;
+
+            
+
+            var tran = transactionHelper.BeginTransaction();
+            try
+            {
+                ordersService.Create(order);
+                foreach (var orderDetial in OrderDetials)
+                {
+                    orderDetialService.Create(orderDetial);
+                }
+                if (couponId > 0)
+                {
+                    var useCouponslog = new UseCouponslog();
+                    useCouponslog.amount = deductible;
+                    useCouponslog.couponsId = couponId;
+                    useCouponslog.discount = discount;
+                    useCouponslog.orderNo = orderNo;
+                    useCouponslog.userId = userId;
+                    useCouponslog.useTime = DateTime.Now;
+                    useCouponslogService.Create(useCouponslog);
+                    if (userCoupons != null)
+                    {
+                        userCoupons.state = UserCouponsState.Used;
+                        userCouponsService.Update(userCoupons);
+                    }
+                }
+
+                JsApiPay jsApiPay = new JsApiPay();
+                jsApiPay.openid = user.openId;
+                jsApiPay.total_fee = (int)(order.payAmount * 100);
+                WxPayData unifiedOrderResult = jsApiPay.GetUnifiedOrderResult(order.orderNo);
+                string wxJsApiParam = jsApiPay.GetJsApiParameters();//获取H5调起JS API参数                    
+                WxPayAPI.Log.Debug(this.GetType().ToString(), "wxJsApiParam : " + wxJsApiParam);
+                tran.Commit();
+                return Json(new ResultMessage() { Code = 0, Msg = wxJsApiParam });
+                //在页面上显示订单信息
+                //Response.Write("<span style='color:#00CD00;font-size:20px'>订单详情：</span><br/>");
+                //Response.Write("<span style='color:#00CD00;font-size:20px'>" + unifiedOrderResult.ToPrintStr() + "</span>");
+
+            }
+            catch (Exception ex)
+            {
+                WxPayAPI.Log.Error(this.GetType().ToString(), ex.Message.ToString());
+                return Json(new ResultMessage() { Code = -1, Msg = ex.Message.ToString() });
+                //Response.Write("<span style='color:#FF0000;font-size:20px'>" + "下单失败，请返回重试" + "</span>");
+                //submit.Visible = false;
+            }
+            finally
+            {
+                tran.Dispose();
+            }
+        }
         /// <summary>
         /// 购买卡
         /// </summary>
@@ -240,7 +389,7 @@ namespace MicroMall.Controllers
         }
 
         /// <summary>
-        /// 购票下单
+        /// 购卡下单
         /// </summary>
         /// <param name="admissionTicketId"></param>
         /// <param name="num"></param>
@@ -285,16 +434,16 @@ namespace MicroMall.Controllers
                 if (coupon.couponsType == CouponsType.DiscountedVolume)
                 {
                     discount = coupon.discount;
-                    deductible = discount * amount;
+                    deductible = amount-(discount * amount);
                 }
                 else if (coupon.couponsType == CouponsType.FullVolumeReduction)
                 {
                     if (amount >= coupon.fullAmount)
-                        deductible = amount - coupon.reduceAmount;
+                        deductible = coupon.reduceAmount;
                 }
                 else if (coupon.couponsType == CouponsType.OffsetRoll)
                 {
-                    deductible = amount - coupon.deductibleAmount;
+                    deductible =coupon.deductibleAmount;
                 }
                 useScope = coupon.useScope;
                 couponId = coupon.id;

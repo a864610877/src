@@ -10,6 +10,7 @@
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title></title>
     <link rel="stylesheet" type="text/css" href="/css/css.css">
+    <link href="/css/weui.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -55,7 +56,7 @@
             <div class="left">
                 ￥<span id="payAmount">0</span><i id="discountAmount">（已优惠0元）</i>
             </div>
-            <a href="#" class="a">结 算</a>
+            <a href="#" id="tj" class="a">结 算</a>
         </div>
     </div>
 
@@ -111,6 +112,7 @@
     </div>
 
     <script src="/js/jQuery.js"></script>
+    <script src="/js/fz.js"></script>
     <script type="text/javascript">
         $(function () {
             //选择充值卡
@@ -142,27 +144,79 @@
                 $(".xz_yhq").removeClass("kai");
             })
             $(".xz_yhq ul li").click(function () {
-                $(".coupon").removeClass("sel");
-                $(this).addClass("sel");
-                $("#couponText").html($(this).attr("describe") + " 使用：" + $(this).attr("useScope"));
-                var value = $(this).attr("value");
-                $("#userCouponsId").val(value);
-                $(".xz_zhe").hide();
-                $(".xz_yhq").removeClass("kai");
-                var amount = $("#payAmount").html();
-                $.ajax({
-                    url: "/PersonalCentre/DiscountAmount",
-                    data: { amount: amount, userCouponsId: value},
-                    type: "post",
-                    success: function (data) {
-                        $("#discountAmount").html("(已优惠" + data.Msg + "元)");
-                    }
-                })
-                //if ($(this).attr("class") != "sel")
-                //    $(this).addClass("sel");
-                //else
-                //    $(this).removeClass("sel");
+                //$(".coupon").removeClass("sel");
+                //$(this).addClass("sel");
+                //$("#couponText").html($(this).attr("describe") + " 使用：" + $(this).attr("useScope"));
+                //var value = $(this).attr("value");
+                //$("#userCouponsId").val(value);
+                //$(".xz_zhe").hide();
+                //$(".xz_yhq").removeClass("kai");
+                //var amount = $("#payAmount").html();
+                //$.ajax({
+                //    url: "/PersonalCentre/DiscountAmount",
+                //    data: { amount: amount, userCouponsId: value},
+                //    type: "post",
+                //    success: function (data) {
+                //        $("#discountAmount").html("(已优惠" + data.Msg + "元)");
+                //    }
+                //})
+                if ($(this).hasClass("sel") == false) {
+                    $(".coupon").removeClass("sel");
+                    $(this).addClass("sel");
+                    $("#couponText").html($(this).attr("describe") + " 使用：" + $(this).attr("useScope"));
+                    var value = $(this).attr("value");
+                    $("#userCouponsId").val(value);
+                    $(".xz_zhe").hide();
+                    $(".xz_yhq").removeClass("kai");
+                    var amount = $("#payAmount").html();
+                    $.ajax({
+                        url: "/PersonalCentre/DiscountAmount",
+                        data: { amount: amount, userCouponsId: value },
+                        type: "post",
+                        success: function (data) {
+                            $("#discountAmount").html("(已优惠" + data.Msg + "元)");
+                        }
+                    })
+                }
+                else {
+                    $("#userCouponsId").val(0);
+                    $(this).removeClass("sel");
+                    $(".xz_zhe").hide();
+                    $(".xz_yhq").removeClass("kai");
+                    $("#couponText").html("(请选择优惠卷)");
+                    $("#discountAmount").html("(已优惠0元)");
+                }
+               
             })
+
+            $("#tj").click(function () {
+                var accountTypeId = $("#accountTypeId").val();
+                var userCouponsId = $("#userCouponsId").val();
+                if (accountTypeId == "0") {
+                    $.openDialog("请选择你需要购买的卡片");
+                    return;
+                }
+                $.openLoading("下单中");
+                $.ajax({
+                    url: "/PersonalCentre/CardPlaceOrder",
+                    data: { accountTypeId: accountTypeId, userCouponsId: userCouponsId},
+                    type: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        $.closeLoading();
+                        if (data.Code == 0) {
+                            $.webChatPay(data.Msg);
+                        } else {
+                            $.openDialog(data.Msg);
+                        }
+                    },
+                    error: function () {
+                        $.closeLoading();
+                        $.openDialog("系统异常，请检查网络");
+                    }
+
+                });
+            });
         })
     </script>
 </body>
