@@ -22,7 +22,7 @@ namespace Ecard.SqlServices
             return _databaseInstance.GetById<Tickets>(TableName, id);
         }
 
-        public DataTables<Tickets> GetList(int userId, int pageIndex = 1, int pageSize = 10)
+        public DataTables<Ticketss> GetList(int userId, int pageIndex = 1, int pageSize = 10)
         {
             SqlParameter[] param = {
                                       new SqlParameter("@userId",userId),
@@ -30,7 +30,7 @@ namespace Ecard.SqlServices
                                       new SqlParameter("@pageSize",pageSize)
                                    };
             StoreProcedure sp = new StoreProcedure("P_getTickets", param);
-            return _databaseInstance.GetTables<Tickets>(sp);
+            return _databaseInstance.GetTables<Ticketss>(sp);
         }
 
         public void Create(Tickets item)

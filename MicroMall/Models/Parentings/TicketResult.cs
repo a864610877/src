@@ -17,7 +17,7 @@ namespace MicroMall.Models.Parentings
     {
         public int pageIndex { get; set; }
         public int pageSize { get; set; }
-        public List<Tickets> ListTickets{ get; set; }
+        public List<Ticketss> ListTickets{ get; set; }
     }
 
     public class ticketModel

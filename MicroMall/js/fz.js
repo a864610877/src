@@ -396,6 +396,7 @@ function getOpenId(url) {
     var url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1eaebf07824ac84c&redirect_uri=" + rui + "&response_type=code&scope=snsapi_base&state=123#wechat_redirect ";
     window.location.href = url;
 }
+//获取当前时间，格式YYYY-MM-DD
 function getNowFormatDate() {
     var date = new Date();
     var seperator1 = "-";
@@ -409,9 +410,56 @@ function getNowFormatDate() {
         strDate = "0" + strDate;
     }
     var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
-            + " " + date.getHours() + seperator2 + date.getMinutes()
-            + seperator2 + date.getSeconds();
+          
     return currentdate;
+}
+//获取当前时间，格式YYYY-MM-DD hh:mm:ss
+function getNowFormatDateTime() {
+    var date = new Date();
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+    }
+    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+        + " " + date.getHours() + seperator2 + date.getMinutes()
+        + seperator2 + date.getSeconds();
+    return currentdate;
+}
+//json日期转换
+//format "yyyy-MM-dd HH:mm:ss"
+function formatDate(value,format1) {
+    if (value == null || value == "") {
+        return null;
+    }
+    var date = new Date();
+    date.setTime(value.replace(/\/Date\((\d+)\)\//gi, '$1'));  //value通过截取字符串只取数字。
+    //2014/10/23
+    //return date.toLocaleString().replace('/', '-').replace('/', '-');
+    
+    return format(date, format1);
+}
+
+function format(date, fmt) {
+    var o = {
+        "M+": date.getMonth() + 1, //月份
+        "d+": date.getDate(), //日
+        "H+": date.getHours(), //小时
+        "m+": date.getMinutes(), //分
+        "s+": date.getSeconds(), //秒
+        "q+": Math.floor((date.getMonth() + 3) / 3), //季度
+        "S": date.getMilliseconds() //毫秒
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) :
+            (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
 }
 
 function toast() {

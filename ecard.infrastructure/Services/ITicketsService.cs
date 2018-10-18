@@ -9,7 +9,7 @@ namespace Ecard.Services
 {
     public interface ITicketsService
     {
-        DataTables<Tickets> GetList(int userId, int pageIndex = 1, int pageSize = 10);
+        DataTables<Ticketss> GetList(int userId, int pageIndex = 1, int pageSize = 10);
         Tickets GetById(int id);
         void Create(Tickets item);
         void Update(Tickets item);

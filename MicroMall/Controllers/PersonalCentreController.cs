@@ -81,16 +81,32 @@ namespace MicroMall.Controllers
             int userId = 0;
             var cookieId = Request.Cookies[SessionKeys.USERID].Value.ToString();
             int.TryParse(cookieId, out userId);
-            var query = ticketsService.GetList(userId);
+            result.buyTickets = new BuyTickets();
+            result.buyTickets.pageIndex = 1;
+            result.buyTickets.pageSize = 15;
+            var query = ticketsService.GetList(userId, result.buyTickets.pageIndex, result.buyTickets.pageSize);
             if (query != null)
             {
-                result.buyTickets = new BuyTickets();
-                result.buyTickets.pageIndex = 1;
-                result.buyTickets.pageSize = 15;
                 result.buyTickets.ListTickets = query.ModelList;
             }
             result.ListCoupons = userCouponsService.GetUserId(userId).Select(x=>new UseCoupons(x)).ToList();
             return View(result);
+        }
+        [HttpPost]
+        public ActionResult BuyTicketPage(int pageIndex)
+        {
+            int userId = 0;
+            var buyTickets = new BuyTickets();
+            buyTickets.pageIndex = pageIndex;
+            buyTickets.pageSize = 15;
+            var cookieId = Request.Cookies[SessionKeys.USERID].Value.ToString();
+            int.TryParse(cookieId, out userId);
+            var query = ticketsService.GetList(userId, buyTickets.pageIndex, buyTickets.pageSize);
+            if (query != null)
+            {
+                buyTickets.ListTickets = query.ModelList;
+            }
+            return Json(buyTickets);
         }
         /// <summary>
         /// 购票下单

@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "购票";
     Layout = null;
+    int pageIndex = 0;//当前页
 }
 @model MicroMall.Models.Parentings.TicketResult
 
@@ -58,45 +59,53 @@
 
     <!--已购记录-->
     <div class="gp_main" style=" display:none">
-        <ul class="gp_three">
-            <li>
-                <a href="#">
-                    <div class="left">
-                        家庭乐园套票<br>
-                        <span>有效期至 2018-11-22 </span>
-                    </div>
-                    <div class="right">
-                        未使用<br>
-                        <i class="shiYong">使用二维码</i>
-                    </div>
-                </a>
-            </li>
-            <li class="yong">
-                <div class="left">下午茶套票</div>
-                <div class="right">2018-11-22 &nbsp; 已使用</div>
-            </li>
-            <li class="yong">
-                <div class="left">成人票</div>
-                <div class="right">2018-11-22 &nbsp; 已使用</div>
-            </li>
-            <li class="yong">
-                <div class="left">下午茶套票</div>
-                <div class="right">2018-11-22 &nbsp; 已使用</div>
-            </li>
-            <li class="yong">
-                <div class="left">成人票</div>
-                <div class="right">2018-11-22 &nbsp; 已使用</div>
-            </li>
-            <li class="yong">
-                <div class="left">下午茶套票</div>
-                <div class="right">2018-11-22 &nbsp; 已使用</div>
-            </li>
-            <li class="yong">
-                <div class="left">下午茶套票</div>
-                <div class="right">2018-11-22 &nbsp; 已使用</div>
-            </li>
+        <ul class="gp_three" id="list">
+
+            @if (Model.buyTickets != null && Model.buyTickets.ListTickets != null)
+            {
+                pageIndex = Model.buyTickets.pageIndex;
+                foreach (var item in Model.buyTickets.ListTickets)
+                {
+                    if (item.State == Ecard.Models.TicketsState.NotUse && item.ExpiredDate >= DateTime.Now.Date)
+                    {
+                        <li>
+                            <a href="#">
+                                <div class="left">
+                                    @item.TicketName<br>
+                                    <span>有效期至 @item.ExpiredDate.ToString("yyyy-MM-dd") </span>
+                                </div>
+                                <div class="right">
+                                    未使用<br>
+                                    <i class="shiYong" data-code="@item.Code">使用二维码</i>
+                                </div>
+                            </a>
+                        </li>
+                    }
+                    else if (item.State == Ecard.Models.TicketsState.BeOverdue)
+                    {
+                        <li class="yong">
+                            <div class="left">@item.TicketName</div>
+                            <div class="right">@item.ExpiredDate.ToString("yyyy-MM-dd") &nbsp; 已过期</div>
+                        </li>
+                    }
+                    else if (item.State == Ecard.Models.TicketsState.NotUse && item.ExpiredDate < DateTime.Now.Date)
+                    {
+                        <li class="yong">
+                            <div class="left">@item.TicketName</div>
+                            <div class="right">@item.ExpiredDate.ToString("yyyy-MM-dd") &nbsp; 已过期</div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="yong">
+                            <div class="left">@item.TicketName</div>
+                            <div class="right">@item.userTime.Value.ToString("yyyy-MM-dd") &nbsp; 已使用</div>
+                        </li>
+                    }
+                }
+            }
         </ul>
-        <div class="gp_four"><a href="#">更多记录</a></div>
+        <div class="gp_four"><a href="#" id="nexPage" data-pageIndex="@pageIndex">更多记录</a></div>
 
         <img src="/images/bg_17.png" class="gp_img">
     </div>
@@ -129,12 +138,13 @@
 
     <!--弹二维码-->
     <div class="tan_wm" style="display:none">
-        <img src="/images/img1.jpg">
+        <div id="code"></div>
     </div>
-
+    <@*img src="/images/img1.jpg">*@
     <script src="/js/jQuery.js"></script>
     <script src="/js/layer/layer.js"></script>
-    <script src="/js/fz.js"></script>
+    <script src="/js/fz.js?v1.1"></script>
+    <script src="/js/jquery.qrcode.min.js"></script>
     <script type="text/javascript">
         $(function () {
             var countPrice = function () {
@@ -150,7 +160,7 @@
                         if (i == 0) {
                             ids = id;
                             nums = num;
-                            
+
                         } else {
                             ids +="," +id;
                             nums +=","+ num;
@@ -222,6 +232,9 @@
 
             //弹二维码
             $(".shiYong").click(function () {
+                var code = $(this).attr("data-code");
+                $("#code").html("");
+                $('#code').qrcode("http://www.baidu.com"); //任意字符串
                 layer.open({
                     type: 1,
                     title: false,
@@ -272,6 +285,61 @@
                             $.webChatPay(data.Msg);
                         } else {
                             $.openDialog(data.Msg);
+                        }
+                    },
+                    error: function () {
+                        $.closeLoading();
+                        $.openDialog("系统异常，请检查网络");
+                    }
+
+                });
+            });
+
+            $("#nexPage").click(function () {
+                var pageIndex = $(this).attr("data-pageIndex");
+                if (parseInt(pageIndex) <= 0) {
+                    $.openDialog("没有更多了");
+                    return;
+                }
+                pageIndex = parseInt(pageIndex) + 1;
+                $.openLoading("加载中");
+                $.ajax({
+                    url: "/PersonalCentre/BuyTicketPage",
+                    data: { "pageIndex": pageIndex},
+                    type: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        $.closeLoading();
+                        if (data != null && data.ListTickets != null && data.ListTickets.length > 0) {
+                            $("#nexPage").attr("data-pageIndex", data.pageIndex);
+                            var html = "";
+                            for (var i = 0; i < data.ListTickets.length; i++) {
+                                var item = data.ListTickets[i];
+                                var ExpiredDate = formatDate(item.ExpiredDate, "yyyy-MM-dd");
+                               var ExpiredDate1 = new Date(Date.parse(ExpiredDate));
+                                var nowdate = getNowFormatDate();
+                                nowdate = new Date(Date.parse(nowdate));
+                                var li = "";
+                                if (item.State == 1 && ExpiredDate1 >= nowdate) {
+                                    li += '<li><a href="#"><div class="left"> ' + item.TicketName + '<br><span>有效期至 ' + ExpiredDate + ' </span> </div>'
+                                    li += '<div class="right"> 未使用<br><i class="shiYong" data-code="' + item.Code + '">使用二维码</i> </div>'
+                                    li += '</a></li>';
+                                } else if (item.State == 3) {
+                                    li += '<li class="yong"> <div class="left">' + item.TicketName + '</div> <div class="right">' + ExpiredDate + ' &nbsp; 已过期</div>';
+                                    li += '</li>';
+                                } else if (item.State == 1 && ExpiredDate1 < nowdate) {
+                                    li += '<li class="yong"> <div class="left">' + item.TicketName + '</div> <div class="right">' + ExpiredDate + ' &nbsp; 已过期</div>';
+                                    li += '</li>';
+                                } else {
+                                    li += '<li class="yong"> <div class="left">' + item.TicketName + '</div> <div class="right">' + formatDate(item.userTime, "yyyy-MM-dd") + ' &nbsp; 已使用</div>';
+                                    li += '</li>';
+                                }
+                                html += li;
+                            }
+                            $("#list").append(html);
+                        } else {
+                            $.openDialog("没有更多了");
+                            $("#nexPage").attr("data-pageIndex", 0);
                         }
                     },
                     error: function () {

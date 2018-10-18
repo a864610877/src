@@ -1697,3 +1697,51 @@ System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketExce
 执行方法: CouponsController -- Resume
 2018-10-14 19:33:34,213 68 [68] DEBUG RunWatcher - 耗时: 8
 执行方法: CouponsController -- ListPost
+2018-10-17 21:15:01,598 1 [1] DEBUG app - sql store updated
+2018-10-17 21:15:01,803 1 [1] DEBUG app - SetupContiner
+2018-10-17 21:15:01,989 1 [1] DEBUG app - SetupSite
+2018-10-17 21:15:02,553 1 [1] DEBUG app - RegisterRoutes
+2018-10-17 21:15:02,555 1 [1] DEBUG app - registerActionFilters
+2018-10-17 21:15:02,569 1 [1] DEBUG app - registerModelBinders
+2018-10-17 21:15:02,569 1 [1] DEBUG app - registerViewEngines
+2018-10-17 21:15:02,589 1 [1] DEBUG app - registerControllerFactory
+2018-10-17 21:15:04,653 1 [1] DEBUG app - BuildSiteCss
+2018-10-17 21:15:04,653 1 [1] DEBUG app - SetResolver
+2018-10-17 21:15:04,656 1 [1] DEBUG app - RegisterAdapter
+2018-10-17 21:15:04,657 1 [1] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-17 21:15:04,965 7 [7] DEBUG RunWatcher - 耗时: 5
+执行方法: UserController -- LogOn
+2018-10-17 21:15:04,965 8 [8] DEBUG RunWatcher - 耗时: 5
+执行方法: UserController -- LogOn
+2018-10-17 21:15:07,379 8 [8] DEBUG RunWatcher - 耗时: 31
+执行方法: UtilityController -- Code
+2018-10-17 21:15:07,379 9 [9] DEBUG RunWatcher - 耗时: 31
+执行方法: UtilityController -- Code
+2018-10-17 21:15:19,746 9 [9] DEBUG RunWatcher - 耗时: 486
+执行方法: UserController -- LogOn
+2018-10-17 21:15:19,899 9 [9] DEBUG RunWatcher - 耗时: 126
+执行方法: HomeController -- Index
+2018-10-17 21:16:45,828 7 [7] DEBUG RunWatcher - 耗时: 134
+执行方法: AdmissionTicketController -- List
+2018-10-17 21:17:21,498 8 [8] DEBUG RunWatcher - 耗时: 3
+执行方法: AdmissionTicketController -- Create
+2018-10-17 21:18:33,833 8 [8] DEBUG RunWatcher - 耗时: 143
+执行方法: AdmissionTicketController -- Create
+2018-10-17 21:18:46,589 14 [14] DEBUG RunWatcher - 耗时: 5
+执行方法: AdmissionTicketController -- List
+2018-10-17 21:18:50,053 14 [14] DEBUG RunWatcher - 耗时: 21
+执行方法: AdmissionTicketController -- Resume
+2018-10-17 21:18:50,876 9 [9] DEBUG RunWatcher - 耗时: 3
+执行方法: AdmissionTicketController -- ListPost
+2018-10-17 21:20:48,966 14 [14] DEBUG RunWatcher - 耗时: 0
+执行方法: AdmissionTicketController -- Create
+2018-10-17 21:21:05,621 16 [16] DEBUG RunWatcher - 耗时: 15
+执行方法: AdmissionTicketController -- Create
+2018-10-17 21:21:07,149 6 [6] DEBUG RunWatcher - 耗时: 4
+执行方法: AdmissionTicketController -- List
+2018-10-17 21:21:10,947 16 [16] DEBUG RunWatcher - 耗时: 22
+执行方法: AdmissionTicketController -- Resume
+2018-10-17 21:21:11,715 6 [6] DEBUG RunWatcher - 耗时: 0
+执行方法: AdmissionTicketController -- ListPost
+2018-10-17 21:21:15,737 9 [9] DEBUG RunWatcher - 耗时: 56
+执行方法: AdmissionTicketController -- List

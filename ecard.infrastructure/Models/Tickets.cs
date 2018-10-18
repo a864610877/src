@@ -52,9 +52,20 @@ namespace Ecard.Models
         /// </summary>
         public string useScope { get; set; }
         /// <summary>
+        /// 使用日期
+        /// </summary>
+        public DateTime? userTime { get; set; }
+        /// <summary>
         /// 购买时间
         /// </summary>
         public DateTime BuyTime { get; set; }
+    }
+
+    public class Ticketss: Tickets
+    {
+        public string TicketName { get; set; }
+
+        public string Introduce { get; set; }
     }
 
     public class TicketsState

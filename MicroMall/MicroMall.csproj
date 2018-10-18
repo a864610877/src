@@ -576,6 +576,7 @@
     <Content Include="js\jquery-2.1.0.js" />
     <Content Include="js\jQuery.js" />
     <Content Include="js\jquery.min.js" />
+    <Content Include="js\jquery.qrcode.min.js" />
     <Content Include="js\JS-SDK.js" />
     <Content Include="js\jweixin-1.0.0.js" />
     <Content Include="js\layer\extend\layer.ext.js" />
