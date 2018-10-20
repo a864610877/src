@@ -215,6 +215,7 @@
     <Compile Include="Models\Parentings\BuyCardResult.cs" />
     <Compile Include="Models\Parentings\TicketResult.cs" />
     <Compile Include="Models\PersonalCentres\CardModel.cs" />
+    <Compile Include="Models\PersonalCentres\ConsumptionLogModel.cs" />
     <Compile Include="Models\PersonalCentres\CouponsModel.cs" />
     <Compile Include="Models\PerWebRequestLifetimeManager.cs" />
     <Compile Include="Models\Registers\register.cs" />
@@ -721,6 +722,7 @@
     <Content Include="Views\PersonalCentre\BuyTicket.cshtml" />
     <Content Include="Views\PersonalCentre\BuyCard.cshtml" />
     <Content Include="Views\PersonalCentre\Coupons.cshtml" />
+    <Content Include="Views\PersonalCentre\ConsumptionLog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ecard.infrastructure\Ecard.Infrastructure.csproj">

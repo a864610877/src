@@ -1745,3 +1745,53 @@ System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketExce
 执行方法: AdmissionTicketController -- ListPost
 2018-10-17 21:21:15,737 9 [9] DEBUG RunWatcher - 耗时: 56
 执行方法: AdmissionTicketController -- List
+2018-10-20 08:50:42,711 1 [1] DEBUG app - sql store updated
+2018-10-20 08:50:42,965 1 [1] DEBUG app - SetupContiner
+2018-10-20 08:50:43,110 1 [1] DEBUG app - SetupSite
+2018-10-20 08:50:43,147 1 [1] DEBUG app - RegisterRoutes
+2018-10-20 08:50:43,153 1 [1] DEBUG app - registerActionFilters
+2018-10-20 08:50:43,170 1 [1] DEBUG app - registerModelBinders
+2018-10-20 08:50:43,170 1 [1] DEBUG app - registerViewEngines
+2018-10-20 08:50:43,180 1 [1] DEBUG app - registerControllerFactory
+2018-10-20 08:50:44,316 1 [1] DEBUG app - BuildSiteCss
+2018-10-20 08:50:44,316 1 [1] DEBUG app - SetResolver
+2018-10-20 08:50:44,319 1 [1] DEBUG app - RegisterAdapter
+2018-10-20 08:50:44,321 1 [1] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-20 08:50:44,612 9 [9] DEBUG RunWatcher - 耗时: 9
+执行方法: UserController -- LogOn
+2018-10-20 08:50:45,281 6 [6] DEBUG RunWatcher - 耗时: 27
+执行方法: UtilityController -- Code
+2018-10-20 08:51:10,701 6 [6] DEBUG RunWatcher - 耗时: 0
+执行方法: UserController -- LogOn
+2018-10-20 08:51:10,814 12 [12] DEBUG RunWatcher - 耗时: 9
+执行方法: UtilityController -- Code
+2018-10-20 08:51:24,735 7 [7] DEBUG RunWatcher - 耗时: 75
+执行方法: UserController -- LogOn
+2018-10-20 08:51:24,821 8 [8] DEBUG RunWatcher - 耗时: 74
+执行方法: HomeController -- Index
+2018-10-20 08:51:30,035 9 [9] DEBUG RunWatcher - 耗时: 70
+执行方法: AccountTypeController -- List
+2018-10-20 08:51:52,221 9 [9] DEBUG RunWatcher - 耗时: 9
+执行方法: AccountTypeController -- List
+2018-10-20 08:51:56,142 8 [8] DEBUG RunWatcher - 耗时: 273
+执行方法: AccountTypeController -- Resume
+2018-10-20 08:51:58,153 7 [7] ERROR Ecard.Services.RemoteCacheService - 清理远程缓存
+System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 127.0.0.1:8732
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.WebClient.DownloadDataInternal(Uri address, WebRequest& request)
+   在 System.Net.WebClient.DownloadString(Uri address)
+   在 System.Net.WebClient.DownloadString(String address)
+   在 Ecard.Services.RemoteCacheService.<>c__DisplayClass3_0.<Refresh>b__0(Object o) 位置 D:\MY Project\亲子餐厅\v 1.0\src\ecard.infrastructure\Services\ICacheService.cs:行号 38
+2018-10-20 08:52:09,244 8 [8] DEBUG RunWatcher - 耗时: 16
+执行方法: AccountTypeController -- Suspend
+2018-10-20 08:52:11,247 9 [9] ERROR Ecard.Services.RemoteCacheService - 清理远程缓存
+System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 127.0.0.1:8732
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.WebClient.DownloadDataInternal(Uri address, WebRequest& request)
+   在 System.Net.WebClient.DownloadString(Uri address)
+   在 System.Net.WebClient.DownloadString(String address)
+   在 Ecard.Services.RemoteCacheService.<>c__DisplayClass3_0.<Refresh>b__0(Object o) 位置 D:\MY Project\亲子餐厅\v 1.0\src\ecard.infrastructure\Services\ICacheService.cs:行号 38

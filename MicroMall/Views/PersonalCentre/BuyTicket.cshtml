@@ -140,7 +140,6 @@
     <div class="tan_wm" style="display:none">
         <div id="code"></div>
     </div>
-    <@*img src="/images/img1.jpg">*@
     <script src="/js/jQuery.js"></script>
     <script src="/js/layer/layer.js"></script>
     <script src="/js/fz.js?v1.1"></script>
@@ -234,7 +233,7 @@
             $(".shiYong").click(function () {
                 var code = $(this).attr("data-code");
                 $("#code").html("");
-                $('#code').qrcode("http://www.baidu.com"); //任意字符串
+                $('#code').qrcode(code); //任意字符串
                 layer.open({
                     type: 1,
                     title: false,
@@ -282,7 +281,8 @@
                     success: function (data) {
                         $.closeLoading();
                         if (data.Code == 0) {
-                            $.webChatPay(data.Msg);
+                            $.openDialogUrl("购票成功", "/PersonalCentre/index");
+                            //$.webChatPay(data.Msg);
                         } else {
                             $.openDialog(data.Msg);
                         }

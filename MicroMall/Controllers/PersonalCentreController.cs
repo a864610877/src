@@ -30,12 +30,13 @@ namespace MicroMall.Controllers
         private readonly IMembershipService membershipService;
         private readonly IAccountTypeService accountTypeService;
         private readonly ILog4netService log4NetService;
+        private readonly DatabaseInstance _databaseInstance;
 
         public PersonalCentreController(IAccountService accountService, ITicketsService ticketsService
             , IAdmissionTicketService admissionTicketService, IUserCouponsService userCouponsService,
             ICouponsService couponsService, TransactionHelper transactionHelper, IOrdersService ordersService,
             IOrderDetialService orderDetialService, IUseCouponslogService useCouponslogService, IMembershipService membershipService
-            , IAccountTypeService accountTypeService, ILog4netService log4NetService)
+            , IAccountTypeService accountTypeService, ILog4netService log4NetService, DatabaseInstance _databaseInstance)
         {
             this.accountService = accountService;
             this.ticketsService = ticketsService;
@@ -49,6 +50,7 @@ namespace MicroMall.Controllers
             this.membershipService = membershipService;
             this.accountTypeService = accountTypeService;
             this.log4NetService = log4NetService;
+            this._databaseInstance = _databaseInstance;
         }
 
         public ActionResult Index()
@@ -364,14 +366,15 @@ namespace MicroMall.Controllers
                     }
                 }
 
-                JsApiPay jsApiPay = new JsApiPay();
-                jsApiPay.openid = user.openId;
-                jsApiPay.total_fee = (int)(order.payAmount * 100);
-                WxPayData unifiedOrderResult = jsApiPay.GetUnifiedOrderResult(order.orderNo);
-                string wxJsApiParam = jsApiPay.GetJsApiParameters();//获取H5调起JS API参数                    
-                WxPayAPI.Log.Debug(this.GetType().ToString(), "wxJsApiParam : " + wxJsApiParam);
+                //JsApiPay jsApiPay = new JsApiPay();
+                //jsApiPay.openid = user.openId;
+                //jsApiPay.total_fee = (int)(order.payAmount * 100);
+                //WxPayData unifiedOrderResult = jsApiPay.GetUnifiedOrderResult(order.orderNo);
+                //string wxJsApiParam = jsApiPay.GetJsApiParameters();//获取H5调起JS API参数                    
+                //WxPayAPI.Log.Debug(this.GetType().ToString(), "wxJsApiParam : " + wxJsApiParam);
                 tran.Commit();
-                return Json(new ResultMessage() { Code = 0, Msg = wxJsApiParam });
+                hd(orderNo);
+                return Json(new ResultMessage() { Code = 0, Msg = "" });
                 //在页面上显示订单信息
                 //Response.Write("<span style='color:#00CD00;font-size:20px'>订单详情：</span><br/>");
                 //Response.Write("<span style='color:#00CD00;font-size:20px'>" + unifiedOrderResult.ToPrintStr() + "</span>");
@@ -504,18 +507,22 @@ namespace MicroMall.Controllers
                         userCouponsService.Update(userCoupons);
                     }
                 }
-
-                JsApiPay jsApiPay = new JsApiPay();
-                jsApiPay.openid = user.openId;
-                jsApiPay.total_fee = (int)(order.payAmount * 100);
-                WxPayData unifiedOrderResult = jsApiPay.GetUnifiedOrderResult(order.orderNo);
-                string wxJsApiParam = jsApiPay.GetJsApiParameters();//获取H5调起JS API参数                    
-                WxPayAPI.Log.Debug(this.GetType().ToString(), "wxJsApiParam : " + wxJsApiParam);
+                //微信支付
+                //JsApiPay jsApiPay = new JsApiPay();
+                //jsApiPay.openid = user.openId;
+                //jsApiPay.total_fee = (int)(order.payAmount * 100);
+                //WxPayData unifiedOrderResult = jsApiPay.GetUnifiedOrderResult(order.orderNo);
+                //string wxJsApiParam = jsApiPay.GetJsApiParameters();//获取H5调起JS API参数                    
+                //WxPayAPI.Log.Debug(this.GetType().ToString(), "wxJsApiParam : " + wxJsApiParam);
                 tran.Commit();
-                return Json(new ResultMessage() { Code = 0, Msg = wxJsApiParam });
-                //在页面上显示订单信息
-                //Response.Write("<span style='color:#00CD00;font-size:20px'>订单详情：</span><br/>");
-                //Response.Write("<span style='color:#00CD00;font-size:20px'>" + unifiedOrderResult.ToPrintStr() + "</span>");
+
+                hd(orderNo);
+
+
+
+                //return Json(new ResultMessage() { Code = 0, Msg = wxJsApiParam });
+                return Json(new ResultMessage() { Code = 0, Msg = "" });
+                
 
             }
             catch (Exception ex)
@@ -529,6 +536,94 @@ namespace MicroMall.Controllers
             {
                 tran.Dispose();
             }
+        }
+
+        public void hd(string orderNo)
+        {
+            _databaseInstance.BeginTransaction();
+            var sql = "select * from fz_Orders where orderNo=@orderNo";
+            var order = new QueryObject<Orders>(_databaseInstance, sql, new { orderNo = orderNo }).FirstOrDefault();
+            if (order != null && order.orderState == OrderStates.awaitPay)
+            {
+                order.orderState = OrderStates.paid;
+                order.payTime = DateTime.Now;
+                _databaseInstance.Update(order, "fz_Orders");
+                var list = orderDetialService.GetOrderNo(orderNo);
+                if (list != null)
+                {
+                    if (order.type == OrderTypes.ticket)
+                    {
+                        foreach (var item in list)
+                        {
+                            var admissionTicket = admissionTicketService.GetById(item.sourceId);
+                            for (var i = 0; i < item.num; i++)
+                            {
+                                var ticket = new Tickets();
+                                ticket.AdmissionTicketId = admissionTicket.id;
+                                ticket.orderNo = orderNo;
+                                ticket.Price = item.amount;
+                                ticket.State = TicketsState.NotUse;
+                                ticket.UserId = order.userId;
+                                ticket.useScope = order.useScope;
+                                ticket.adultNum = admissionTicket.adultNum;
+                                ticket.BuyTime = DateTime.Now;
+                                ticket.childNum = admissionTicket.childNum;
+                                ticket.Code = string.Format("{0:yyyyMMddHHmmssffff}", DateTime.Now) + i.ToString() + order.userId.ToString();
+                                ticket.ExpiredDate = DateTime.Now.Date;
+                                _databaseInstance.Insert(ticket, "Tickets");
+                            }
+                        }
+                    }
+                    else if (order.type == OrderTypes.card)
+                    {
+                        string sqlSite = "select * from Sites";
+                        var site = new QueryObject<Site>(_databaseInstance, sqlSite, null).FirstOrDefault();
+                        string cardNo = "";
+                        int minxCode = 1;
+                        Int32.TryParse(site.MixCode, out minxCode);
+                        int i = 1;
+                        while (true)
+                        {
+                            minxCode = minxCode + i;
+                            cardNo = string.Format("60000000{0}", minxCode.ToString().PadLeft(8, '0'));
+                            string sqlCard = "select * from Accounts where Name=@Name";
+                            var card = new QueryObject<Account>(_databaseInstance, sqlCard, new { Name = cardNo }).FirstOrDefault();
+                            if (card == null)
+                                break;
+                            i++;
+                        }
+                        int shopId = 0;
+                        if (!string.IsNullOrWhiteSpace(order.useScope))
+                        {
+                            string sqlShop = "select * from shops where Name=@Name";
+                            var shop = new QueryObject<Account>(_databaseInstance, sqlShop, new { Name = order.useScope }).FirstOrDefault();
+                            if (shop != null)
+                                shopId = shop.ShopId;
+                        }
+                        var item = list.FirstOrDefault();
+                        var accountType = _databaseInstance.GetById<AccountType>("AccountTypes", item.sourceId);
+                        var account = new Account();
+                        account.AccountLevel = 0;
+                        account.AccountToken = "11111111";
+                        account.AccountTypeId = accountType.AccountTypeId;
+                        account.Amount = 0;
+                        account.ExpiredDate = DateTime.Now.AddMonths(accountType.ExpiredMonths);
+                        account.Frequency = accountType.Frequency;
+                        account.FrequencyUsed = 0;
+                        account.LastDealTime = DateTime.Now;
+                        account.Name = cardNo;
+                        account.OpenTime = DateTime.Now;
+                        account.OwnerId = order.userId;
+                        account.ShopId = shopId;
+                        account.useScope = order.useScope;
+                        account.State = AccountStates.Normal;
+                        _databaseInstance.Insert(account, "Accounts");
+                        site.MixCode = minxCode.ToString();
+                        _databaseInstance.Update(site, "Sites");
+                    }
+                }
+            }
+            _databaseInstance.Commit();
         }
 
         public ActionResult Coupons()
@@ -620,6 +715,52 @@ namespace MicroMall.Controllers
                 discountAmount = coupon.deductibleAmount;
             }
             return Json(new ResultMessage() { Code = 0, Msg = discountAmount.ToString() });
+        }
+
+        public ActionResult ConsumptionLog()
+        {
+            int userId = 0;
+            var cookieId = Request.Cookies[SessionKeys.USERID].Value.ToString();
+            int.TryParse(cookieId, out userId);
+            var user = membershipService.GetUserById(userId) as AccountUser;
+            if (user == null)
+                return Json(new ResultMessage() { Code = -1, Msg = "用户不存在" });
+            ConsumptionLogResult result = new ConsumptionLogResult();
+            var request = new OrdersRequest();
+            request.userId = userId;
+            request.pageIndex = 1;
+            request.pageSize = 1;
+            request.orderState = OrderStates.paid;
+            var datas = ordersService.Query(request);
+            if (datas != null)
+            {
+                result.pageSize = request.pageSize;
+                result.pageIndex = request.pageIndex;
+                result.ListConsumptionLog = datas.ModelList.Select(x => new ConsumptionLogModel(x)).ToList();
+            }
+            return View(result);
+        }
+
+        [HttpPost]
+        public ActionResult ConsumptionLogPage(int pageIndex)
+        {
+            int userId = 0;
+            var result = new ConsumptionLogResult();
+            result.pageIndex = pageIndex;
+            result.pageSize = 1;
+            var cookieId = Request.Cookies[SessionKeys.USERID].Value.ToString();
+            int.TryParse(cookieId, out userId);
+            var request = new OrdersRequest();
+            request.userId = userId;
+            request.pageIndex = result.pageIndex;
+            request.pageSize = result.pageSize;
+            request.orderState = OrderStates.paid;
+            var query = ordersService.Query(request);
+            if (query != null)
+            {
+                result.ListConsumptionLog = query.ModelList.Select(x=>new ConsumptionLogModel(x)).ToList();
+            }
+            return Json(result);
         }
     }
 }

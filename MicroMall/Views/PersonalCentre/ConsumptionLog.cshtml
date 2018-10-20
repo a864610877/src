@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "ConsumptionLog";
+    Layout = null;
+    int pageIndex = 0;//当前页
+}
+@model MicroMall.Models.PersonalCentres.ConsumptionLogResult
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/css/css.css">
+    <link href="/css/weui.min.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="xf_main">
+        <p class="xf_one">消费历史记录</p>
+        <ul class="xf_two">
+            <li>项目</li>
+            <li>金额</li>
+            <li>时间</li>
+        </ul>
+        <ul class="xf_three" id="list">
+            @if (Model.ListConsumptionLog != null)
+            {
+                pageIndex = Model.pageIndex;
+                foreach (var item in Model.ListConsumptionLog)
+                {
+                    <li>
+                        <p>@item.typeName</p>
+                        <p>@item.amount</p>
+                        <p>@item.subTime</p>
+                    </li>
+                }
+            }
+        </ul>
+        <div class="gp_four"><a href="#" id="nexPage" data-pageIndex="@pageIndex">更多记录</a></div>
+    </div>
+    <script src="/js/jQuery.js"></script>
+    <script src="/js/fz.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var h = $(window).height() - 185;
+            $(".xf_three").css("min-height", h);
+
+            $("#nexPage").click(function () {
+                var pageIndex = $(this).attr("data-pageIndex");
+                if (parseInt(pageIndex) <= 0) {
+                    $.openDialog("没有更多了");
+                    return;
+                }
+                pageIndex = parseInt(pageIndex) + 1;
+                $.openLoading("加载中");
+                $.ajax({
+                    url: "/PersonalCentre/ConsumptionLogPage",
+                    data: { "pageIndex": pageIndex },
+                    type: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        $.closeLoading();
+                        if (data != null && data.ListConsumptionLog != null && data.ListConsumptionLog.length > 0) {
+                            $("#nexPage").attr("data-pageIndex", data.pageIndex);
+                            var html = "";
+                            for (var i = 0; i < data.ListConsumptionLog.length; i++) {
+                                var item = data.ListConsumptionLog[i];
+                                
+                                var li = "<li> <p>" + item.typeName + "</p><p>" + item.amount + "</p><p>" + item.subTime+"</p> </li>";
+                                html += li;
+                            }
+                            $("#list").append(html);
+                        } else {
+                            $.openDialog("没有更多了");
+                            $("#nexPage").attr("data-pageIndex", 0);
+                        }
+                    },
+                    error: function () {
+                        $.closeLoading();
+                        $.openDialog("系统异常，请检查网络");
+                    }
+
+                });
+            });
+
+
+
+
+        })
+    </script>
+</body>
+</html>
+

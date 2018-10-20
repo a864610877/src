@@ -10,6 +10,7 @@
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title></title>
     <link rel="stylesheet" type="text/css" href="/css/css.css">
+    <link href="/css/weui.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -44,7 +45,7 @@
                 <li class="@className">
                     <h1>@item.cardName</h1>
                     <div class="zhong">
-                        <img src="/images/img1.jpg" class="wx shiYong">
+                        <img src="/images/img1.jpg" data-code="@item.cardNo" class="wx shiYong">
                         <div class="left">
                             <span><i>持卡人</i>@item.name</span>
                             <p><i>手机</i>@item.mobile</p>
@@ -56,11 +57,11 @@
                     <div class="bottom">
                         <p>
                             <span>剩余<i>@item.frequency</i>次</span>
-                            <a href="#">充值</a>
+                            <a href="/PersonalCentre/BuyCard">购卡</a>
                         </p>
                         <p>
                             <em>成人票</em>
-                            <a href="#">购买</a>
+                            <a href="/PersonalCentre/BuyTicket">购票</a>
                         </p>
                     </div>
                 </li>
@@ -72,33 +73,37 @@
     </ul>
     <div class="qq_two">
         <p><a href="/PersonalCentre/BuyCard" class="a">购买充值卡</a></p>
-        <p><a href="#" class="aa">历史消费记录</a></p>
+        <p><a href="/PersonalCentre/ConsumptionLog" class="aa">历史消费记录</a></p>
     </div>
 
     <!--弹二维码-->
     <div class="tan_wm" style="display:none">
-        <img src="images/img1.jpg">
+        <div id="code"></div>
     </div>
     <script src="/js/jQuery.js"></script>
     <script src="/js/layer/layer.js"></script>
+    <script src="/js/jquery.qrcode.min.js"></script>
     <script type="text/javascript">
-    $(function(){
-		//弹二维码
-		$(".shiYong").click(function(){
-			layer.open({
-				type: 1,
-				title: false,
-				closeBtn: 0,
-				area: ['70%', 'auto'],
-				shade : [0.6 , '#000' , false],
-				skin: 'layui-layer-nobg', //没有背景色
-				shadeClose: false,
-				closeBtn:1,
-				content: $(".tan_wm")
-			});
-			return false;
-		})
-	})
+        $(function () {
+            //弹二维码
+            $(".shiYong").click(function () {
+                var code = $(this).attr("data-code");
+                $("#code").html("");
+                $('#code').qrcode(code); //任意字符串
+                layer.open({
+                    type: 1,
+                    title: false,
+                    closeBtn: 0,
+                    area: ['70%', 'auto'],
+                    shade: [0.6, '#000', false],
+                    skin: 'layui-layer-nobg', //没有背景色
+                    shadeClose: false,
+                    closeBtn: 1,
+                    content: $(".tan_wm")
+                });
+                return false;
+            })
+        })
     </script>
 
 </body>

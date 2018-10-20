@@ -19,5 +19,9 @@ namespace MicroMall.Models
         /// 第一次错误时间
         /// </summary>
         public const string FIRSPASSWORDERRORTIME = "FIRSPASSWORDERRORTIME";
+        /// <summary>
+        /// 注册验证码
+        /// </summary>
+        public const string REGISTERCODE = "REGISTERCODE_";
     }
 }

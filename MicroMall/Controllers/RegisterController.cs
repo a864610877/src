@@ -78,6 +78,10 @@ namespace MicroMall.Controllers
             {
                 return Json(new ResultMessage() { Code = -1, Msg = "请输入验证码" });
             }
+            if (Session[SessionKeys.REGISTERCODE+register.mobile]==null)
+                return Json(new ResultMessage() { Code = -1, Msg = "验证码错误" });
+            if (Session[SessionKeys.REGISTERCODE + register.mobile].ToString() != register.verifiCode)
+                return Json(new ResultMessage() { Code = -1, Msg = "验证码错误" });
 
             var mobileUser = membershipService.GetByMobile(register.mobile);
             if(mobileUser!=null)
@@ -134,7 +138,10 @@ namespace MicroMall.Controllers
             var mobileUser = membershipService.GetByMobile(mobile);
             if (mobileUser != null)
                 return Json(new ResultMessage() { Code = -1, Msg = "手机号码已注册" });
+            Random random = new Random();
+            int code = random.Next(10001,99999);
+            Session[SessionKeys.REGISTERCODE+mobile] = code;
             return Json(new ResultMessage() { Code = 0, Msg = "" });
-        }
+            }
     }
 }

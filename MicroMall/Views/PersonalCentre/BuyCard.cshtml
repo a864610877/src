@@ -113,6 +113,7 @@
 
     <script src="/js/jQuery.js"></script>
     <script src="/js/fz.js"></script>
+    
     <script type="text/javascript">
         $(function () {
             //选择充值卡
@@ -186,7 +187,7 @@
                     $("#couponText").html("(请选择优惠卷)");
                     $("#discountAmount").html("(已优惠0元)");
                 }
-               
+
             })
 
             $("#tj").click(function () {
@@ -199,13 +200,14 @@
                 $.openLoading("下单中");
                 $.ajax({
                     url: "/PersonalCentre/CardPlaceOrder",
-                    data: { accountTypeId: accountTypeId, userCouponsId: userCouponsId},
+                    data: { accountTypeId: accountTypeId, userCouponsId: userCouponsId },
                     type: "post",
                     dataType: "json",
                     success: function (data) {
                         $.closeLoading();
                         if (data.Code == 0) {
-                            $.webChatPay(data.Msg);
+                            $.openDialogUrl("购卡成功", "/PersonalCentre/index");
+                            //$.webChatPay(data.Msg);
                         } else {
                             $.openDialog(data.Msg);
                         }

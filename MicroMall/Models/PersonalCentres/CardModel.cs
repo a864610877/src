@@ -23,7 +23,12 @@ namespace MicroMall.Models.PersonalCentres
           this.babySex = item.BabySex == 1 ? "男孩" : "女孩";
           this.expiredDate = item.ExpiredDate.ToString("yyyy-MM-dd");
           this.frequency = item.Frequency;
+            this.cardNo = item.Name;
         }
+        /// <summary>
+        /// 卡号
+        /// </summary>
+        public string cardNo { get; set; }
         /// <summary>
         /// 卡片名称
         /// </summary>

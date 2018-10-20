@@ -1,7 +1,9 @@
-﻿using Ecard.Models;
+﻿using Ecard.Infrastructure;
+using Ecard.Models;
 using Ecard.Services;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -34,6 +36,21 @@ namespace Ecard.SqlServices
         {
             string sql = "select * from fz_Orders where orderNo=@orderNo";
             return new QueryObject<Orders>(_databaseInstance, sql, new { orderNo = orderNo }).FirstOrDefault();
+        }
+
+        public DataTables<Orders> Query(OrdersRequest request)
+        {
+            SqlParameter[] param = {
+                                      new SqlParameter("@userId",request.userId),
+                                      new SqlParameter("@mobile",request.mobile),
+                                      new SqlParameter("@orderNo",request.orderNo),
+                                      new SqlParameter("@orderState",request.orderState),
+                                      new SqlParameter("@type",request.type),
+                                      new SqlParameter("@pageIndex",request.pageIndex),
+                                      new SqlParameter("@pageSize",request.pageSize)
+                                   };
+            StoreProcedure sp = new StoreProcedure("P_getOrders", param);
+            return _databaseInstance.GetTables<Orders>(sp);
         }
     }
 }
