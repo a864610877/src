@@ -729,7 +729,7 @@ namespace MicroMall.Controllers
             var request = new OrdersRequest();
             request.userId = userId;
             request.pageIndex = 1;
-            request.pageSize = 1;
+            request.pageSize = 15;
             request.orderState = OrderStates.paid;
             var datas = ordersService.Query(request);
             if (datas != null)
@@ -747,7 +747,7 @@ namespace MicroMall.Controllers
             int userId = 0;
             var result = new ConsumptionLogResult();
             result.pageIndex = pageIndex;
-            result.pageSize = 1;
+            result.pageSize = 15;
             var cookieId = Request.Cookies[SessionKeys.USERID].Value.ToString();
             int.TryParse(cookieId, out userId);
             var request = new OrdersRequest();

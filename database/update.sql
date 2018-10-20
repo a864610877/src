@@ -121,16 +121,24 @@ create PROCEDURE [dbo].[P_getOrders]
  @userId int=null,
  @mobile nvarchar(50)=null,
  @orderNo nvarchar(100)=null,
+ @orderState int=null,
+ @type int=null,
  @pageIndex INT,
  @pageSize INT
 AS
 BEGIN
 SELECT count(1) as Total from fz_Orders t left join Users u on t.userId=u.UserId where
-(@userId is null or t.UserId = @userId)
-(@mobile is null or u.Mobile = @userId)
-
- select * from  (select Row_Number() OVER(order by t.code )AS RowNum , t.*,u.name as 'TicketName' from Tickets t left join AdmissionTicket u on t.AdmissionTicketId=u.id where
-(@userId is null or t.UserId = @userId)
+(@userId is null or t.UserId = @userId) 
+and (@mobile is null or u.Mobile = @mobile) 
+and (@orderNo is null or t.orderNo = @orderNo) 
+and (@orderState is null or t.orderState = @orderState) 
+and (@type is null or t.type = @type) 
+ select * from  (select Row_Number() OVER(order by t.subTime desc )AS RowNum , t.* from fz_Orders t left join Users u on t.userId=u.UserId where
+(@userId is null or t.UserId = @userId) 
+and (@mobile is null or u.Mobile = @mobile) 
+and (@orderNo is null or t.orderNo = @orderNo) 
+and (@orderState is null or t.orderState = @orderState) 
+and (@type is null or t.type = @type)
 )t
 where t.RowNum > (@pageIndex -1) * @pageSize 
          AND t.RowNum <=   @pageIndex * @pageSize

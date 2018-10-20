@@ -1795,3 +1795,45 @@ System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketExce
    在 System.Net.WebClient.DownloadString(Uri address)
    在 System.Net.WebClient.DownloadString(String address)
    在 Ecard.Services.RemoteCacheService.<>c__DisplayClass3_0.<Refresh>b__0(Object o) 位置 D:\MY Project\亲子餐厅\v 1.0\src\ecard.infrastructure\Services\ICacheService.cs:行号 38
+2018-10-20 11:07:00,166 17 [17] DEBUG app - sql store updated
+2018-10-20 11:07:00,361 17 [17] DEBUG app - SetupContiner
+2018-10-20 11:07:00,442 17 [17] DEBUG app - SetupSite
+2018-10-20 11:07:01,741 17 [17] DEBUG app - RegisterRoutes
+2018-10-20 11:07:01,754 17 [17] DEBUG app - registerActionFilters
+2018-10-20 11:07:01,775 17 [17] DEBUG app - registerModelBinders
+2018-10-20 11:07:01,775 17 [17] DEBUG app - registerViewEngines
+2018-10-20 11:07:01,796 17 [17] DEBUG app - registerControllerFactory
+2018-10-20 11:07:03,329 17 [17] DEBUG app - BuildSiteCss
+2018-10-20 11:07:03,330 17 [17] DEBUG app - SetResolver
+2018-10-20 11:07:03,332 17 [17] DEBUG app - RegisterAdapter
+2018-10-20 11:07:03,334 17 [17] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-20 11:07:04,368 9 [9] DEBUG RunWatcher - 耗时: 7
+执行方法: UserController -- LogOn
+2018-10-20 11:07:06,465 12 [12] DEBUG RunWatcher - 耗时: 25
+执行方法: UtilityController -- Code
+2018-10-20 11:07:16,865 12 [12] DEBUG RunWatcher - 耗时: 96
+执行方法: UserController -- LogOn
+2018-10-20 11:07:17,008 8 [8] DEBUG RunWatcher - 耗时: 112
+执行方法: HomeController -- Index
+2018-10-20 11:07:24,204 15 [15] DEBUG RunWatcher - 耗时: 112
+执行方法: ShopController -- List
+2018-10-20 11:07:37,612 8 [8] DEBUG RunWatcher - 耗时: 54
+执行方法: ShopController -- Edit
+2018-10-20 11:09:22,549 8 [8] DEBUG RunWatcher - 耗时: 4
+执行方法: ShopController -- Create
+2018-10-20 11:16:54,498 17 [17] DEBUG app - sql store updated
+2018-10-20 11:16:54,821 17 [17] DEBUG app - SetupContiner
+2018-10-20 11:16:54,990 17 [17] DEBUG app - SetupSite
+2018-10-20 11:16:56,603 17 [17] DEBUG app - RegisterRoutes
+2018-10-20 11:16:56,619 17 [17] DEBUG app - registerActionFilters
+2018-10-20 11:16:56,632 17 [17] DEBUG app - registerModelBinders
+2018-10-20 11:16:56,632 17 [17] DEBUG app - registerViewEngines
+2018-10-20 11:16:56,638 17 [17] DEBUG app - registerControllerFactory
+2018-10-20 11:16:58,399 17 [17] DEBUG app - BuildSiteCss
+2018-10-20 11:16:58,400 17 [17] DEBUG app - SetResolver
+2018-10-20 11:16:58,405 17 [17] DEBUG app - RegisterAdapter
+2018-10-20 11:16:58,409 17 [17] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-20 11:17:00,616 22 [22] DEBUG RunWatcher - 耗时: 255
+执行方法: HomeController -- Index
+2018-10-20 11:17:11,712 22 [22] DEBUG RunWatcher - 耗时: 4
+执行方法: HomeController -- Index
