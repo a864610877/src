@@ -165,6 +165,12 @@ namespace WxPayAPI
                                             account.OwnerId = order.userId;
                                             account.ShopId = shopId;
                                             account.useScope = order.useScope;
+                                            account.SaleAmount = order.payAmount;
+                                            account.TotalTimes = accountType.Frequency;
+                                            if (order.payAmount > 0 && accountType.Frequency > 0)
+                                                account.SinglePrice = Convert.ToInt32(order.payAmount / accountType.Frequency);
+                                            else
+                                                account.SinglePrice = 0;
                                             account.State = AccountStates.Normal;
                                             _databaseInstance.Insert(account, "Accounts");
                                             site.MixCode = minxCode.ToString();

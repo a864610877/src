@@ -123,6 +123,20 @@ namespace Ecard.Models
 
         public string useScope { get; set; }
 
+
+        /// <summary>
+        /// 实收金额
+        /// </summary>
+        public decimal SaleAmount { get; set; }
+        /// <summary>
+        /// 总次数
+        /// </summary>
+        public int TotalTimes { get; set; }
+        /// <summary>
+        /// 单次价格
+        /// </summary>
+        public decimal SinglePrice { get; set; }
+
         /// <summary>
         /// 现金交易，不需要从账户中扣减余额，增加消费总额，增加积分。
         /// </summary>
@@ -268,7 +282,10 @@ namespace Ecard.Models
         public string OwnerMobileNumber { get; set; }
         public string BabyName { get; set; }
         public int BabySex { get; set; }
+        public DateTime babyBirthDate { get; set; }
         public string AccountTypeName { get; set; }
+        public string shopName { get; set; }
+        
     }
 
     public class ShopWithOwner : Shop

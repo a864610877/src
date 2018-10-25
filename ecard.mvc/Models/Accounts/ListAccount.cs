@@ -39,7 +39,10 @@ namespace Ecard.Mvc.Models.Accounts
         {
             get { return InnerObject.OwnerMobileNumber; }
         }
-
+        public int TotalTimes
+        {
+            get { return InnerObject.TotalTimes; }
+        }
         public int Frequency
         {
             get { return InnerObject.Frequency; }
@@ -47,6 +50,30 @@ namespace Ecard.Mvc.Models.Accounts
         public int FrequencyUsed
         {
             get { return InnerObject.FrequencyUsed; }
+        }
+        public decimal SinglePrice
+        {
+            get { return InnerObject.SinglePrice; }
+        }
+        public decimal SaleAmount
+        {
+            get { return InnerObject.SaleAmount; }
+        }
+        public DateTime babyBirthDate
+        {
+            get { return InnerObject.babyBirthDate; }
+        }
+        public string BabyName
+        {
+            get { return InnerObject.BabyName; }
+        }
+        public string BabySex
+        {
+            get { return InnerObject.BabySex==1?"ÄÐ":"Å®"; }
+        }
+        public string shopName
+        {
+            get { return InnerObject.shopName; }
         }
 
         //[CheckPermission(Ecard.Permissions.AccountInitPassword)]

@@ -116,31 +116,88 @@
 --   useTime datetime,--使用时间
 --)
 
+--GO
+--create PROCEDURE [dbo].[P_getOrders]
+-- @userId int=null,
+-- @mobile nvarchar(50)=null,
+-- @orderNo nvarchar(100)=null,
+-- @orderState int=null,
+-- @type int=null,
+-- @pageIndex INT,
+-- @pageSize INT
+--AS
+--BEGIN
+--SELECT count(1) as Total from fz_Orders t left join Users u on t.userId=u.UserId where
+--(@userId is null or t.UserId = @userId) 
+--and (@mobile is null or u.Mobile = @mobile) 
+--and (@orderNo is null or t.orderNo = @orderNo) 
+--and (@orderState is null or t.orderState = @orderState) 
+--and (@type is null or t.type = @type) 
+-- select * from  (select Row_Number() OVER(order by t.subTime desc )AS RowNum , t.* from fz_Orders t left join Users u on t.userId=u.UserId where
+--(@userId is null or t.UserId = @userId) 
+--and (@mobile is null or u.Mobile = @mobile) 
+--and (@orderNo is null or t.orderNo = @orderNo) 
+--and (@orderState is null or t.orderState = @orderState) 
+--and (@type is null or t.type = @type)
+--)t
+--where t.RowNum > (@pageIndex -1) * @pageSize 
+--         AND t.RowNum <=   @pageIndex * @pageSize
+--END
+go
+alter table Accounts add SaleAmount decimal(18,2)
+alter table Accounts add TotalTimes int
+alter table Accounts add SinglePrice decimal(18,2)
 GO
-create PROCEDURE [dbo].[P_getOrders]
- @userId int=null,
- @mobile nvarchar(50)=null,
- @orderNo nvarchar(100)=null,
- @orderState int=null,
- @type int=null,
+ALTER PROCEDURE [dbo].[P_getAccounts]
+ @State int=null,
+ @Name nvarchar(50)=null,
+ @ShopId int=null,
+ @AccountToken nvarchar(100)=null,
+ @States nvarchar(600)=null,
+ @Ids nvarchar(600)=null,
+ @AccountTypeId int=null,
+ @IsMobileAvailable bit=null,
+ @Content nvarchar(100)=null,
+ @NameWith nvarchar(50)=null,
+ @MobileWith nvarchar(50)=null,
  @pageIndex INT,
  @pageSize INT
 AS
 BEGIN
-SELECT count(1) as Total from fz_Orders t left join Users u on t.userId=u.UserId where
-(@userId is null or t.UserId = @userId) 
-and (@mobile is null or u.Mobile = @mobile) 
-and (@orderNo is null or t.orderNo = @orderNo) 
-and (@orderState is null or t.orderState = @orderState) 
-and (@type is null or t.type = @type) 
- select * from  (select Row_Number() OVER(order by t.subTime desc )AS RowNum , t.* from fz_Orders t left join Users u on t.userId=u.UserId where
-(@userId is null or t.UserId = @userId) 
-and (@mobile is null or u.Mobile = @mobile) 
-and (@orderNo is null or t.orderNo = @orderNo) 
-and (@orderState is null or t.orderState = @orderState) 
-and (@type is null or t.type = @type)
+SELECT count(1) as Total from accounts t left join Users u on t.OwnerId=u.UserId where
+(@Name is null or t.Name = @Name)
+and (@State is null or t.State = @State)
+and (@ShopId is null or t.DistributorId=@ShopId)
+and (@AccountToken is null or t.AccountToken = @AccountToken)
+and (@States is null or t.State  in (@States))
+and (@Ids is null or t.AccountId in (@Ids))
+and (@NameWith is null or t.Name like '%'+ @NameWith + '%') 
+and (@MobileWith is null or u.Mobile=@MobileWith) 
+and (@AccountTypeId is null or t.AccountTypeId = @AccountTypeId) 
+and (@IsMobileAvailable is null or 
+	(@IsMobileAvailable = 1 and exists(select * from users u where t.ownerId = u.userId and u.IsMobileAvailable = 1)) or
+	(@IsMobileAvailable = 0 and not exists(select * from users u where t.ownerId = u.userId and u.IsMobileAvailable = 1))
+	) 
+and	
+(@Content is null or u.Mobile like '%'+@Content+ '%')
+
+ select * from  (select Row_Number() OVER(order by t.Name )AS RowNum , t.*,u.DisplayName as 'OwnerDisplayName',u.Mobile as 'OwnerMobileNumber',u.babyBirthDate,u.babyName,u.babySex from accounts t left join Users u on t.OwnerId=u.UserId where
+(@Name is null or t.Name = @Name)
+and (@State is null or t.State = @State)
+and (@ShopId is null or t.DistributorId=@ShopId)
+and (@AccountToken is null or t.AccountToken = @AccountToken)
+and (@States is null or t.State  in (@States))
+and (@Ids is null or t.AccountId in (@Ids))
+and (@NameWith is null or t.Name like '%'+ @NameWith + '%') 
+and (@AccountTypeId is null or t.AccountTypeId = @AccountTypeId) 
+and (@MobileWith is null or u.Mobile=@MobileWith) 
+and (@IsMobileAvailable is null or 
+	(@IsMobileAvailable = 1 and exists(select * from users u where t.ownerId = u.userId and u.IsMobileAvailable = 1)) or
+	(@IsMobileAvailable = 0 and not exists(select * from users u where t.ownerId = u.userId and u.IsMobileAvailable = 1))
+	)
+and	
+(@Content is null or u.Mobile like '%'+@Content+ '%')
 )t
-where t.RowNum > (@pageIndex -1) * @pageSize 
+where t.RowNum >  (@pageIndex -1) * @pageSize 
          AND t.RowNum <=   @pageIndex * @pageSize
 END
-

@@ -1837,3 +1837,73 @@ System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketExce
 执行方法: HomeController -- Index
 2018-10-20 11:17:11,712 22 [22] DEBUG RunWatcher - 耗时: 4
 执行方法: HomeController -- Index
+2018-10-24 22:26:24,685 1 [1] DEBUG app - sql store updated
+2018-10-24 22:26:24,883 1 [1] DEBUG app - SetupContiner
+2018-10-24 22:26:24,984 1 [1] DEBUG app - SetupSite
+2018-10-24 22:26:26,893 1 [1] DEBUG app - RegisterRoutes
+2018-10-24 22:26:26,916 1 [1] DEBUG app - registerActionFilters
+2018-10-24 22:26:26,937 1 [1] DEBUG app - registerModelBinders
+2018-10-24 22:26:26,938 1 [1] DEBUG app - registerViewEngines
+2018-10-24 22:26:27,036 1 [1] DEBUG app - registerControllerFactory
+2018-10-24 22:26:28,581 1 [1] DEBUG app - BuildSiteCss
+2018-10-24 22:26:28,582 1 [1] DEBUG app - SetResolver
+2018-10-24 22:26:28,584 1 [1] DEBUG app - RegisterAdapter
+2018-10-24 22:26:28,585 1 [1] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-24 22:26:29,602 7 [7] DEBUG RunWatcher - 耗时: 7
+执行方法: UserController -- LogOn
+2018-10-24 22:26:31,768 8 [8] DEBUG RunWatcher - 耗时: 17
+执行方法: UtilityController -- Code
+2018-10-24 22:26:44,436 7 [7] DEBUG RunWatcher - 耗时: 107
+执行方法: UserController -- LogOn
+2018-10-24 22:26:44,548 9 [9] DEBUG RunWatcher - 耗时: 102
+执行方法: HomeController -- Index
+2018-10-24 22:27:00,389 8 [8] DEBUG RunWatcher - 耗时: 121
+执行方法: AccountController -- List
+2018-10-24 22:27:44,354 7 [7] DEBUG RunWatcher - 耗时: 21
+执行方法: AccountController -- ListPost
+2018-10-24 22:27:46,709 7 [7] DEBUG RunWatcher - 耗时: 5
+执行方法: AccountController -- ListPost
+2018-10-24 22:34:47,752 17 [17] DEBUG RunWatcher - 耗时: 0
+执行方法: UserController -- LogOn
+2018-10-24 22:34:49,097 16 [16] DEBUG RunWatcher - 耗时: 3
+执行方法: UtilityController -- Code
+2018-10-24 22:34:52,202 16 [16] DEBUG RunWatcher - 耗时: 0
+执行方法: UserController -- LogOn
+2018-10-24 22:34:52,292 17 [17] DEBUG RunWatcher - 耗时: 1
+执行方法: UtilityController -- Code
+2018-10-24 22:34:58,624 12 [12] DEBUG RunWatcher - 耗时: 19
+执行方法: UserController -- LogOn
+2018-10-24 22:34:58,631 12 [12] DEBUG RunWatcher - 耗时: 3
+执行方法: HomeController -- Index
+2018-10-24 22:35:02,648 10 [10] DEBUG RunWatcher - 耗时: 20
+执行方法: AccountController -- List
+2018-10-24 22:38:15,454 1 [1] DEBUG app - sql store updated
+2018-10-24 22:38:15,703 1 [1] DEBUG app - SetupContiner
+2018-10-24 22:38:15,776 1 [1] DEBUG app - SetupSite
+2018-10-24 22:38:16,586 1 [1] DEBUG app - RegisterRoutes
+2018-10-24 22:38:16,589 1 [1] DEBUG app - registerActionFilters
+2018-10-24 22:38:16,596 1 [1] DEBUG app - registerModelBinders
+2018-10-24 22:38:16,596 1 [1] DEBUG app - registerViewEngines
+2018-10-24 22:38:16,608 1 [1] DEBUG app - registerControllerFactory
+2018-10-24 22:38:17,267 1 [1] DEBUG app - BuildSiteCss
+2018-10-24 22:38:17,268 1 [1] DEBUG app - SetResolver
+2018-10-24 22:38:17,270 1 [1] DEBUG app - RegisterAdapter
+2018-10-24 22:38:17,271 1 [1] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-24 22:38:18,333 12 [12] DEBUG RunWatcher - 耗时: 176
+执行方法: HomeController -- Index
+2018-10-24 22:38:29,621 12 [12] DEBUG RunWatcher - 耗时: 137
+执行方法: AccountController -- List
+2018-10-24 22:39:49,514 12 [12] DEBUG RunWatcher - 耗时: 23
+执行方法: AccountController -- List
+2018-10-24 22:40:05,939 19 [19] DEBUG RunWatcher - 耗时: 6
+执行方法: AccountController -- List
+2018-10-25 19:50:36,440 77 [77] DEBUG RunWatcher - 耗时: 89
+执行方法: AccountTypeController -- List
+2018-10-25 19:50:45,720 84 [84] DEBUG RunWatcher - 耗时: 1
+执行方法: AccountTypeController -- List
+2018-10-25 19:50:47,165 80 [80] DEBUG RunWatcher - 耗时: 1
+执行方法: AccountTypeController -- List
+2018-10-25 19:50:48,327 81 [81] DEBUG RunWatcher - 耗时: 5
+执行方法: AccountTypeController -- List
+2018-10-25 19:53:32,504 100 [100] DEBUG RunWatcher - 耗时: 26
+执行方法: AccountTypeController -- Edit

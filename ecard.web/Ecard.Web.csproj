@@ -1175,7 +1175,6 @@
     <Content Include="Scripts\jquery.jqprint-0.3.js" />
     <Content Include="Scripts\jquery.json.js" />
     <Content Include="Scripts\jscharts.js" />
-    <Content Include="Scripts\kindeditor-4.1.10\asp.net\bin\LitJSON.dll" />
     <Content Include="Scripts\kindeditor-4.1.10\asp.net\demo.aspx" />
     <Content Include="Scripts\kindeditor-4.1.10\asp.net\README.txt" />
     <Content Include="Scripts\kindeditor-4.1.10\asp\demo.asp" />
@@ -1505,7 +1504,6 @@
     <Content Include="Content\umeditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneral-webfont.eot" />
     <Content Include="Content\umeditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneral-webfont.ttf" />
     <Content Include="Content\umeditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneral-webfont.woff" />
-    <Content Include="Content\umeditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneralbol-webfont.eot" />
     <Content Include="Content\umeditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneralbol-webfont.ttf" />
     <Content Include="Content\umeditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneralbol-webfont.woff" />
     <Content Include="Content\umeditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneralbolita-webfont.eot" />
@@ -1593,7 +1591,6 @@
     <Content Include="Views\DealWay\List.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Log\List.cshtml" />
     <Content Include="Views\PointGift\Create.cshtml" />
     <Content Include="Views\PointGift\Edit.cshtml" />
     <Content Include="Views\PointGift\List.cshtml" />
@@ -1868,7 +1865,9 @@
     <Folder Include="Areas\Controllers\" />
     <Folder Include="drivers\" />
     <Folder Include="editorImages\" />
+    <Folder Include="Scripts\kindeditor-4.1.10\asp.net\bin\" />
     <Folder Include="Scripts\kindeditor-4.1.10\attached\" />
+    <Folder Include="Views\Log\" />
     <Folder Include="Views\Shared\ItemTemplates\" />
   </ItemGroup>
   <ItemGroup>
