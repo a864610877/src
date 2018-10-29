@@ -165,6 +165,9 @@ namespace Ecard
                              new Permission {DisplayName = "编辑文章", Category = "文章",Name = Permissions.EditArticles, UserTypes = adminUserType},
                              new Permission {DisplayName = "删除文章", Category = "文章",Name = Permissions.DeleteArticles, UserTypes = adminUserType},
 
+                             new Permission {DisplayName = "核销列表", Category = "报表",Name = Permissions.TicketOffList, UserTypes = adminUserType},
+                             new Permission {DisplayName = "核销列表导出", Category = "报表",Name = Permissions.TicketOffReport, UserTypes = adminUserType},
+
                         }).AsQueryable();
             return from x in query
                    where x.UserTypes == null || x.UserTypes.ToList().IndexOf(userType) >= 0

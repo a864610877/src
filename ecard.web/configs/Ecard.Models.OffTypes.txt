@@ -1,0 +1,6 @@
+﻿ALL.name=全部
+ALL.order=1
+Card.name=卡核销
+Card.order=1
+TicKet.name=门票核销
+TicKet.order=1

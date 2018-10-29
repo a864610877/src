@@ -74,8 +74,7 @@
       <HintPath>..\..\libs\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\libs\Microsoft.Web.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Moonlit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\libs\Moonlit.dll</HintPath>
@@ -191,6 +190,7 @@
     <Content Include="configs\Ecard.Models.DistributorBrokerage.txt" />
     <Content Include="configs\Ecard.Models.DistributorUser.txt" />
     <Content Include="configs\Ecard.Models.LiquidateStates.txt" />
+    <Content Include="configs\Ecard.Models.OffTypes.txt" />
     <Content Include="configs\Ecard.Models.Order.txt" />
     <Content Include="configs\Ecard.Models.OrderState.txt" />
     <Content Include="configs\Ecard.Models.RollbackShopDealLogState.txt" />
@@ -208,7 +208,9 @@
     <Content Include="configs\Ecard.Mvc.Controllers.PointRebateLogController.txt" />
     <Content Include="configs\Ecard.Mvc.Controllers.RollbackController.txt" />
     <Content Include="configs\Ecard.Mvc.Controllers.ShopLiquidateController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.TicketOffController.txt" />
     <Content Include="configs\Ecard.Mvc.Controllers.UnityController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.WeChatController.txt" />
     <Content Include="configs\Ecard.Mvc.Models.Accounts.SystemPayAccount.txt" />
     <Content Include="configs\Ecard.Mvc.Models.AdminUserWithCash.txt" />
     <Content Include="configs\Ecard.Infrastructure.ResponseCode.txt" />
@@ -458,6 +460,8 @@
     <Content Include="configs\Ecard.Mvc.Models.Tasks.RechargingCommandViewTask.txt" />
     <Content Include="configs\Ecard.Mvc.Models.Tasks.StopTask.txt" />
     <Content Include="configs\Ecard.Mvc.Models.Tasks.ViewTask.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.TicketOffss.ListTicketOff.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.TicketOffss.ListTicketOffs.txt" />
     <Content Include="configs\Ecard.Mvc.Models.Users.CreateDog.txt" />
     <Content Include="configs\Ecard.Mvc.Models.Users.EditProfile.txt" />
     <Content Include="configs\Ecard.Policies.IntervalAccountCreator.txt" />
@@ -1857,7 +1861,9 @@
     <Content Include="Scripts\kindeditor-4.1.10\php\file_manager_json.php" />
     <Content Include="Scripts\kindeditor-4.1.10\php\JSON.php" />
     <Content Include="Scripts\kindeditor-4.1.10\php\upload_json.php" />
+    <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\qcr.pubxml" />
+    <Content Include="Views\TicketOff\List.cshtml" />
     <None Include="web.config.deploytemplate" />
   </ItemGroup>
   <ItemGroup>

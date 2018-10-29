@@ -243,6 +243,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routing\RouteDirectionConstraint.cs" />
     <Compile Include="PermissionService.cs" />
+    <Compile Include="SqlServices\SqlTicketOffService.cs" />
     <Compile Include="SqlServices\SqlTicketsService.cs" />
     <Compile Include="SqlServices\SqlUseCouponslogService.cs" />
     <Compile Include="SqlServices\SqlUserCouponsService.cs" />

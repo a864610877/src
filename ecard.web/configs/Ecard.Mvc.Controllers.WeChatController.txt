@@ -1,2 +1,2 @@
-﻿Edit.description=Edit
-Edit.name=Edit
+﻿Edit.description=微信设置
+Edit.name=微信设置

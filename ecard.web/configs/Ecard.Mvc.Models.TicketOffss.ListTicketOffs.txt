@@ -1,0 +1,15 @@
+﻿Data.name=核销时间
+Data.order=1
+mobile.name=手机号
+mobile.order=1
+OffType.name=类型
+OffType.order=1
+OrderBy.order=1
+pageHtml.order=1
+PageIndex.order=1
+PageSize.order=1
+shopDisplayName.name=门店名称
+shopDisplayName.order=1
+shopName.name=门店号
+shopName.order=1
+title=核销列表

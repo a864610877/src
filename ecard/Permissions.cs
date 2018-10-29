@@ -223,6 +223,15 @@ namespace Ecard
 
         public const string SetWeChat = "SetWeChat";
 
+        /// <summary>
+        /// 核销列表
+        /// </summary>
+        public const string TicketOffList = "TicketOffList";
+        /// <summary>
+        /// 核销列表导出
+        /// </summary>
+        public const string TicketOffReport = "TicketOffReport";
+
 
 
 

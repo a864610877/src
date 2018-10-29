@@ -1,0 +1,5 @@
+﻿description=Ecard.Mvc.Controllers.TicketOffController
+Export.description=导出
+List.description=核销列表
+List.name=核销列表
+name=Ecard.Mvc.Controllers.TicketOffController
