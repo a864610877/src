@@ -130,6 +130,7 @@ AdminUserSuspend.order=1
 AdmissionTicketDelete.content=AdmissionTicketDelete.content
 AdmissionTicketDelete.name=AdmissionTicketDelete.name
 AdmissionTicketDelete.order=1
+AdmissionTicketEdit.content=AdmissionTicketEdit.content
 AdmissionTicketEdit.name=AdmissionTicketEdit
 AdmissionTicketEdit.order=1
 AdmissionTicketResume.content=AdmissionTicketResume.content

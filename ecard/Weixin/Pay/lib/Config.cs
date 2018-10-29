@@ -21,7 +21,7 @@ namespace WxPayAPI
             var item = ISetWeChatService.GeByFirst();
             if (item != null)
             {
-                //WxPayAPI.Log.Debug("WxPayAPI.WxPayConfig", "回调url：" + WxPayConfig.USER_NOTIFY_URL);
+                WxPayAPI.Log.Debug("WxPayAPI.WxPayConfig", "APPID：" + item.appID);
                 APPID = item.appID;
                 MCHID = item.MCHID;
                 KEY = item.MCHIDKEY;
@@ -30,6 +30,11 @@ namespace WxPayAPI
                 USER_NOTIFY_URL = item.USER_NOTIFY_URL;
                 USERRegister_NOTIFY_URL = item.USERRegister_NOTIFY_URL;
             }
+            else
+            {
+                WxPayAPI.Log.Debug("WxPayAPI.WxPayConfig", "SetWeChat：为空");
+            }
+            
         }
         //=======【基本信息设置】=====================================
         /* 微信公众号信息配置

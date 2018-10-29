@@ -28,6 +28,7 @@ namespace MicroMall.Controllers
         }
         public ActionResult Index()
         {
+            WxPayAPI.Log.Debug("WxPayAPI.WxPayConfig", "APPID11：" + WxPayConfig.APPID);
             string redirect_uri = System.Configuration.ConfigurationManager.AppSettings["url"].ToString() + "/Register/register";
             string url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + WxPayConfig.APPID + "&redirect_uri=" + redirect_uri + "&response_type=code&scope=snsapi_userinfo&state=#wechat_redirect";
             return Redirect(url);

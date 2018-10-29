@@ -2003,3 +2003,71 @@ System.NullReferenceException: 未将对象引用设置到对象的实例。
 执行方法: HomeController -- Index
 2018-10-29 22:05:23,742 77 [77] DEBUG RunWatcher - 耗时: 51
 执行方法: WeChatController -- Edit
+2018-10-29 22:18:57,603 1 [1] DEBUG app - sql store updated
+2018-10-29 22:18:57,928 1 [1] DEBUG app - SetupContiner
+2018-10-29 22:18:58,190 1 [1] DEBUG app - SetupSite
+2018-10-29 22:19:00,084 1 [1] DEBUG app - RegisterRoutes
+2018-10-29 22:19:00,104 1 [1] DEBUG app - registerActionFilters
+2018-10-29 22:19:00,139 1 [1] DEBUG app - registerModelBinders
+2018-10-29 22:19:00,139 1 [1] DEBUG app - registerViewEngines
+2018-10-29 22:19:00,150 1 [1] DEBUG app - registerControllerFactory
+2018-10-29 22:19:01,935 1 [1] DEBUG app - BuildSiteCss
+2018-10-29 22:19:01,935 1 [1] DEBUG app - SetResolver
+2018-10-29 22:19:01,937 1 [1] DEBUG app - RegisterAdapter
+2018-10-29 22:19:01,939 1 [1] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-29 22:19:03,048 8 [8] DEBUG RunWatcher - 耗时: 11
+执行方法: UserController -- LogOn
+2018-10-29 22:19:05,682 7 [7] DEBUG RunWatcher - 耗时: 20
+执行方法: UtilityController -- Code
+2018-10-29 22:19:36,123 6 [6] DEBUG RunWatcher - 耗时: 232
+执行方法: UserController -- LogOn
+2018-10-29 22:19:36,260 6 [6] DEBUG RunWatcher - 耗时: 127
+执行方法: HomeController -- Index
+2018-10-29 22:19:43,973 6 [6] DEBUG RunWatcher - 耗时: 268
+执行方法: TicketOffController -- List
+2018-10-29 22:20:00,877 6 [6] DEBUG RunWatcher - 耗时: 17
+执行方法: WeChatController -- Edit
+2018-10-29 22:39:18,642 30 [30] DEBUG app - sql store updated
+2018-10-29 22:39:18,910 30 [30] DEBUG app - SetupContiner
+2018-10-29 22:39:19,022 30 [30] DEBUG app - SetupSite
+2018-10-29 22:39:20,468 30 [30] DEBUG app - RegisterRoutes
+2018-10-29 22:39:20,489 30 [30] DEBUG app - registerActionFilters
+2018-10-29 22:39:20,496 30 [30] DEBUG app - registerModelBinders
+2018-10-29 22:39:20,496 30 [30] DEBUG app - registerViewEngines
+2018-10-29 22:39:20,509 30 [30] DEBUG app - registerControllerFactory
+2018-10-29 22:39:21,373 30 [30] DEBUG app - BuildSiteCss
+2018-10-29 22:39:21,373 30 [30] DEBUG app - SetResolver
+2018-10-29 22:39:21,376 30 [30] DEBUG app - RegisterAdapter
+2018-10-29 22:39:21,377 30 [30] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-29 22:39:22,988 31 [31] DEBUG RunWatcher - 耗时: 5
+执行方法: UserController -- LogOn
+2018-10-29 22:39:25,210 29 [29] DEBUG RunWatcher - 耗时: 19
+执行方法: UtilityController -- Code
+2018-10-29 22:40:29,078 26 [26] DEBUG RunWatcher - 耗时: 188
+执行方法: UserController -- LogOn
+2018-10-29 22:40:29,182 26 [26] DEBUG RunWatcher - 耗时: 91
+执行方法: HomeController -- Index
+2018-10-29 22:40:36,021 26 [26] DEBUG RunWatcher - 耗时: 92
+执行方法: TicketOffController -- List
+2018-10-29 22:41:05,914 26 [26] DEBUG RunWatcher - 耗时: 2
+执行方法: TicketOffController -- ListPost
+2018-10-29 22:41:06,803 7 [7] DEBUG RunWatcher - 耗时: 0
+执行方法: TicketOffController -- ListPost
+2018-10-29 22:41:08,190 26 [26] DEBUG RunWatcher - 耗时: 122
+执行方法: DealLogController -- List
+2018-10-29 22:41:22,315 7 [7] DEBUG RunWatcher - 耗时: 39
+执行方法: AdmissionTicketController -- List
+2018-10-29 22:41:37,085 32 [32] DEBUG RunWatcher - 耗时: 32
+执行方法: AdmissionTicketController -- Edit
+2018-10-29 22:41:47,820 26 [26] DEBUG RunWatcher - 耗时: 138
+执行方法: AdmissionTicketController -- Edit
+2018-10-29 22:41:49,514 7 [7] DEBUG RunWatcher - 耗时: 6
+执行方法: AdmissionTicketController -- List
+2018-10-29 22:41:53,810 26 [26] DEBUG RunWatcher - 耗时: 3
+执行方法: AdmissionTicketController -- Create
+2018-10-29 22:41:55,785 26 [26] DEBUG RunWatcher - 耗时: 18
+执行方法: CouponsController -- List
+2018-10-29 22:41:57,146 7 [7] DEBUG RunWatcher - 耗时: 17
+执行方法: CouponsController -- Create
+2018-10-29 22:42:10,696 26 [26] DEBUG RunWatcher - 耗时: 16
+执行方法: WeChatController -- Edit
