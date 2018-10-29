@@ -1907,3 +1907,99 @@ System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketExce
 执行方法: AccountTypeController -- List
 2018-10-25 19:53:32,504 100 [100] DEBUG RunWatcher - 耗时: 26
 执行方法: AccountTypeController -- Edit
+2018-10-29 20:54:07,837 1 [1] DEBUG app - sql store updated
+2018-10-29 20:54:08,190 1 [1] DEBUG app - SetupContiner
+2018-10-29 20:54:08,484 1 [1] DEBUG app - SetupSite
+2018-10-29 20:54:10,723 1 [1] DEBUG app - RegisterRoutes
+2018-10-29 20:54:10,748 1 [1] DEBUG app - registerActionFilters
+2018-10-29 20:54:10,831 1 [1] DEBUG app - registerModelBinders
+2018-10-29 20:54:10,831 1 [1] DEBUG app - registerViewEngines
+2018-10-29 20:54:10,866 1 [1] DEBUG app - registerControllerFactory
+2018-10-29 20:54:12,836 1 [1] DEBUG app - BuildSiteCss
+2018-10-29 20:54:12,836 1 [1] DEBUG app - SetResolver
+2018-10-29 20:54:12,838 1 [1] DEBUG app - RegisterAdapter
+2018-10-29 20:54:12,840 1 [1] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-29 20:54:14,178 9 [9] DEBUG RunWatcher - 耗时: 6
+执行方法: UserController -- LogOn
+2018-10-29 20:54:17,033 6 [6] DEBUG RunWatcher - 耗时: 18
+执行方法: UtilityController -- Code
+2018-10-29 20:54:27,728 6 [6] DEBUG RunWatcher - 耗时: 681
+执行方法: UserController -- LogOn
+2018-10-29 20:54:27,947 6 [6] DEBUG RunWatcher - 耗时: 208
+执行方法: HomeController -- Index
+2018-10-29 20:54:39,660 8 [8] DEBUG RunWatcher - 耗时: 119
+执行方法: CouponsController -- Create
+2018-10-29 20:54:56,617 6 [6] DEBUG RunWatcher - 耗时: 204
+执行方法: ShopController -- List
+2018-10-29 20:55:09,528 8 [8] DEBUG RunWatcher - 耗时: 40
+执行方法: ShopController -- Edit
+2018-10-29 20:55:21,642 7 [7] DEBUG RunWatcher - 耗时: 598
+执行方法: ShopController -- Edit
+2018-10-29 20:55:21,661 10 [10] DEBUG RunWatcher - 耗时: 14
+执行方法: ShopController -- List
+2018-10-29 20:55:23,779 6 [6] ERROR Ecard.Services.RemoteCacheService - 清理远程缓存
+System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 127.0.0.1:8732
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.WebClient.DownloadDataInternal(Uri address, WebRequest& request)
+   在 System.Net.WebClient.DownloadString(Uri address)
+   在 System.Net.WebClient.DownloadString(String address)
+   在 Ecard.Services.RemoteCacheService.<>c__DisplayClass3_0.<Refresh>b__0(Object o) 位置 E:\github\Source\src\ecard.infrastructure\Services\ICacheService.cs:行号 38
+2018-10-29 20:55:23,781 7 [7] DEBUG RunWatcher - 耗时: 0
+执行方法: UserController -- LogOff
+2018-10-29 20:55:23,879 10 [10] DEBUG RunWatcher - 耗时: 0
+执行方法: UserController -- LogOn
+2018-10-29 20:55:23,919 8 [8] DEBUG RunWatcher - 耗时: 1
+执行方法: UtilityController -- Code
+2018-10-29 20:55:29,107 8 [8] DEBUG RunWatcher - 耗时: 25
+执行方法: UserController -- LogOn
+2018-10-29 20:55:29,118 6 [6] DEBUG RunWatcher - 耗时: 3
+执行方法: HomeController -- Index
+2018-10-29 21:59:29,317 78 [78] DEBUG RunWatcher - 耗时: 0
+执行方法: UserController -- LogOff
+2018-10-29 21:59:29,331 80 [80] DEBUG RunWatcher - 耗时: 0
+执行方法: UserController -- LogOn
+2018-10-29 21:59:29,394 77 [77] DEBUG RunWatcher - 耗时: 24
+执行方法: UtilityController -- Code
+2018-10-29 21:59:36,051 78 [78] DEBUG RunWatcher - 耗时: 92
+执行方法: UserController -- LogOn
+2018-10-29 21:59:36,062 80 [80] DEBUG RunWatcher - 耗时: 4
+执行方法: HomeController -- Index
+2018-10-29 21:59:42,105 73 [73] DEBUG RunWatcher - 耗时: 103
+执行方法: WeChatController -- Edit
+2018-10-29 21:59:42,106 73 [73] ERROR ecard.error - Ecard.Mvc.LogHelper+LogItem
+System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 Ecard.Mvc.Models.SetWeChats.EditSetWeChat.Ready() 位置 E:\github\Source\src\ecard.mvc\Models\SetWeChats\EditSetWeChat.cs:行号 54
+   在 Ecard.Mvc.Controllers.WeChatController.Edit() 位置 E:\github\Source\src\ecard.mvc\Controllers\WeChatController.cs:行号 31
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 Ecard.Mvc.Infrastructure.EcardControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters) 位置 E:\github\Source\src\ecard.mvc\Infrastructure\EcardControllerActionInvoker.cs:行号 32
+2018-10-29 22:02:01,703 76 [76] DEBUG RunWatcher - 耗时: 36
+执行方法: WeChatController -- Edit
+2018-10-29 22:02:11,798 77 [77] DEBUG RunWatcher - 耗时: 0
+执行方法: WeChatController -- Edit
+2018-10-29 22:04:07,104 65 [65] DEBUG app - sql store updated
+2018-10-29 22:04:07,576 65 [65] DEBUG app - SetupContiner
+2018-10-29 22:04:08,016 65 [65] DEBUG app - SetupSite
+2018-10-29 22:04:09,602 65 [65] DEBUG app - RegisterRoutes
+2018-10-29 22:04:09,618 65 [65] DEBUG app - registerActionFilters
+2018-10-29 22:04:09,652 65 [65] DEBUG app - registerModelBinders
+2018-10-29 22:04:09,652 65 [65] DEBUG app - registerViewEngines
+2018-10-29 22:04:09,665 65 [65] DEBUG app - registerControllerFactory
+2018-10-29 22:04:10,655 65 [65] DEBUG app - BuildSiteCss
+2018-10-29 22:04:10,655 65 [65] DEBUG app - SetResolver
+2018-10-29 22:04:10,657 65 [65] DEBUG app - RegisterAdapter
+2018-10-29 22:04:10,659 65 [65] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-29 22:04:53,605 76 [76] DEBUG RunWatcher - 耗时: 59
+执行方法: UserController -- LogOn
+2018-10-29 22:04:56,798 61 [61] DEBUG RunWatcher - 耗时: 4
+执行方法: UtilityController -- Code
+2018-10-29 22:05:06,987 77 [77] DEBUG RunWatcher - 耗时: 263
+执行方法: UserController -- LogOn
+2018-10-29 22:05:07,251 76 [76] DEBUG RunWatcher - 耗时: 253
+执行方法: HomeController -- Index
+2018-10-29 22:05:23,742 77 [77] DEBUG RunWatcher - 耗时: 51
+执行方法: WeChatController -- Edit

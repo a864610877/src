@@ -181,7 +181,7 @@ and (@IsMobileAvailable is null or
 and	
 (@Content is null or u.Mobile like '%'+@Content+ '%')
 
- select * from  (select Row_Number() OVER(order by t.Name )AS RowNum , t.*,u.DisplayName as 'OwnerDisplayName',u.Mobile as 'OwnerMobileNumber',u.babyBirthDate,u.babyName,u.babySex from accounts t left join Users u on t.OwnerId=u.UserId where
+ select * from  (select Row_Number() OVER(order by t.Name )AS RowNum , t.*,u.DisplayName as 'OwnerDisplayName',u.Mobile as 'OwnerMobileNumber',u.babyBirthDate,u.babyName,u.babySex,(select DisplayName from Shops where Name=t.useScope) as shopName from accounts t left join Users u on t.OwnerId=u.UserId where
 (@Name is null or t.Name = @Name)
 and (@State is null or t.State = @State)
 and (@ShopId is null or t.DistributorId=@ShopId)

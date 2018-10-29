@@ -1,2 +1,4 @@
-﻿Edit.description=Edit
+﻿description=Ecard.Mvc.Controllers.WeChatController
+Edit.description=Edit
 Edit.name=Edit
+name=Ecard.Mvc.Controllers.WeChatController

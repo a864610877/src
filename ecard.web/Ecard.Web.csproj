@@ -1855,6 +1855,7 @@
     <Content Include="Scripts\kindeditor-4.1.10\php\JSON.php" />
     <Content Include="Scripts\kindeditor-4.1.10\php\upload_json.php" />
     <None Include="Properties\PublishProfiles\qcr.pubxml" />
+    <Content Include="Views\WeChat\Edit.cshtml" />
     <None Include="web.config.deploytemplate" />
   </ItemGroup>
   <ItemGroup>
