@@ -281,7 +281,7 @@
                     success: function (data) {
                         $.closeLoading();
                         if (data.Code == 0) {
-                            $.openDialogUrl("购票成功", "/PersonalCentre/index");
+                            $.openDialogUrl("购票成功", "/PersonalCentre/BuyTicket");
                             //$.webChatPay(data.Msg);
                         } else {
                             $.openDialog(data.Msg);

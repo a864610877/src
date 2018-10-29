@@ -1,5 +1,7 @@
 ﻿using Ecard.Models;
 using Ecard.Services;
+using Ecard.XWKJ;
+using Ecard.XWKJSms;
 using MicroMall.Models;
 using MicroMall.Models.Registers;
 using Senparc.Weixin;
@@ -26,23 +28,26 @@ namespace MicroMall.Controllers
         }
         public ActionResult Index()
         {
-            string url = "/register/register?code=123123";
+            string redirect_uri = System.Configuration.ConfigurationManager.AppSettings["url"].ToString() + "/Register/register";
+            string url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + WxPayConfig.APPID + "&redirect_uri=" + redirect_uri + "&response_type=code&scope=snsapi_userinfo&state=#wechat_redirect";
             return Redirect(url);
+            //string url = "/register/register?code=123123333";
+            //return Redirect(url);
         }
 
-        public ActionResult register(string code)
+        public ActionResult register(string code,string state)
         {
-            //OAuthAccessTokenResult result = Senparc.Weixin.MP.AdvancedAPIs.OAuthApi.GetAccessToken(WxPayConfig.APPID, WxPayConfig.APPSECRET, code);
-            //var openid = result.openid;
-            //var user = membershipService.GetByOpenId(openid);
-            //if (user != null)
-            //{
-            //    HttpCookie cookie = new HttpCookie(SessionKeys.USERID, user.UserId.ToString());
-            //    Response.Cookies.Add(cookie);
-            //    return RedirectToAction("index", "PersonalCentre");
-            //}
-            //ViewData["openId"] = openid;
-            ViewData["openId"] = code;
+            OAuthAccessTokenResult result = Senparc.Weixin.MP.AdvancedAPIs.OAuthApi.GetAccessToken(WxPayConfig.APPID, WxPayConfig.APPSECRET, code);
+            var openid = result.openid;
+            var user = membershipService.GetByOpenId(openid);
+            if (user != null)
+            {
+                HttpCookie cookie = new HttpCookie(SessionKeys.USERID, user.UserId.ToString());
+                Response.Cookies.Add(cookie);
+                return RedirectToAction("index", "PersonalCentre");
+            }
+            ViewData["openId"] = openid;
+            //ViewData["openId"] = code;
             return View();
             
         }
@@ -135,13 +140,31 @@ namespace MicroMall.Controllers
         [HttpPost]
         public ActionResult SmsRegisterCode(string mobile)
         {
-            var mobileUser = membershipService.GetByMobile(mobile);
-            if (mobileUser != null)
-                return Json(new ResultMessage() { Code = -1, Msg = "手机号码已注册" });
-            Random random = new Random();
-            int code = random.Next(10001,99999);
-            Session[SessionKeys.REGISTERCODE+mobile] = code;
-            return Json(new ResultMessage() { Code = 0, Msg = "" });
+            try
+            {
+                var mobileUser = membershipService.GetByMobile(mobile);
+                if (mobileUser != null)
+                    return Json(new ResultMessage() { Code = -1, Msg = "手机号码已注册" });
+                Random random = new Random();
+                int code = random.Next(10001, 99999);
+                string SmsAccount = "dnd@dnd";
+                string SmsPwd = "li3bAK7h";
+                ISendSms sendSms = new XWKJ_Sms();
+                Ecard.XWKJSms.SmsResponseMsg srm = new Ecard.XWKJSms.SmsResponseMsg();
+                string message = "您本次注册的手机验证码为" + code;
+                bool isSuccess = sendSms.SendOne(message, mobile, SmsAccount, SmsPwd, out srm);
+                if (isSuccess)
+                {
+                    Session[SessionKeys.REGISTERCODE + mobile] = code;
+                    return Json(new ResultMessage() { Code = 0, Msg = "" });
+                }
+                return Json(new ResultMessage() { Code = -1, Msg = "发送失败" });
             }
+            catch (Exception ex)
+            {
+                return Json(new ResultMessage() { Code = -1, Msg = "发送失败："+ex.Message });
+            }
+            
+        }
     }
 }
