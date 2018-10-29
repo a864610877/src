@@ -219,6 +219,7 @@
     <Compile Include="Models\SystemDealLogTypes.cs" />
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\TaskStates.cs" />
+    <Compile Include="Models\TicketOff.cs" />
     <Compile Include="Models\Tickets.cs" />
     <Compile Include="Models\UseCouponslog.cs" />
     <Compile Include="Models\UserCoupons.cs" />
@@ -245,6 +246,7 @@
     <Compile Include="Services\IRechargingLogService.cs" />
     <Compile Include="Services\IRollbackShopDealLogService.cs" />
     <Compile Include="Services\ISetWeChatService.cs" />
+    <Compile Include="Services\ITicketOffService.cs" />
     <Compile Include="Services\ITicketsService.cs" />
     <Compile Include="Services\IUseCouponslogService.cs" />
     <Compile Include="Services\IUserCouponsService.cs" />

@@ -1,4 +1,2 @@
-﻿description=Ecard.Mvc.Controllers.WeChatController
-Edit.description=Edit
-Edit.name=Edit
-name=Ecard.Mvc.Controllers.WeChatController
+﻿Edit.description=微信设置
+Edit.name=微信设置

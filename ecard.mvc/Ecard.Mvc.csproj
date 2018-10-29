@@ -185,6 +185,7 @@
     <Compile Include="Controllers\LiquidateController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\TicketOffController.cs" />
     <Compile Include="Controllers\UnityController.cs" />
     <Compile Include="Controllers\RollbackController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
@@ -241,6 +242,8 @@
     <Compile Include="Models\Tasks\ListTasks.cs" />
     <Compile Include="Models\Tasks\ListTask.cs" />
     <Compile Include="Models\Tasks\RefuseCommand.cs" />
+    <Compile Include="Models\TicketOffss\ListTicketOff.cs" />
+    <Compile Include="Models\TicketOffss\ListTicketOffs.cs" />
     <Compile Include="ResultMsg.cs" />
     <Compile Include="SimpleMessageProvider.cs" />
     <Compile Include="Models\ItemList.cs" />

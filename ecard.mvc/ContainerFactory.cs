@@ -105,6 +105,7 @@ namespace Ecard.Mvc
                 .RegisterType<IOrdersService, SqlOrdersService>()
                 .RegisterType<IOrderDetialService, SqlOrderDetialService>()
                 .RegisterType<IUseCouponslogService,SqlUseCouponslogService>()
+                .RegisterType<ITicketOffService, SqlTicketOffService>()
                 .RegisterType<IDashboardItemRepository, DashboardItemRepository>(new ContainerControlledLifetimeManager())
                 .RegisterType<IRegisterRoutes, EcardRoutes>(
                     new InjectionConstructor(
