@@ -2565,3 +2565,27 @@ System.NullReferenceException: 未将对象引用设置到对象的实例。
 执行方法: AccountController -- ListPost
 2018-10-31 00:02:04,446 31 [31] DEBUG RunWatcher - 耗时: 2
 执行方法: AccountController -- ListPost
+2018-10-31 00:09:19,593 13 [13] DEBUG app - sql store updated
+2018-10-31 00:09:19,803 13 [13] DEBUG app - SetupContiner
+2018-10-31 00:09:19,910 13 [13] DEBUG app - SetupSite
+2018-10-31 00:09:20,822 13 [13] DEBUG app - RegisterRoutes
+2018-10-31 00:09:20,832 13 [13] DEBUG app - registerActionFilters
+2018-10-31 00:09:20,844 13 [13] DEBUG app - registerModelBinders
+2018-10-31 00:09:20,844 13 [13] DEBUG app - registerViewEngines
+2018-10-31 00:09:20,853 13 [13] DEBUG app - registerControllerFactory
+2018-10-31 00:09:21,907 13 [13] DEBUG app - BuildSiteCss
+2018-10-31 00:09:21,907 13 [13] DEBUG app - SetResolver
+2018-10-31 00:09:21,913 13 [13] DEBUG app - RegisterAdapter
+2018-10-31 00:09:21,917 13 [13] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-31 00:09:23,223 46 [46] DEBUG RunWatcher - 耗时: 210
+执行方法: HomeController -- Index
+2018-10-31 00:09:32,483 46 [46] DEBUG RunWatcher - 耗时: 105
+执行方法: AccountController -- List
+2018-10-31 00:09:50,116 19 [19] DEBUG RunWatcher - 耗时: 2428
+执行方法: AccountController -- ListPost
+2018-10-31 00:09:53,928 46 [46] DEBUG RunWatcher - 耗时: 1360
+执行方法: AccountController -- ListPost
+2018-10-31 00:10:31,809 19 [19] DEBUG RunWatcher - 耗时: 30230
+执行方法: AccountController -- ListPost
+2018-10-31 00:10:37,021 42 [42] DEBUG RunWatcher - 耗时: 5
+执行方法: HomeController -- Index

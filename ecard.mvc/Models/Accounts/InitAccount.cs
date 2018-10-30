@@ -145,25 +145,26 @@ namespace Ecard.Mvc.Models.Accounts
             AccountType accountType = AccountTypeService.GetById(AccountType);
             if (accountType == null)
                 yield break;
-
+            Shop shop = ShopService.GetById(shopId);
             for (int i = Start; i <= End; i += Interval)
             {
                 string password = IsEmptyPassword ? "" : Password; //RandomHelper.GenerateNumber(6);
                 string salt = RandomHelper.GenerateNumber(8);
 
                 var account = new Account
-                                  {
-                                      Name = string.Format(Format, i),
-                                      Amount = accountType.Amount,
-                                      Point=accountType.Point,
-                                      State = AccountStates.Initialized,
-                                      ExpiredMonths = accountType.ExpiredMonths,
-                                      InitPassword = password,
-                                      PasswordSalt = salt,
-                                      AccountTypeId = accountType.AccountTypeId,
-                                      DepositAmount = accountType.DepositAmount,
-                                      Frequency=accountType.Frequency,
-                                  };
+                {
+                    Name = string.Format(Format, i),
+                    Amount = accountType.Amount,
+                    Point = accountType.Point,
+                    State = AccountStates.Initialized,
+                    ExpiredMonths = accountType.ExpiredMonths,
+                    InitPassword = password,
+                    PasswordSalt = salt,
+                    AccountTypeId = accountType.AccountTypeId,
+                    DepositAmount = accountType.DepositAmount,
+                    Frequency = accountType.Frequency,
+                    useScope = shop != null ? shop.Name : ""
+                };
                 if (shopId != Globals.All)
                     account.ShopId = shopId;
                 account.DistributorId = Distributor;

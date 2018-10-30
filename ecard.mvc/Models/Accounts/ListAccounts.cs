@@ -769,9 +769,9 @@ namespace Ecard.Mvc.Models.Accounts
 
 
 
-            if ((currentUser is DistributorUserModel))
+            if ((currentUser is ShopUserModel))
             {
-                request.ShopId = ((DistributorUserModel)currentUser).DistributorId;
+                request.ShopId = ((ShopUserModel)currentUser).ShopId;
             }
             else
             {

@@ -285,21 +285,21 @@ where t.RowNum > (@pageIndex -1) * @pageSize
 END
 
 GO
-create PROCEDURE [dbo].[P_getTicketss]
+alter PROCEDURE [dbo].[P_getTicketss]
 @userId int=null,
 @ticketName nvarchar(100)=null,
 @orderNo nvarchar(100)=null,
 @mobile nvarchar(100)=null,
 @code nvarchar(100)=null,
 @state int=null,
-@useScope nvarchar(100),
+@useScope nvarchar(100)=null,
 @Bdate datetime=null,
 @Edate datetime=null,
 @pageIndex INT,
 @pageSize INT
 AS
 BEGIN
-SELECT count(1) as Total from Tickets t left join AdmissionTicket u on t.AdmissionTicketId=u.id left join Users uu on t.userId=uu.UserId where
+SELECT count(1) as Total from Tickets t left join AdmissionTicket u on t.AdmissionTicketId=u.id left join Users uu on t.userId=uu.UserId  where
 (@userId is null or t.UserId = @userId)
 and (@orderNo is null or t.orderNo = @orderNo)
 and (@mobile is null or uu.Mobile = @mobile)
@@ -310,7 +310,7 @@ and (@useScope is null or t.useScope = @useScope)
 and (@Bdate is null or t.userTime >= @Bdate)
 and (@Bdate is null or t.userTime < @Edate)
 
- select * from  (select Row_Number() OVER(order by t.code )AS RowNum , t.*,u.name as 'TicketName',u.introduce,uu.Mobile,uu.DisplayName as 'UserDisplayName' from Tickets t left join AdmissionTicket u on t.AdmissionTicketId=u.id left join Users uu on t.userId=uu.UserId where
+ select * from  (select Row_Number() OVER(order by t.code )AS RowNum , t.*,u.name as 'TicketName',u.introduce,uu.Mobile,uu.DisplayName as 'UserDisplayName',(select top 1 DisplayName from Shops where Name=t.useScope) as shopName from Tickets t left join AdmissionTicket u on t.AdmissionTicketId=u.id left join Users uu on t.userId=uu.UserId where
 (@userId is null or t.UserId = @userId)
 and (@orderNo is null or t.orderNo = @orderNo)
 and (@mobile is null or uu.Mobile = @mobile)
@@ -322,5 +322,59 @@ and (@Bdate is null or t.userTime >= @Bdate)
 and (@Bdate is null or t.userTime < @Edate)
 )t
 where t.RowNum > (@pageIndex -1) * @pageSize 
+         AND t.RowNum <=   @pageIndex * @pageSize
+END
+GO
+ALTER PROCEDURE [dbo].[P_getAccounts]
+ @State int=null,
+ @Name nvarchar(50)=null,
+ @ShopId int=null,
+ @AccountToken nvarchar(100)=null,
+ @States nvarchar(600)=null,
+ @Ids nvarchar(600)=null,
+ @AccountTypeId int=null,
+ @IsMobileAvailable bit=null,
+ @Content nvarchar(100)=null,
+ @NameWith nvarchar(50)=null,
+ @MobileWith nvarchar(50)=null,
+ @pageIndex INT,
+ @pageSize INT
+AS
+BEGIN
+SELECT count(1) as Total from accounts t left join Users u on t.OwnerId=u.UserId where
+(@Name is null or t.Name = @Name)
+and (@State is null or t.State = @State)
+and (@ShopId is null or t.ShopId=@ShopId)
+and (@AccountToken is null or t.AccountToken = @AccountToken)
+and (@States is null or t.State  in (@States))
+and (@Ids is null or t.AccountId in (@Ids))
+and (@NameWith is null or t.Name like '%'+ @NameWith + '%') 
+and (@MobileWith is null or u.Mobile=@MobileWith) 
+and (@AccountTypeId is null or t.AccountTypeId = @AccountTypeId) 
+and (@IsMobileAvailable is null or 
+	(@IsMobileAvailable = 1 and exists(select * from users u where t.ownerId = u.userId and u.IsMobileAvailable = 1)) or
+	(@IsMobileAvailable = 0 and not exists(select * from users u where t.ownerId = u.userId and u.IsMobileAvailable = 1))
+	) 
+and	
+(@Content is null or u.Mobile like '%'+@Content+ '%')
+
+ select * from  (select Row_Number() OVER(order by t.Name )AS RowNum , t.*,u.DisplayName as 'OwnerDisplayName',u.Mobile as 'OwnerMobileNumber',u.babyBirthDate,u.babyName,u.babySex,(select DisplayName from Shops where Name=t.useScope) as shopName from accounts t left join Users u on t.OwnerId=u.UserId where
+(@Name is null or t.Name = @Name)
+and (@State is null or t.State = @State)
+and (@ShopId is null or t.ShopId=@ShopId)
+and (@AccountToken is null or t.AccountToken = @AccountToken)
+and (@States is null or t.State  in (@States))
+and (@Ids is null or t.AccountId in (@Ids))
+and (@NameWith is null or t.Name like '%'+ @NameWith + '%') 
+and (@AccountTypeId is null or t.AccountTypeId = @AccountTypeId) 
+and (@MobileWith is null or u.Mobile=@MobileWith) 
+and (@IsMobileAvailable is null or 
+	(@IsMobileAvailable = 1 and exists(select * from users u where t.ownerId = u.userId and u.IsMobileAvailable = 1)) or
+	(@IsMobileAvailable = 0 and not exists(select * from users u where t.ownerId = u.userId and u.IsMobileAvailable = 1))
+	)
+and	
+(@Content is null or u.Mobile like '%'+@Content+ '%')
+)t
+where t.RowNum >  (@pageIndex -1) * @pageSize 
          AND t.RowNum <=   @pageIndex * @pageSize
 END
