@@ -1,4 +1,6 @@
 ﻿accountNameNotExist=卡号不存在
+AccountType.name=卡类型
+AccountType.order=1
 Amounts.name=Amounts
 Amounts.order=1
 approve.success=审核卡成功，共审核 {0} 张
@@ -23,7 +25,7 @@ PageSize.order=1
 query=查询
 resume.success=启用 {0} 成功
 Setdistributor.success=更改所属经销商成功，共更改了 {0} 张
-Shop.name=归属商户
+Shop.name=归属门店
 Shop.order=4
 State.name=状态
 State.order=1

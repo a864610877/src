@@ -1,6 +1,5 @@
 ﻿@using Moonlit
-@model   Ecard.Mvc.Models.TicketOffss.ListTicketOffs
-
+@model  Ecard.Mvc.Models.Ticketss.ListTicketss
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -71,16 +70,17 @@
     }
     //获取数据
     function AjaxGetData(PageIndex, PageSize) {
-
+        var ticketName = $('#ticketName').val();
+        var code = $('#code').val();
+        var orderNo = $('#orderNo').val();
         var mobile = $('#mobile').val();
-        var shopDisplayName = $('#shopDisplayName').val();
         var shopName = $('#shopName').val();
-        var type = $("[id=OffType.Key]").val();
+        var State= $("[id=State.Key]").val();
         var startTime = $('#Data_Start').val();
         var endTime = $('#Data_End').val();
         $.ajax({
-            url: "/TicketOff/ListPost",
-            data: { pageIndex: PageIndex, pageSize: PageSize, type: type, Bdate: startTime, Edate: endTime, mobile: mobile, shopDisplayName: shopDisplayName, shopName: shopName },
+            url: "/Tickets/ListPost",
+            data: { pageIndex: PageIndex, pageSize: PageSize, state: State, Bdate: startTime, Edate: endTime, mobile: mobile, orderNo: orderNo, useScope: shopName, ticketName: ticketName, code: code },
             type: "post",
             //cache: false,
             dataType: "json",
@@ -88,15 +88,17 @@
             success: function (data) {
                 var listVal = new Array();
                 listVal.push("id");
+                listVal.push("OrderNo");
                 listVal.push("Code");
-                listVal.push("DisplayName");
-                listVal.push("OffType");
-                listVal.push("Timers");
-                listVal.push("ShopDisplayName");
+                listVal.push("TicketName");
+                listVal.push("Mobile");
+                listVal.push("UserDisplayName");
+                listVal.push("State");
+                listVal.push("ChildNum");
+                listVal.push("AdultNum");
+                listVal.push("ExpiredDate");
                 listVal.push("ShopName");
-                listVal.push("mobile");
-                listVal.push("userDisplayName");
-                listVal.push("SubmitTime");
+                listVal.push("BuyTime");
                 $.GetstrTrs(data, listVal, "id");
             },
             error: function () {

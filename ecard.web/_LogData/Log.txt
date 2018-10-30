@@ -2071,3 +2071,497 @@ System.NullReferenceException: 未将对象引用设置到对象的实例。
 执行方法: CouponsController -- Create
 2018-10-29 22:42:10,696 26 [26] DEBUG RunWatcher - 耗时: 16
 执行方法: WeChatController -- Edit
+2018-10-30 21:21:38,045 1 [1] DEBUG app - sql store updated
+2018-10-30 21:21:38,402 1 [1] DEBUG app - SetupContiner
+2018-10-30 21:21:38,673 1 [1] DEBUG app - SetupSite
+2018-10-30 21:21:40,461 1 [1] DEBUG app - RegisterRoutes
+2018-10-30 21:21:40,477 1 [1] DEBUG app - registerActionFilters
+2018-10-30 21:21:40,497 1 [1] DEBUG app - registerModelBinders
+2018-10-30 21:21:40,497 1 [1] DEBUG app - registerViewEngines
+2018-10-30 21:21:40,547 1 [1] DEBUG app - registerControllerFactory
+2018-10-30 21:21:42,057 1 [1] DEBUG app - BuildSiteCss
+2018-10-30 21:21:42,058 1 [1] DEBUG app - SetResolver
+2018-10-30 21:21:42,060 1 [1] DEBUG app - RegisterAdapter
+2018-10-30 21:21:42,062 1 [1] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-30 21:21:43,087 8 [8] DEBUG RunWatcher - 耗时: 7
+执行方法: UserController -- LogOn
+2018-10-30 21:21:45,417 6 [6] DEBUG RunWatcher - 耗时: 14
+执行方法: UtilityController -- Code
+2018-10-30 21:21:52,814 6 [6] DEBUG RunWatcher - 耗时: 178
+执行方法: UserController -- LogOn
+2018-10-30 21:21:52,944 8 [8] DEBUG RunWatcher - 耗时: 111
+执行方法: HomeController -- Index
+2018-10-30 21:22:01,181 8 [8] DEBUG RunWatcher - 耗时: 630
+执行方法: OrdersController -- List
+2018-10-30 21:23:25,284 13 [13] DEBUG app - sql store updated
+2018-10-30 21:23:25,645 13 [13] DEBUG app - SetupContiner
+2018-10-30 21:23:25,787 13 [13] DEBUG app - SetupSite
+2018-10-30 21:23:26,713 13 [13] DEBUG app - RegisterRoutes
+2018-10-30 21:23:26,716 13 [13] DEBUG app - registerActionFilters
+2018-10-30 21:23:26,723 13 [13] DEBUG app - registerModelBinders
+2018-10-30 21:23:26,723 13 [13] DEBUG app - registerViewEngines
+2018-10-30 21:23:26,739 13 [13] DEBUG app - registerControllerFactory
+2018-10-30 21:23:27,580 13 [13] DEBUG app - BuildSiteCss
+2018-10-30 21:23:27,581 13 [13] DEBUG app - SetResolver
+2018-10-30 21:23:27,583 13 [13] DEBUG app - RegisterAdapter
+2018-10-30 21:23:27,585 13 [13] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-30 21:23:28,431 9 [9] DEBUG RunWatcher - 耗时: 5
+执行方法: UserController -- LogOn
+2018-10-30 21:23:34,170 9 [9] DEBUG RunWatcher - 耗时: 6
+执行方法: UtilityController -- Code
+2018-10-30 21:23:41,431 14 [14] DEBUG RunWatcher - 耗时: 206
+执行方法: UserController -- LogOn
+2018-10-30 21:23:41,572 14 [14] DEBUG RunWatcher - 耗时: 119
+执行方法: HomeController -- Index
+2018-10-30 21:23:46,926 7 [7] DEBUG RunWatcher - 耗时: 58
+执行方法: OrdersController -- List
+2018-10-30 21:27:46,971 7 [7] DEBUG RunWatcher - 耗时: 8
+执行方法: OrdersController -- List
+2018-10-30 21:27:58,912 28 [28] DEBUG RunWatcher - 耗时: 2
+执行方法: OrdersController -- ListPost
+2018-10-30 21:28:01,746 8 [8] DEBUG RunWatcher - 耗时: 0
+执行方法: OrdersController -- ListPost
+2018-10-30 21:28:04,764 8 [8] DEBUG RunWatcher - 耗时: 30
+执行方法: TicketOffController -- List
+2018-10-30 21:28:06,780 8 [8] DEBUG RunWatcher - 耗时: 1
+执行方法: TicketOffController -- ListPost
+2018-10-30 21:28:07,402 14 [14] DEBUG RunWatcher - 耗时: 0
+执行方法: TicketOffController -- ListPost
+2018-10-30 21:28:07,593 8 [8] DEBUG RunWatcher - 耗时: 0
+执行方法: TicketOffController -- ListPost
+2018-10-30 21:28:08,547 14 [14] DEBUG RunWatcher - 耗时: 0
+执行方法: OrdersController -- List
+2018-10-30 21:31:28,447 13 [13] DEBUG app - sql store updated
+2018-10-30 21:31:28,546 13 [13] DEBUG app - SetupContiner
+2018-10-30 21:31:28,619 13 [13] DEBUG app - SetupSite
+2018-10-30 21:31:29,417 13 [13] DEBUG app - RegisterRoutes
+2018-10-30 21:31:29,419 13 [13] DEBUG app - registerActionFilters
+2018-10-30 21:31:29,429 13 [13] DEBUG app - registerModelBinders
+2018-10-30 21:31:29,429 13 [13] DEBUG app - registerViewEngines
+2018-10-30 21:31:29,432 13 [13] DEBUG app - registerControllerFactory
+2018-10-30 21:31:30,117 13 [13] DEBUG app - BuildSiteCss
+2018-10-30 21:31:30,118 13 [13] DEBUG app - SetResolver
+2018-10-30 21:31:30,120 13 [13] DEBUG app - RegisterAdapter
+2018-10-30 21:31:30,122 13 [13] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-30 21:31:30,959 16 [16] DEBUG RunWatcher - 耗时: 10
+执行方法: UserController -- LogOn
+2018-10-30 21:31:32,842 14 [14] DEBUG RunWatcher - 耗时: 2
+执行方法: UtilityController -- Code
+2018-10-30 21:31:40,597 14 [14] DEBUG RunWatcher - 耗时: 57
+执行方法: UserController -- LogOn
+2018-10-30 21:31:40,654 8 [8] DEBUG RunWatcher - 耗时: 49
+执行方法: HomeController -- Index
+2018-10-30 21:31:49,219 8 [8] DEBUG RunWatcher - 耗时: 21
+执行方法: OrdersController -- List
+2018-10-30 21:32:51,780 14 [14] DEBUG RunWatcher - 耗时: 14
+执行方法: OrdersController -- List
+2018-10-30 22:41:52,061 13 [13] DEBUG app - sql store updated
+2018-10-30 22:41:52,533 13 [13] DEBUG app - SetupContiner
+2018-10-30 22:41:52,656 13 [13] DEBUG app - SetupSite
+2018-10-30 22:41:53,662 13 [13] DEBUG app - RegisterRoutes
+2018-10-30 22:41:53,695 13 [13] DEBUG app - registerActionFilters
+2018-10-30 22:41:53,713 13 [13] DEBUG app - registerModelBinders
+2018-10-30 22:41:53,714 13 [13] DEBUG app - registerViewEngines
+2018-10-30 22:41:53,752 13 [13] DEBUG app - registerControllerFactory
+2018-10-30 22:41:54,740 13 [13] DEBUG app - BuildSiteCss
+2018-10-30 22:41:54,741 13 [13] DEBUG app - SetResolver
+2018-10-30 22:41:54,743 13 [13] DEBUG app - RegisterAdapter
+2018-10-30 22:41:54,745 13 [13] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-30 22:41:55,720 47 [47] DEBUG RunWatcher - 耗时: 4
+执行方法: UserController -- LogOn
+2018-10-30 22:41:57,790 46 [46] DEBUG RunWatcher - 耗时: 3
+执行方法: UtilityController -- Code
+2018-10-30 22:42:11,606 40 [40] DEBUG RunWatcher - 耗时: 154
+执行方法: UserController -- LogOn
+2018-10-30 22:42:11,750 46 [46] DEBUG RunWatcher - 耗时: 136
+执行方法: HomeController -- Index
+2018-10-30 22:43:46,531 13 [13] DEBUG app - sql store updated
+2018-10-30 22:43:46,692 13 [13] DEBUG app - SetupContiner
+2018-10-30 22:43:46,768 13 [13] DEBUG app - SetupSite
+2018-10-30 22:43:47,795 13 [13] DEBUG app - RegisterRoutes
+2018-10-30 22:43:47,805 13 [13] DEBUG app - registerActionFilters
+2018-10-30 22:43:47,813 13 [13] DEBUG app - registerModelBinders
+2018-10-30 22:43:47,813 13 [13] DEBUG app - registerViewEngines
+2018-10-30 22:43:47,823 13 [13] DEBUG app - registerControllerFactory
+2018-10-30 22:43:48,686 13 [13] DEBUG app - BuildSiteCss
+2018-10-30 22:43:48,686 13 [13] DEBUG app - SetResolver
+2018-10-30 22:43:48,688 13 [13] DEBUG app - RegisterAdapter
+2018-10-30 22:43:48,690 13 [13] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-30 22:43:49,562 46 [46] DEBUG RunWatcher - 耗时: 4
+执行方法: UserController -- LogOn
+2018-10-30 22:43:51,608 46 [46] DEBUG RunWatcher - 耗时: 3
+执行方法: UtilityController -- Code
+2018-10-30 22:46:12,195 46 [46] DEBUG RunWatcher - 耗时: 70
+执行方法: UserController -- LogOn
+2018-10-30 22:46:12,289 47 [47] DEBUG RunWatcher - 耗时: 84
+执行方法: HomeController -- Index
+2018-10-30 22:46:20,035 50 [50] DEBUG RunWatcher - 耗时: 204
+执行方法: TicketsController -- List
+2018-10-30 22:46:33,550 46 [46] DEBUG RunWatcher - 耗时: 50
+执行方法: OrdersController -- ListPost
+2018-10-30 22:46:39,878 46 [46] DEBUG RunWatcher - 耗时: 16
+执行方法: TicketsController -- List
+2018-10-30 22:49:14,958 46 [46] DEBUG RunWatcher - 耗时: 41892
+执行方法: TicketsController -- List
+2018-10-30 22:51:00,036 13 [13] DEBUG app - sql store updated
+2018-10-30 22:51:00,272 13 [13] DEBUG app - SetupContiner
+2018-10-30 22:51:00,418 13 [13] DEBUG app - SetupSite
+2018-10-30 22:51:01,306 13 [13] DEBUG app - RegisterRoutes
+2018-10-30 22:51:01,322 13 [13] DEBUG app - registerActionFilters
+2018-10-30 22:51:01,329 13 [13] DEBUG app - registerModelBinders
+2018-10-30 22:51:01,329 13 [13] DEBUG app - registerViewEngines
+2018-10-30 22:51:01,342 13 [13] DEBUG app - registerControllerFactory
+2018-10-30 22:51:02,140 13 [13] DEBUG app - BuildSiteCss
+2018-10-30 22:51:02,141 13 [13] DEBUG app - SetResolver
+2018-10-30 22:51:02,143 13 [13] DEBUG app - RegisterAdapter
+2018-10-30 22:51:02,144 13 [13] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-30 22:51:03,019 54 [54] DEBUG RunWatcher - 耗时: 5
+执行方法: UserController -- LogOn
+2018-10-30 22:51:05,114 56 [56] DEBUG RunWatcher - 耗时: 3
+执行方法: UtilityController -- Code
+2018-10-30 22:51:15,504 54 [54] DEBUG RunWatcher - 耗时: 68
+执行方法: UserController -- LogOn
+2018-10-30 22:51:15,600 56 [56] DEBUG RunWatcher - 耗时: 84
+执行方法: HomeController -- Index
+2018-10-30 22:51:27,394 26 [26] DEBUG RunWatcher - 耗时: 6187
+执行方法: TicketsController -- List
+2018-10-30 22:55:34,138 26 [26] DEBUG RunWatcher - 耗时: 15
+执行方法: TicketsController -- List
+2018-10-30 22:55:38,622 52 [52] DEBUG RunWatcher - 耗时: 2
+执行方法: TicketsController -- ListPost
+2018-10-30 22:55:41,195 8 [8] DEBUG RunWatcher - 耗时: 1
+执行方法: TicketsController -- ListPost
+2018-10-30 22:55:44,306 26 [26] DEBUG RunWatcher - 耗时: 21
+执行方法: TicketsController -- ListPost
+2018-10-30 22:55:47,209 50 [50] DEBUG RunWatcher - 耗时: 1
+执行方法: TicketsController -- ListPost
+2018-10-30 22:55:54,635 26 [26] DEBUG RunWatcher - 耗时: 0
+执行方法: TicketsController -- ListPost
+2018-10-30 22:55:58,418 52 [52] DEBUG RunWatcher - 耗时: 0
+执行方法: TicketsController -- ListPost
+2018-10-30 22:56:00,704 47 [47] DEBUG RunWatcher - 耗时: 10
+执行方法: TicketsController -- ListPost
+2018-10-30 22:56:03,681 26 [26] DEBUG RunWatcher - 耗时: 12
+执行方法: TicketsController -- ListPost
+2018-10-30 22:56:07,147 26 [26] DEBUG RunWatcher - 耗时: 9
+执行方法: TicketsController -- ListPost
+2018-10-30 22:56:10,340 26 [26] DEBUG RunWatcher - 耗时: 0
+执行方法: TicketsController -- ListPost
+2018-10-30 23:01:22,316 13 [13] DEBUG app - sql store updated
+2018-10-30 23:01:22,420 13 [13] DEBUG app - SetupContiner
+2018-10-30 23:01:22,490 13 [13] DEBUG app - SetupSite
+2018-10-30 23:01:23,283 13 [13] DEBUG app - RegisterRoutes
+2018-10-30 23:01:23,287 13 [13] DEBUG app - registerActionFilters
+2018-10-30 23:01:23,294 13 [13] DEBUG app - registerModelBinders
+2018-10-30 23:01:23,294 13 [13] DEBUG app - registerViewEngines
+2018-10-30 23:01:23,297 13 [13] DEBUG app - registerControllerFactory
+2018-10-30 23:01:23,989 13 [13] DEBUG app - BuildSiteCss
+2018-10-30 23:01:23,990 13 [13] DEBUG app - SetResolver
+2018-10-30 23:01:23,993 13 [13] DEBUG app - RegisterAdapter
+2018-10-30 23:01:23,995 13 [13] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-30 23:01:24,807 53 [53] DEBUG RunWatcher - 耗时: 6
+执行方法: UserController -- LogOn
+2018-10-30 23:01:26,644 26 [26] DEBUG RunWatcher - 耗时: 2
+执行方法: UtilityController -- Code
+2018-10-30 23:01:37,582 26 [26] DEBUG RunWatcher - 耗时: 50
+执行方法: UserController -- LogOn
+2018-10-30 23:01:37,667 52 [52] DEBUG RunWatcher - 耗时: 76
+执行方法: HomeController -- Index
+2018-10-30 23:01:43,983 26 [26] DEBUG RunWatcher - 耗时: 26
+执行方法: TicketsController -- List
+2018-10-30 23:04:53,222 13 [13] DEBUG app - sql store updated
+2018-10-30 23:04:53,481 13 [13] DEBUG app - SetupContiner
+2018-10-30 23:04:53,606 13 [13] DEBUG app - SetupSite
+2018-10-30 23:04:54,581 13 [13] DEBUG app - RegisterRoutes
+2018-10-30 23:04:54,653 13 [13] DEBUG app - registerActionFilters
+2018-10-30 23:04:54,659 13 [13] DEBUG app - registerModelBinders
+2018-10-30 23:04:54,659 13 [13] DEBUG app - registerViewEngines
+2018-10-30 23:04:54,695 13 [13] DEBUG app - registerControllerFactory
+2018-10-30 23:04:55,607 13 [13] DEBUG app - BuildSiteCss
+2018-10-30 23:04:55,608 13 [13] DEBUG app - SetResolver
+2018-10-30 23:04:55,610 13 [13] DEBUG app - RegisterAdapter
+2018-10-30 23:04:55,612 13 [13] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-30 23:04:56,596 26 [26] DEBUG RunWatcher - 耗时: 5
+执行方法: UserController -- LogOn
+2018-10-30 23:04:58,670 30 [30] DEBUG RunWatcher - 耗时: 3
+执行方法: UtilityController -- Code
+2018-10-30 23:05:06,856 53 [53] DEBUG RunWatcher - 耗时: 190
+执行方法: UserController -- LogOn
+2018-10-30 23:05:06,956 26 [26] DEBUG RunWatcher - 耗时: 90
+执行方法: HomeController -- Index
+2018-10-30 23:05:12,379 26 [26] DEBUG RunWatcher - 耗时: 29
+执行方法: TicketsController -- List
+2018-10-30 23:07:05,715 13 [13] DEBUG app - sql store updated
+2018-10-30 23:07:05,946 13 [13] DEBUG app - SetupContiner
+2018-10-30 23:07:06,100 13 [13] DEBUG app - SetupSite
+2018-10-30 23:07:07,097 13 [13] DEBUG app - RegisterRoutes
+2018-10-30 23:07:07,104 13 [13] DEBUG app - registerActionFilters
+2018-10-30 23:07:07,110 13 [13] DEBUG app - registerModelBinders
+2018-10-30 23:07:07,110 13 [13] DEBUG app - registerViewEngines
+2018-10-30 23:07:07,130 13 [13] DEBUG app - registerControllerFactory
+2018-10-30 23:07:08,025 13 [13] DEBUG app - BuildSiteCss
+2018-10-30 23:07:08,026 13 [13] DEBUG app - SetResolver
+2018-10-30 23:07:08,028 13 [13] DEBUG app - RegisterAdapter
+2018-10-30 23:07:08,030 13 [13] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-30 23:07:08,941 8 [8] DEBUG RunWatcher - 耗时: 4
+执行方法: UserController -- LogOn
+2018-10-30 23:07:11,021 30 [30] DEBUG RunWatcher - 耗时: 3
+执行方法: UtilityController -- Code
+2018-10-30 23:07:37,850 53 [53] DEBUG RunWatcher - 耗时: 67
+执行方法: UserController -- LogOn
+2018-10-30 23:07:37,936 8 [8] DEBUG RunWatcher - 耗时: 75
+执行方法: HomeController -- Index
+2018-10-30 23:07:48,785 30 [30] DEBUG RunWatcher - 耗时: 32
+执行方法: TicketsController -- List
+2018-10-30 23:09:10,763 53 [53] DEBUG RunWatcher - 耗时: 13
+执行方法: TicketsController -- List
+2018-10-30 23:33:08,922 10 [10] DEBUG app - sql store updated
+2018-10-30 23:33:09,067 10 [10] DEBUG app - SetupContiner
+2018-10-30 23:33:09,148 10 [10] DEBUG app - SetupSite
+2018-10-30 23:33:09,415 10 [10] DEBUG app - RegisterRoutes
+2018-10-30 23:33:09,432 10 [10] DEBUG app - registerActionFilters
+2018-10-30 23:33:09,435 10 [10] DEBUG app - registerModelBinders
+2018-10-30 23:33:09,436 10 [10] DEBUG app - registerViewEngines
+2018-10-30 23:33:09,451 10 [10] DEBUG app - registerControllerFactory
+2018-10-30 23:33:10,180 10 [10] DEBUG app - BuildSiteCss
+2018-10-30 23:33:10,182 10 [10] DEBUG app - SetResolver
+2018-10-30 23:33:10,184 10 [10] DEBUG app - RegisterAdapter
+2018-10-30 23:33:10,185 10 [10] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-30 23:33:53,354 51 [51] DEBUG app - sql store updated
+2018-10-30 23:33:53,529 51 [51] DEBUG app - SetupContiner
+2018-10-30 23:33:53,634 51 [51] DEBUG app - SetupSite
+2018-10-30 23:33:54,580 51 [51] DEBUG app - RegisterRoutes
+2018-10-30 23:33:54,597 51 [51] DEBUG app - registerActionFilters
+2018-10-30 23:33:54,604 51 [51] DEBUG app - registerModelBinders
+2018-10-30 23:33:54,604 51 [51] DEBUG app - registerViewEngines
+2018-10-30 23:33:54,615 51 [51] DEBUG app - registerControllerFactory
+2018-10-30 23:33:55,363 51 [51] DEBUG app - BuildSiteCss
+2018-10-30 23:33:55,364 51 [51] DEBUG app - SetResolver
+2018-10-30 23:33:55,366 51 [51] DEBUG app - RegisterAdapter
+2018-10-30 23:33:55,367 51 [51] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-30 23:33:56,261 31 [31] DEBUG RunWatcher - 耗时: 5
+执行方法: UserController -- LogOn
+2018-10-30 23:33:58,185 18 [18] DEBUG RunWatcher - 耗时: 3
+执行方法: UtilityController -- Code
+2018-10-30 23:34:05,683 31 [31] DEBUG RunWatcher - 耗时: 80
+执行方法: UserController -- LogOn
+2018-10-30 23:34:05,784 31 [31] DEBUG RunWatcher - 耗时: 92
+执行方法: HomeController -- Index
+2018-10-30 23:34:15,737 32 [32] DEBUG RunWatcher - 耗时: 310
+执行方法: AccountController -- Init
+2018-10-30 23:36:50,339 13 [13] DEBUG app - sql store updated
+2018-10-30 23:36:50,576 13 [13] DEBUG app - SetupContiner
+2018-10-30 23:36:50,679 13 [13] DEBUG app - SetupSite
+2018-10-30 23:36:51,544 13 [13] DEBUG app - RegisterRoutes
+2018-10-30 23:36:51,555 13 [13] DEBUG app - registerActionFilters
+2018-10-30 23:36:51,562 13 [13] DEBUG app - registerModelBinders
+2018-10-30 23:36:51,562 13 [13] DEBUG app - registerViewEngines
+2018-10-30 23:36:51,580 13 [13] DEBUG app - registerControllerFactory
+2018-10-30 23:36:52,362 13 [13] DEBUG app - BuildSiteCss
+2018-10-30 23:36:52,363 13 [13] DEBUG app - SetResolver
+2018-10-30 23:36:52,365 13 [13] DEBUG app - RegisterAdapter
+2018-10-30 23:36:52,366 13 [13] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-30 23:36:53,439 32 [32] DEBUG RunWatcher - 耗时: 214
+执行方法: HomeController -- Index
+2018-10-30 23:37:56,403 13 [13] DEBUG app - sql store updated
+2018-10-30 23:37:56,603 13 [13] DEBUG app - SetupContiner
+2018-10-30 23:37:56,692 13 [13] DEBUG app - SetupSite
+2018-10-30 23:37:57,657 13 [13] DEBUG app - RegisterRoutes
+2018-10-30 23:37:57,675 13 [13] DEBUG app - registerActionFilters
+2018-10-30 23:37:57,682 13 [13] DEBUG app - registerModelBinders
+2018-10-30 23:37:57,682 13 [13] DEBUG app - registerViewEngines
+2018-10-30 23:37:57,695 13 [13] DEBUG app - registerControllerFactory
+2018-10-30 23:37:58,399 13 [13] DEBUG app - BuildSiteCss
+2018-10-30 23:37:58,400 13 [13] DEBUG app - SetResolver
+2018-10-30 23:37:58,402 13 [13] DEBUG app - RegisterAdapter
+2018-10-30 23:37:58,404 13 [13] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-30 23:37:59,427 32 [32] DEBUG RunWatcher - 耗时: 157
+执行方法: HomeController -- Index
+2018-10-30 23:38:17,323 18 [18] DEBUG RunWatcher - 耗时: 213
+执行方法: AccountController -- Init
+2018-10-30 23:40:52,103 13 [13] DEBUG app - sql store updated
+2018-10-30 23:40:52,259 13 [13] DEBUG app - SetupContiner
+2018-10-30 23:40:52,351 13 [13] DEBUG app - SetupSite
+2018-10-30 23:40:53,191 13 [13] DEBUG app - RegisterRoutes
+2018-10-30 23:40:53,204 13 [13] DEBUG app - registerActionFilters
+2018-10-30 23:40:53,211 13 [13] DEBUG app - registerModelBinders
+2018-10-30 23:40:53,211 13 [13] DEBUG app - registerViewEngines
+2018-10-30 23:40:53,222 13 [13] DEBUG app - registerControllerFactory
+2018-10-30 23:40:53,963 13 [13] DEBUG app - BuildSiteCss
+2018-10-30 23:40:53,963 13 [13] DEBUG app - SetResolver
+2018-10-30 23:40:53,966 13 [13] DEBUG app - RegisterAdapter
+2018-10-30 23:40:53,967 13 [13] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-30 23:40:55,033 19 [19] DEBUG RunWatcher - 耗时: 166
+执行方法: HomeController -- Index
+2018-10-30 23:41:03,404 19 [19] DEBUG RunWatcher - 耗时: 280
+执行方法: AccountController -- Init
+2018-10-30 23:42:34,219 13 [13] DEBUG app - sql store updated
+2018-10-30 23:42:34,361 13 [13] DEBUG app - SetupContiner
+2018-10-30 23:42:34,436 13 [13] DEBUG app - SetupSite
+2018-10-30 23:42:35,226 13 [13] DEBUG app - RegisterRoutes
+2018-10-30 23:42:35,229 13 [13] DEBUG app - registerActionFilters
+2018-10-30 23:42:35,236 13 [13] DEBUG app - registerModelBinders
+2018-10-30 23:42:35,236 13 [13] DEBUG app - registerViewEngines
+2018-10-30 23:42:35,240 13 [13] DEBUG app - registerControllerFactory
+2018-10-30 23:42:35,940 13 [13] DEBUG app - BuildSiteCss
+2018-10-30 23:42:35,941 13 [13] DEBUG app - SetResolver
+2018-10-30 23:42:35,943 13 [13] DEBUG app - RegisterAdapter
+2018-10-30 23:42:35,945 13 [13] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-30 23:42:36,922 19 [19] DEBUG RunWatcher - 耗时: 160
+执行方法: HomeController -- Index
+2018-10-30 23:42:56,617 8 [8] DEBUG RunWatcher - 耗时: 209
+执行方法: AccountController -- Init
+2018-10-30 23:43:41,724 6 [6] DEBUG RunWatcher - 耗时: 16659
+执行方法: AccountController -- Init
+2018-10-30 23:43:45,984 6 [6] DEBUG RunWatcher - 耗时: 46
+执行方法: AccountController -- List
+2018-10-30 23:43:59,574 8 [8] DEBUG RunWatcher - 耗时: 7
+执行方法: AccountController -- ListPost
+2018-10-30 23:50:02,270 13 [13] DEBUG app - sql store updated
+2018-10-30 23:50:02,371 13 [13] DEBUG app - SetupContiner
+2018-10-30 23:50:02,446 13 [13] DEBUG app - SetupSite
+2018-10-30 23:50:03,281 13 [13] DEBUG app - RegisterRoutes
+2018-10-30 23:50:03,284 13 [13] DEBUG app - registerActionFilters
+2018-10-30 23:50:03,293 13 [13] DEBUG app - registerModelBinders
+2018-10-30 23:50:03,293 13 [13] DEBUG app - registerViewEngines
+2018-10-30 23:50:03,296 13 [13] DEBUG app - registerControllerFactory
+2018-10-30 23:50:04,003 13 [13] DEBUG app - BuildSiteCss
+2018-10-30 23:50:04,004 13 [13] DEBUG app - SetResolver
+2018-10-30 23:50:04,006 13 [13] DEBUG app - RegisterAdapter
+2018-10-30 23:50:04,008 13 [13] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-30 23:50:05,071 6 [6] DEBUG RunWatcher - 耗时: 138
+执行方法: HomeController -- Index
+2018-10-30 23:50:14,385 6 [6] DEBUG RunWatcher - 耗时: 116
+执行方法: AccountController -- List
+2018-10-30 23:50:30,632 6 [6] DEBUG RunWatcher - 耗时: 8
+执行方法: AccountController -- ListPost
+2018-10-30 23:50:33,519 6 [6] DEBUG RunWatcher - 耗时: 6
+执行方法: AccountController -- ListPost
+2018-10-30 23:50:35,122 6 [6] DEBUG RunWatcher - 耗时: 5
+执行方法: AccountController -- ListPost
+2018-10-30 23:50:36,975 6 [6] DEBUG RunWatcher - 耗时: 3
+执行方法: AccountController -- ListPost
+2018-10-30 23:50:38,567 15 [15] DEBUG RunWatcher - 耗时: 5
+执行方法: AccountController -- ListPost
+2018-10-30 23:50:39,543 17 [17] DEBUG RunWatcher - 耗时: 6
+执行方法: AccountController -- ListPost
+2018-10-30 23:57:03,089 17 [17] DEBUG RunWatcher - 耗时: 34
+执行方法: AccountController -- List
+2018-10-30 23:57:32,773 31 [31] DEBUG RunWatcher - 耗时: 31
+执行方法: AccountController -- List
+2018-10-30 23:57:37,780 31 [31] DEBUG RunWatcher - 耗时: 13
+执行方法: AccountController -- ListPost
+2018-10-30 23:57:39,858 17 [17] DEBUG RunWatcher - 耗时: 1
+执行方法: AccountController -- ListPost
+2018-10-30 23:57:43,450 19 [19] DEBUG RunWatcher - 耗时: 2
+执行方法: AccountController -- ListPost
+2018-10-30 23:57:46,856 17 [17] DEBUG RunWatcher - 耗时: 5
+执行方法: AccountController -- ListPost
+2018-10-30 23:57:48,344 19 [19] DEBUG RunWatcher - 耗时: 6
+执行方法: AccountController -- ListPost
+2018-10-30 23:57:49,095 17 [17] DEBUG RunWatcher - 耗时: 6
+执行方法: AccountController -- ListPost
+2018-10-30 23:57:50,352 19 [19] DEBUG RunWatcher - 耗时: 5
+执行方法: AccountController -- ListPost
+2018-10-30 23:57:53,466 17 [17] DEBUG RunWatcher - 耗时: 1
+执行方法: AccountController -- ListPost
+2018-10-30 23:57:55,660 17 [17] DEBUG RunWatcher - 耗时: 6
+执行方法: AccountController -- ListPost
+2018-10-30 23:57:57,629 17 [17] DEBUG RunWatcher - 耗时: 1
+执行方法: AccountController -- ListPost
+2018-10-30 23:58:06,554 17 [17] DEBUG RunWatcher - 耗时: 2
+执行方法: AccountController -- ListPost
+2018-10-30 23:58:07,096 44 [44] DEBUG RunWatcher - 耗时: 2
+执行方法: AccountController -- ListPost
+2018-10-30 23:58:07,299 31 [31] DEBUG RunWatcher - 耗时: 2
+执行方法: AccountController -- ListPost
+2018-10-30 23:58:07,655 19 [19] DEBUG RunWatcher - 耗时: 1
+执行方法: AccountController -- ListPost
+2018-10-30 23:58:07,846 17 [17] DEBUG RunWatcher - 耗时: 1
+执行方法: AccountController -- ListPost
+2018-10-30 23:58:10,106 19 [19] DEBUG RunWatcher - 耗时: 1
+执行方法: AccountController -- ListPost
+2018-10-30 23:59:29,965 13 [13] DEBUG app - sql store updated
+2018-10-30 23:59:30,189 13 [13] DEBUG app - SetupContiner
+2018-10-30 23:59:30,288 13 [13] DEBUG app - SetupSite
+2018-10-30 23:59:31,196 13 [13] DEBUG app - RegisterRoutes
+2018-10-30 23:59:31,201 13 [13] DEBUG app - registerActionFilters
+2018-10-30 23:59:31,210 13 [13] DEBUG app - registerModelBinders
+2018-10-30 23:59:31,210 13 [13] DEBUG app - registerViewEngines
+2018-10-30 23:59:31,228 13 [13] DEBUG app - registerControllerFactory
+2018-10-30 23:59:32,104 13 [13] DEBUG app - BuildSiteCss
+2018-10-30 23:59:32,105 13 [13] DEBUG app - SetResolver
+2018-10-30 23:59:32,108 13 [13] DEBUG app - RegisterAdapter
+2018-10-30 23:59:32,109 13 [13] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-10-30 23:59:33,294 31 [31] DEBUG RunWatcher - 耗时: 199
+执行方法: HomeController -- Index
+2018-10-30 23:59:40,631 19 [19] DEBUG RunWatcher - 耗时: 124
+执行方法: AccountController -- List
+2018-10-30 23:59:54,687 31 [31] DEBUG RunWatcher - 耗时: 9
+执行方法: AccountController -- ListPost
+2018-10-30 23:59:55,417 44 [44] DEBUG RunWatcher - 耗时: 5
+执行方法: AccountController -- ListPost
+2018-10-30 23:59:55,799 19 [19] DEBUG RunWatcher - 耗时: 5
+执行方法: AccountController -- ListPost
+2018-10-30 23:59:56,829 31 [31] DEBUG RunWatcher - 耗时: 5
+执行方法: AccountController -- ListPost
+2018-10-30 23:59:57,534 19 [19] DEBUG RunWatcher - 耗时: 6
+执行方法: AccountController -- ListPost
+2018-10-30 23:59:58,203 44 [44] DEBUG RunWatcher - 耗时: 3
+执行方法: AccountController -- ListPost
+2018-10-31 00:00:00,129 44 [44] DEBUG RunWatcher - 耗时: 5
+执行方法: AccountController -- ListPost
+2018-10-31 00:00:02,241 19 [19] DEBUG RunWatcher - 耗时: 2
+执行方法: AccountController -- ListPost
+2018-10-31 00:00:05,053 31 [31] DEBUG RunWatcher - 耗时: 2
+执行方法: AccountController -- ListPost
+2018-10-31 00:00:06,963 44 [44] DEBUG RunWatcher - 耗时: 6
+执行方法: AccountController -- ListPost
+2018-10-31 00:00:09,040 31 [31] DEBUG RunWatcher - 耗时: 2
+执行方法: AccountController -- ListPost
+2018-10-31 00:00:10,878 31 [31] DEBUG RunWatcher - 耗时: 2
+执行方法: AccountController -- ListPost
+2018-10-31 00:00:13,226 31 [31] DEBUG RunWatcher - 耗时: 2
+执行方法: AccountController -- ListPost
+2018-10-31 00:00:20,559 44 [44] DEBUG RunWatcher - 耗时: 1
+执行方法: AccountController -- ListPost
+2018-10-31 00:00:23,191 31 [31] DEBUG RunWatcher - 耗时: 2
+执行方法: AccountController -- ListPost
+2018-10-31 00:00:24,148 44 [44] DEBUG RunWatcher - 耗时: 2
+执行方法: AccountController -- ListPost
+2018-10-31 00:00:24,707 31 [31] DEBUG RunWatcher - 耗时: 1
+执行方法: AccountController -- ListPost
+2018-10-31 00:00:24,948 44 [44] DEBUG RunWatcher - 耗时: 2
+执行方法: AccountController -- ListPost
+2018-10-31 00:00:25,246 31 [31] DEBUG RunWatcher - 耗时: 2
+执行方法: AccountController -- ListPost
+2018-10-31 00:00:25,453 19 [19] DEBUG RunWatcher - 耗时: 1
+执行方法: AccountController -- ListPost
+2018-10-31 00:00:27,207 31 [31] DEBUG RunWatcher - 耗时: 5
+执行方法: AccountController -- ListPost
+2018-10-31 00:01:16,042 31 [31] DEBUG RunWatcher - 耗时: 36
+执行方法: AccountController -- List
+2018-10-31 00:01:17,680 42 [42] DEBUG RunWatcher - 耗时: 6
+执行方法: AccountController -- ListPost
+2018-10-31 00:01:25,779 31 [31] DEBUG RunWatcher - 耗时: 2
+执行方法: AccountController -- ListPost
+2018-10-31 00:01:28,382 31 [31] DEBUG RunWatcher - 耗时: 6
+执行方法: AccountController -- ListPost
+2018-10-31 00:01:31,387 31 [31] DEBUG RunWatcher - 耗时: 2
+执行方法: AccountController -- ListPost
+2018-10-31 00:01:36,252 31 [31] DEBUG RunWatcher - 耗时: 1
+执行方法: AccountController -- ListPost
+2018-10-31 00:01:39,110 31 [31] DEBUG RunWatcher - 耗时: 2
+执行方法: AccountController -- ListPost
+2018-10-31 00:01:46,703 31 [31] DEBUG RunWatcher - 耗时: 16
+执行方法: AccountController -- ListPost
+2018-10-31 00:01:49,339 31 [31] DEBUG RunWatcher - 耗时: 16
+执行方法: AccountController -- ListPost
+2018-10-31 00:01:55,580 31 [31] DEBUG RunWatcher - 耗时: 18
+执行方法: AccountController -- ListPost
+2018-10-31 00:02:00,238 42 [42] DEBUG RunWatcher - 耗时: 2
+执行方法: AccountController -- ListPost
+2018-10-31 00:02:02,355 44 [44] DEBUG RunWatcher - 耗时: 1
+执行方法: AccountController -- ListPost
+2018-10-31 00:02:04,446 31 [31] DEBUG RunWatcher - 耗时: 2
+执行方法: AccountController -- ListPost

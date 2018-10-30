@@ -202,47 +202,124 @@
 --         AND t.RowNum <=   @pageIndex * @pageSize
 --END
 
-go
-create table ticketOff --门票核销记录
-(
-   id int identity(1,1) primary key,
-   userId int,--用户id
-   offType int,--类型 1 门票 2卡
-   code nvarchar(100),--卡号 门票代码
-   DisplayName nvarchar(100),--卡名称/门票名称
-   shopId int,--商户
-   timers int,--次数
-   offOp nvarchar(100),--核销员
-   subTime datetime,--核销时间
-)
+--go
+--create table ticketOff --门票核销记录
+--(
+--   id int identity(1,1) primary key,
+--   userId int,--用户id
+--   offType int,--类型 1 门票 2卡
+--   code nvarchar(100),--卡号 门票代码
+--   DisplayName nvarchar(100),--卡名称/门票名称
+--   shopId int,--商户
+--   timers int,--次数
+--   offOp nvarchar(100),--核销员
+--   subTime datetime,--核销时间
+--)
+--GO
+--create PROCEDURE [dbo].[P_getTicketOff]
+-- @type int=null,
+-- @mobile nvarchar(100)=null,
+-- @shopName nvarchar(100)=null,
+-- @shopDisplayName nvarchar(100)=null,
+-- @Bdate datetime=null,
+-- @Edate datetime=null,
+-- @pageIndex INT,
+-- @pageSize INT
+--AS
+--BEGIN
+--SELECT count(1) as Total from TicketOff t left join Shops s on t.shopId=s.ShopId left join Users u on t.userId=u.UserId where
+--(@type is null or t.offType = @type)
+--and (@mobile is null or  u.Mobile = @mobile)
+--and (@shopName is null or  s.Name = @shopName)
+--and (@shopDisplayName is null or  s.DisplayName like '%'+ @shopDisplayName+'%')
+--and (@Bdate is null or  t.subTime >= @Bdate)
+--and (@Edate is null or  t.subTime < @Edate)
+
+-- select * from  (select Row_Number() OVER(order by  t.subTime desc)AS RowNum , t.*,u.Mobile as 'mobile',u.DisplayName as 'userDisplayName',s.Name as 'shopName',s.DisplayName as 'shopDisplayName'
+--   from TicketOff t left join Shops s on t.shopId=s.ShopId left join Users u on t.userId=u.UserId where
+--(@type is null or t.offType = @type)
+--and (@mobile is null or  u.Mobile = @mobile)
+--and (@shopName is null or  s.Name = @shopName)
+--and (@shopDisplayName is null or  s.DisplayName like '%'+ @shopDisplayName+'%')
+--and (@Bdate is null or  t.subTime >= @Bdate)
+--and (@Edate is null or  t.subTime < @Edate)
+--)t
+--where t.RowNum > (@pageIndex -1) * @pageSize 
+--         AND t.RowNum <=   @pageIndex * @pageSize
+--END
 GO
-create PROCEDURE [dbo].[P_getTicketOff]
+ALTER PROCEDURE [dbo].[P_getOrders]
+ @userId int=null,
+ @mobile nvarchar(50)=null,
+ @orderNo nvarchar(100)=null,
+ @orderState int=null,
  @type int=null,
- @mobile nvarchar(100)=null,
- @shopName nvarchar(100)=null,
- @shopDisplayName nvarchar(100)=null,
+ @useScope nvarchar(100)=null,
  @Bdate datetime=null,
  @Edate datetime=null,
  @pageIndex INT,
  @pageSize INT
 AS
 BEGIN
-SELECT count(1) as Total from TicketOff t left join Shops s on t.shopId=s.ShopId left join Users u on t.userId=u.UserId where
-(@type is null or t.offType = @type)
-and (@mobile is null or  u.Mobile = @mobile)
-and (@shopName is null or  s.Name = @shopName)
-and (@shopDisplayName is null or  s.DisplayName like '%'+ @shopDisplayName+'%')
-and (@Bdate is null or  t.subTime >= @Bdate)
-and (@Edate is null or  t.subTime < @Edate)
+SELECT count(1) as Total from fz_Orders t left join Users u on t.userId=u.UserId where
+(@userId is null or t.UserId = @userId) 
+and (@mobile is null or u.Mobile = @mobile) 
+and (@orderNo is null or t.orderNo = @orderNo) 
+and (@orderState is null or t.orderState = @orderState) 
+and (@type is null or t.type = @type) 
+and (@useScope is null or t.useScope = @useScope) 
+and (@Bdate is null or t.subTime >= @Bdate)
+and (@Edate is null or t.subTime < @Edate)
+ select * from  (select Row_Number() OVER(order by t.subTime desc )AS RowNum , t.*,u.Mobile,u.DisplayName as userDisplayName,(select top 1 DisplayName from Shops where Name=t.useScope) as shopName from fz_Orders t left join Users u on t.userId=u.UserId where
+(@userId is null or t.UserId = @userId) 
+and (@mobile is null or u.Mobile = @mobile) 
+and (@orderNo is null or t.orderNo = @orderNo) 
+and (@orderState is null or t.orderState = @orderState) 
+and (@type is null or t.type = @type)
+and (@useScope is null or t.useScope = @useScope) 
+and (@Bdate is null or t.subTime >= @Bdate)
+and (@Edate is null or t.subTime < @Edate)
+)t
+where t.RowNum > (@pageIndex -1) * @pageSize 
+         AND t.RowNum <=   @pageIndex * @pageSize
+END
 
- select * from  (select Row_Number() OVER(order by  t.subTime desc)AS RowNum , t.*,u.Mobile as 'mobile',u.DisplayName as 'userDisplayName',s.Name as 'shopName',s.DisplayName as 'shopDisplayName'
-   from TicketOff t left join Shops s on t.shopId=s.ShopId left join Users u on t.userId=u.UserId where
-(@type is null or t.offType = @type)
-and (@mobile is null or  u.Mobile = @mobile)
-and (@shopName is null or  s.Name = @shopName)
-and (@shopDisplayName is null or  s.DisplayName like '%'+ @shopDisplayName+'%')
-and (@Bdate is null or  t.subTime >= @Bdate)
-and (@Edate is null or  t.subTime < @Edate)
+GO
+create PROCEDURE [dbo].[P_getTicketss]
+@userId int=null,
+@ticketName nvarchar(100)=null,
+@orderNo nvarchar(100)=null,
+@mobile nvarchar(100)=null,
+@code nvarchar(100)=null,
+@state int=null,
+@useScope nvarchar(100),
+@Bdate datetime=null,
+@Edate datetime=null,
+@pageIndex INT,
+@pageSize INT
+AS
+BEGIN
+SELECT count(1) as Total from Tickets t left join AdmissionTicket u on t.AdmissionTicketId=u.id left join Users uu on t.userId=uu.UserId where
+(@userId is null or t.UserId = @userId)
+and (@orderNo is null or t.orderNo = @orderNo)
+and (@mobile is null or uu.Mobile = @mobile)
+and (@ticketName is null or u.name like '%'+@ticketName+'%')
+and (@code is null or t.Code = @code)
+and (@state is null or t.State = @state)
+and (@useScope is null or t.useScope = @useScope)
+and (@Bdate is null or t.userTime >= @Bdate)
+and (@Bdate is null or t.userTime < @Edate)
+
+ select * from  (select Row_Number() OVER(order by t.code )AS RowNum , t.*,u.name as 'TicketName',u.introduce,uu.Mobile,uu.DisplayName as 'UserDisplayName' from Tickets t left join AdmissionTicket u on t.AdmissionTicketId=u.id left join Users uu on t.userId=uu.UserId where
+(@userId is null or t.UserId = @userId)
+and (@orderNo is null or t.orderNo = @orderNo)
+and (@mobile is null or uu.Mobile = @mobile)
+and (@ticketName is null or u.name like '%'+@ticketName+'%')
+and (@code is null or t.Code = @code)
+and (@state is null or t.State = @state)
+and (@useScope is null or t.useScope = @useScope)
+and (@Bdate is null or t.userTime >= @Bdate)
+and (@Bdate is null or t.userTime < @Edate)
 )t
 where t.RowNum > (@pageIndex -1) * @pageSize 
          AND t.RowNum <=   @pageIndex * @pageSize

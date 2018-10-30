@@ -8,7 +8,7 @@ namespace MicroMall.Models.PersonalCentres
 {
     public class ConsumptionLogModel
     {
-        public ConsumptionLogModel(Orders orders)
+        public ConsumptionLogModel(Ordersss orders)
         {
             this.typeName = OrderTypes.GetName(orders.type);
             this.amount = orders.payAmount.ToString() ;

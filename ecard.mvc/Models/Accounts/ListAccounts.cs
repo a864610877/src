@@ -20,6 +20,7 @@ namespace Ecard.Mvc.Models.Accounts
         private Bounded _mobileStateBounded;
         private Bounded _stateBounded;
         private Bounded _shopBounded;
+        private Bounded _accountTypeBounded;
         private Bounded _distributorBounded;
         [NoRender]
         public Bounded Distributor
@@ -34,7 +35,7 @@ namespace Ecard.Mvc.Models.Accounts
             }
             set { _distributorBounded = value; }
         }
-        [NoRender]
+        
         public Bounded Shop
         {
             get
@@ -46,6 +47,19 @@ namespace Ecard.Mvc.Models.Accounts
                 return _shopBounded;
             }
             set { _shopBounded = value; }
+        }
+
+        public Bounded AccountType
+        {
+            get
+            {
+                if (_accountTypeBounded == null)
+                {
+                    _accountTypeBounded = Bounded.CreateEmpty("AccountTypeId", Globals.All);
+                }
+                return _accountTypeBounded;
+            }
+            set { _accountTypeBounded = value; }
         }
         public ListAccounts()
         {
@@ -160,10 +174,14 @@ namespace Ecard.Mvc.Models.Accounts
             //    //qq.Insert(0, new IdNamePair { Key = Ecard.Models.Distributor.Default.DistributorId, Name = Ecard.Models.Distributor.Default.FormatedName });
             //    Distributor.Bind(qq, true);
             //}
-            //var query = (from x in ShopService.Query(new ShopRequest() { IsBuildIn = false })
-            //             select new IdNamePair { Key = x.ShopId, Name = x.FormatedName }).ToList();
+            var query = (from x in ShopService.Query(new ShopRequest() { IsBuildIn = false })
+                         select new IdNamePair { Key = x.ShopId, Name = x.FormatedName }).ToList();
             //query.Insert(0, new IdNamePair { Key = Ecard.Models.Shop.Default.ShopId, Name = Ecard.Models.Shop.Default.FormatedName });
-            //this.Shop.Bind(query, true);
+            this.Shop.Bind(query, true);
+            var query1 = (from x in AccountTypeService.Query(new AccountTypeRequest())
+                         select new IdNamePair { Key = x.AccountTypeId, Name = x.DisplayName }).ToList();
+            //query.Insert(0, new IdNamePair { Key = Ecard.Models.Shop.Default.ShopId, Name = Ecard.Models.Shop.Default.FormatedName });
+            this.AccountType.Bind(query1, true);
         }
 
         public IEnumerable<ActionMethodDescriptor> GetToolbarActions()
@@ -722,7 +740,15 @@ namespace Ecard.Mvc.Models.Accounts
             if (!(request.State != States.All))
             {
                 request.State = null;
-            } 
+            }
+            if (request.AccountTypeId == Globals.All)
+            {
+                request.AccountTypeId = null;
+            }
+            if (request.ShopId == Globals.All)
+            {
+                request.ShopId = null;
+            }
             if (MobileState == MobileStates.IsAvailable)
             {
                 request.IsMobileAvailable = true;

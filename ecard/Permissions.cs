@@ -232,6 +232,23 @@ namespace Ecard
         /// </summary>
         public const string TicketOffReport = "TicketOffReport";
 
+        /// <summary>
+        /// 订单列表
+        /// </summary>
+        public const string OrdersList = "OrdersList";
+        /// <summary>
+        /// 订单列表导出
+        /// </summary>
+        public const string OrdersListReport = "OrdersListReport";
+        /// <summary>
+        /// 已购门票列表
+        /// </summary>
+        public const string BuyTicketList = "BuyTicketList";
+        /// <summary>
+        /// 已购门票列表导出
+        /// </summary>
+        public const string BuyTicketListReport = "BuyTicketListReport";
+
 
 
 

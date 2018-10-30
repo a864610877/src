@@ -1,0 +1,5 @@
+﻿description=Ecard.Mvc.Controllers.OrdersController
+Export.description=导出
+List.description=订单列表
+List.name=订单列表
+name=Ecard.Mvc.Controllers.OrdersController

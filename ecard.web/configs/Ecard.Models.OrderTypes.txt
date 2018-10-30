@@ -1,0 +1,8 @@
+﻿all.name=全部
+all.order=1
+card.name=购卡
+card.order=1
+cardRecharge.name=卡充值
+cardRecharge.order=1
+ticket.name=购票
+ticket.order=1

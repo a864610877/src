@@ -193,8 +193,11 @@
     <Content Include="configs\Ecard.Models.OffTypes.txt" />
     <Content Include="configs\Ecard.Models.Order.txt" />
     <Content Include="configs\Ecard.Models.OrderState.txt" />
+    <Content Include="configs\Ecard.Models.OrderStates.txt" />
+    <Content Include="configs\Ecard.Models.OrderTypes.txt" />
     <Content Include="configs\Ecard.Models.RollbackShopDealLogState.txt" />
     <Content Include="configs\Ecard.Models.Sites.SmsParam.txt" />
+    <Content Include="configs\Ecard.Models.TicketsState.txt" />
     <Content Include="configs\Ecard.Mvc.ActionFilters.DistributorUserModel.txt" />
     <Content Include="configs\Ecard.Mvc.Controllers.AdmissionTicketController.txt" />
     <Content Include="configs\Ecard.Mvc.Controllers.ArticlesController.txt" />
@@ -205,10 +208,12 @@
     <Content Include="configs\Ecard.Mvc.Controllers.DistributorController.txt" />
     <Content Include="configs\Ecard.Mvc.Controllers.GoodController.txt" />
     <Content Include="configs\Ecard.Mvc.Controllers.OrderController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.OrdersController.txt" />
     <Content Include="configs\Ecard.Mvc.Controllers.PointRebateLogController.txt" />
     <Content Include="configs\Ecard.Mvc.Controllers.RollbackController.txt" />
     <Content Include="configs\Ecard.Mvc.Controllers.ShopLiquidateController.txt" />
     <Content Include="configs\Ecard.Mvc.Controllers.TicketOffController.txt" />
+    <Content Include="configs\Ecard.Mvc.Controllers.TicketsController.txt" />
     <Content Include="configs\Ecard.Mvc.Controllers.UnityController.txt" />
     <Content Include="configs\Ecard.Mvc.Controllers.WeChatController.txt" />
     <Content Include="configs\Ecard.Mvc.Models.Accounts.SystemPayAccount.txt" />
@@ -358,6 +363,8 @@
     <Content Include="configs\Ecard.Mvc.Models.GoodandOrder.OrderDetialModelBase.txt" />
     <Content Include="configs\Ecard.Mvc.Models.GoodandOrder.ViewOrder.txt" />
     <Content Include="configs\Ecard.Mvc.Models.Homes.DashboardHome.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Orderss.ListOrders.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Orderss.ListOrderss.txt" />
     <Content Include="configs\Ecard.Mvc.Models.Rollbacks.AddRollback.txt" />
     <Content Include="configs\Ecard.Mvc.Models.Liquidates.DoneLiquidate.txt" />
     <Content Include="configs\Ecard.Mvc.Models.Liquidates.LiquidateModel.txt" />
@@ -462,6 +469,8 @@
     <Content Include="configs\Ecard.Mvc.Models.Tasks.ViewTask.txt" />
     <Content Include="configs\Ecard.Mvc.Models.TicketOffss.ListTicketOff.txt" />
     <Content Include="configs\Ecard.Mvc.Models.TicketOffss.ListTicketOffs.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Ticketss.ListTickets.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Ticketss.ListTicketss.txt" />
     <Content Include="configs\Ecard.Mvc.Models.Users.CreateDog.txt" />
     <Content Include="configs\Ecard.Mvc.Models.Users.EditProfile.txt" />
     <Content Include="configs\Ecard.Policies.IntervalAccountCreator.txt" />
@@ -1862,6 +1871,8 @@
     <None Include="Properties\PublishProfiles\qcr.pubxml" />
     <Content Include="Views\TicketOff\List.cshtml" />
     <Content Include="Views\WeChat\Edit.cshtml" />
+    <Content Include="Views\Orders\List.cshtml" />
+    <Content Include="Views\Tickets\List.cshtml" />
     <None Include="web.config.deploytemplate" />
   </ItemGroup>
   <ItemGroup>

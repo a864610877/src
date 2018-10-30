@@ -39,11 +39,14 @@ namespace Ecard.Mvc.Models.Accounts
         public IShopService ShopService { get; set; }
         [Dependency, NoRender]
         public IDistributorService DistributorService { get; set; }
+        [NoRender]
         public bool IsEmptyPassword { get; set; }
         public int Start { get; set; }
         public int End { get; set; }
         public int Interval { get; set; }
         public string Format { get; set; }
+
+        public string Password { get; set; }
         //---
         private Bounded _distributor;
         [NoRender]
@@ -62,7 +65,7 @@ namespace Ecard.Mvc.Models.Accounts
         //--
         private Bounded _shopBounded;
         //这个不需要了可以加上[NoRender]
-        [NoRender]
+        
         public Bounded Shop
         {
             get
@@ -145,7 +148,7 @@ namespace Ecard.Mvc.Models.Accounts
 
             for (int i = Start; i <= End; i += Interval)
             {
-                string password = IsEmptyPassword ? "" : RandomHelper.GenerateNumber(6);
+                string password = IsEmptyPassword ? "" : Password; //RandomHelper.GenerateNumber(6);
                 string salt = RandomHelper.GenerateNumber(8);
 
                 var account = new Account
@@ -173,6 +176,7 @@ namespace Ecard.Mvc.Models.Accounts
 
         public void Ready()
         {
+            Password = "000000";
             Format = string.Format("{{0:{0}}}", "".PadLeft(Site.AccountNameLength, '0'));
             IEnumerable<IdNamePair> query = AccountTypeService.Query(new AccountTypeRequest { State = States.Normal })
                 .ToList().Select(x => new IdNamePair { Key = x.AccountTypeId, Name = x.DisplayName });
@@ -203,19 +207,19 @@ namespace Ecard.Mvc.Models.Accounts
                 Distributor.Bind(qq,false);
             }
             //shop不要了这里也 可以不要了
-            //var q = (from x in ShopService.Query(new ShopRequest() {State = ShopStates.Normal, IsBuildIn = false})
-            //         select new IdNamePair { Key = x.ShopId, Name = x.FormatedName }).ToList();
-            //q.Insert(0, new IdNamePair { Key = Ecard.Models.Shop.Default.ShopId, Name = Ecard.Models.Shop.Default.FormatedName });
-            //Shop.Bind(q, true, "默认");
+            var qshop = (from x in ShopService.Query(new ShopRequest() { State = ShopStates.Normal, IsBuildIn = false })
+                     select new IdNamePair { Key = x.ShopId, Name = x.FormatedName }).ToList();
+            //qshop.Insert(0, new IdNamePair { Key = Ecard.Models.Shop.Default.ShopId, Name = Ecard.Models.Shop.Default.FormatedName });
+            Shop.Bind(qshop, true, "全部");
             //var q = DistributorService.Query();
             //UserRequest user=new UserRequest();
             //user.Discriminator="DistributorUser";
             //var users = MembershipService.QueryUsers<DistributorUser>(new UserRequest()).ToList();
-            
-           // var list = (from x in (q.Where(x => users.Any(u => u.UserId == x.UserId)).ToList()) select new ListDistributor(x) { Owner=users.First(u=>u.UserId==x.UserId)}).ToList();
+
+            // var list = (from x in (q.Where(x => users.Any(u => u.UserId == x.UserId)).ToList()) select new ListDistributor(x) { Owner=users.First(u=>u.UserId==x.UserId)}).ToList();
             //var qq = (from x in list select new IdNamePair { Key = x.DistributorId, Name = x.DisplayName }).ToList();
             //qq.Insert(0, new IdNamePair { Key = Ecard.Models.Distributor.Default.DistributorId, Name = Ecard.Models.Distributor.Default.FormatedName });
-           // Distributor.Bind(qq, true);
+            // Distributor.Bind(qq, true);
             //var q = (from x in DistributorService.Query()users, x => new ListDistributor(x) { Owner = users.First(u => u.UserId == x.UserId
             //         select new IdNamePair { Key = x.DistributorId, Name = x. }).ToList();
             //q.Insert(0, new IdNamePair { Key = Ecard.Models.Shop.Default.ShopId, Name = Ecard.Models.Shop.Default.FormatedName });

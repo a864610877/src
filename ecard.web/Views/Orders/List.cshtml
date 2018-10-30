@@ -1,5 +1,5 @@
 ﻿@using Moonlit
-@model   Ecard.Mvc.Models.TicketOffss.ListTicketOffs
+@model   Ecard.Mvc.Models.Orderss.ListOrderss
 
 <div class="place">
     <span>位置：</span>
@@ -71,16 +71,15 @@
     }
     //获取数据
     function AjaxGetData(PageIndex, PageSize) {
-
+        var orderNo = $('#orderNo').val();
         var mobile = $('#mobile').val();
-        var shopDisplayName = $('#shopDisplayName').val();
         var shopName = $('#shopName').val();
-        var type = $("[id=OffType.Key]").val();
+        var type = $("[id=type.Key]").val();
         var startTime = $('#Data_Start').val();
         var endTime = $('#Data_End').val();
         $.ajax({
-            url: "/TicketOff/ListPost",
-            data: { pageIndex: PageIndex, pageSize: PageSize, type: type, Bdate: startTime, Edate: endTime, mobile: mobile, shopDisplayName: shopDisplayName, shopName: shopName },
+            url: "/Orders/ListPost",
+            data: { pageIndex: PageIndex, pageSize: PageSize, type: type, Bdate: startTime, Edate: endTime, mobile: mobile, orderNo: orderNo, useScope: shopName },
             type: "post",
             //cache: false,
             dataType: "json",
@@ -88,15 +87,16 @@
             success: function (data) {
                 var listVal = new Array();
                 listVal.push("id");
-                listVal.push("Code");
-                listVal.push("DisplayName");
-                listVal.push("OffType");
-                listVal.push("Timers");
-                listVal.push("ShopDisplayName");
+                listVal.push("OrderNo");
+                listVal.push("Mobile");
+                listVal.push("UserDisplayName");
+                listVal.push("Type");
+                listVal.push("OrderState");
+                listVal.push("Amount");
+                listVal.push("Deductible");
+                listVal.push("PayAmount");
                 listVal.push("ShopName");
-                listVal.push("mobile");
-                listVal.push("userDisplayName");
-                listVal.push("SubmitTime");
+                listVal.push("SubTime");
                 $.GetstrTrs(data, listVal, "id");
             },
             error: function () {

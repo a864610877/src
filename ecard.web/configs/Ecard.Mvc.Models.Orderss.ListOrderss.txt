@@ -1,0 +1,15 @@
+﻿Data.name=时间
+Data.order=1
+mobile.name=手机号
+mobile.order=1
+OrderBy.order=1
+orderNo.name=订单号
+orderNo.order=1
+pageHtml.order=1
+PageIndex.order=1
+PageSize.order=1
+shopName.name=优惠门店号
+shopName.order=1
+title=标题
+type.name=类型
+type.order=1

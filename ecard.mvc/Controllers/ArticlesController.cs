@@ -13,6 +13,7 @@ using System.Web.Mvc;
 
 namespace Ecard.Mvc.Controllers
 {
+    [Authorize]
     public class ArticlesController : Controller
     {
         private readonly IUnityContainer _unityContainer;

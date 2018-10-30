@@ -1,0 +1,5 @@
+﻿description=Ecard.Mvc.Controllers.TicketsController
+Export.description=导出
+List.description=已购门票
+List.name=已购门票
+name=Ecard.Mvc.Controllers.TicketsController

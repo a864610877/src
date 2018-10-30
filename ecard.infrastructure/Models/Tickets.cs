@@ -66,6 +66,12 @@ namespace Ecard.Models
         public string TicketName { get; set; }
 
         public string Introduce { get; set; }
+
+        public string Mobile { get; set; }
+
+        public string UserDisplayName { get; set; }
+
+        public string ShopName { get; set; }
     }
 
     public class TicketsState

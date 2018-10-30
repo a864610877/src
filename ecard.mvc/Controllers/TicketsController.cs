@@ -1,5 +1,4 @@
-﻿using Ecard.Mvc.Models.TicketOffss;
-using Ecard.Services;
+﻿using Ecard.Services;
 using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
@@ -10,16 +9,16 @@ using System.Web.Mvc;
 namespace Ecard.Mvc.Controllers
 {
     [Authorize]
-    public class TicketOffController: Controller
+    public class TicketsController: Controller
     {
         private readonly IUnityContainer _unityContainer;
 
-        public TicketOffController(IUnityContainer unityContaine)
+        public TicketsController(IUnityContainer unityContaine)
         {
             this._unityContainer = unityContaine;
         }
-        [ActionFilters.CheckPermission(Permissions.TicketOffList)]
-        public ActionResult List(ListTicketOffs request)
+        [ActionFilters.CheckPermission(Permissions.BuyTicketList)]
+        public ActionResult List(Models.Ticketss.ListTicketss request)
         {
             string pageHtml = string.Empty;
             if (ModelState.IsValid)
@@ -31,16 +30,15 @@ namespace Ecard.Mvc.Controllers
             return View("List", request);
         }
         [HttpPost]
-        public ActionResult ListPost(TicketOffRequest request)
+        public ActionResult ListPost(TicketsRequest request)
         {
-            var createRole = _unityContainer.Resolve<ListTicketOffs>();
+            var createRole = _unityContainer.Resolve<Models.Ticketss.ListTicketss>();
             string pageHtml = string.Empty;
             var datas = createRole.AjaxGet(request, out pageHtml);
             return Json(new { tables = datas, html = pageHtml });
         }
-
-        [ActionFilters.CheckPermission(Permissions.TicketOffReport)]
-        public ActionResult Export(ListTicketOffs request)
+        [ActionFilters.CheckPermission(Permissions.BuyTicketListReport)]
+        public ActionResult Export(Models.Ticketss.ListTicketss request)
         {
             //_logger.LogWithSerialNo(LogTypes.AccountExport, SerialNoHelper.Create(), 0);
             return List(request);

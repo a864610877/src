@@ -23,10 +23,12 @@ namespace Ecard.Models
         /// <summary>
         /// 状态 1 等待付款 2 已付款
         /// </summary>
+        [Bounded(typeof(OrderStates))]
         public int orderState { get; set; }
         /// <summary>
         /// 类型 1购票 2购卡 3充值卡
         /// </summary>
+        [Bounded(typeof(OrderTypes))]
         public int type { get; set; }
         /// <summary>
         /// 优惠卷抵扣金额
@@ -48,6 +50,13 @@ namespace Ecard.Models
         /// 下单时间
         /// </summary>
         public DateTime subTime { get; set; }
+    }
+
+    public class Ordersss: Orders
+    {
+         public string mobile { get; set; }
+         public string userDisplayName { get; set; }
+         public string shopName { get; set; }
     }
 
     public class OrderStates

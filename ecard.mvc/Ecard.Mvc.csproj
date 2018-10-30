@@ -184,8 +184,10 @@
     <Compile Include="Controllers\KindEditorController.cs" />
     <Compile Include="Controllers\LiquidateController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TicketOffController.cs" />
+    <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Controllers\UnityController.cs" />
     <Compile Include="Controllers\RollbackController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
@@ -231,6 +233,8 @@
     <Compile Include="Models\GoodandOrder\OrderModelBase.cs" />
     <Compile Include="Models\GoodandOrder\ViewOrder.cs" />
     <Compile Include="Models\MvcPage.cs" />
+    <Compile Include="Models\Orderss\ListOrders.cs" />
+    <Compile Include="Models\Orderss\ListOrderss.cs" />
     <Compile Include="Models\Rollbacks\AddRollback.cs" />
     <Compile Include="Models\Liquidates\ListLiquidates.cs" />
     <Compile Include="Models\Rollbacks\DeleteRollback.cs" />
@@ -244,6 +248,8 @@
     <Compile Include="Models\Tasks\RefuseCommand.cs" />
     <Compile Include="Models\TicketOffss\ListTicketOff.cs" />
     <Compile Include="Models\TicketOffss\ListTicketOffs.cs" />
+    <Compile Include="Models\Ticketss\ListTickets.cs" />
+    <Compile Include="Models\Ticketss\ListTicketss.cs" />
     <Compile Include="ResultMsg.cs" />
     <Compile Include="SimpleMessageProvider.cs" />
     <Compile Include="Models\ItemList.cs" />

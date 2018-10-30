@@ -38,7 +38,7 @@ namespace Ecard.SqlServices
             return new QueryObject<Orders>(_databaseInstance, sql, new { orderNo = orderNo }).FirstOrDefault();
         }
 
-        public DataTables<Orders> Query(OrdersRequest request)
+        public DataTables<Ordersss> Query(OrdersRequest request)
         {
             SqlParameter[] param = {
                                       new SqlParameter("@userId",request.userId),
@@ -46,11 +46,12 @@ namespace Ecard.SqlServices
                                       new SqlParameter("@orderNo",request.orderNo),
                                       new SqlParameter("@orderState",request.orderState),
                                       new SqlParameter("@type",request.type),
+                                      new SqlParameter("@useScope",request.useScope),
                                       new SqlParameter("@pageIndex",request.pageIndex),
                                       new SqlParameter("@pageSize",request.pageSize)
                                    };
             StoreProcedure sp = new StoreProcedure("P_getOrders", param);
-            return _databaseInstance.GetTables<Orders>(sp);
+            return _databaseInstance.GetTables<Ordersss>(sp);
         }
     }
 }

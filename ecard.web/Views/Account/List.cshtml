@@ -124,19 +124,21 @@
     function AjaxGetData(PageIndex, PageSize) {
         var hasStartPwd = false,hasAccountToken=false;
         var Name = $('#Name').val();
-        var DisplayName = $('#DisplayName').val();
+        //var DisplayName = $('#DisplayName').val();
         var State = $("[id=State.Key]").val();
         var Content = $('#Content').val();
-        var MobileState = "";
-        var mobilestate = $("[id=MobileState.Key]").val();
-        if (mobilestate!="1") {
-            MobileState = mobilestate;
-        }
-        var ShopId = "";
-        var Id = $("[id=Distributor.Key]").val();
-        if (ShopId != "0") {
-            ShopId = Id;
-        }
+        var ShopId = $("[id=Shop.Key]").val();
+        var AccountTypeId = $("[id=AccountType.Key]").val();
+        //var MobileState = "";
+        //var mobilestate = $("[id=MobileState.Key]").val();
+        //if (mobilestate!="1") {
+        //    MobileState = mobilestate;
+        //}
+        //var ShopId = "";
+        //var Id = $("[id=Distributor.Key]").val();
+        //if (ShopId != "0") {
+        //    ShopId = Id;
+        //}
         $("#TabelThead  tr").each(function () {
             $(this).find("th").each(function () {
                 var thisVal = $(this).text().replace(/(<br[^>]*>|  |\s*)/g,'');
@@ -151,7 +153,7 @@
         }) 
         $.ajax({
             url: "/Account/ListPost",
-            data: { PageIndex: PageIndex, PageSize: PageSize, Name: Name, DisplayNameWith: DisplayName, State: State, MobileState: MobileState, ShopId: Id, Mobile: Content },
+            data: { PageIndex: PageIndex, PageSize: PageSize, Name: Name, State: State, ShopId: ShopId, AccountTypeId: AccountTypeId, Mobile: Content },
             type: "post",
             //cache: false, 
             dataType: "json",
@@ -170,7 +172,6 @@
                 listVal.push("babyBirthDate");
                 listVal.push("BabyName");
                 listVal.push("BabySex");
-                
                 //if (hasStartPwd) {
                 //    listVal.push("InitPassword");
                 //}
@@ -186,7 +187,7 @@
                 //}
                 listVal.push("LastDealTime");
                 listVal.push("AccountType");
-                listVal.push("DistributorName");
+                listVal.push("shopName");
                 listVal.push("State");
                 listVal.push("boor");
                 $.GetstrTrs(data, listVal, "AccountId");

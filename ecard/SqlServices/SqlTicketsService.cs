@@ -42,5 +42,23 @@ namespace Ecard.SqlServices
         {
             _databaseInstance.Update(item, TableName);
         }
+
+        public DataTables<Ticketss> GetList(TicketsRequest request)
+        {
+            SqlParameter[] param = {
+                                      new SqlParameter("@Bdate",request.Bdate),
+                                      new SqlParameter("@code",request.code),
+                                      new SqlParameter("@Edate",request.Edate),
+                                      new SqlParameter("@mobile",request.mobile),
+                                      new SqlParameter("@orderNo",request.orderNo),
+                                      new SqlParameter("@state",request.state),
+                                      new SqlParameter("@ticketName",request.ticketName),
+                                      new SqlParameter("@useScope",request.useScope),
+                                      new SqlParameter("@pageIndex",request.pageIndex),
+                                      new SqlParameter("@pageSize",request.pageSize)
+                                   };
+            StoreProcedure sp = new StoreProcedure("P_getTicketss", param);
+            return _databaseInstance.GetTables<Ticketss>(sp);
+        }
     }
 }

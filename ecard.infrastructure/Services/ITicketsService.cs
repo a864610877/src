@@ -13,5 +13,22 @@ namespace Ecard.Services
         Tickets GetById(int id);
         void Create(Tickets item);
         void Update(Tickets item);
+        DataTables<Ticketss> GetList(TicketsRequest request);
     }
+
+    public class TicketsRequest
+    {
+        public string ticketName { get; set; }
+        public string orderNo { get; set; }
+        public string mobile { get; set; }
+        public string code { get; set; }
+        public int? state { get; set; }
+        public string useScope { get; set; }
+        public DateTime? Bdate { get; set; }
+        public DateTime? Edate { get; set; }
+        public int pageIndex { get; set; }
+        public int pageSize { get; set; }
+    }
+
+
 }
