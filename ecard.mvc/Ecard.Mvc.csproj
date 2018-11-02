@@ -242,6 +242,7 @@
     <Compile Include="Models\Rollbacks\LiquidateModel.cs" />
     <Compile Include="Models\Rollbacks\ListRollback.cs" />
     <Compile Include="Models\SetWeChats\EditSetWeChat.cs" />
+    <Compile Include="Models\Shops\WindowTicketingView.cs" />
     <Compile Include="Models\Sites\SmsParam.cs" />
     <Compile Include="Models\Tasks\ListTasks.cs" />
     <Compile Include="Models\Tasks\ListTask.cs" />

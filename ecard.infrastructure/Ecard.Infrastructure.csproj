@@ -223,6 +223,7 @@
     <Compile Include="Models\Tickets.cs" />
     <Compile Include="Models\UseCouponslog.cs" />
     <Compile Include="Models\UserCoupons.cs" />
+    <Compile Include="Models\WindowTicketing.cs" />
     <Compile Include="PrePayRequest.cs" />
     <Compile Include="Requests\AdmissionTicketRequest.cs" />
     <Compile Include="Requests\ArticlesRequest.cs" />
@@ -250,6 +251,7 @@
     <Compile Include="Services\ITicketsService.cs" />
     <Compile Include="Services\IUseCouponslogService.cs" />
     <Compile Include="Services\IUserCouponsService.cs" />
+    <Compile Include="Services\IWindowTicketingService.cs" />
     <Compile Include="Services\RollbackShopDealLogRequest.cs" />
     <Compile Include="Services\SqlRollbackShopDealLogService.cs" />
     <Compile Include="TokenKeyExtensions.cs" />

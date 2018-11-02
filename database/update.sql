@@ -378,3 +378,20 @@ and
 where t.RowNum >  (@pageIndex -1) * @pageSize 
          AND t.RowNum <=   @pageIndex * @pageSize
 END
+go
+create table WindowTicketings
+(
+   id int identity(1,1) primary key,
+   code nvarchar(100),
+   admissionTicketId int,
+   shopId int,
+   ticketName nvarchar(200),--门票名称
+   amount decimal(18,2),--金额
+   payType int,--支付方式 1 现金 2微信支付 3支付宝 4银联 5 其他
+   displayName nvarchar(100),--姓名
+   mobile nvarchar(100),--手机号
+   babyName nvarchar(100),--宝宝姓名
+   babySex int,--宝宝性别
+   babyBirthDate datetime,--宝宝出生年月
+   createTime datetime
+)

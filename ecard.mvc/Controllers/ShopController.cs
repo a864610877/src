@@ -244,6 +244,12 @@ namespace Ecard.Mvc.Controllers
                return Json(new { Code = 0});
            } 
         }
+
+
+        public ActionResult WindowTicketing()
+        {
+
+        }
     }
 
     public class AutoCompletedItem

@@ -253,6 +253,7 @@
     <Compile Include="SqlServices\SqlTicketsService.cs" />
     <Compile Include="SqlServices\SqlUseCouponslogService.cs" />
     <Compile Include="SqlServices\SqlUserCouponsService.cs" />
+    <Compile Include="SqlServices\SqlWindowTicketingService.cs" />
     <Compile Include="TaskCommandFactory.cs" />
     <Compile Include="TransactionHelper.cs" />
     <Compile Include="Validation\IValidator.cs" />
