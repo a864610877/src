@@ -1166,6 +1166,8 @@
     <Content Include="js\registers.js" />
     <Content Include="js\select-ui.min.js" />
     <Content Include="js\Site.js" />
+    <Content Include="libs\Google.ProtocolBuffers.dll" />
+    <Content Include="libs\PostMsg_Net.dll" />
     <Content Include="logo\logo.png" />
     <Content Include="Scripts\AccountList.js" />
     <Content Include="Scripts\api.js" />
