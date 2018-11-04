@@ -1,5 +1,5 @@
 ﻿@using Moonlit
-@model   Ecard.Mvc.Models.TicketOffss.ListTicketOffs
+@model  Ecard.Mvc.Models.Shops.ListHandRingPrints
 
 <div class="place">
     <span>位置：</span>
@@ -20,16 +20,16 @@
 
         </tr>
     </table>
-    <div class="searchCommand">
+    @*<div class="searchCommand">
         @Html.ToolbarOfList(Model.GetToolbarActions())
-    </div>
+    </div>*@
     <div class="listbox">
         <table class="tablelist">
             <thead id="TabelThead" style="border-color: #5ec2f9; border-bottom-style: solid">
                 <tr>
                     <th><input id="ckAll" type="checkbox" onclick="selectAll()" /></th>
                     @Html.Ths(Model.List, Model.GetItemType())
-                    @*@Html.Th(Ths.Operation, new { width = "134px" })*@
+                    @Html.Th(Ths.Operation, new { width = "134px" })
                 </tr>
             </thead>
             <tbody id="tbodysNum">
@@ -44,7 +44,7 @@
                             <tr>
                                 <td><input name="selectBox" type="checkbox" value=@item.Id /></td>
                                 @Html.Tds(item, Model.GetItemType())
-                                @*<div>@Html.ToolbarOfItem(Model.GetItemToobalActions(item))</div>*@
+                                <div>@Html.ToolbarOfItem(Model.GetItemToobalActions(item))</div>
                             </tr>
                             scope.Next();
                         }
@@ -71,33 +71,36 @@
     }
     //获取数据
     function AjaxGetData(PageIndex, PageSize) {
-
-        var mobile = $('#mobile').val();
-        var shopDisplayName = $('#shopDisplayName').val();
-        var shopName = $('#shopName').val();
-        var type = $("[id=OffType.Key]").val();
+        var mobile = $('#Mobile').val();
+        var babyName = $('#BabyName').val();
+        var code = $('#Code').val();
+        var ticketType = $("[id=TicketType.Key]").val();
+        var state = $("[id=State.Key]").val();
         var startTime = $('#Data_Start').val();
         var endTime = $('#Data_End').val();
         $.ajax({
-            url: "/TicketOff/ListPost",
-            data: { pageIndex: PageIndex, pageSize: PageSize, type: type, Bdate: startTime, Edate: endTime, mobile: mobile, shopDisplayName: shopDisplayName, shopName: shopName },
+            url: "/Shop/HandRingPrintListPost",
+            data: { pageIndex: PageIndex, pageSize: PageSize, code: code, Bdate: startTime, Edate: endTime, babyName: babyName, mobile: mobile, state: state, ticketType: ticketType },
             type: "post",
             //cache: false,
             dataType: "json",
             async: false,
             success: function (data) {
                 var listVal = new Array();
-                listVal.push("id");
+                listVal.push("Id");
                 listVal.push("Code");
-                listVal.push("DisplayName");
-                listVal.push("OffType");
-                listVal.push("Timers");
-                listVal.push("ShopDisplayName");
-                listVal.push("ShopName");
-                listVal.push("mobile");
-                listVal.push("userDisplayName");
-                listVal.push("SubmitTime");
-                $.GetstrTrs(data, listVal, "id");
+                listVal.push("TicketType");
+                listVal.push("Mobile");
+                listVal.push("UserName");
+                listVal.push("BabyName");
+                listVal.push("BabySex");
+                listVal.push("ChildNum");
+                listVal.push("AdultNum");
+                listVal.push("printTime");
+                listVal.push("State");
+                listVal.push("createTime");
+                listVal.push("boor");
+                $.GetstrTrs(data, listVal, "Id");
             },
             error: function () {
                 window.location.href = "/Home/UserError";
@@ -109,7 +112,7 @@
         ActionName = RName;
         ActionUrl = RUrl;
         switch (RName) {
-            case "Export":
+            case "ExportWindowTicketing":
                 window.location.href = RUrl;
                 break;
             default:

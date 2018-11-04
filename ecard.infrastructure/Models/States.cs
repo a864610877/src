@@ -10,6 +10,10 @@
         /// 无效的，有故障的, 黑名单的, 暂时停使用的 2
         /// </summary>
         public const int Invalid = 2;
+        /// <summary>
+        /// 已使用完成
+        /// </summary>
+        public const int UseComplete = 3;
 
         /// <summary>
         /// 全部 100000

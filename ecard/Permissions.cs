@@ -248,8 +248,19 @@ namespace Ecard
         /// 已购门票列表导出
         /// </summary>
         public const string BuyTicketListReport = "BuyTicketListReport";
+        /// <summary>
+        /// 窗口售票记录
+        /// </summary>
+        public const string WindowTicketing = "WindowTicketing";
+        /// <summary>
+        /// 窗口售票记录导出
+        /// </summary>
+        public const string WindowTicketingReport = "WindowTicketingReport";
 
-
+        /// <summary>
+        /// 手环打印列表
+        /// </summary>
+        public const string HandRingPrintList = "HandRingPrintList";
 
 
 

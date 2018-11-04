@@ -1,0 +1,15 @@
+﻿AdmissionTicket.name=门票
+AdmissionTicket.order=1
+Data.name=购买时间
+Data.order=1
+mobile.name=手机号
+mobile.order=1
+OrderBy.order=1
+pageHtml.order=1
+PageIndex.order=1
+PageSize.order=1
+PayType.name=支付类型
+PayType.order=1
+shopName.name=门店号
+shopName.order=1
+title=窗口售票记录

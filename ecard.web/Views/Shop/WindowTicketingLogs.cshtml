@@ -1,5 +1,5 @@
 ﻿@using Moonlit
-@model   Ecard.Mvc.Models.TicketOffss.ListTicketOffs
+@model  Ecard.Mvc.Models.Shops.ListWindowTicketings
 
 <div class="place">
     <span>位置：</span>
@@ -42,7 +42,7 @@
                         {
 
                             <tr>
-                                <td><input name="selectBox" type="checkbox" value=@item.Id /></td>
+                                <td><input name="selectBox" type="checkbox" value=@item.id /></td>
                                 @Html.Tds(item, Model.GetItemType())
                                 @*<div>@Html.ToolbarOfItem(Model.GetItemToobalActions(item))</div>*@
                             </tr>
@@ -71,16 +71,15 @@
     }
     //获取数据
     function AjaxGetData(PageIndex, PageSize) {
-
         var mobile = $('#mobile').val();
-        var shopDisplayName = $('#shopDisplayName').val();
         var shopName = $('#shopName').val();
-        var type = $("[id=OffType.Key]").val();
+        var PayType = $("[id=PayType.Key]").val();
+        var AdmissionTicket = $("[id=AdmissionTicket.Key]").val();
         var startTime = $('#Data_Start').val();
         var endTime = $('#Data_End').val();
         $.ajax({
-            url: "/TicketOff/ListPost",
-            data: { pageIndex: PageIndex, pageSize: PageSize, type: type, Bdate: startTime, Edate: endTime, mobile: mobile, shopDisplayName: shopDisplayName, shopName: shopName },
+            url: "/Shop/WindowTicketingLogsPost",
+            data: { pageIndex: PageIndex, pageSize: PageSize, payType: PayType, Bdate: startTime, Edate: endTime, mobile: mobile, admissionTicketId: AdmissionTicket, shopName: shopName },
             type: "post",
             //cache: false,
             dataType: "json",
@@ -89,14 +88,19 @@
                 var listVal = new Array();
                 listVal.push("id");
                 listVal.push("Code");
-                listVal.push("DisplayName");
-                listVal.push("OffType");
-                listVal.push("Timers");
-                listVal.push("ShopDisplayName");
+                listVal.push("TicketName");
                 listVal.push("ShopName");
-                listVal.push("mobile");
-                listVal.push("userDisplayName");
-                listVal.push("SubmitTime");
+                listVal.push("ShopDisplayName");
+                listVal.push("Amount");
+                listVal.push("Price");
+                listVal.push("Num");
+                listVal.push("PayType");
+                listVal.push("DisplayName");
+                listVal.push("Mobile");
+                listVal.push("BabyName");
+                listVal.push("BabyBirthDate");
+                listVal.push("BabySex");
+                listVal.push("CreateTime");
                 $.GetstrTrs(data, listVal, "id");
             },
             error: function () {
@@ -109,7 +113,7 @@
         ActionName = RName;
         ActionUrl = RUrl;
         switch (RName) {
-            case "Export":
+            case "ExportWindowTicketing":
                 window.location.href = RUrl;
                 break;
             default:

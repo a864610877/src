@@ -1,0 +1,17 @@
+﻿BabyName.name=宝宝姓名
+BabyName.order=1
+Code.name=门票编号/卡号
+Code.order=1
+Data.name=创建时间
+Data.order=1
+Mobile.name=手机号
+Mobile.order=1
+OrderBy.order=1
+pageHtml.order=1
+PageIndex.order=1
+PageSize.order=1
+State.name=状态
+State.order=1
+TicketType.name=类型
+TicketType.order=1
+title=手环打印列表

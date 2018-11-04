@@ -1,0 +1,6 @@
+﻿all.name=全部
+all.order=1
+bot.name=未打印
+bot.order=1
+use.name=已打印
+use.order=1

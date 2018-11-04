@@ -93,8 +93,6 @@ namespace Ecard.Mvc.Models.Orderss
             {
                 request.type = null;
             }
-            request.Bdate = Data.Start;
-            request.Edate = Data.End;
             request.orderState = OrderStates.paid;
             if (request.pageIndex == null || request.pageIndex <= 0)
             {

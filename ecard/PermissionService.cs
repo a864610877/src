@@ -174,6 +174,10 @@ namespace Ecard
                              new Permission {DisplayName = "已购门票列表", Category = "报表",Name = Permissions.BuyTicketList, UserTypes = adminUserType},
                              new Permission {DisplayName = "已购门票列表导出", Category = "报表",Name = Permissions.BuyTicketListReport, UserTypes = adminUserType},
 
+                              new Permission {DisplayName = "窗口售票记录", Category = "窗口售票",Name = Permissions.WindowTicketing, UserTypes = adminUserType},
+                              new Permission {DisplayName = "窗口售票记录导出", Category = "窗口售票",Name = Permissions.WindowTicketingReport, UserTypes = adminUserType},
+                              new Permission {DisplayName = "手环打印列表", Category = "报表",Name = Permissions.HandRingPrintList, UserTypes = adminUserType},
+
                         }).AsQueryable();
             return from x in query
                    where x.UserTypes == null || x.UserTypes.ToList().IndexOf(userType) >= 0

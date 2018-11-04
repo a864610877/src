@@ -93,8 +93,6 @@ namespace Ecard.Mvc.Models.Ticketss
             {
                 request.state = null;
             }
-            request.Bdate = Data.Start;
-            request.Edate = Data.End;
             if (request.pageIndex == null || request.pageIndex <= 0)
             {
                 request.pageIndex = 1;

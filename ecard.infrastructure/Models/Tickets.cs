@@ -72,6 +72,9 @@ namespace Ecard.Models
         public string UserDisplayName { get; set; }
 
         public string ShopName { get; set; }
+
+        public string babyName { get; set; }
+        public int babySex { get; set; }
     }
 
     public class TicketsState

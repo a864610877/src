@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Ecard.Mvc
 {
-  public   class ResultMsg
+    public class ResultMsg
     {
-      public ResultMsg()
+        public ResultMsg()
         {
             Code = -1;
             CodeText = string.Empty;
@@ -16,5 +16,12 @@ namespace Ecard.Mvc
         public int Code { get; set; }
         public string CodeText { get; set; }
         public string CodeValue { get; set; }
+    }
+
+    public class ResultMsg<T>: ResultMsg
+    {
+        public ResultMsg() : base()
+        { }
+         public T data { get; set; }
     }
 }

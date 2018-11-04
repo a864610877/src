@@ -108,6 +108,8 @@ namespace Ecard.Mvc
                 .RegisterType<ITicketOffService, SqlTicketOffService>()
                 .RegisterType<ITicketsService,SqlTicketsService>()
                 .RegisterType<IWindowTicketingService,SqlWindowTicketingService>()
+                .RegisterType<IPostTokenService,SqlPostTokenService>()
+                .RegisterType<IHandRingPrintService,SqlHandRingPrintService>()
                 .RegisterType<IDashboardItemRepository, DashboardItemRepository>(new ContainerControlledLifetimeManager())
                 .RegisterType<IRegisterRoutes, EcardRoutes>(
                     new InjectionConstructor(

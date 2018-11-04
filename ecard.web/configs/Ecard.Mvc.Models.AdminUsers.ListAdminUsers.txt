@@ -8,6 +8,7 @@ Email.order=3
 Name.name=用户名
 Name.order=1
 OrderBy.order=1
+pageHtml.order=1
 PageIndex.order=1
 PageSize.order=1
 query=查询

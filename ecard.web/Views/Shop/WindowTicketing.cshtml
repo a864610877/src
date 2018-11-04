@@ -1,0 +1,238 @@
+﻿@{
+
+
+}
+@model EcardModelItem<Ecard.Mvc.Models.Shops.WindowTicketingView>
+   
+        <div class="place">
+            <span>位置：</span>
+            <ul class="placeul">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">窗口售票</a></li>
+            </ul>
+        </div>
+        <div class="create_div">
+            <ul class="forminfo" style="padding-top:10px;">
+                <li>
+                    <label><label class="desc" for="Item_AccountType">门票</label></label>
+                    <div class="vocation">
+                        <div class="uew-select">
+                            <div class="uew-select-value ue-state-default">
+                                <em class="uew-select-text"></em><em class="uew-icon uew-icon-triangle-1-s"></em>
+                            </div>
+                            <select class="select1" data-val="true" data-val-number="The field Key must be a number." data-val-required="请输入必填字段" id="AdmissionTicket" name="AdmissionTicket">
+                                <option value="0" data-prie="0" selected ></option>
+                                @foreach (var item in Model.Item.AdmissionTicket)
+                                {
+                                    <option value="@item.Key" data-prie="@item.value">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div><span class="field-validation-valid" data-valmsg-for="Item.AccountType.Key" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label><label class="desc" for="Item_Start">价格</label></label>
+                    <input class="scinput InputSerach" data-val="true" data-val-number="The field Start must be a number." data-val-required="Start 字段是必需的。" id="price" name="price" type="text" value="0" disabled>
+                    <span class="field-validation-valid" data-valmsg-for="Item.Start" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label><label class="desc" for="Item_Password">数量</label></label>
+                    <input class="scinput InputSerach" id="num" name="num" type="text" value="1">
+                    <span class="field-validation-valid" data-valmsg-for="Item.Password" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label><label class="desc" for="Item_End">姓名</label></label>
+                    <input class="scinput InputSerach" data-val="true" data-val-number="The field End must be a number." data-val-required="姓名" id="displayName" name="displayName" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="Item.End" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label><label class="desc" for="Item_Interval">手机号</label></label>
+                    <input class="scinput InputSerach" data-val="true" data-val-number="The field Interval must be a number." data-val-required="" id="mobile" name="mobile" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="Item.Interval" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label><label class="desc" for="Item_End">宝宝姓名</label></label>
+                    <input class="scinput InputSerach" data-val="true" data-val-number="The field End must be a number." data-val-required="宝宝姓名" id="babyName" name="babyName" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="Item.End" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label><label class="desc" for="Item_AccountType">宝宝性别</label></label>
+                    <div class="vocation">
+                        <div class="uew-select">
+                            <div class="uew-select-value ue-state-default">
+                                <em class="uew-select-text"></em><em class="uew-icon uew-icon-triangle-1-s"></em>
+                            </div>
+                            <select class="select1" data-val="true" data-val-number="The field Key must be a number." data-val-required="请输入必填字段" id="babySex" name="babySex">
+                                <option value="0" selected></option>
+                                @foreach (var item in Model.Item.BabySex)
+                                {
+                                    <option value="@item.Key" data-prie="@item.value">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div><span class="field-validation-valid" data-valmsg-for="Item.AccountType.Key" data-valmsg-replace="true"></span>
+                </li>
+
+
+                <li>
+                    <label><label class="desc" for="Item_AccountToken">宝宝出生年月</label></label>
+                    <input class="Wdate scinput" id="babyBirthDate" name="babyBirthDate" onfocus="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="Item.AccountToken" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label><label class="desc" for="Item_AccountType">支付方式</label></label>
+                    <div class="vocation">
+                        <div class="uew-select">
+                            <div class="uew-select-value ue-state-default">
+                                <em class="uew-select-text"></em><em class="uew-icon uew-icon-triangle-1-s"></em>
+                            </div>
+                            <select class="select1" data-val="true" data-val-number="The field Key must be a number." data-val-required="请输入必填字段" id="PayType" name="PayType">
+                                <option value="0" selected></option>
+                                @foreach (var item in Model.Item.PayType)
+                                {
+                                    <option value="@item.Key" data-prie="@item.value">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div><span class="field-validation-valid" data-valmsg-for="Item.AccountType.Key" data-valmsg-replace="true"></span>
+                </li>
+
+
+            </ul>
+            <div style=" clear:both" />
+            <div class="submitDiv"> <input type="button" id="sp" class="scbtn" value="售 票" /></div>
+        </div>
+        <script src="/js/LodopFuncs.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $(".create_field input").focus(function () {
+                    $("[forprop='" + $(this).attr("id") + "']").show("1500");
+                });
+                $(".create_field select").click(function () {
+                    $("[forprop='" + $(this).attr("id") + "_Key']").show("1500");
+                });
+                $(".create_field input").blur(function () {
+                    $("[forprop='" + $(this).attr("id") + "']").hide("1500");
+                });
+                $(".create_field select").mouseleave(function () {
+                    $("[forprop='" + $(this).attr("id") + "_Key']").hide("1500");
+                });
+                $("#AdmissionTicket").change(function () {
+                    jsjg();
+                });
+                $("#num").change(function () {
+                    jsjg();
+                })
+                function jsjg() {
+                    var num = parseInt($("#num").val());
+                    var price = parseFloat($("#AdmissionTicket").find("option:selected").attr("data-prie"));
+                    if (num > 0) {
+
+                    } else {
+                        num = 0;
+                    }
+                    if (price > 0) {
+
+                    } else {
+                        price = 0;
+                    }
+                    $("#price").val(num * price);
+                }
+
+                $("#sp").click(function () {
+                    Print();
+                    return;
+                    var admissionTicketId = $("#AdmissionTicket").val();
+                    var babyBirthDate = $("#babyBirthDate").val();
+                    var babyName = $("#babyName").val();
+                    var babySex = $("#babySex").val();
+                    var displayName = $("#displayName").val();
+                    var mobile = $("#mobile").val();
+                    var num = $("#num").val();
+                    var payType = $("#PayType").val();
+                    $.ajax({
+                        url: "/shop/WindowTicketing",
+                        data: { admissionTicketId: admissionTicketId, babyBirthDate: babyBirthDate, babyName: babyName, babySex: babySex, displayName: displayName, mobile: mobile, num: num, payType: payType},
+                        type: "post",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.Code == 0) {
+                                alert("售票成功");
+                                $("#babyName").val('');
+                                $("#babyBirthDate").val('');
+                                $("#displayName").val('');
+                                $("#mobile").val('');
+                                $("#num").val(0);
+                                $("#price").val(0);
+                            } else {
+                                alert(data.CodeText);
+                            }
+                        },
+                        error: function () {
+                            alert("系统异常，请检查网络");
+                        }
+                    })
+                });
+
+
+                function Print() {
+
+                    // var src = "1234567890";
+                    var copies = 1;
+                    var pIndex = 0;
+                    var pTitle = "手环打印";
+                    LODOP = getLodop();
+                    try {
+                        LODOP = getLodop();
+                        if (LODOP.VERSION) {
+                            //if (LODOP.CVERSION)
+                            //    alert("当前有C-Lodop云打印可用!\n C-Lodop版本:"+LODOP.CVERSION+"(内含Lodop"+LODOP.VERSION+")"); 
+                            //else
+                            //    alert("本机已成功安装了Lodop控件！\n 版本号:"+LODOP.VERSION); 
+                        };
+                    } catch (err) {
+                        if (confirm("您的打印控件安装有问题\n是否打开打印设置页面进行设置")) {
+                            window.open("/Shop/Profile/SetPrinter");
+                        }
+                    }
+                    if (LODOP.PRINT_INIT("手环打印") == false) {
+                        alert("打印机初始划失败请检查");
+                    }
+                    LODOP.SET_PRINTER_INDEX(-1);
+                    //LODOP.SET_PRINT_PAGESIZE(3, 580, 45, "");//这里3表示纵向打印且纸高“按内容的高度”；1385表示纸宽138.5mm；45表示页底空白4.5mm
+                    //LODOP.SET_PRINT_PAGESIZE(1, 100, 60, "");
+                    LODOP.SET_PRINT_COPIES(copies);//打印份数
+                    //LODOP.ADD_PRINT_BARCODE(130, 455, 200, 100, "QRCode", obj.Number);
+                    LODOP.ADD_PRINT_TEXT(5,5,5,5,'xx监护人');
+
+
+                    //     var pHtml = "";
+                    //debugger
+                    //     pHtml += '<span style="font-size:12px">当前余额</span><br /><b style="text-align:center"> <img   src="/Common/Scan?text='+src+'&width=150&height=150" /></b></p>';
+
+
+                    //     //pHtml += "<div style='border:1px dotted #000;border-style: dotted none none none'></div>";
+                    //     //pHtml += '<table width="100%" border="0" cellspacing="1" cellpadding="0" style="padding-right:5px"><tr><th>单价</th><th>数量</th><th>小计</th></tr>'
+                    //     //LODOP.SET_PRINT_STYLE("FontSize", 10);
+                    //     //for (var i = 0; i < datas.length; i++) {
+                    //     //    var obj = datas[i];
+                    //     //    pHtml += "<tr><td colspan='3'><span style='font-size:12px'>" + obj.Name + "</td></tr>"
+                    //     //    pHtml += "<tr><td style='text-align:right'>" + obj.Price + "</td><td style='text-align:center'>" + obj.Seq + "</td><td style='text-align:right'>" + obj.TotalPrice + "</td></tr>"
+                    //     //}
+                    //     //pHtml += "</table>";
+                    //     //pHtml += "<div style='border:1px dotted #000;border-style: dotted none none none'></div>";
+                    //     //pHtml += '<table width="100%" border="0" cellspacing="1" cellpadding="0"><tr><td style="text-align:right;font-size:12px">应收总金额</td><td style="text-align:right;padding-right:10px"><span style="font-size:10px">￥</span><b>' + $('#t_amount').text() + '</b>元</td></tr>';
+                    //     //pHtml += '<tr><td style="text-align:right;font-size:12px">获易购积分</td><td style="text-align:right;padding-right:10px"><span style="font-size:10px">￥</span><b>' + '2600' + '</b>分</td></tr></table>';
+                    //     pHtml += "<div style='border:2px solid #000;border-style: solid none solid none;margin:10px 0;height:120px'></div>";
+                    //     //pHtml += "<div style='font-size:10px;text-align:center;margin:0 0 20px 0'>以上签名为本人签名</div>";
+                    //     //$('#pCont').html(pHtml);
+                    //     LODOP.ADD_PRINT_HTM(20, 5, "100%", "100%", pHtml);
+                    LODOP.PRINT();
+                    // $('#table').bootstrapTable('removeAll');
+                    // setTotal()
+                }
+
+
+            });
+
+        </script>

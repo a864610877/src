@@ -94,8 +94,6 @@ namespace Ecard.Mvc.Models.TicketOffss
             {
                 request.type = null;
             }
-            request.Bdate = Data.Start;
-            request.Edate = Data.End;
             if (request.pageIndex == null || request.pageIndex <= 0)
             {
                 request.pageIndex = 1;

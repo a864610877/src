@@ -245,10 +245,73 @@ namespace Ecard.Mvc.Controllers
            } 
         }
 
-
+        [CheckUserType(typeof(ShopUser))]
         public ActionResult WindowTicketing()
         {
+            var model = _unityContainer.Resolve<WindowTicketingView>();
+            model.Ready();
+            return View(new EcardModelItem<WindowTicketingView>(model));
+        }
+        [HttpPost]
+        public ActionResult WindowTicketing(WindowTicketingView request)
+        {
+            var result = request.Save();
+            return Json(result);
+        }
+        [CheckPermission(Permissions.WindowTicketing)]
+        public ActionResult WindowTicketingLogs(ListWindowTicketings request)
+        {
+            string pageHtml = string.Empty;
+            if (ModelState.IsValid)
+            {
+                ModelState.Clear();
+                request.Query(out pageHtml);
+                request.Ready();
+                ViewBag.pageHtml = MvcHtmlString.Create(pageHtml);
+            }
+            return View(request);
+        }
+        [CheckPermission(Permissions.WindowTicketing)]
+        [HttpPost]
+        public ActionResult WindowTicketingLogsPost(WindowTicketingRequest request)
+        {
+            var createRole = _unityContainer.Resolve<ListWindowTicketings>();
+            string pageHtml = string.Empty;
+            var datas = createRole.AjaxGet(request, out pageHtml);
+            return Json(new { tables = datas, html = pageHtml });
+        }
+        [ActionFilters.CheckPermission(Permissions.WindowTicketingReport)]
+        public ActionResult ExportWindowTicketing(ListWindowTicketings request)
+        {
+            //_logger.LogWithSerialNo(LogTypes.AccountExport, SerialNoHelper.Create(), 0);
+            return WindowTicketingLogs(request);
+        }
 
+        [CheckPermission(Permissions.HandRingPrintList)]
+        public ActionResult HandRingPrintList(ListHandRingPrints request)
+        {
+            string pageHtml = string.Empty;
+            if (ModelState.IsValid)
+            {
+                ModelState.Clear();
+                request.Query(out pageHtml);
+                ViewBag.pageHtml = MvcHtmlString.Create(pageHtml);
+            }
+            return View(request);
+        }
+        [CheckPermission(Permissions.HandRingPrintList)]
+        [HttpPost]
+        public ActionResult HandRingPrintListPost(HandRingPrintRequest request)
+        {
+            var createRole = _unityContainer.Resolve<ListHandRingPrints>();
+            string pageHtml = string.Empty;
+            var datas = createRole.AjaxGet(request, out pageHtml);
+            return Json(new { tables = datas, html = pageHtml });
+        }
+
+        public ActionResult HandRingPrint()
+        {
+            return View();
         }
     }
 

@@ -26,12 +26,25 @@ namespace Ecard.Models
         /// </summary>
         public string ticketName { get; set; }
         /// <summary>
+        /// 数量
+        /// </summary>
+        public int num { get; set; }
+        /// <summary>
+        /// 单价
+        /// </summary>
+        public decimal price { get; set; }
+        /// <summary>
         /// 价格
         /// </summary>
         public decimal amount { get; set; }
         /// <summary>
-        /// 支付方式 1 现金 2微信支付 3支付宝 4银联 5 其他
+        /// 折扣
         /// </summary>
+        public decimal discount { get; set; }
+        /// <summary>
+        /// 支付方式 1 现金 2微信支付 3支付宝 4 其他
+        /// </summary>
+        [Bounded(typeof(WindowTicketingPayType))]
         public int payType { get; set; }
         /// <summary>
         /// 姓名
@@ -48,6 +61,7 @@ namespace Ecard.Models
         /// <summary>
         /// 宝宝性别
         /// </summary>
+        [Bounded(typeof(Genders))]
         public int babySex { get; set; }
         /// <summary>
         /// 宝宝出生年月
@@ -58,5 +72,27 @@ namespace Ecard.Models
         /// </summary>
         public DateTime createTime { get; set; }
 
+    }
+
+    public class WindowTicketingPayType
+    {
+
+        public const int All = -10001;
+        /// <summary>
+        ///现金
+        /// </summary>
+        public const int cash = 1;
+        /// <summary>
+        /// 微信
+        /// </summary>
+        public const int WeChat = 2;
+        /// <summary>
+        /// 支付宝
+        /// </summary>
+        public const int Alipay = 3;
+        /// <summary>
+        /// 其他
+        /// </summary>
+        public const int Other = 4;
     }
 }

@@ -185,6 +185,7 @@
     <Compile Include="Controllers\LiquidateController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\PosApiController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TicketOffController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
@@ -235,6 +236,11 @@
     <Compile Include="Models\MvcPage.cs" />
     <Compile Include="Models\Orderss\ListOrders.cs" />
     <Compile Include="Models\Orderss\ListOrderss.cs" />
+    <Compile Include="Models\PosApi\ApiResponse.cs" />
+    <Compile Include="Models\PosApi\LoginRequest.cs" />
+    <Compile Include="Models\PosApi\TicketRespone.cs" />
+    <Compile Include="Models\PosApi\TicketWriteOffRequest.cs" />
+    <Compile Include="Models\PritModel.cs" />
     <Compile Include="Models\Rollbacks\AddRollback.cs" />
     <Compile Include="Models\Liquidates\ListLiquidates.cs" />
     <Compile Include="Models\Rollbacks\DeleteRollback.cs" />
@@ -242,6 +248,10 @@
     <Compile Include="Models\Rollbacks\LiquidateModel.cs" />
     <Compile Include="Models\Rollbacks\ListRollback.cs" />
     <Compile Include="Models\SetWeChats\EditSetWeChat.cs" />
+    <Compile Include="Models\Shops\ListHandRingPrint.cs" />
+    <Compile Include="Models\Shops\ListHandRingPrints.cs" />
+    <Compile Include="Models\Shops\ListWindowTicketing.cs" />
+    <Compile Include="Models\Shops\ListWindowTicketings.cs" />
     <Compile Include="Models\Shops\WindowTicketingView.cs" />
     <Compile Include="Models\Sites\SmsParam.cs" />
     <Compile Include="Models\Tasks\ListTasks.cs" />

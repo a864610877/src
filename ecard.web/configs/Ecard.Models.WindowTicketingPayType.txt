@@ -1,0 +1,10 @@
+﻿Alipay.name=支付宝支付
+Alipay.order=1
+All.name=全部
+All.order=1
+cash.name=现金支付
+cash.order=1
+Other.name=其他支付
+Other.order=1
+WeChat.name=微信支付
+WeChat.order=1

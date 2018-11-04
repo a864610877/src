@@ -189,6 +189,8 @@
     <Content Include="configs\Ecard.Models.CouponsType.txt" />
     <Content Include="configs\Ecard.Models.DistributorBrokerage.txt" />
     <Content Include="configs\Ecard.Models.DistributorUser.txt" />
+    <Content Include="configs\Ecard.Models.HandRingPrintState.txt" />
+    <Content Include="configs\Ecard.Models.HandRingPrintTicketType.txt" />
     <Content Include="configs\Ecard.Models.LiquidateStates.txt" />
     <Content Include="configs\Ecard.Models.OffTypes.txt" />
     <Content Include="configs\Ecard.Models.Order.txt" />
@@ -198,6 +200,7 @@
     <Content Include="configs\Ecard.Models.RollbackShopDealLogState.txt" />
     <Content Include="configs\Ecard.Models.Sites.SmsParam.txt" />
     <Content Include="configs\Ecard.Models.TicketsState.txt" />
+    <Content Include="configs\Ecard.Models.WindowTicketingPayType.txt" />
     <Content Include="configs\Ecard.Mvc.ActionFilters.DistributorUserModel.txt" />
     <Content Include="configs\Ecard.Mvc.Controllers.AdmissionTicketController.txt" />
     <Content Include="configs\Ecard.Mvc.Controllers.ArticlesController.txt" />
@@ -439,8 +442,12 @@
     <Content Include="configs\Ecard.Mvc.Models.ShopDealLogs.ShopDealLogPrinter.txt" />
     <Content Include="configs\Ecard.Mvc.Models.Shops.CreateShop.txt" />
     <Content Include="configs\Ecard.Mvc.Models.Shops.EditShop.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Shops.ListHandRingPrint.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Shops.ListHandRingPrints.txt" />
     <Content Include="configs\Ecard.Mvc.Models.Shops.ListShop.txt" />
     <Content Include="configs\Ecard.Mvc.Models.Shops.ListShops.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Shops.ListWindowTicketing.txt" />
+    <Content Include="configs\Ecard.Mvc.Models.Shops.ListWindowTicketings.txt" />
     <Content Include="configs\Ecard.Mvc.Models.Shops.ShopDealLogTypeModel.txt" />
     <Content Include="configs\Ecard.Mvc.Models.Shops.txt" />
     <Content Include="configs\Ecard.Mvc.Models.Shops.ViewShop.txt" />
@@ -1160,6 +1167,7 @@
     <Content Include="js\jquery.msgbox.js" />
     <Content Include="js\jsapi.js" />
     <Content Include="js\JsHelper.js" />
+    <Content Include="js\LodopFuncs.js" />
     <Content Include="js\Main.js" />
     <Content Include="js\PIE.htc" />
     <Content Include="js\register.js" />
@@ -1875,6 +1883,9 @@
     <Content Include="Views\WeChat\Edit.cshtml" />
     <Content Include="Views\Orders\List.cshtml" />
     <Content Include="Views\Tickets\List.cshtml" />
+    <Content Include="Views\Shop\WindowTicketing.cshtml" />
+    <Content Include="Views\Shop\WindowTicketingLogs.cshtml" />
+    <Content Include="Views\Shop\HandRingPrintList.cshtml" />
     <None Include="web.config.deploytemplate" />
   </ItemGroup>
   <ItemGroup>

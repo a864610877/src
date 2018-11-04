@@ -206,11 +206,13 @@
     <Compile Include="SqlServices\SqlCashDealLogService.cs" />
     <Compile Include="SqlServices\SqlCouponsService.cs" />
     <Compile Include="SqlServices\SqlDistributorService.cs" />
+    <Compile Include="SqlServices\SqlHandRingPrintService.cs" />
     <Compile Include="SqlServices\SqlLiquidateService.cs" />
     <Compile Include="SqlServices\SqlLog4netService.cs" />
     <Compile Include="SqlServices\SqlOrderDetialService.cs" />
     <Compile Include="SqlServices\SqlOrdersService.cs" />
     <Compile Include="SqlServices\SqlPointPolicyService.cs" />
+    <Compile Include="SqlServices\SqlPostTokenService.cs" />
     <Compile Include="SqlServices\SqlRechargingLogService.cs" />
     <Compile Include="SqlServices\SqlSetWeChatService.cs" />
     <Compile Include="SqlServices\SqlSiteService.cs" />

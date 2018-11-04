@@ -162,6 +162,7 @@
     <Compile Include="Models\EntityBase.cs" />
     <Compile Include="Models\GoodAndOrderState.cs" />
     <Compile Include="Models\Goodcs.cs" />
+    <Compile Include="Models\HandRingPrint.cs" />
     <Compile Include="Models\ICommand.cs" />
     <Compile Include="Models\IDescriptionEntity.cs" />
     <Compile Include="Models\INamedEntity.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Models\PointRebateStates.cs" />
     <Compile Include="Models\PosEndPoint.cs" />
     <Compile Include="Models\PosKey.cs" />
+    <Compile Include="Models\PostToken.cs" />
     <Compile Include="Models\PrePay.cs" />
     <Compile Include="Models\PrintTicket.cs" />
     <Compile Include="Models\RechargingLog.cs" />
@@ -238,12 +240,14 @@
     <Compile Include="Services\IDistributorDealLogService.cs" />
     <Compile Include="Services\IDistributorService.cs" />
     <Compile Include="Services\IEcardOnlineService.cs" />
+    <Compile Include="Services\IHandRingPrintService.cs" />
     <Compile Include="Services\ILiquidateService.cs" />
     <Compile Include="Services\ILog4netService.cs" />
     <Compile Include="Services\IOrder1Service.cs" />
     <Compile Include="Services\IOrderDetialService.cs" />
     <Compile Include="Services\IOrdersService.cs" />
     <Compile Include="Services\IPosKeyService.cs" />
+    <Compile Include="Services\IPostTokenService.cs" />
     <Compile Include="Services\IRechargingLogService.cs" />
     <Compile Include="Services\IRollbackShopDealLogService.cs" />
     <Compile Include="Services\ISetWeChatService.cs" />

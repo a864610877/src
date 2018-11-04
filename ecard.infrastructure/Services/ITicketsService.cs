@@ -14,6 +14,8 @@ namespace Ecard.Services
         void Create(Tickets item);
         void Update(Tickets item);
         DataTables<Ticketss> GetList(TicketsRequest request);
+        Ticketss GetByCode(string code);
+        Tickets GetByCodeModel(string code);
     }
 
     public class TicketsRequest

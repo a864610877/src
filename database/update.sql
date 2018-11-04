@@ -385,6 +385,9 @@ create table WindowTicketings
    code nvarchar(100),
    admissionTicketId int,
    shopId int,
+   price decimal(18,2),--单价
+   num int,--购买数量
+   discount decimal(18,2),--折扣
    ticketName nvarchar(200),--门票名称
    amount decimal(18,2),--金额
    payType int,--支付方式 1 现金 2微信支付 3支付宝 4银联 5 其他
@@ -395,3 +398,105 @@ create table WindowTicketings
    babyBirthDate datetime,--宝宝出生年月
    createTime datetime
 )
+go
+alter PROCEDURE [dbo].[P_getWindowTicketings]
+ @shopId int=null,
+ @admissionTicketId int=null,
+ @mobile nvarchar(100)=null,
+ @shopName nvarchar(100)=null,
+ @payType int=null,
+ @Bdate datetime=null,
+ @Edate datetime=null,
+ @pageIndex INT,
+ @pageSize INT
+AS
+BEGIN
+SELECT count(1) as Total from WindowTicketings t left join Shops s on t.shopId=s.ShopId where
+(@admissionTicketId is null or t.admissionTicketId = @admissionTicketId)
+and (@shopId is null or  t.shopId = @shopId)
+and (@mobile is null or  t.mobile = @mobile)
+and (@shopName is null or  s.Name = @shopName)
+and (@payType is null or  t.payType=@payType)
+and (@Bdate is null or  t.createTime >= @Bdate)
+and (@Edate is null or  t.createTime < @Edate)
+
+ select * from  (select Row_Number() OVER(order by  t.createTime desc)AS RowNum , t.*,s.Name as 'shopName',s.DisplayName as 'shopDisplayName'
+   from WindowTicketings t left join Shops s on t.shopId=s.ShopId where
+(@admissionTicketId is null or t.admissionTicketId = @admissionTicketId)
+and (@shopId is null or  t.shopId = @shopId)
+and (@mobile is null or  t.mobile = @mobile)
+and (@shopName is null or  s.Name = @shopName)
+and (@payType is null or  t.payType=@payType)
+and (@Bdate is null or  t.createTime >= @Bdate)
+and (@Edate is null or  t.createTime < @Edate)
+)t
+where t.RowNum > (@pageIndex -1) * @pageSize 
+         AND t.RowNum <=   @pageIndex * @pageSize
+END
+go
+create table PostToken
+(
+   id int identity(1,1) primary key,
+   posName nvarchar(100), --终端号
+   token nvarchar(200),--密钥
+   createTime datetime,--创建时间
+)
+
+go
+create table HandRingPrint--手环打印列表
+(
+   id int identity(1,1) primary key,
+   shopId int,--核销门店
+   code nvarchar(100),--票号/卡号
+   ticketType int,--1门票 2卡
+   adultNum int,--大人数量
+   childNum int,--小孩数量
+   userName nvarchar(100),--姓名
+   mobile nvarchar(50),--电话
+   babyName nvarchar(100),--小孩姓名
+   babySex nvarchar(100),--小孩性别
+   babyBirthDate nvarchar(100),--小孩出生年月
+   state int,--状态 1未打印 2已打印
+   printTime datetime,--打印时间
+   createTime datetime
+)
+go
+create PROCEDURE [dbo].[P_getHandRingPrint]
+ @shopId int=null,
+ @code int=null,
+ @mobile nvarchar(100)=null,
+ @babyName nvarchar(100)=null,
+ @ticketType int=null,
+ @state int=null,
+ @Bdate datetime=null,
+ @Edate datetime=null,
+ @pageIndex INT,
+ @pageSize INT
+AS
+BEGIN
+SELECT count(1) as Total from HandRingPrint t  where
+(@code is null or t.code like '%'+@code+'%')
+and (@shopId is null or  t.shopId = @shopId)
+and (@mobile is null or  t.mobile = @mobile)
+and (@babyName is null or  t.babyName = @babyName)
+and (@ticketType is null or  t.ticketType=@ticketType)
+and (@state is null or  t.state=@state)
+and (@Bdate is null or  t.createTime >= @Bdate)
+and (@Edate is null or  t.createTime < @Edate)
+
+ select * from  (select Row_Number() OVER(order by  t.createTime desc)AS RowNum , t.*
+   from HandRingPrint t where
+(@code is null or t.code like '%'+@code+'%')
+and (@shopId is null or  t.shopId = @shopId)
+and (@mobile is null or  t.mobile = @mobile)
+and (@babyName is null or  t.babyName = @babyName)
+and (@ticketType is null or  t.ticketType=@ticketType)
+and (@state is null or  t.state=@state)
+and (@Bdate is null or  t.createTime >= @Bdate)
+and (@Edate is null or  t.createTime < @Edate)
+)t
+where t.RowNum > (@pageIndex -1) * @pageSize 
+         AND t.RowNum <=   @pageIndex * @pageSize
+END
+
+

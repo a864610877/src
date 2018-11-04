@@ -60,5 +60,17 @@ namespace Ecard.SqlServices
             StoreProcedure sp = new StoreProcedure("P_getTicketss", param);
             return _databaseInstance.GetTables<Ticketss>(sp);
         }
+
+        public Ticketss GetByCode(string code)
+        {
+            string sql = @"select t.*,a.name as TicketName,a.introduce,(select top 1 s.DisplayName as shopName from Shops s where s.Name=t.useScope) as shopName,u.DisplayName as UserDisplayName,u.Mobile,u.babyName,u.babySex 
+from  Tickets t left join AdmissionTicket a on t.AdmissionTicketId=a.id  left join Users u on t.userId=u.UserId where code = @code";
+            return new QueryObject<Ticketss>(_databaseInstance, sql, new { code = code }).FirstOrDefault();
+        }
+
+        public Tickets GetByCodeModel(string code)
+        {
+            return new QueryObject<Tickets>(_databaseInstance, string.Format("select * from  {0} where code = @code", TableName), new { code = code }).FirstOrDefault();
+        }
     }
 }
