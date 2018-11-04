@@ -21,7 +21,7 @@
                                 <em class="uew-select-text"></em><em class="uew-icon uew-icon-triangle-1-s"></em>
                             </div>
                             <select class="select1" data-val="true" data-val-number="The field Key must be a number." data-val-required="请输入必填字段" id="AdmissionTicket" name="AdmissionTicket">
-                                <option value="0" data-prie="0" selected ></option>
+                                <option value="0" data-prie="0" selected></option>
                                 @foreach (var item in Model.Item.AdmissionTicket)
                                 {
                                     <option value="@item.Key" data-prie="@item.value">@item.Name</option>
@@ -38,6 +38,11 @@
                 <li>
                     <label><label class="desc" for="Item_Password">数量</label></label>
                     <input class="scinput InputSerach" id="num" name="num" type="text" value="1">
+                    <span class="field-validation-valid" data-valmsg-for="Item.Password" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label><label class="desc" for="Item_Password">折扣</label></label>
+                    <input class="scinput InputSerach" id="discount" name="discount" type="text" value="1">
                     <span class="field-validation-valid" data-valmsg-for="Item.Password" data-valmsg-replace="true"></span>
                 </li>
                 <li>
@@ -140,8 +145,6 @@
                 }
 
                 $("#sp").click(function () {
-                    Print();
-                    return;
                     var admissionTicketId = $("#AdmissionTicket").val();
                     var babyBirthDate = $("#babyBirthDate").val();
                     var babyName = $("#babyName").val();
@@ -150,9 +153,11 @@
                     var mobile = $("#mobile").val();
                     var num = $("#num").val();
                     var payType = $("#PayType").val();
+                    var discount = $("#discount").val();
+
                     $.ajax({
                         url: "/shop/WindowTicketing",
-                        data: { admissionTicketId: admissionTicketId, babyBirthDate: babyBirthDate, babyName: babyName, babySex: babySex, displayName: displayName, mobile: mobile, num: num, payType: payType},
+                        data: { admissionTicketId: admissionTicketId, babyBirthDate: babyBirthDate, babyName: babyName, babySex: babySex, displayName: displayName, mobile: mobile, num: num, payType: payType, discount: discount},
                         type: "post",
                         dataType: "json",
                         success: function (data) {

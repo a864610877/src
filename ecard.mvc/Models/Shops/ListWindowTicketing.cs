@@ -56,6 +56,10 @@ namespace Ecard.Mvc.Models.Shops
         {
             get { return InnerObject.price; }
         }
+        public decimal Discount
+        {
+            get { return InnerObject.discount; }
+        }
         public int Num
         {
             get { return InnerObject.num; }

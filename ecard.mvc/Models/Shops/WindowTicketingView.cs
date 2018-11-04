@@ -17,6 +17,7 @@ namespace Ecard.Mvc.Models.Shops
             AdmissionTicket = new List<IdNamePairs>();
             PayType = new List<IdNamePairs>();
             BabySex = new List<IdNamePairs>();
+            discount = 1;
         }
 
         public List<IdNamePairs> AdmissionTicket=null;
@@ -90,6 +91,10 @@ namespace Ecard.Mvc.Models.Shops
                 return new ResultMsg<List<PritModel>>() { Code = -1, CodeText = "请选择支付方式" };
             if (num <= 0)
                 return new ResultMsg<List<PritModel>>() { Code = -1, CodeText = "购买数量必须大于0" };
+            if (discount <=0 || discount > 1)
+            {
+                return new ResultMsg<List<PritModel>>() { Code = -1, CodeText = "折扣必须大于0小于等于1" };
+            }
             try
             {
                 var user = SecurityHelper.GetCurrentUser().CurrentUser;
