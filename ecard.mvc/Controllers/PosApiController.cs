@@ -204,6 +204,16 @@ namespace Ecard.Mvc.Controllers
                             return Json(new ApiResponse() { Code = "-1", Msg = "已过期" });
                         }
                     }
+                    if (!string.IsNullOrWhiteSpace(ticket.useScope))
+                    {
+                        var shop = shopService.GetById(pos.ShopId);
+                        if (shop != null)
+                        {
+                            if(ticket.useScope!=shop.Name)
+                                return Json(new ApiResponse() { Code = "-1", Msg = "该门票不可以在此门店消费" });
+                        }
+                       
+                    }
                     ticket.State = TicketsState.Used;
                     ticket.userTime = DateTime.Now;
                     ticketsService.Update(ticket);
@@ -263,6 +273,11 @@ namespace Ecard.Mvc.Controllers
                     transactionHelper.Commit();
                     return Json(new ApiResponse() { Code = "-1", Msg = "此卡已过期" });
                 }
+                if (card.ShopId>0)
+                {
+                    if(card.ShopId!=pos.ShopId)
+                        return Json(new ApiResponse() { Code = "-1", Msg = "该卡不可以在此门店消费" });
+                }
                 card.Frequency -= 1;
                 card.FrequencyUsed += 1;
                 card.LastDealTime = DateTime.Now;
@@ -278,7 +293,7 @@ namespace Ecard.Mvc.Controllers
                 ticketOff1.shopId = pos.ShopId;
                 ticketOff1.subTime = DateTime.Now;
                 ticketOff1.timers = 1;
-                ticketOff1.userId = ticket.UserId;
+                ticketOff1.userId = card.OwnerId.HasValue?card.OwnerId.Value:0;
                 ticketOffService.Insert(ticketOff1);
                 var handRingPrint1 = new HandRingPrint();
                 var user1 = membershipService.GetUserById(card.OwnerId.HasValue?card.OwnerId.Value:0) as AccountUser;
@@ -290,11 +305,11 @@ namespace Ecard.Mvc.Controllers
                     handRingPrint1.userName = user1.DisplayName;
                     handRingPrint1.mobile = user1.Mobile;
                 }
-                handRingPrint1.adultNum = ticket.adultNum;
-                handRingPrint1.childNum = ticket.childNum;
-                handRingPrint1.code = ticket.Code;
+                handRingPrint1.adultNum = 1;
+                handRingPrint1.childNum = cardType.NumberOfPeople;
+                handRingPrint1.code = card.Name;
                 handRingPrint1.createTime = DateTime.Now;
-                handRingPrint1.state = 2;
+                handRingPrint1.state = 1;
                 handRingPrint1.ticketType = 2;
                 handRingPrint1.shopId = pos.ShopId;
                 handRingPrintService.Insert(handRingPrint1);
