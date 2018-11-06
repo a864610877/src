@@ -24,14 +24,14 @@ namespace MicroMall.Controllers
 
         public ActionResult Index()
         {
-            //HttpCookie cookie = new HttpCookie(SessionKeys.USERID, "4");
-            //Response.Cookies.Add(cookie);
-            if (Request.Cookies[SessionKeys.USERID] == null)
-            {
-                string redirect_uri =System.Configuration.ConfigurationManager.AppSettings["url"].ToString()+"/Login/login";
-                string url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + WxPayConfig.APPID + "&redirect_uri=" + redirect_uri + "&response_type=code&scope=snsapi_userinfo&state=#wechat_redirect";
-                return Redirect(url);
-            }
+            HttpCookie cookie = new HttpCookie(SessionKeys.USERID, "4");
+            Response.Cookies.Add(cookie);
+            //if (Request.Cookies[SessionKeys.USERID] == null)
+            //{
+            //    string redirect_uri =System.Configuration.ConfigurationManager.AppSettings["url"].ToString()+"/Login/login";
+            //    string url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + WxPayConfig.APPID + "&redirect_uri=" + redirect_uri + "&response_type=code&scope=snsapi_userinfo&state=#wechat_redirect";
+            //    return Redirect(url);
+            //}
             return RedirectToAction("index", "PersonalCentre");
 
         }

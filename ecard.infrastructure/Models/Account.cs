@@ -109,6 +109,7 @@ namespace Ecard.Models
             this.PasswordSalt = Guid.NewGuid().ToString("N").Substring(0, 8);
             this.Password = User.SaltAndHash(password, PasswordSalt);
         }
+        
         public string AccountLevelName { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }

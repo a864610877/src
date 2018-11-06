@@ -647,6 +647,21 @@ namespace MicroMall.Controllers
             result.AddRange(con.Select(x => new CouponsModel(x)));
             return View(result);
         }
+        public ActionResult UseCoupons()
+        {
+            int userId = 0;
+            var cookieId = Request.Cookies[SessionKeys.USERID].Value.ToString();
+            int.TryParse(cookieId, out userId);
+            //var user = membershipService.GetUserById(userId) as AccountUser;
+            //if (user == null)
+            //    return Json(new ResultMessage() { Code = -1, Msg = "用户不存在" });
+            var conupons = couponsService.GetByUserCoupon(userId);//可领
+            var result = new List<CouponsModel>();
+            result.AddRange(conupons.Select(x => new CouponsModel(x)));
+            var con = userCouponsService.GetUserCoupons(userId, UserCouponsState.Used);
+            result.AddRange(con.Select(x => new CouponsModel(x)));
+            return View(result);
+        }
         [HttpPost]
         public ActionResult ReceiveCoupons(int id)
         {
@@ -767,6 +782,38 @@ namespace MicroMall.Controllers
                 result.ListConsumptionLog = query.ModelList.Select(x=>new ConsumptionLogModel(x)).ToList();
             }
             return Json(result);
+        }
+
+
+        public ActionResult BindCard()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult BindCard(string cardNo,string password)
+        {
+            if(string.IsNullOrWhiteSpace(cardNo))
+                return Json(new ResultMessage() { Code = -1, Msg = "请输入卡号" });
+            if (string.IsNullOrWhiteSpace(password))
+                return Json(new ResultMessage() { Code = -1, Msg = "请输入密码" });
+            int userId = 0;
+            var cookieId = Request.Cookies[SessionKeys.USERID].Value.ToString();
+            int.TryParse(cookieId, out userId);
+            var user = membershipService.GetUserById(userId) as AccountUser;
+            if (user == null)
+                return Json(new ResultMessage() { Code = -1, Msg = "用户不存在" });
+            var card = accountService.GetAccountByName(cardNo);
+            if(card==null)
+                return Json(new ResultMessage() { Code = -1, Msg = "卡片不存在，请重新输入" });
+            if(card.State!=AccountStates.Normal)
+                return Json(new ResultMessage() { Code = -1, Msg = "卡片未激活，请联系客服" });
+            if(card.OwnerId.HasValue&&card.OwnerId.Value>0)
+                return Json(new ResultMessage() { Code = -1, Msg = "卡片已绑定，请不要重复绑定" });
+            if (Ecard.Models.User.SaltAndHash(password,card.PasswordSalt)!=card.Password)
+                return Json(new ResultMessage() { Code = -1, Msg = "密码错误" });
+            card.OwnerId = user.UserId;
+            accountService.Update(card);
+            return Json(new ResultMessage() { Code = 0, Msg = "绑定成功" });
         }
     }
 }

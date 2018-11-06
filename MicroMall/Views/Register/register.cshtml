@@ -78,6 +78,19 @@
                     $.openDialog("手机号格式错误");
                     return;
                 }
+                var reg = /^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+                var regExp = new RegExp(reg);
+                if (!regExp.test(babyBirthDate)) {
+                    　　alert("日期格式不正确，正确格式为：2014-01-01");
+                    　　return;
+                }
+                var nowdate = new Date();
+                var oDate1 = new Date(babyBirthDate);
+                if (oDate1.getDate() > nowdate.getDate()) {
+                    $.openDialog("选择的日期必须小于当前日期");
+                    return;
+                }
+
                 if (verifiCode == "") {
                     $.openDialog("请输入验证码");
                     return;
@@ -89,6 +102,7 @@
                     type: "post",
                     dataType: "json",
                     success: function (data) {
+                        $.closeLoading();
                         if (data.Code == 0) {
                             $.openDialogUrl("注册成功", "/Login/index");
                         } else {
@@ -96,6 +110,7 @@
                         }
                     },
                     error: function () {
+                        $.closeLoading();
                         $.openDialog("系统异常，请检查网络");
                     }
                 })

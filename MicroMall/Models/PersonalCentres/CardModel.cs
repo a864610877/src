@@ -22,8 +22,11 @@ namespace MicroMall.Models.PersonalCentres
           this.babyName = item.BabyName;
           this.babySex = item.BabySex == 1 ? "男孩" : "女孩";
           this.expiredDate = item.ExpiredDate.ToString("yyyy-MM-dd");
-          this.frequency = item.Frequency;
-            this.cardNo = item.Name;
+            if (this.cardName == "铂金气球卡" || this.cardName == "黑金气球卡")
+                this.frequency = -1;
+            else
+               this.frequency = item.Frequency;
+          this.cardNo = item.Name;
         }
         /// <summary>
         /// 卡号

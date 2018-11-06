@@ -34,5 +34,11 @@ namespace Ecard.SqlServices
         {
             _databaseInstance.Update(item, TableName);
         }
+
+        public List<Couponss> GetUserCoupons(int userId, int userState)
+        {
+            string sql = @"select c.*, (select DisplayName from Shops where Name=c.useScope) as shopName from UserCoupons us join Coupons c on us.couponsId=c.id where userId=@userId and us.state=@userState";
+            return new QueryObject<Couponss>(_databaseInstance, sql, new { userState = userState, userId = userId }).ToList();
+        }
     }
 }

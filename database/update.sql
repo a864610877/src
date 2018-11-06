@@ -461,9 +461,9 @@ create table HandRingPrint--手环打印列表
    createTime datetime
 )
 go
-create PROCEDURE [dbo].[P_getHandRingPrint]
+alter PROCEDURE [dbo].[P_getHandRingPrint]
  @shopId int=null,
- @code int=null,
+ @code nvarchar(100)=null,
  @mobile nvarchar(100)=null,
  @babyName nvarchar(100)=null,
  @ticketType int=null,
@@ -498,5 +498,3 @@ and (@Edate is null or  t.createTime < @Edate)
 where t.RowNum > (@pageIndex -1) * @pageSize 
          AND t.RowNum <=   @pageIndex * @pageSize
 END
-
-

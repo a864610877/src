@@ -17,5 +17,9 @@ namespace Ecard.Services
         void Create(UserCoupons item);
 
         List<UserCouponss> GetUserId(int userId);
+
+        List<Couponss> GetUserCoupons(int userId,int userState);
+
+
     }
 }

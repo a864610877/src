@@ -38,8 +38,8 @@ namespace MicroMall.Models.Parentings
             couponsType = CouponsType.GetName(item.couponsType);
             if (item.couponsType == CouponsType.DiscountedVolume)
             {
-                describe = "折扣卷";
-                amount = string.Format("折<span>{0}</span><br>", Convert.ToInt32(item.discount * 10).ToString());
+                describe = "折扣券";
+                amount = string.Format("<span>{0}</span>折<br>", Convert.ToInt32(item.discount * 10).ToString());
             }
             else if (item.couponsType == CouponsType.FullVolumeReduction)
             {
@@ -48,7 +48,7 @@ namespace MicroMall.Models.Parentings
             }
             else if (item.couponsType == CouponsType.OffsetRoll)
             {
-                describe = "抵扣卷";
+                describe = "抵扣券";
                 amount = string.Format("￥<span>{0}</span><br>", Convert.ToInt32(item.deductibleAmount).ToString());
             }
             else
@@ -65,8 +65,8 @@ namespace MicroMall.Models.Parentings
             couponsType = CouponsType.GetName(item.couponsType);
             if (item.couponsType == CouponsType.DiscountedVolume)
             {
-                describe = "折扣卷";
-                amount = string.Format("折<span>{0}</span><br>", Convert.ToInt32(item.discount * 10).ToString());
+                describe = "折扣券";
+                amount = string.Format("<span>{0}</span>折<br>", Convert.ToInt32(item.discount * 10).ToString());
             }
             else if (item.couponsType == CouponsType.FullVolumeReduction)
             {
@@ -75,7 +75,7 @@ namespace MicroMall.Models.Parentings
             }
             else if (item.couponsType == CouponsType.OffsetRoll)
             {
-                describe = "抵扣卷";
+                describe = "抵扣券";
                 amount = string.Format("￥<span>{0}</span><br>", Convert.ToInt32(item.deductibleAmount).ToString());
             }
             else

@@ -45,7 +45,9 @@
                 <li class="@className">
                     <h1>@item.cardName</h1>
                     <div class="zhong">
-                        <img src="/images/img1.jpg" data-code="@item.cardNo" class="wx shiYong">
+                        @*<div id="code1"></div>*@
+                        <div  style="width:50px;height:50px" class="wx shiYong qrr"  data-code="@item.cardNo"></div>
+                        @*<img src="/images/img1.jpg" data-code="@item.cardNo" class="wx shiYong">*@
                         <div class="left">
                             <span><i>持卡人</i>@item.name</span>
                             <p><i>手机</i>@item.mobile</p>
@@ -56,12 +58,13 @@
                     </div>
                     <div class="bottom">
                         <p>
-                            <span>剩余<i>@item.frequency</i>次</span>
-                            <a href="/PersonalCentre/BuyCard">购卡</a>
+
+                            <span>剩余<i>@(item.frequency == -1 ? "/" : item.frequency.ToString())</i>次</span>
+                            @*<a href="/PersonalCentre/BuyCard">购卡</a>*@
                         </p>
                         <p>
-                            <em>成人票</em>
-                            <a href="/PersonalCentre/BuyTicket">购票</a>
+                            <em>一大一小</em>
+                            @*<a href="/PersonalCentre/BuyTicket">购票</a>*@
                         </p>
                     </div>
                 </li>
@@ -72,6 +75,15 @@
         }
     </ul>
     <div class="qq_two">
+        @if (Model == null || Model.Count <= 0)
+        {
+            <p style="font-size:10px">
+                【欢迎来到气球岛！您目前没有充值卡请点击下方按钮购买】
+            </p>
+        }
+        @*<p style="font-size:10px"> </p>
+        <p style="font-size:10px"></p>*@
+
         <p><a href="/PersonalCentre/BuyCard" class="a">购买充值卡</a></p>
         <p><a href="/PersonalCentre/ConsumptionLog" class="aa">历史消费记录</a></p>
     </div>
@@ -84,7 +96,21 @@
     <script src="/js/layer/layer.js"></script>
     <script src="/js/jquery.qrcode.min.js"></script>
     <script type="text/javascript">
+
+       
         $(function () {
+            window.onload = function () {
+                $(".qrr").each(function () {
+                    var code = $(this).attr("data-code");
+                    //$(this).qrcode(code); //任意字符串
+                    $(this).qrcode({
+                        width: 95,
+                        height: 95,
+                        text: code
+                    })
+                });
+            };
+
             //弹二维码
             $(".shiYong").click(function () {
                 var code = $(this).attr("data-code");
@@ -94,7 +120,7 @@
                     type: 1,
                     title: false,
                     closeBtn: 0,
-                    area: ['70%', 'auto'],
+                    area: ['80%', 'auto'],
                     shade: [0.6, '#000', false],
                     skin: 'layui-layer-nobg', //没有背景色
                     shadeClose: false,

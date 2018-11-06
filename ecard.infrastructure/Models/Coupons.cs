@@ -74,15 +74,15 @@ namespace Ecard.Models
     public class CouponsType
     {
         /// <summary>
-        /// 折扣卷 1
+        /// 折扣券 1
         /// </summary>
         public const int DiscountedVolume = 1;
         /// <summary>
-        /// 抵扣卷 2
+        /// 抵扣券 2
         /// </summary>
         public const int OffsetRoll = 2;
         /// <summary>
-        /// 满减卷 3
+        /// 满减券 3
         /// </summary>
         public const int FullVolumeReduction = 3;
 
@@ -91,11 +91,11 @@ namespace Ecard.Models
             switch (value)
             {
                 case DiscountedVolume:
-                    return "折扣卷";
+                    return "折扣券";
                 case OffsetRoll:
-                    return "抵扣卷";
+                    return "抵扣券";
                 case FullVolumeReduction:
-                    return "满减卷";
+                    return "满减券";
                 default:
                     return "";
             }

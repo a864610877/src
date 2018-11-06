@@ -31,6 +31,11 @@ namespace Ecard.Models
         /// 刚刚售卡，还未生效
         /// </summary>
         public const int Saled = 15;
+
+        /// <summary>
+        /// 已使用完成
+        /// </summary>
+        public const int UseComplete = 3;
     }
     public class PrePayStates
     {

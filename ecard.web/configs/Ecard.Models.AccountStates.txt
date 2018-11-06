@@ -8,3 +8,5 @@ Ready.name=待发放卡
 Ready.order=13
 Saled.name=已发放
 Saled.order=15
+UseComplete.name=使用完成
+UseComplete.order=1

@@ -57,7 +57,7 @@ namespace Ecard.SqlServices
         public List<Couponss> GetByUserCoupon(int userId)
         {
             string sql = @"select c.*, (select DisplayName from Shops where Name=c.useScope) as shopName from Coupons c
-where [state]=@state and (validity is null or validity <=GETDATE()) 
+where [state]=@state and (validity is null or validity <=GETDATE())
 and not exists( select top 1 1 from UserCoupons uc where userId=@userId and uc.couponsId=c.id ) and (c.quantity-c.leadersOfNum)>0";            
             return new QueryObject<Couponss>(_databaseInstance, sql, new { state = CouponsState.Normal, userId = userId }).ToList();
         }

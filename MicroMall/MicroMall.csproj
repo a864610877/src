@@ -723,6 +723,8 @@
     <Content Include="Views\PersonalCentre\BuyCard.cshtml" />
     <Content Include="Views\PersonalCentre\Coupons.cshtml" />
     <Content Include="Views\PersonalCentre\ConsumptionLog.cshtml" />
+    <Content Include="Views\PersonalCentre\UseCoupons.cshtml" />
+    <Content Include="Views\PersonalCentre\BindCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ecard.infrastructure\Ecard.Infrastructure.csproj">
