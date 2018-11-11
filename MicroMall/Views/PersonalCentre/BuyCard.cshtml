@@ -112,7 +112,7 @@
     </div>
 
     <script src="/js/jQuery.js"></script>
-    <script src="/js/fz.js"></script>
+    <script src="/js/fz.js?v1.2"></script>
     
     <script type="text/javascript">
         $(function () {
@@ -206,8 +206,9 @@
                     success: function (data) {
                         $.closeLoading();
                         if (data.Code == 0) {
-                            $.openDialogUrl("购卡成功", "/PersonalCentre/index");
-                            //$.webChatPay(data.Msg);
+                            //$.openDialogUrl("购卡成功", "/PersonalCentre/index");
+                            tzurl = "/PersonalCentre/index";
+                            $.webChatPay(data.Msg);
                         } else {
                             $.openDialog(data.Msg);
                         }

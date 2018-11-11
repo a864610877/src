@@ -572,6 +572,7 @@
     <Content Include="images\img7.png" />
     <Content Include="images\img8.png" />
     <Content Include="images\img9.png" />
+    <Content Include="images\xy.jpg" />
     <Content Include="js\flexslider.js" />
     <Content Include="js\fz.js" />
     <Content Include="js\jquery-2.1.0.js" />
@@ -725,6 +726,7 @@
     <Content Include="Views\PersonalCentre\ConsumptionLog.cshtml" />
     <Content Include="Views\PersonalCentre\UseCoupons.cshtml" />
     <Content Include="Views\PersonalCentre\BindCard.cshtml" />
+    <Content Include="Views\Register\xy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ecard.infrastructure\Ecard.Infrastructure.csproj">

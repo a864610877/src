@@ -91,6 +91,7 @@
     <!--弹二维码-->
     <div class="tan_wm" style="display:none">
         <div id="code"></div>
+        <p class="card"></p>
     </div>
     <script src="/js/jQuery.js"></script>
     <script src="/js/layer/layer.js"></script>
@@ -114,6 +115,7 @@
             //弹二维码
             $(".shiYong").click(function () {
                 var code = $(this).attr("data-code");
+                $(".card").html(code);
                 $("#code").html("");
                 $('#code').qrcode(code); //任意字符串
                 layer.open({

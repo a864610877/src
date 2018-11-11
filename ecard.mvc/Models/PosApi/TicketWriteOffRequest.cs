@@ -20,5 +20,18 @@ namespace Ecard.Mvc.Models.PosApi
     public class TicketWriteOffResponse : TicketRespone
     {
 
+        public TicketWriteOffResponse()
+        {
+            Code = "1";
+            Msg = "核销成功";
+        }
+        /// <summary>
+        /// 错误代码
+        /// </summary>
+        public string Code { get; set; }
+        /// <summary>
+        /// 消息
+        /// </summary>
+        public string Msg { get; set; }
     }
 }

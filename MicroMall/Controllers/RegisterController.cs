@@ -28,27 +28,27 @@ namespace MicroMall.Controllers
         }
         public ActionResult Index()
         {
-            //WxPayAPI.Log.Debug("WxPayAPI.WxPayConfig", "APPID11：" + WxPayConfig.APPID);
-            //string redirect_uri = System.Configuration.ConfigurationManager.AppSettings["url"].ToString() + "/Register/register";
-            //string url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + WxPayConfig.APPID + "&redirect_uri=" + redirect_uri + "&response_type=code&scope=snsapi_userinfo&state=#wechat_redirect";
-            //return Redirect(url);
-            string url = "/register/register?code=123123333";
+            WxPayAPI.Log.Debug("WxPayAPI.WxPayConfig", "APPID11：" + WxPayConfig.APPID);
+            string redirect_uri = System.Configuration.ConfigurationManager.AppSettings["url"].ToString() + "/Register/register";
+            string url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + WxPayConfig.APPID + "&redirect_uri=" + redirect_uri + "&response_type=code&scope=snsapi_userinfo&state=#wechat_redirect";
             return Redirect(url);
+            //string url = "/register/register?code=123123333";
+            //return Redirect(url);
         }
 
         public ActionResult register(string code,string state)
         {
-            //OAuthAccessTokenResult result = Senparc.Weixin.MP.AdvancedAPIs.OAuthApi.GetAccessToken(WxPayConfig.APPID, WxPayConfig.APPSECRET, code);
-            //var openid = result.openid;
-            //var user = membershipService.GetByOpenId(openid);
-            //if (user != null)
-            //{
-            //    HttpCookie cookie = new HttpCookie(SessionKeys.USERID, user.UserId.ToString());
-            //    Response.Cookies.Add(cookie);
-            //    return RedirectToAction("index", "PersonalCentre");
-            //}
-            //ViewData["openId"] = openid;
-            ViewData["openId"] = code;
+            OAuthAccessTokenResult result = Senparc.Weixin.MP.AdvancedAPIs.OAuthApi.GetAccessToken(WxPayConfig.APPID, WxPayConfig.APPSECRET, code);
+            var openid = result.openid;
+            var user = membershipService.GetByOpenId(openid);
+            if (user != null)
+            {
+                HttpCookie cookie = new HttpCookie(SessionKeys.USERID, user.UserId.ToString());
+                Response.Cookies.Add(cookie);
+                return RedirectToAction("index", "PersonalCentre");
+            }
+            ViewData["openId"] = openid;
+           // ViewData["openId"] = code;
             return View();
             
         }
@@ -166,6 +166,11 @@ namespace MicroMall.Controllers
                 return Json(new ResultMessage() { Code = -1, Msg = "发送失败："+ex.Message });
             }
             
+        }
+
+        public ActionResult xy()
+        {
+            return View();
         }
     }
 }

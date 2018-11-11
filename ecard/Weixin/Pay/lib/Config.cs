@@ -14,7 +14,7 @@ namespace WxPayAPI
     */
     public static class WxPayConfig
     {
-        static WxPayConfig()
+       static WxPayConfig()
         {
            var _databaseInstance = new DatabaseInstance(new Database("ecard"));
             var ISetWeChatService = new SqlSetWeChatService(_databaseInstance);

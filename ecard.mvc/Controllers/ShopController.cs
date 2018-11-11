@@ -313,6 +313,12 @@ namespace Ecard.Mvc.Controllers
         {
             return View();
         }
+
+        [CheckUserType(typeof(ShopUser))]
+        public ActionResult TicketOff()
+        {
+            return View(new EcardModelItem<WindowTicketingView>(null));
+        }
     }
 
     public class AutoCompletedItem

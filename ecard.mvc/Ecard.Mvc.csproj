@@ -193,6 +193,7 @@
     <Compile Include="Controllers\RollbackController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Controllers\WeChatController.cs" />
+    <Compile Include="Controllers\WindowTicketOffController.cs" />
     <Compile Include="Models\AccountName.cs" />
     <Compile Include="Models\Accounts\ChangeLimitAmount.cs" />
     <Compile Include="Models\Accounts\ShowPay.cs" />

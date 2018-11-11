@@ -3753,3 +3753,215 @@ System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketExce
 执行方法: AccountController -- ListPost
 2018-11-07 00:29:21,742 7 [7] DEBUG RunWatcher - 耗时: 4
 执行方法: AccountController -- ListPost
+2018-11-10 09:55:27,022 73 [73] DEBUG RunWatcher - 耗时: 0
+执行方法: UserController -- LogOn
+2018-11-10 09:55:27,576 23 [23] DEBUG RunWatcher - 耗时: 27
+执行方法: UtilityController -- Code
+2018-11-10 09:55:37,732 73 [73] DEBUG RunWatcher - 耗时: 0
+执行方法: UserController -- LogOn
+2018-11-10 09:55:38,070 93 [93] DEBUG RunWatcher - 耗时: 40
+执行方法: UtilityController -- Code
+2018-11-10 09:55:46,871 24 [24] DEBUG RunWatcher - 耗时: 413
+执行方法: UserController -- LogOn
+2018-11-10 09:55:46,994 80 [80] DEBUG RunWatcher - 耗时: 65
+执行方法: HomeController -- Index
+2018-11-10 09:55:49,539 24 [24] DEBUG RunWatcher - 耗时: 19
+执行方法: ShopController -- WindowTicketing
+2018-11-10 09:55:51,365 24 [24] DEBUG RunWatcher - 耗时: 104
+执行方法: ShopController -- WindowTicketingLogs
+2018-11-10 09:55:54,757 78 [78] DEBUG RunWatcher - 耗时: 0
+执行方法: ShopController -- WindowTicketing
+2018-11-10 09:56:34,866 27 [27] DEBUG app - sql store updated
+2018-11-10 09:56:35,084 27 [27] DEBUG app - SetupContiner
+2018-11-10 09:56:35,198 27 [27] DEBUG app - SetupSite
+2018-11-10 09:56:37,879 27 [27] DEBUG app - RegisterRoutes
+2018-11-10 09:56:37,912 27 [27] DEBUG app - registerActionFilters
+2018-11-10 09:56:37,930 27 [27] DEBUG app - registerModelBinders
+2018-11-10 09:56:37,930 27 [27] DEBUG app - registerViewEngines
+2018-11-10 09:56:37,944 27 [27] DEBUG app - registerControllerFactory
+2018-11-10 09:56:40,543 27 [27] DEBUG app - BuildSiteCss
+2018-11-10 09:56:40,543 27 [27] DEBUG app - SetResolver
+2018-11-10 09:56:40,558 27 [27] DEBUG app - RegisterAdapter
+2018-11-10 09:56:40,560 27 [27] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-11-10 09:56:42,057 24 [24] DEBUG RunWatcher - 耗时: 429
+执行方法: HomeController -- Index
+2018-11-10 09:56:55,211 24 [24] DEBUG RunWatcher - 耗时: 0
+执行方法: ShopController -- TicketOff
+2018-11-10 09:59:17,777 27 [27] DEBUG app - sql store updated
+2018-11-10 09:59:17,875 27 [27] DEBUG app - SetupContiner
+2018-11-10 09:59:17,937 27 [27] DEBUG app - SetupSite
+2018-11-10 09:59:18,771 27 [27] DEBUG app - RegisterRoutes
+2018-11-10 09:59:18,774 27 [27] DEBUG app - registerActionFilters
+2018-11-10 09:59:18,780 27 [27] DEBUG app - registerModelBinders
+2018-11-10 09:59:18,780 27 [27] DEBUG app - registerViewEngines
+2018-11-10 09:59:18,783 27 [27] DEBUG app - registerControllerFactory
+2018-11-10 09:59:19,445 27 [27] DEBUG app - BuildSiteCss
+2018-11-10 09:59:19,446 27 [27] DEBUG app - SetResolver
+2018-11-10 09:59:19,448 27 [27] DEBUG app - RegisterAdapter
+2018-11-10 09:59:19,450 27 [27] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-11-10 09:59:20,433 73 [73] DEBUG RunWatcher - 耗时: 130
+执行方法: HomeController -- Index
+2018-11-10 09:59:43,619 73 [73] DEBUG RunWatcher - 耗时: 0
+执行方法: ShopController -- TicketOff
+2018-11-10 10:00:30,586 28 [28] DEBUG RunWatcher - 耗时: 0
+执行方法: ShopController -- TicketOff
+2018-11-10 10:00:41,109 28 [28] DEBUG RunWatcher - 耗时: 0
+执行方法: ShopController -- TicketOff
+2018-11-10 10:01:07,018 28 [28] DEBUG RunWatcher - 耗时: 0
+执行方法: ShopController -- TicketOff
+2018-11-10 10:02:27,648 73 [73] DEBUG RunWatcher - 耗时: 0
+执行方法: ShopController -- TicketOff
+2018-11-10 10:02:52,382 73 [73] DEBUG RunWatcher - 耗时: 0
+执行方法: ShopController -- TicketOff
+2018-11-10 10:03:07,469 73 [73] DEBUG RunWatcher - 耗时: 0
+执行方法: ShopController -- TicketOff
+2018-11-10 10:22:52,725 27 [27] DEBUG app - sql store updated
+2018-11-10 10:22:52,933 27 [27] DEBUG app - SetupContiner
+2018-11-10 10:22:53,028 27 [27] DEBUG app - SetupSite
+2018-11-10 10:22:53,968 27 [27] DEBUG app - RegisterRoutes
+2018-11-10 10:22:53,993 27 [27] DEBUG app - registerActionFilters
+2018-11-10 10:22:54,001 27 [27] DEBUG app - registerModelBinders
+2018-11-10 10:22:54,001 27 [27] DEBUG app - registerViewEngines
+2018-11-10 10:22:54,014 27 [27] DEBUG app - registerControllerFactory
+2018-11-10 10:22:54,699 27 [27] DEBUG app - BuildSiteCss
+2018-11-10 10:22:54,699 27 [27] DEBUG app - SetResolver
+2018-11-10 10:22:54,701 27 [27] DEBUG app - RegisterAdapter
+2018-11-10 10:22:54,703 27 [27] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-11-10 10:22:55,684 25 [25] DEBUG RunWatcher - 耗时: 5
+执行方法: ShopController -- TicketOff
+2018-11-10 10:23:31,879 25 [25] DEBUG RunWatcher - 耗时: 145
+执行方法: WindowTicketOffController -- GetTicketInfo
+2018-11-10 10:23:51,620 25 [25] DEBUG RunWatcher - 耗时: 6
+执行方法: WindowTicketOffController -- GetTicketInfo
+2018-11-10 10:23:54,111 25 [25] DEBUG RunWatcher - 耗时: 0
+执行方法: ShopController -- TicketOff
+2018-11-10 10:23:56,966 20 [20] DEBUG RunWatcher - 耗时: 2
+执行方法: WindowTicketOffController -- GetTicketInfo
+2018-11-10 10:24:30,395 24 [24] DEBUG RunWatcher - 耗时: 6
+执行方法: WindowTicketOffController -- GetTicketInfo
+2018-11-10 10:24:38,960 117 [117] DEBUG RunWatcher - 耗时: 1
+执行方法: WindowTicketOffController -- GetTicketInfo
+2018-11-10 10:24:52,793 24 [24] DEBUG RunWatcher - 耗时: 23
+执行方法: ShopController -- WindowTicketing
+2018-11-10 10:25:38,560 20 [20] DEBUG RunWatcher - 耗时: 43488
+执行方法: WindowTicketOffController -- GetTicketInfo
+2018-11-10 10:26:56,993 27 [27] DEBUG app - sql store updated
+2018-11-10 10:26:57,152 27 [27] DEBUG app - SetupContiner
+2018-11-10 10:26:57,230 27 [27] DEBUG app - SetupSite
+2018-11-10 10:26:58,116 27 [27] DEBUG app - RegisterRoutes
+2018-11-10 10:26:58,127 27 [27] DEBUG app - registerActionFilters
+2018-11-10 10:26:58,134 27 [27] DEBUG app - registerModelBinders
+2018-11-10 10:26:58,134 27 [27] DEBUG app - registerViewEngines
+2018-11-10 10:26:58,149 27 [27] DEBUG app - registerControllerFactory
+2018-11-10 10:26:58,904 27 [27] DEBUG app - BuildSiteCss
+2018-11-10 10:26:58,904 27 [27] DEBUG app - SetResolver
+2018-11-10 10:26:58,906 27 [27] DEBUG app - RegisterAdapter
+2018-11-10 10:26:58,907 27 [27] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-11-10 10:27:00,098 24 [24] DEBUG RunWatcher - 耗时: 250
+执行方法: HomeController -- Index
+2018-11-10 10:27:08,792 91 [91] DEBUG RunWatcher - 耗时: 0
+执行方法: ShopController -- TicketOff
+2018-11-10 10:27:43,743 24 [24] DEBUG RunWatcher - 耗时: 25959
+执行方法: WindowTicketOffController -- GetTicketInfo
+2018-11-10 10:28:28,147 24 [24] DEBUG RunWatcher - 耗时: 25209
+执行方法: WindowTicketOffController -- GetTicketInfo
+2018-11-10 10:29:17,152 27 [27] DEBUG app - sql store updated
+2018-11-10 10:29:17,321 27 [27] DEBUG app - SetupContiner
+2018-11-10 10:29:17,397 27 [27] DEBUG app - SetupSite
+2018-11-10 10:29:18,242 27 [27] DEBUG app - RegisterRoutes
+2018-11-10 10:29:18,264 27 [27] DEBUG app - registerActionFilters
+2018-11-10 10:29:18,271 27 [27] DEBUG app - registerModelBinders
+2018-11-10 10:29:18,271 27 [27] DEBUG app - registerViewEngines
+2018-11-10 10:29:18,275 27 [27] DEBUG app - registerControllerFactory
+2018-11-10 10:29:19,009 27 [27] DEBUG app - BuildSiteCss
+2018-11-10 10:29:19,010 27 [27] DEBUG app - SetResolver
+2018-11-10 10:29:19,012 27 [27] DEBUG app - RegisterAdapter
+2018-11-10 10:29:19,014 27 [27] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-11-10 10:29:20,109 24 [24] DEBUG RunWatcher - 耗时: 159
+执行方法: HomeController -- Index
+2018-11-10 10:29:51,585 24 [24] DEBUG RunWatcher - 耗时: 0
+执行方法: ShopController -- TicketOff
+2018-11-10 10:30:04,074 26 [26] DEBUG RunWatcher - 耗时: 3243
+执行方法: WindowTicketOffController -- GetTicketInfo
+2018-11-10 10:30:21,831 20 [20] DEBUG RunWatcher - 耗时: 2643
+执行方法: WindowTicketOffController -- GetTicketInfo
+2018-11-10 10:31:06,675 24 [24] DEBUG RunWatcher - 耗时: 11
+执行方法: WindowTicketOffController -- GetTicketInfo
+2018-11-10 10:33:34,883 26 [26] DEBUG RunWatcher - 耗时: 0
+执行方法: ShopController -- TicketOff
+2018-11-10 10:33:37,813 91 [91] DEBUG RunWatcher - 耗时: 13
+执行方法: WindowTicketOffController -- GetTicketInfo
+2018-11-10 10:34:07,036 20 [20] DEBUG RunWatcher - 耗时: 23
+执行方法: WindowTicketOffController -- GetTicketInfo
+2018-11-10 10:36:45,229 20 [20] DEBUG RunWatcher - 耗时: 0
+执行方法: ShopController -- TicketOff
+2018-11-10 10:36:49,366 91 [91] DEBUG RunWatcher - 耗时: 6
+执行方法: WindowTicketOffController -- GetTicketInfo
+2018-11-10 10:37:28,970 26 [26] DEBUG RunWatcher - 耗时: 0
+执行方法: ShopController -- TicketOff
+2018-11-10 10:37:57,929 20 [20] DEBUG RunWatcher - 耗时: 0
+执行方法: ShopController -- TicketOff
+2018-11-10 10:38:01,638 20 [20] DEBUG RunWatcher - 耗时: 13
+执行方法: WindowTicketOffController -- GetTicketInfo
+2018-11-10 10:38:33,265 20 [20] DEBUG RunWatcher - 耗时: 16143
+执行方法: WindowTicketOffController -- TicketWriteOff
+2018-11-10 10:38:52,295 20 [20] DEBUG RunWatcher - 耗时: 4
+执行方法: WindowTicketOffController -- GetTicketInfo
+2018-11-10 10:39:07,766 117 [117] DEBUG RunWatcher - 耗时: 13990
+执行方法: WindowTicketOffController -- TicketWriteOff
+2018-11-10 10:40:18,636 20 [20] DEBUG RunWatcher - 耗时: 21207
+执行方法: WindowTicketOffController -- TicketWriteOff
+2018-11-10 10:40:22,694 33 [33] DEBUG RunWatcher - 耗时: 5
+执行方法: WindowTicketOffController -- GetTicketInfo
+2018-11-10 10:40:49,211 20 [20] DEBUG RunWatcher - 耗时: 3825
+执行方法: WindowTicketOffController -- TicketWriteOff
+2018-11-10 10:41:26,577 20 [20] DEBUG RunWatcher - 耗时: 16
+执行方法: WindowTicketOffController -- GetTicketInfo
+2018-11-10 10:42:06,722 7 [7] DEBUG RunWatcher - 耗时: 31005
+执行方法: WindowTicketOffController -- TicketWriteOff
+2018-11-10 10:42:10,150 117 [117] DEBUG RunWatcher - 耗时: 6
+执行方法: WindowTicketOffController -- GetTicketInfo
+2018-11-10 10:43:47,921 33 [33] DEBUG RunWatcher - 耗时: 25
+执行方法: ShopController -- WindowTicketing
+2018-11-10 10:43:50,840 19 [19] DEBUG RunWatcher - 耗时: 12
+执行方法: UserController -- LogOff
+2018-11-10 10:43:50,852 10 [10] DEBUG RunWatcher - 耗时: 0
+执行方法: UserController -- LogOn
+2018-11-10 10:43:51,743 26 [26] DEBUG RunWatcher - 耗时: 51
+执行方法: UtilityController -- Code
+2018-11-10 10:44:00,891 117 [117] DEBUG RunWatcher - 耗时: 22
+执行方法: UserController -- LogOn
+2018-11-10 10:44:00,901 20 [20] DEBUG RunWatcher - 耗时: 3
+执行方法: HomeController -- Index
+2018-11-10 10:44:02,694 10 [10] DEBUG RunWatcher - 耗时: 0
+执行方法: ShopController -- TicketOff
+2018-11-11 23:54:10,779 43 [43] DEBUG app - sql store updated
+2018-11-11 23:54:11,496 43 [43] DEBUG app - SetupContiner
+2018-11-11 23:54:12,450 43 [43] DEBUG app - SetupSite
+2018-11-11 23:54:16,146 43 [43] DEBUG app - RegisterRoutes
+2018-11-11 23:54:16,172 43 [43] DEBUG app - registerActionFilters
+2018-11-11 23:54:16,256 43 [43] DEBUG app - registerModelBinders
+2018-11-11 23:54:16,256 43 [43] DEBUG app - registerViewEngines
+2018-11-11 23:54:16,275 43 [43] DEBUG app - registerControllerFactory
+2018-11-11 23:54:19,251 43 [43] DEBUG app - BuildSiteCss
+2018-11-11 23:54:19,252 43 [43] DEBUG app - SetResolver
+2018-11-11 23:54:19,256 43 [43] DEBUG app - RegisterAdapter
+2018-11-11 23:54:19,283 43 [43] DEBUG app - ValueProviderFactories.Factories.Add(new JsonValueProviderFactory())
+2018-11-11 23:54:23,669 131 [131] DEBUG RunWatcher - 耗时: 1306
+执行方法: HomeController -- Index
+2018-11-11 23:58:15,865 39 [39] DEBUG RunWatcher - 耗时: 9
+执行方法: UserController -- LogOn
+2018-11-11 23:58:17,446 39 [39] DEBUG RunWatcher - 耗时: 212
+执行方法: UtilityController -- Code
+2018-11-11 23:58:27,376 160 [160] DEBUG RunWatcher - 耗时: 428
+执行方法: UserController -- LogOn
+2018-11-11 23:58:27,386 16 [16] DEBUG RunWatcher - 耗时: 3
+执行方法: HomeController -- Index
+2018-11-11 23:58:30,385 127 [127] DEBUG RunWatcher - 耗时: 74
+执行方法: WeChatController -- Edit
+2018-11-11 23:59:08,742 159 [159] DEBUG RunWatcher - 耗时: 100
+执行方法: WeChatController -- Edit
+2018-11-12 00:00:58,892 158 [158] DEBUG RunWatcher - 耗时: 9
+执行方法: WeChatController -- Edit
+2018-11-12 00:01:02,962 96 [96] DEBUG RunWatcher - 耗时: 0
+执行方法: WeChatController -- Edit

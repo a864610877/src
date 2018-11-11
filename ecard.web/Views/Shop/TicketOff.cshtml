@@ -1,0 +1,236 @@
+﻿@{
+
+
+}   
+<style>
+    .forminfo input {
+        width: 200px
+    }
+
+</style>
+
+        <div class="place">
+            <span>位置：</span>
+            <ul class="placeul">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">窗口验票</a></li>
+            </ul>
+        </div>
+        <div class="create_div">
+            <ul class="forminfo" style="padding-top:10px;">
+                <li>
+                    <label><label class="desc" for="Item_Start">门票/卡号</label></label>
+                    <input class="scinput InputSerach" data-val="true"  data-val-number="The field Start must be a number." placeholder="输入编码按下回车建查询信息" data-val-required="请输入门票编码或卡号" id="code" name="code" type="text" value="" >
+                    <span class="field-validation-valid" data-valmsg-for="Item.Start" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label><label class="desc" for="Item_Password">名称</label></label>
+                    <input class="scinput InputSerach" id="name" name="name" type="text" value="" disabled>
+                    <span class="field-validation-valid" data-valmsg-for="Item.Password" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label><label class="desc" for="Item_End">购买时间</label></label>
+                    <input class="scinput InputSerach" data-val="true" disabled data-val-number="The field End must be a number." data-val-required="购买时间" id="buyTime" name="buyTime" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="Item.End" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label><label class="desc" for="Item_Interval">有效期</label></label>
+                    <input class="scinput InputSerach" data-val="true" disabled data-val-number="The field Interval must be a number." data-val-required="" id="ExpiredDate" name="ExpiredDate" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="Item.Interval" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label><label class="desc" for="Item_Interval">状态</label></label>
+                    <input class="scinput InputSerach" data-val="true" disabled data-val-number="The field Interval must be a number." data-val-required="" id="State" name="State" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="Item.Interval" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label><label class="desc" for="Item_Interval">剩余使用次数</label></label>
+                    <input class="scinput InputSerach" data-val="true" disabled data-val-number="The field Interval must be a number." data-val-required="" id="Frequency" name="Frequency" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="Item.Interval" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label><label class="desc" for="Item_Interval">已使用次数</label></label>
+                    <input class="scinput InputSerach" data-val="true" disabled data-val-number="The field Interval must be a number." data-val-required="" id="FrequencyUsed" name="FrequencyUsed" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="Item.Interval" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label><label class="desc" for="Item_Interval">指定门店</label></label>
+                    <input class="scinput InputSerach" data-val="true" disabled data-val-number="The field Interval must be a number." data-val-required="" id="useScope" name="useScope" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="Item.Interval" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label><label class="desc" for="Item_Interval">使用日期</label></label>
+                    <input class="scinput InputSerach" data-val="true" disabled data-val-number="The field Interval must be a number." data-val-required="" id="userTime" name="userTime" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="Item.Interval" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label><label class="desc" for="Item_Interval">姓名</label></label>
+                    <input class="scinput InputSerach" data-val="true" disabled data-val-number="The field Interval must be a number." data-val-required="" id="userName" name="userName" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="Item.Interval" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label><label class="desc" for="Item_Interval">手机号</label></label>
+                    <input class="scinput InputSerach" data-val="true" disabled data-val-number="The field Interval must be a number." data-val-required="" id="mobile" name="mobile" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="Item.Interval" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label><label class="desc" for="Item_Interval">宝宝姓名</label></label>
+                    <input class="scinput InputSerach" data-val="true" disabled data-val-number="The field Interval must be a number." data-val-required="" id="babyName" name="babyName" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="Item.Interval" data-valmsg-replace="true"></span>
+                </li>
+                <li>
+                    <label><label class="desc" for="Item_Interval">宝宝性别</label></label>
+                    <input class="scinput InputSerach" data-val="true" disabled data-val-number="The field Interval must be a number." data-val-required="" id="babySex" name="babySex" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="Item.Interval" data-valmsg-replace="true"></span>
+                </li>
+            </ul>
+            <div style=" clear:both" />
+            <div class="submitDiv"> <input type="button" id="sp" class="scbtn" value="核销验票" /></div>
+        </div>
+        <script src="/js/LodopFuncs.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $(".create_field input").focus(function () {
+                    $("[forprop='" + $(this).attr("id") + "']").show("1500");
+                });
+                $(".create_field select").click(function () {
+                    $("[forprop='" + $(this).attr("id") + "_Key']").show("1500");
+                });
+                $(".create_field input").blur(function () {
+                    $("[forprop='" + $(this).attr("id") + "']").hide("1500");
+                });
+                $(".create_field select").mouseleave(function () {
+                    $("[forprop='" + $(this).attr("id") + "_Key']").hide("1500");
+                });
+
+                $("#code").keydown(function () {
+                    if (event.keyCode == "13") {//判断如果按下的是回车键则执行下面的代码
+                        var code = $(this).val();
+                        $.ajax({
+                            url: "/WindowTicketOff/GetTicketInfo",
+                            data: { code: code, token:"" },
+                            type: "post",
+                            dataType: "json",
+                            success: function (data) {
+                                if (data.Code == "1") {
+                                    $("#name").val(data.name);
+                                    $("#buyTime").val(data.buyTime);
+                                    $("#name").val(data.name);
+                                    $("#ExpiredDate").val(data.ExpiredDate);
+                                    $("#State").val(data.State);
+                                    $("#Frequency").val(data.Frequency);
+                                    $("#FrequencyUsed").val(data.FrequencyUsed);
+                                    $("#useScope").val(data.useScope);
+                                    $("#userTime").val(data.userTime);
+                                    $("#mobile").val(data.mobile);
+                                    $("#babyName").val(data.babyName);
+                                    $("#babySex").val(data.babySex);
+                                    $("#userName").val(data.userName);
+                                } else {
+                                    alert(data.Msg);
+                                }
+                            },
+                            error: function () {
+                                alert("系统异常，请检查网络");
+                            }
+                        })
+                    }
+                });
+
+                $("#sp").click(function () {
+                    var code = $("#code").val();
+                   
+
+                    $.ajax({
+                        url: "/WindowTicketOff/TicketWriteOff",
+                        data: { code: code},
+                        type: "post",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.Code == "1") {
+                                alert("核销成功");
+                                $("#name").val('');
+                                $("#buyTime").val('');
+                                $("#name").val('');
+                                $("#ExpiredDate").val('');
+                                $("#State").val('');
+                                $("#Frequency").val('');
+                                $("#FrequencyUsed").val('');
+                                $("#useScope").val('');
+                                $("#userTime").val('');
+                                $("#mobile").val('');
+                                $("#babyName").val('');
+                                $("#babySex").val('');
+                                $("#userName").val('');
+                            } else {
+                                alert(data.Msg);
+                            }
+                        },
+                        error: function () {
+                            alert("系统异常，请检查网络");
+                        }
+                    })
+                });
+
+
+                function Print() {
+
+                    // var src = "1234567890";
+                    var copies = 1;
+                    var pIndex = 0;
+                    var pTitle = "手环打印";
+                    LODOP = getLodop();
+                    try {
+                        LODOP = getLodop();
+                        if (LODOP.VERSION) {
+                            //if (LODOP.CVERSION)
+                            //    alert("当前有C-Lodop云打印可用!\n C-Lodop版本:"+LODOP.CVERSION+"(内含Lodop"+LODOP.VERSION+")"); 
+                            //else
+                            //    alert("本机已成功安装了Lodop控件！\n 版本号:"+LODOP.VERSION); 
+                        };
+                    } catch (err) {
+                        if (confirm("您的打印控件安装有问题\n是否打开打印设置页面进行设置")) {
+                            window.open("/Shop/Profile/SetPrinter");
+                        }
+                    }
+                    if (LODOP.PRINT_INIT("手环打印") == false) {
+                        alert("打印机初始划失败请检查");
+                    }
+                    LODOP.SET_PRINTER_INDEX(-1);
+                    //LODOP.SET_PRINT_PAGESIZE(3, 580, 45, "");//这里3表示纵向打印且纸高“按内容的高度”；1385表示纸宽138.5mm；45表示页底空白4.5mm
+                    //LODOP.SET_PRINT_PAGESIZE(1, 100, 60, "");
+                    LODOP.SET_PRINT_COPIES(copies);//打印份数
+                    //LODOP.ADD_PRINT_BARCODE(130, 455, 200, 100, "QRCode", obj.Number);
+                    LODOP.ADD_PRINT_TEXT(5,5,5,5,'xx监护人');
+
+
+                    //     var pHtml = "";
+                    //debugger
+                    //     pHtml += '<span style="font-size:12px">当前余额</span><br /><b style="text-align:center"> <img   src="/Common/Scan?text='+src+'&width=150&height=150" /></b></p>';
+
+
+                    //     //pHtml += "<div style='border:1px dotted #000;border-style: dotted none none none'></div>";
+                    //     //pHtml += '<table width="100%" border="0" cellspacing="1" cellpadding="0" style="padding-right:5px"><tr><th>单价</th><th>数量</th><th>小计</th></tr>'
+                    //     //LODOP.SET_PRINT_STYLE("FontSize", 10);
+                    //     //for (var i = 0; i < datas.length; i++) {
+                    //     //    var obj = datas[i];
+                    //     //    pHtml += "<tr><td colspan='3'><span style='font-size:12px'>" + obj.Name + "</td></tr>"
+                    //     //    pHtml += "<tr><td style='text-align:right'>" + obj.Price + "</td><td style='text-align:center'>" + obj.Seq + "</td><td style='text-align:right'>" + obj.TotalPrice + "</td></tr>"
+                    //     //}
+                    //     //pHtml += "</table>";
+                    //     //pHtml += "<div style='border:1px dotted #000;border-style: dotted none none none'></div>";
+                    //     //pHtml += '<table width="100%" border="0" cellspacing="1" cellpadding="0"><tr><td style="text-align:right;font-size:12px">应收总金额</td><td style="text-align:right;padding-right:10px"><span style="font-size:10px">￥</span><b>' + $('#t_amount').text() + '</b>元</td></tr>';
+                    //     //pHtml += '<tr><td style="text-align:right;font-size:12px">获易购积分</td><td style="text-align:right;padding-right:10px"><span style="font-size:10px">￥</span><b>' + '2600' + '</b>分</td></tr></table>';
+                    //     pHtml += "<div style='border:2px solid #000;border-style: solid none solid none;margin:10px 0;height:120px'></div>";
+                    //     //pHtml += "<div style='font-size:10px;text-align:center;margin:0 0 20px 0'>以上签名为本人签名</div>";
+                    //     //$('#pCont').html(pHtml);
+                    //     LODOP.ADD_PRINT_HTM(20, 5, "100%", "100%", pHtml);
+                    LODOP.PRINT();
+                    // $('#table').bootstrapTable('removeAll');
+                    // setTotal()
+                }
+
+
+            });
+
+        </script>

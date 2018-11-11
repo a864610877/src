@@ -139,10 +139,11 @@
     <!--弹二维码-->
     <div class="tan_wm" style="display:none">
         <div id="code"></div>
+        <p class="card"></p>
     </div>
     <script src="/js/jQuery.js"></script>
     <script src="/js/layer/layer.js"></script>
-    <script src="/js/fz.js?v1.1"></script>
+    <script src="/js/fz.js?v1.2"></script>
     <script src="/js/jquery.qrcode.min.js"></script>
     <script type="text/javascript">
         $(function () {
@@ -232,13 +233,14 @@
             //弹二维码
             $(".shiYong").click(function () {
                 var code = $(this).attr("data-code");
+                $(".card").html(code);
                 $("#code").html("");
                 $('#code').qrcode(code); //任意字符串
                 layer.open({
                     type: 1,
                     title: false,
                     closeBtn: 0,
-                    area: ['70%', 'auto'],
+                    area: ['80%', 'auto'],
                     shade: [0.6, '#000', false],
                     skin: 'layui-layer-nobg', //没有背景色
                     shadeClose: false,
@@ -281,8 +283,9 @@
                     success: function (data) {
                         $.closeLoading();
                         if (data.Code == 0) {
-                            $.openDialogUrl("购票成功", "/PersonalCentre/BuyTicket");
-                            //$.webChatPay(data.Msg);
+                           // $.openDialogUrl("购票成功", "/PersonalCentre/BuyTicket");
+                            tzurl = "/PersonalCentre/BuyTicket";
+                            $.webChatPay(data.Msg);
                         } else {
                             $.openDialog(data.Msg);
                         }

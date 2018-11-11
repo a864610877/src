@@ -366,15 +366,15 @@ namespace MicroMall.Controllers
                     }
                 }
 
-                //JsApiPay jsApiPay = new JsApiPay();
-                //jsApiPay.openid = user.openId;
-                //jsApiPay.total_fee = (int)(order.payAmount * 100);
-                //WxPayData unifiedOrderResult = jsApiPay.GetUnifiedOrderResult(order.orderNo);
-                //string wxJsApiParam = jsApiPay.GetJsApiParameters();//获取H5调起JS API参数                    
-                //WxPayAPI.Log.Debug(this.GetType().ToString(), "wxJsApiParam : " + wxJsApiParam);
+                JsApiPay jsApiPay = new JsApiPay();
+                jsApiPay.openid = user.openId;
+                jsApiPay.total_fee = (int)(order.payAmount * 100);
+                string APPID = WxPayConfig.APPID;
+                WxPayData unifiedOrderResult = jsApiPay.GetUnifiedOrderResult(order.orderNo);
+                string wxJsApiParam = jsApiPay.GetJsApiParameters();//获取H5调起JS API参数                    
+                WxPayAPI.Log.Debug(this.GetType().ToString(), "wxJsApiParam : " + wxJsApiParam);
                 tran.Commit();
-                hd(orderNo);
-                return Json(new ResultMessage() { Code = 0, Msg = "" });
+                return Json(new ResultMessage() { Code = 0, Msg = wxJsApiParam });
                 //在页面上显示订单信息
                 //Response.Write("<span style='color:#00CD00;font-size:20px'>订单详情：</span><br/>");
                 //Response.Write("<span style='color:#00CD00;font-size:20px'>" + unifiedOrderResult.ToPrintStr() + "</span>");
@@ -508,20 +508,15 @@ namespace MicroMall.Controllers
                     }
                 }
                 //微信支付
-                //JsApiPay jsApiPay = new JsApiPay();
-                //jsApiPay.openid = user.openId;
-                //jsApiPay.total_fee = (int)(order.payAmount * 100);
-                //WxPayData unifiedOrderResult = jsApiPay.GetUnifiedOrderResult(order.orderNo);
-                //string wxJsApiParam = jsApiPay.GetJsApiParameters();//获取H5调起JS API参数                    
-                //WxPayAPI.Log.Debug(this.GetType().ToString(), "wxJsApiParam : " + wxJsApiParam);
+                JsApiPay jsApiPay = new JsApiPay();
+                jsApiPay.openid = user.openId;
+                jsApiPay.total_fee = (int)(order.payAmount * 100);
+                WxPayData unifiedOrderResult = jsApiPay.GetUnifiedOrderResult(order.orderNo);
+                string wxJsApiParam = jsApiPay.GetJsApiParameters();//获取H5调起JS API参数                    
+                WxPayAPI.Log.Debug(this.GetType().ToString(), "wxJsApiParam : " + wxJsApiParam);
                 tran.Commit();
-
-                hd(orderNo);
-
-
-
-                //return Json(new ResultMessage() { Code = 0, Msg = wxJsApiParam });
-                return Json(new ResultMessage() { Code = 0, Msg = "" });
+                return Json(new ResultMessage() { Code = 0, Msg = wxJsApiParam });
+                //return Json(new ResultMessage() { Code = 0, Msg = "" });
                 
 
             }

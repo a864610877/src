@@ -1,4 +1,5 @@
 ﻿using Ecard.Models;
+using Ecard.Mvc.ActionFilters;
 using Ecard.Mvc.Models.PosApi;
 using Ecard.Services;
 using Microsoft.Practices.Unity;
@@ -8,11 +9,11 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web.Mvc;
-using WxPayAPI;
 
 namespace Ecard.Mvc.Controllers
 {
-    public class PosApiController: Controller
+    [CheckUserType(typeof(ShopUser))]
+    public class WindowTicketOffController : Controller
     {
         private readonly IPosEndPointService posEndPointService;
         private readonly IPostTokenService postTokenService;
@@ -26,10 +27,11 @@ namespace Ecard.Mvc.Controllers
         private readonly IAdmissionTicketService admissionTicketService;
         private readonly IHandRingPrintService handRingPrintService;
         private readonly IUnityContainer _unityContainer;
+        private readonly SecurityHelper securityHelper;
 
-        public PosApiController(IUnityContainer unityContaine, IPosEndPointService posEndPointService, IPostTokenService postTokenService, IAccountTypeService accountTypeService,
+        public WindowTicketOffController(IUnityContainer unityContaine, IPosEndPointService posEndPointService, IPostTokenService postTokenService, IAccountTypeService accountTypeService,
             ITicketsService ticketsService, ITicketOffService ticketOffService, IAccountService accountService, IMembershipService membershipService, IShopService shopService,
-            TransactionHelper transactionHelper, IAdmissionTicketService admissionTicketService, IHandRingPrintService handRingPrintService)
+            TransactionHelper transactionHelper, IAdmissionTicketService admissionTicketService, IHandRingPrintService handRingPrintService, SecurityHelper securityHelper)
         {
             this._unityContainer = unityContaine;
             this.posEndPointService = posEndPointService;
@@ -43,78 +45,21 @@ namespace Ecard.Mvc.Controllers
             this.transactionHelper = transactionHelper;
             this.admissionTicketService = admissionTicketService;
             this.handRingPrintService = handRingPrintService;
+            this.securityHelper = securityHelper;
         }
-        [HttpPost]
-        public ActionResult Login(LoginRequest request)
-        {
-            try
-            {
-                WxPayAPI.Log.Info("PosApiController", string.Format("请求登录：账号{0},密码:{1}", request.username, request.password));
-                LoginRespone result = new LoginRespone();
-                
-                if (string.IsNullOrEmpty(request.username))
-                {
-                    return Json(new ApiResponse() { Code = "-1", Msg = "请输入账号" });
-                }
-                var model = posEndPointService.GetByName(request.username);
-                if (model == null)
-                    return Json(new ApiResponse() { Code = "-1", Msg = "登录账号不存在" });
-                if (model.DataKey != request.password)
-                    return Json(new ApiResponse() { Code = "-1", Msg = "密码错误" });
-                if (model.State!= States.Normal)
-                    return Json(new ApiResponse() { Code = "-1", Msg = "账号已被停用" });
-                string token = request.username + "_" + DateTime.Now.ToShortTimeString();
-                token = SaltAndHash(token, Guid.NewGuid().ToString("N").Substring(0, 8));
-                var posToken = postTokenService.GetByPosName(request.username);
-                if (posToken == null)
-                {
-                    posToken = new PostToken();
-                    posToken.createTime = DateTime.Now;
-                    posToken.posName = request.username;
-                    posToken.token = token;
-                    postTokenService.Insert(posToken);
-
-                }
-                else
-                {
-                    posToken.token = token;
-                    posToken.createTime = DateTime.Now;
-                    postTokenService.Update(posToken);
-                }
-                result.Code = "1";
-                result.Msg = "SUCCESS";
-                result.token = token;
-                return Json(result);
-            }
-            catch (Exception ex)
-            {
-                WxPayAPI.Log.Info("PosApiController", string.Format("请求登录：账号{0},密码:{1},异常:{2}", request.username, request.password, ex.Message));
-                return Json(new ApiResponse() { Code = "-1", Msg = "系统异常，请联系管理员" });
-            }
-
-        }
+        
         [HttpPost]
         public ActionResult GetTicketInfo(TicketWriteOffRequest request)
         {
-           
+            WxPayAPI.Log.Info("WindowTicketOffController", string.Format("请求获取门票：code{0},token:{1}", request.code, request.token));
+
             try
             {
-                WxPayAPI.Log.Info("PosApiController", string.Format("请求获取门票：code{0},token:{1}", request.code, request.token));
                 TicketWriteOffResponse result = new TicketWriteOffResponse();
                 if (string.IsNullOrEmpty(request.code))
                 {
                     return Json(new ApiResponse() { Code = "-1", Msg = "门票代码为空" });
                 }
-                if (string.IsNullOrEmpty(request.token))
-                {
-                    return Json(new ApiResponse() { Code = "-1", Msg = "token为空" });
-                }
-                var postToken = postTokenService.GetByToken(request.token);
-                if (postToken == null)
-                    return Json(new ApiResponse() { Code = "-1", Msg = "token失效请重新登录" });
-                var pos = posEndPointService.GetByName(postToken.posName);
-                if (pos == null && pos.State != States.Normal)
-                    return Json(new ApiResponse() { Code = "-1", Msg = "pos账号不存在或已停用" });
                 var ticket = ticketsService.GetByCode(request.code);
                 if (ticket != null)
                 {
@@ -176,22 +121,15 @@ namespace Ecard.Mvc.Controllers
         [HttpPost]
         public ActionResult TicketWriteOff(TicketWriteOffRequest request)
         {
-            WxPayAPI.Log.Info("PosApiController", string.Format("核销门票：code{0},token:{1}", request.code, request.token));
+            WxPayAPI.Log.Info("WindowTicketOffController", string.Format("核销门票：code{0},token:{1}", request.code, request.token));
             //TicketWriteOffResponse result = new TicketWriteOffResponse();
             if (string.IsNullOrEmpty(request.code))
             {
                 return Json(new ApiResponse() { Code = "-1", Msg = "门票代码为空" });
             }
-            if (string.IsNullOrEmpty(request.token))
-            {
-                return Json(new ApiResponse() { Code = "-1", Msg = "token为空" });
-            }
-            var postToken = postTokenService.GetByToken(request.token);
-            if (postToken == null)
-                return Json(new ApiResponse() { Code = "-1", Msg = "token失效请重新登录" });
-            var pos = posEndPointService.GetByName(postToken.posName);
-            if (pos == null && pos.State != States.Normal)
-                return Json(new ApiResponse() { Code = "-1", Msg = "pos账号不存在或已停用" });
+            var shop = securityHelper.GetCurrentUser().CurrentUser as ShopUser;
+            if(shop==null)
+                return Json(new ApiResponse() { Code = "-1", Msg = "商户不存在" });
             var transaction = transactionHelper.BeginTransaction();
             try
             {
@@ -216,13 +154,11 @@ namespace Ecard.Mvc.Controllers
                     }
                     if (!string.IsNullOrWhiteSpace(ticket.useScope))
                     {
-                        var shop = shopService.GetById(pos.ShopId);
                         if (shop != null)
                         {
-                            if(ticket.useScope!=shop.Name)
+                            if (ticket.useScope != shop.Name)
                                 return Json(new ApiResponse() { Code = "-1", Msg = "该门票不可以在此门店消费" });
                         }
-                       
                     }
                     ticket.State = TicketsState.Used;
                     ticket.userTime = DateTime.Now;
@@ -230,9 +166,9 @@ namespace Ecard.Mvc.Controllers
                     var ticketOff = new TicketOff();
                     ticketOff.code = ticket.Code;
                     ticketOff.DisplayName = admissionTicket != null ? admissionTicket.name : "";
-                    ticketOff.offOp = pos.Name;
+                    ticketOff.offOp = "";
                     ticketOff.offType = OffTypes.TicKet;
-                    ticketOff.shopId = pos.ShopId;
+                    ticketOff.shopId = shop.ShopId;
                     ticketOff.subTime = DateTime.Now;
                     ticketOff.timers = 1;
                     ticketOff.userId = ticket.UserId;
@@ -253,7 +189,7 @@ namespace Ecard.Mvc.Controllers
                     handRingPrint.createTime = DateTime.Now;
                     handRingPrint.state = 1;
                     handRingPrint.ticketType = 1;
-                    handRingPrint.shopId = pos.ShopId;
+                    handRingPrint.shopId = shop.ShopId;
                     handRingPrintService.Insert(handRingPrint);
                     transactionHelper.Commit();
                     return Json(new ApiResponse() { Code = "1", Msg = "核销成功" });
@@ -283,9 +219,9 @@ namespace Ecard.Mvc.Controllers
                     transactionHelper.Commit();
                     return Json(new ApiResponse() { Code = "-1", Msg = "此卡已过期" });
                 }
-                if (card.ShopId>0)
+                if (card.ShopId > 0)
                 {
-                    if(card.ShopId!=pos.ShopId)
+                    if (card.ShopId != shop.ShopId)
                         return Json(new ApiResponse() { Code = "-1", Msg = "该卡不可以在此门店消费" });
                 }
                 card.Frequency -= 1;
@@ -298,15 +234,15 @@ namespace Ecard.Mvc.Controllers
                 var ticketOff1 = new TicketOff();
                 ticketOff1.code = card.Name;
                 ticketOff1.DisplayName = cardType != null ? cardType.DisplayName : "";
-                ticketOff1.offOp = pos.Name;
+                ticketOff1.offOp = "";
                 ticketOff1.offType = OffTypes.Card;
-                ticketOff1.shopId = pos.ShopId;
+                ticketOff1.shopId = shop.ShopId;
                 ticketOff1.subTime = DateTime.Now;
                 ticketOff1.timers = 1;
-                ticketOff1.userId = card.OwnerId.HasValue?card.OwnerId.Value:0;
+                ticketOff1.userId = card.OwnerId.HasValue ? card.OwnerId.Value : 0;
                 ticketOffService.Insert(ticketOff1);
                 var handRingPrint1 = new HandRingPrint();
-                var user1 = membershipService.GetUserById(card.OwnerId.HasValue?card.OwnerId.Value:0) as AccountUser;
+                var user1 = membershipService.GetUserById(card.OwnerId.HasValue ? card.OwnerId.Value : 0) as AccountUser;
                 if (user1 != null)
                 {
                     handRingPrint1.babyBirthDate = user1.babyBirthDate.ToString("yyyy-MM-dd hh:mm;ss");
@@ -321,7 +257,7 @@ namespace Ecard.Mvc.Controllers
                 handRingPrint1.createTime = DateTime.Now;
                 handRingPrint1.state = 1;
                 handRingPrint1.ticketType = 2;
-                handRingPrint1.shopId = pos.ShopId;
+                handRingPrint1.shopId = shop.ShopId;
                 handRingPrintService.Insert(handRingPrint1);
                 transactionHelper.Commit();
                 return Json(new ApiResponse() { Code = "1", Msg = "核销成功" });
@@ -329,21 +265,11 @@ namespace Ecard.Mvc.Controllers
             catch (Exception ex)
             {
                 transaction.Dispose();
-                WxPayAPI.Log.Info("PosApiController", string.Format("请求获取门票异常：{0}", ex.Message));
+                WxPayAPI.Log.Info("WindowTicketOffController", string.Format("请求核销门票异常：{0}", ex.Message));
                 return Json(new ApiResponse() { Code = "-1", Msg = "异常，请联系管理员" });
             }
-            
 
-        }
 
-        public  string SaltAndHash(string rawString, string salt)
-        {
-            byte[] salted = Encoding.UTF8.GetBytes(string.Concat(rawString, salt));
-
-            SHA256 hasher = new SHA256Managed();
-            byte[] hashed = hasher.ComputeHash(salted);
-
-            return Convert.ToBase64String(hashed);
         }
     }
 }

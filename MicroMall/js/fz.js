@@ -9,7 +9,7 @@
                            $.openDialog("支付成功");
                            //$.closeLoading();
                            //$.openSuccessMessage("支付成功,<a href='/home/index'>去看视频</a>");
-                           window.location.href = '/PersonalCentre/Index'
+                           window.location.href = tzurl;// '/PersonalCentre/Index'
                            //window.location.href = "/WeChat/PaySuccess";
                            //$.openSuccessMessage("支付成功<a href='/TicketType/TicketType'>返 回</a>");
                        }
@@ -86,7 +86,7 @@
 });
 
 var url = "http://120.76.159.57:55364/";
-//var url = "http://localhost:5269/";
+var tzurl = "";
 //var url="http://139.199.107.120:8002/";
 //var url="https://www.jazzweng.com/";
 //var url = "https://www.jazzweng.com:446/";
