@@ -1,7 +1,12 @@
 ﻿@{
     ViewBag.Title = "购买卡";
     Layout = null;
+    var accountTypes1 = Model.accountTypes.Where(x => x.AccountTypeId == 1).FirstOrDefault();
+    var accountTypes2 = Model.accountTypes.Where(x => x.AccountTypeId == 2).FirstOrDefault();
+    var accountTypes3 = Model.accountTypes.Where(x => x.AccountTypeId == 3).FirstOrDefault();
+    var accountTypes4 = Model.accountTypes.Where(x => x.AccountTypeId == 4).FirstOrDefault();
 }
+
 @model MicroMall.Models.Parentings.BuyCardResult
 <!DOCTYPE html>
 <html>
@@ -18,47 +23,44 @@
     <input type="hidden" id="accountTypeId" value="0" />
     <div class="gm_one"><img src="/images/img2.png"></div>
     <ul class="gm_two">
-        @if (Model.accountTypes.Where(x => x.AccountTypeId == 1).FirstOrDefault() != null)
+        @if (accountTypes1 != null)
         {
-            <li class="li1" value="1" amount="@Convert.ToInt32(Model.accountTypes.Where(x=>x.AccountTypeId==1).FirstOrDefault().Amount)">
+            <li class="li1" value="1" amount="@Convert.ToInt32(accountTypes1.Amount)">
                 <div class="left">
-                    <strong>白银气球卡·20次</strong><br>
-                    每次最多3个小朋友同时享受此优惠
+                    <strong>@accountTypes1.DisplayName</strong><br>
+                    @accountTypes1.Describe
                 </div>
-                <div class="right">￥@(Model != null ? Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 1).FirstOrDefault().Amount) : 0)</div>
+                <div class="right">￥@(Model != null ? Convert.ToInt32(accountTypes1.Amount) : 0)</div>
             </li>
         }
-        @if (Model.accountTypes.Where(x => x.AccountTypeId == 2).FirstOrDefault() != null)
+        @if (accountTypes2 != null)
         {
-            <li class="li2" value="2" amount="@Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 2).FirstOrDefault().Amount)">
+            <li class="li2" value="2" amount="@Convert.ToInt32(accountTypes2.Amount)">
                 <div class="left">
-                    <strong>黄金气球卡·50次</strong><br>
-                    ·全年有效，不限节假日<br>
-                    ·每次最多3个小朋友同时享受此优惠
+                    <strong>@accountTypes2.DisplayName</strong><br>
+                    @accountTypes2.Describe
                 </div>
-                <div class="right">￥@(Model != null ? Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 2).FirstOrDefault().Amount) : 0)</div>
+                <div class="right">￥@(Model != null ? Convert.ToInt32(accountTypes2.Amount) : 0)</div>
             </li>
         }
-        @if (Model.accountTypes.Where(x => x.AccountTypeId == 3).FirstOrDefault() != null)
+        @if (accountTypes3 != null)
         {
-            <li class="li3" value="3" amount="@Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 3).FirstOrDefault().Amount)">
+            <li class="li3" value="3" amount="@Convert.ToInt32(accountTypes3.Amount)">
                 <div class="left">
-                    <strong>铂金气球卡·平日畅玩</strong><br>
-                    ·1年有效，可使用时段：周一至周五<br>
-                    ·每次最多1个小朋友享受此优惠
+                    <strong>@accountTypes3.DisplayName</strong><br>
+                    @accountTypes3.Describe
                 </div>
-                <div class="right">￥@(Model != null ? Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 3).FirstOrDefault().Amount) : 0)</div>
+                <div class="right">￥@(Model != null ? Convert.ToInt32(accountTypes3.Amount) : 0)</div>
             </li>
         }
-        @if (Model.accountTypes.Where(x => x.AccountTypeId == 4).FirstOrDefault() != null)
+        @if (accountTypes4 != null)
         {
-            <li class="li4" value="4" amount="@Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 4).FirstOrDefault().Amount)">
+            <li class="li4" value="4" amount="@Convert.ToInt32(accountTypes4.Amount)">
                 <div class="left">
-                    <strong>黑金气球卡·全年无限畅玩</strong><br>
-                    ·1年有效，不限节假日<br>
-                    ·每次最多1个小朋友享受此优惠
+                    <strong>@accountTypes4.DisplayName</strong><br>
+                    @accountTypes4.Describe
                 </div>
-                <div class="right">￥@(Model != null ? Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 4).FirstOrDefault().Amount) : 0)</div>
+                <div class="right">￥@(Model != null ? Convert.ToInt32(accountTypes4.Amount) : 0)</div>
             </li>
         }
 
