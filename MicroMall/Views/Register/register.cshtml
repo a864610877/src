@@ -86,7 +86,7 @@
                 }
                 var nowdate = new Date();
                 var oDate1 = new Date(babyBirthDate);
-                if (oDate1.getDate() > nowdate.getDate()) {
+                if (oDate1 > nowdate) {
                     $.openDialog("选择的日期必须小于当前日期");
                     return;
                 }

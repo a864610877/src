@@ -48,7 +48,7 @@ namespace MicroMall.Controllers
                 return RedirectToAction("index", "PersonalCentre");
             }
             ViewData["openId"] = openid;
-           // ViewData["openId"] = code;
+            //ViewData["openId"] = code;
             return View();
             
         }
@@ -148,8 +148,8 @@ namespace MicroMall.Controllers
                     return Json(new ResultMessage() { Code = -1, Msg = "手机号码已注册" });
                 Random random = new Random();
                 int code = random.Next(10001, 99999);
-                string SmsAccount = "dnd@dnd";
-                string SmsPwd = "li3bAK7h";
+                string SmsAccount = System.Configuration.ConfigurationManager.AppSettings["smsAccount"].ToString(); //"dnd@dnd";
+                string SmsPwd = System.Configuration.ConfigurationManager.AppSettings["smsPassword"].ToString(); //"li3bAK7h";
                 ISendSms sendSms = new XWKJ_Sms();
                 Ecard.XWKJSms.SmsResponseMsg srm = new Ecard.XWKJSms.SmsResponseMsg();
                 string message = "您本次注册的手机验证码为" + code;

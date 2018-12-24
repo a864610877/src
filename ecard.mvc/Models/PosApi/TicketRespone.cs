@@ -10,7 +10,7 @@ namespace Ecard.Mvc.Models.PosApi
         /// <summary>
         /// 门票编码/卡号
         /// </summary>
-        public string code { get; set; }
+        public string codeNo { get; set; }
         /// <summary>
         /// 门票/卡 名称
         /// </summary>

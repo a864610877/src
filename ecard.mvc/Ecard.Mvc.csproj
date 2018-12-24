@@ -196,6 +196,8 @@
     <Compile Include="Controllers\WindowTicketOffController.cs" />
     <Compile Include="Models\AccountName.cs" />
     <Compile Include="Models\Accounts\ChangeLimitAmount.cs" />
+    <Compile Include="Models\Accounts\ListAccountUser.cs" />
+    <Compile Include="Models\Accounts\ListAccountUsers.cs" />
     <Compile Include="Models\Accounts\ShowPay.cs" />
     <Compile Include="Models\Accounts\SystemPayAccount.cs" />
     <Compile Include="Models\AdmissionTickets\AdmissionTicketCreate.cs" />

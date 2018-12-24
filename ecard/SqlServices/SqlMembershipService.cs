@@ -236,5 +236,19 @@ and (@State is null or State = @State)
             string sql = "select * from users where openId=@openId and Discriminator='AccountUser'";
             return new QueryObject<User>(_databaseInstance,sql,new { openId=openId }).FirstOrDefault();
         }
+
+        public DataTables<AccountUser> GetAccountUser(AccountUserRequest request)
+        {
+            SqlParameter[] param = {
+                                   new SqlParameter("@Mobile",request.Mobile),
+                                   new SqlParameter("@pageIndex",request.pageIndex),
+                                   new SqlParameter("@pageSize",request.pageSize),
+                                   new SqlParameter("@DisplayName",request.DisplayName),
+                                   new SqlParameter("@babyName",request.babyName),
+                                   new SqlParameter("@Discriminator","AccountUser"),
+                                   };
+            StoreProcedure sp = new StoreProcedure("P_getAccountUsers", param);
+            return _databaseInstance.GetTables<AccountUser>(sp);
+        }
     }
 }

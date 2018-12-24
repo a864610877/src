@@ -23,7 +23,7 @@ namespace Ecard.Mvc.Models.PosApi
         public TicketWriteOffResponse()
         {
             Code = "1";
-            Msg = "核销成功";
+            Msg = "";
         }
         /// <summary>
         /// 错误代码

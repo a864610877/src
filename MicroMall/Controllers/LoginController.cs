@@ -24,9 +24,9 @@ namespace MicroMall.Controllers
 
         public ActionResult Index()
         {
-            HttpCookie cookie = new HttpCookie(SessionKeys.USERID, "4");
-            Response.Cookies.Add(cookie);
-            if (Request.Cookies[SessionKeys.USERID] == null)
+            //HttpCookie cookie = new HttpCookie(SessionKeys.USERID, "4");
+            //Response.Cookies.Add(cookie);
+            if (Request.Cookies[SessionKeys.USERID] == null|| Request.Cookies[SessionKeys.USERID].ToString() == "")
             {
                 string redirect_uri = System.Configuration.ConfigurationManager.AppSettings["url"].ToString() + "/Login/login";
                 string url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + WxPayConfig.APPID + "&redirect_uri=" + redirect_uri + "&response_type=code&scope=snsapi_userinfo&state=#wechat_redirect";
@@ -34,6 +34,13 @@ namespace MicroMall.Controllers
             }
             return RedirectToAction("index", "PersonalCentre");
 
+        }
+
+        public ActionResult loginOut()
+        {
+            HttpCookie cookie = new HttpCookie(SessionKeys.USERID, "");
+            Response.Cookies.Add(cookie);
+            return Content("退出成功");
         }
 
         public ActionResult login(string code, string state)

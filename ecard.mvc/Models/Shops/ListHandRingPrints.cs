@@ -30,19 +30,19 @@ namespace Ecard.Mvc.Models.Shops
             }
             set { _ticketType = value; }
         }
-        private Bounded _state;
-        public Bounded State
-        {
-            get
-            {
-                if (_state == null)
-                {
-                    _state = Bounded.Create<HandRingPrint>("state", HandRingPrintState.bot);
-                }
-                return _state;
-            }
-            set { _state = value; }
-        }
+        //private Bounded _state;
+        //public Bounded State
+        //{
+        //    get
+        //    {
+        //        if (_state == null)
+        //        {
+        //            _state = Bounded.Create<HandRingPrint>("state", HandRingPrintState.bot);
+        //        }
+        //        return _state;
+        //    }
+        //    set { _state = value; }
+        //}
         public string Code { get; set; }
         public string BabyName { get; set; }
         public string Mobile { get; set; }
@@ -122,11 +122,31 @@ namespace Ecard.Mvc.Models.Shops
                 pageHtml = MvcPage.AjaxPager((int)request.pageIndex, (int)request.pageSize, query.TotalCount);
                 foreach (var item in data)
                 {
-                    item.boor += "<a href='#' onclick=OperatorThis('HandRingPrint','/Shop/HandRingPrint/" + item.Id + "') class='tablelink'>打印手环 </a> ";
+                    item.boor += "<a href='#' onclick=OperatorThis('HandRingPrint','/Shop/GetHandRingInfo/" + item.Id + "') class='tablelink'>打印手环 </a> ";
                 }
             }
             return data;
         }
 
+        public ResultMsg<List<PritModel>> GetInfo(int id)
+        {
+            var item = handRingPrintService.GetById(id);
+            if (item == null)
+            {
+                return new ResultMsg<List<PritModel>>() { Code = -1, CodeText = "手环不存在" };
+            }
+            List<PritModel> dataPrint = new List<PritModel>();
+            for (int j = 0; j < item.adultNum + item.childNum; j++)
+            {
+                PritModel model = new PritModel();
+                model.effectiveTime = DateTime.Now.AddHours(3).ToString("MM月dd日hh时mm分");
+                model.einlass = DateTime.Now.ToString("MM月dd日hh时mm分");
+                model.name = item.userName;
+                model.mobile = item.mobile ;
+                model.people = item.adultNum + item.childNum;
+                dataPrint.Add(model);
+            }
+            return new ResultMsg<List<PritModel>>() { Code = 0, CodeText = "", data = dataPrint };
+        }
     }
 }

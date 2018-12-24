@@ -126,6 +126,7 @@
                                     $("#babyName").val(data.babyName);
                                     $("#babySex").val(data.babySex);
                                     $("#userName").val(data.userName);
+                                    
                                 } else {
                                     alert(data.Msg);
                                 }
@@ -139,8 +140,6 @@
 
                 $("#sp").click(function () {
                     var code = $("#code").val();
-                   
-
                     $.ajax({
                         url: "/WindowTicketOff/TicketWriteOff",
                         data: { code: code},
@@ -162,6 +161,11 @@
                                 $("#babyName").val('');
                                 $("#babySex").val('');
                                 $("#userName").val('');
+                                if (data.data != null && data.data.length > 0) {
+                                    for (var i = 0; i < data.data.length; i++) {
+                                        Print(data.data[i]);
+                                    }
+                                }
                             } else {
                                 alert(data.Msg);
                             }
@@ -173,9 +177,11 @@
                 });
 
 
-                function Print() {
+                function Print(item) {
 
                     // var src = "1234567890";
+                    // jq(item.name);
+                    //return;
                     var copies = 1;
                     var pIndex = 0;
                     var pTitle = "手环打印";
@@ -197,37 +203,134 @@
                         alert("打印机初始划失败请检查");
                     }
                     LODOP.SET_PRINTER_INDEX(-1);
-                    //LODOP.SET_PRINT_PAGESIZE(3, 580, 45, "");//这里3表示纵向打印且纸高“按内容的高度”；1385表示纸宽138.5mm；45表示页底空白4.5mm
+                    //PageWidth //PageHeight
+                    // LODOP.SET_PRINT_PAGESIZE(2, "260mm", "26mm", "");//横向
+                    //Top //Left //内容Width //内容Height //内容
+                    // LODOP.ADD_PRINT_TEXT("13mm", "130mm", "100mm", "5mm", '333');//横向设置
+
+                    LODOP.SET_PRINT_PAGESIZE(1, "26mm", "260mm", "");//这里1表示纵向打印且纸高
+                    //姓名
+                    var h = 125;
+                    var w = 0.5;
+                    LODOP.ADD_PRINT_TEXT(h + "mm", w + "mm", "5mm", "100mm", '姓');//纵向设置
+                    w += 3;
+                    LODOP.ADD_PRINT_TEXT(h + "mm", w + "mm", "5mm", "100mm", '名');//纵向设置
+                    w += 3;
+                    LODOP.ADD_PRINT_TEXT(h + "mm", w + "mm", "5mm", "100mm", '：');//纵向设置
+                    var arrName = jq(item.name);
+                    h += 5;//换行
+                    w = 0.5;
+                    for (var i = 0; i < arrName.length; i++) {
+                        if (i > 0) {
+                            w += 3;
+                        }
+                        LODOP.ADD_PRINT_TEXT(h + "mm", w + "mm", "5mm", "100mm", arrName[i]);//纵向设置
+                    }
+                    //电话
+                    h += 5;
+                    w = 0.5;
+                    LODOP.ADD_PRINT_TEXT(h + "mm", w + "mm", "5mm", "100mm", '电');//纵向设置
+                    w += 3;
+                    LODOP.ADD_PRINT_TEXT(h + "mm", w + "mm", "5mm", "100mm", '话');//纵向设置
+                    w += 3;
+                    LODOP.ADD_PRINT_TEXT(h + "mm", w + "mm", "5mm", "100mm", '：');//纵向设置
+                    var arrMobile = jq(item.mobile);
+                    h += 5;//换行
+                    w = 0.5;
+                    for (var i = 0; i < arrMobile.length; i++) {
+                        if (i > 0) {
+                            w += 3;
+                        }
+                        if (i == 6) {
+                            h += 5;
+                            w = 0.5;
+                        }
+                        LODOP.ADD_PRINT_TEXT(h + "mm", w + "mm", "5mm", "100mm", arrMobile[i]);//纵向设置
+                    }
+
+                    //进场时间
+                    h += 5;
+                    w = 0.5;
+                    LODOP.ADD_PRINT_TEXT(h + "mm", w + "mm", "5mm", "100mm", '进');//纵向设置
+                    w += 3;
+                    LODOP.ADD_PRINT_TEXT(h + "mm", w + "mm", "5mm", "100mm", '场');//纵向设置
+                    w += 3;
+                    LODOP.ADD_PRINT_TEXT(h + "mm", w + "mm", "5mm", "100mm", '时');//纵向设置
+                    w += 3;
+                    LODOP.ADD_PRINT_TEXT(h + "mm", w + "mm", "5mm", "100mm", '间');//纵向设置
+                    w += 3;
+                    LODOP.ADD_PRINT_TEXT(h + "mm", w + "mm", "5mm", "100mm", '：');//纵向设置
+                    var arrEinlass = jq(item.einlass);
+                    h += 5;//换行
+                    w = 0.5;
+                    for (var i = 0; i < arrEinlass.length; i++) {
+                        if (i > 0) {
+                            w += 3;
+                        }
+                        if (i == 6) {
+                            h += 5;
+                            w = 0.5;
+                        }
+                        LODOP.ADD_PRINT_TEXT(h + "mm", w + "mm", "5mm", "100mm", arrEinlass[i]);//纵向设置
+                    }
+
+                    //离场时间
+                    h += 5;
+                    w = 0.5;
+                    LODOP.ADD_PRINT_TEXT(h + "mm", w + "mm", "5mm", "100mm", '离');//纵向设置
+                    w += 3;
+                    LODOP.ADD_PRINT_TEXT(h + "mm", w + "mm", "5mm", "100mm", '场');//纵向设置
+                    w += 3;
+                    LODOP.ADD_PRINT_TEXT(h + "mm", w + "mm", "5mm", "100mm", '时');//纵向设置
+                    w += 3;
+                    LODOP.ADD_PRINT_TEXT(h + "mm", w + "mm", "5mm", "100mm", '间');//纵向设置
+                    w += 3;
+                    LODOP.ADD_PRINT_TEXT(h + "mm", w + "mm", "5mm", "100mm", '：');//纵向设置
+                    var arreffectiveTime = jq(item.effectiveTime);
+                    h += 5;//换行
+                    w = 0.5;
+                    for (var i = 0; i < arreffectiveTime.length; i++) {
+                        if (i > 0) {
+                            w += 3;
+                        }
+                        if (i == 6) {
+                            h += 5;
+                            w = 0.5;
+                        }
+                        LODOP.ADD_PRINT_TEXT(h + "mm", w + "mm", "5mm", "100mm", arreffectiveTime[i]);//纵向设置
+                    }
+
+
+
                     //LODOP.SET_PRINT_PAGESIZE(1, 100, 60, "");
-                    LODOP.SET_PRINT_COPIES(copies);//打印份数
+                    // LODOP.SET_PRINT_COPIES(copies);//打印份数
                     //LODOP.ADD_PRINT_BARCODE(130, 455, 200, 100, "QRCode", obj.Number);
-                    LODOP.ADD_PRINT_TEXT(5,5,5,5,'xx监护人');
+                    //LODOP.ADD_PRINT_TEXT(500, 5, 5, 300, '姓');
+                    //LODOP.ADD_PRINT_TEXT(505, 5, 5, 300, '名');
+                    //LODOP.SET_PRINT_STYLE("Angle",90);
+                    // top  //left  
 
 
-                    //     var pHtml = "";
-                    //debugger
-                    //     pHtml += '<span style="font-size:12px">当前余额</span><br /><b style="text-align:center"> <img   src="/Common/Scan?text='+src+'&width=150&height=150" /></b></p>';
-
-
-                    //     //pHtml += "<div style='border:1px dotted #000;border-style: dotted none none none'></div>";
-                    //     //pHtml += '<table width="100%" border="0" cellspacing="1" cellpadding="0" style="padding-right:5px"><tr><th>单价</th><th>数量</th><th>小计</th></tr>'
-                    //     //LODOP.SET_PRINT_STYLE("FontSize", 10);
-                    //     //for (var i = 0; i < datas.length; i++) {
-                    //     //    var obj = datas[i];
-                    //     //    pHtml += "<tr><td colspan='3'><span style='font-size:12px'>" + obj.Name + "</td></tr>"
-                    //     //    pHtml += "<tr><td style='text-align:right'>" + obj.Price + "</td><td style='text-align:center'>" + obj.Seq + "</td><td style='text-align:right'>" + obj.TotalPrice + "</td></tr>"
-                    //     //}
-                    //     //pHtml += "</table>";
-                    //     //pHtml += "<div style='border:1px dotted #000;border-style: dotted none none none'></div>";
-                    //     //pHtml += '<table width="100%" border="0" cellspacing="1" cellpadding="0"><tr><td style="text-align:right;font-size:12px">应收总金额</td><td style="text-align:right;padding-right:10px"><span style="font-size:10px">￥</span><b>' + $('#t_amount').text() + '</b>元</td></tr>';
-                    //     //pHtml += '<tr><td style="text-align:right;font-size:12px">获易购积分</td><td style="text-align:right;padding-right:10px"><span style="font-size:10px">￥</span><b>' + '2600' + '</b>分</td></tr></table>';
-                    //     pHtml += "<div style='border:2px solid #000;border-style: solid none solid none;margin:10px 0;height:120px'></div>";
-                    //     //pHtml += "<div style='font-size:10px;text-align:center;margin:0 0 20px 0'>以上签名为本人签名</div>";
-                    //     //$('#pCont').html(pHtml);
-                    //     LODOP.ADD_PRINT_HTM(20, 5, "100%", "100%", pHtml);
+                    // LODOP.ADD_PRINT_TEXT("130mm", "13mm", "5mm", "100mm", '333');//纵向设置
+                    //LODOP.ADD_PRINT_TEXT("130mm", "13mm", "5mm", "100mm", '333');
+                    //LODOP.ADD_PRINT_TEXT(500, 5, 0, 0, '姓名：' + item.name);
+                    //LODOP.ADD_PRINT_TEXT(500, 5, 0, 0, '姓名：' + item.name);
+                    //LODOP.ADD_PRINT_TEXT(500, 25, 5, 300, '电话：' + item.mobile);
+                    //LODOP.ADD_PRINT_TEXT(500, 45, 5, 350, '进场时间：' + item.einlass);
+                    //LODOP.ADD_PRINT_TEXT(500, 65, 5, 350, '离场时间：' + item.effectiveTime);
                     LODOP.PRINT();
                     // $('#table').bootstrapTable('removeAll');
                     // setTotal()
+                }
+
+                function jq(str) {
+                    var arr = new Array();
+                    var count = str.length;
+                    var start = 0;
+                    for (var i = 0; i < count; i++) {
+                        arr.push(str.substring(i, i + 1));
+                    }
+                    return arr;
                 }
 
 

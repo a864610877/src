@@ -36,6 +36,8 @@ namespace Ecard.Services
         
         DataTables<Role> GetRoles(RoleRequest roleRequest);
         DataTables<AdminUser> NewQueryUser(UserRequest request);
+
+        DataTables<AccountUser> GetAccountUser(AccountUserRequest request);
     }
 
     public class RoleRequest
@@ -141,5 +143,20 @@ namespace Ecard.Services
             }
         }
          
+    }
+
+    public class AccountUserRequest
+    {
+        public AccountUserRequest()
+        {
+            pageIndex = 1;
+            pageSize = 10;
+        }
+        public int pageIndex { get; set; }
+        public int pageSize { get; set; }
+
+        public string Mobile { get; set; }
+        public string DisplayName { get; set; }
+        public string babyName { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace Ecard.Mvc.Models
         /// 名称
         /// </summary>
         public string name { get; set; }
+
         public string mobile { get; set; }
         /// <summary>
         /// 入场人数
@@ -21,7 +22,7 @@ namespace Ecard.Mvc.Models
         /// </summary>
         public string einlass { get; set; }
         /// <summary>
-        /// 有效时间
+        /// 离场时间
         /// </summary>
         public string effectiveTime { get; set; }
 

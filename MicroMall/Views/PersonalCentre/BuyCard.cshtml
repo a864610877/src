@@ -18,37 +18,50 @@
     <input type="hidden" id="accountTypeId" value="0" />
     <div class="gm_one"><img src="/images/img2.png"></div>
     <ul class="gm_two">
-        <li class="li1" value="1" amount="@Convert.ToInt32(Model.accountTypes.Where(x=>x.AccountTypeId==1).FirstOrDefault().Amount)">
-            <div class="left">
-                <strong>白银气球卡·20次</strong><br>
-                每次最多3个小朋友同时享受此优惠
-            </div>
-            <div class="right">￥@(Model != null ? Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 1).FirstOrDefault().Amount) : 0)</div>
-        </li>
-        <li class="li2" value="2" amount="@Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 2).FirstOrDefault().Amount)">
-            <div class="left">
-                <strong>黄金气球卡·50次</strong><br>
-                ·全年有效，不限节假日<br>
-                ·每次最多3个小朋友同时享受此优惠
-            </div>
-            <div class="right">￥@(Model != null ? Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 2).FirstOrDefault().Amount) : 0)</div>
-        </li>
-        <li class="li3" value="3" amount="@Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 3).FirstOrDefault().Amount)">
-            <div class="left">
-                <strong>铂金气球卡·平日畅玩</strong><br>
-                ·1年有效，可使用时段：周一至周五<br>
-                ·每次最多1个小朋友享受此优惠
-            </div>
-            <div class="right">￥@(Model != null ? Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 3).FirstOrDefault().Amount) : 0)</div>
-        </li>
-        <li class="li4" value="4" amount="@Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 4).FirstOrDefault().Amount)">
-            <div class="left">
-                <strong>黑金气球卡·全年无限畅玩</strong><br>
-                ·1年有效，不限节假日<br>
-                ·每次最多1个小朋友享受此优惠
-            </div>
-            <div class="right">￥@(Model != null ? Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 4).FirstOrDefault().Amount) : 0)</div>
-        </li>
+        @if (Model.accountTypes.Where(x => x.AccountTypeId == 1).FirstOrDefault() != null)
+        {
+            <li class="li1" value="1" amount="@Convert.ToInt32(Model.accountTypes.Where(x=>x.AccountTypeId==1).FirstOrDefault().Amount)">
+                <div class="left">
+                    <strong>白银气球卡·20次</strong><br>
+                    每次最多3个小朋友同时享受此优惠
+                </div>
+                <div class="right">￥@(Model != null ? Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 1).FirstOrDefault().Amount) : 0)</div>
+            </li>
+        }
+        @if (Model.accountTypes.Where(x => x.AccountTypeId == 2).FirstOrDefault() != null)
+        {
+            <li class="li2" value="2" amount="@Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 2).FirstOrDefault().Amount)">
+                <div class="left">
+                    <strong>黄金气球卡·50次</strong><br>
+                    ·全年有效，不限节假日<br>
+                    ·每次最多3个小朋友同时享受此优惠
+                </div>
+                <div class="right">￥@(Model != null ? Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 2).FirstOrDefault().Amount) : 0)</div>
+            </li>
+        }
+        @if (Model.accountTypes.Where(x => x.AccountTypeId == 3).FirstOrDefault() != null)
+        {
+            <li class="li3" value="3" amount="@Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 3).FirstOrDefault().Amount)">
+                <div class="left">
+                    <strong>铂金气球卡·平日畅玩</strong><br>
+                    ·1年有效，可使用时段：周一至周五<br>
+                    ·每次最多1个小朋友享受此优惠
+                </div>
+                <div class="right">￥@(Model != null ? Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 3).FirstOrDefault().Amount) : 0)</div>
+            </li>
+        }
+        @if (Model.accountTypes.Where(x => x.AccountTypeId == 4).FirstOrDefault() != null)
+        {
+            <li class="li4" value="4" amount="@Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 4).FirstOrDefault().Amount)">
+                <div class="left">
+                    <strong>黑金气球卡·全年无限畅玩</strong><br>
+                    ·1年有效，不限节假日<br>
+                    ·每次最多1个小朋友享受此优惠
+                </div>
+                <div class="right">￥@(Model != null ? Convert.ToInt32(Model.accountTypes.Where(x => x.AccountTypeId == 4).FirstOrDefault().Amount) : 0)</div>
+            </li>
+        }
+
     </ul>
     <div class="gm_you"><span>优惠券</span><strong id="couponText">（@(Model.ListCoupons != null ? Model.ListCoupons.Count() : 0)  张可用）</strong></div>
     <div class="gm_price">

@@ -1,5 +1,6 @@
 ﻿using Ecard.Models;
 using Ecard.Mvc.ActionFilters;
+using Ecard.Mvc.Models;
 using Ecard.Mvc.Models.PosApi;
 using Ecard.Services;
 using Microsoft.Practices.Unity;
@@ -63,7 +64,7 @@ namespace Ecard.Mvc.Controllers
                 var ticket = ticketsService.GetByCode(request.code);
                 if (ticket != null)
                 {
-                    result.code = ticket.Code;
+                    result.codeNo = ticket.Code;
                     result.buyTime = ticket.BuyTime.ToString("yyyy-MM-dd hh:mm:ss");
                     result.ExpiredDate = ticket.ExpiredDate.ToString("yyyy-MM-dd hh:mm:ss");
                     result.name = ticket.TicketName;
@@ -101,7 +102,7 @@ namespace Ecard.Mvc.Controllers
                 }
                 result.name = cardType != null ? cardType.DisplayName : "";
                 result.buyTime = card.OpenTime.HasValue ? card.OpenTime.Value.ToString("yyyy-MM-dd hh:mm:ss") : "";
-                result.code = card.Name;
+                result.codeNo = card.Name;
                 result.ExpiredDate = card.ExpiredDate.ToString("yyyy-MM-dd hh:mm:ss");
                 result.Frequency = card.Frequency;
                 result.FrequencyUsed = card.FrequencyUsed;
@@ -183,6 +184,7 @@ namespace Ecard.Mvc.Controllers
                         handRingPrint.userName = user.DisplayName;
                         handRingPrint.mobile = user.Mobile;
                     }
+                    List<PritModel> dataPrint = new List<PritModel>();
                     handRingPrint.adultNum = ticket.adultNum;
                     handRingPrint.childNum = ticket.childNum;
                     handRingPrint.code = ticket.Code;
@@ -191,8 +193,18 @@ namespace Ecard.Mvc.Controllers
                     handRingPrint.ticketType = 1;
                     handRingPrint.shopId = shop.ShopId;
                     handRingPrintService.Insert(handRingPrint);
+                    for (int j = 0; j < ticket.adultNum + ticket.childNum; j++)
+                    {
+                        PritModel model = new PritModel();
+                        model.effectiveTime = DateTime.Now.AddHours(3).ToString("MM月dd日hh时mm分");
+                        model.einlass = DateTime.Now.ToString("MM月dd日hh时mm分");
+                        model.name = user!=null?user.DisplayName:"";
+                        model.mobile = user!=null? user.Mobile:"";
+                        model.people = ticket.adultNum + ticket.childNum;
+                        dataPrint.Add(model);
+                    }
                     transactionHelper.Commit();
-                    return Json(new ApiResponse() { Code = "1", Msg = "核销成功" });
+                    return Json(new ApiResponse<List<PritModel>>() { Code = "1", Msg = "核销成功",data=dataPrint });
                 }
                 var card = accountService.GetByName(request.code);
                 if (card == null)
@@ -259,8 +271,19 @@ namespace Ecard.Mvc.Controllers
                 handRingPrint1.ticketType = 2;
                 handRingPrint1.shopId = shop.ShopId;
                 handRingPrintService.Insert(handRingPrint1);
+                List<PritModel> dataPrint1 = new List<PritModel>();
+                for (int j = 0; j < ticket.adultNum + ticket.childNum; j++)
+                {
+                    PritModel model = new PritModel();
+                    model.effectiveTime = DateTime.Now.AddHours(3).ToString("MM月dd日hh时mm分");
+                    model.einlass = DateTime.Now.ToString("MM月dd日hh时mm分");
+                    model.name = user1 != null ? user1.DisplayName : "";
+                    model.mobile = user1 != null ? user1.Mobile : "";
+                    model.people = handRingPrint1.adultNum + handRingPrint1.childNum;
+                    dataPrint1.Add(model);
+                }
                 transactionHelper.Commit();
-                return Json(new ApiResponse() { Code = "1", Msg = "核销成功" });
+                return Json(new ApiResponse<List<PritModel>>() { Code = "1", Msg = "核销成功",data= dataPrint1 });
             }
             catch (Exception ex)
             {

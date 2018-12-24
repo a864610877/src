@@ -1887,6 +1887,7 @@
     <Content Include="Views\Shop\WindowTicketingLogs.cshtml" />
     <Content Include="Views\Shop\HandRingPrintList.cshtml" />
     <Content Include="Views\Shop\TicketOff.cshtml" />
+    <Content Include="Views\Account\ListAccountUser.cshtml" />
     <None Include="web.config.deploytemplate" />
   </ItemGroup>
   <ItemGroup>

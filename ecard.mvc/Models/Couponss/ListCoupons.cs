@@ -180,7 +180,7 @@ namespace Ecard.Mvc.Models.Couponss
                     Logger.LogWithSerialNo(LogTypes.CouponSuspend, serialNo, item.id, item.name);
                 }
                 msg.Code = 1;
-                msg.CodeText = "停用优惠卷成功";
+                msg.CodeText = "停用优惠券成功";
                 return msg;
             }
             catch (Exception ex)
@@ -204,7 +204,7 @@ namespace Ecard.Mvc.Models.Couponss
                     Logger.LogWithSerialNo(LogTypes.CouponResume, serialNo, item.id, item.name);
                 }
                 msg.Code = 1;
-                msg.CodeText = "启用优惠卷成功";
+                msg.CodeText = "启用优惠券成功";
                 return msg;
             }
             catch (Exception ex)
@@ -227,7 +227,7 @@ namespace Ecard.Mvc.Models.Couponss
                     CouponsService.Delete(item);
                     Logger.LogWithSerialNo(LogTypes.CouponDelete, serialNo, item.id, item.name);
                     msg.Code = 1;
-                    msg.CodeText = "删除优惠卷" + item.name + "成功";
+                    msg.CodeText = "删除优惠券" + item.name + "成功";
                 }
                 return msg;
             }

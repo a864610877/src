@@ -69,10 +69,10 @@ namespace Ecard.Mvc.Models.Shops
         {
             get { return InnerObject.printTime; }
         }
-        public string State
-        {
-            get { return ModelHelper.GetBoundText(InnerObject, x => x.state); }
-        }
+        //public string State
+        //{
+        //    get { return ModelHelper.GetBoundText(InnerObject, x => x.state); }
+        //}
 
         public DateTime createTime
         {

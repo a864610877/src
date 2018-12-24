@@ -1,0 +1,11 @@
+﻿babyName.name=宝宝姓名
+babyName.order=1
+DisplayName.name=姓名
+DisplayName.order=1
+Mobile.name=手机号
+Mobile.order=1
+OrderBy.order=1
+pageHtml.order=1
+PageIndex.order=1
+PageSize.order=1
+title=会员管理

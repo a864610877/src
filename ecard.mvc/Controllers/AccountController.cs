@@ -1038,5 +1038,33 @@ namespace Ecard.Mvc.Controllers
             Response.End();
             return List(request);
         }
+
+        [CheckPermission(Permissions.Account)]
+        [DashboardItem]
+        public ActionResult ListAccountUser(ListAccountUsers request)
+        {
+            string pageHtml = string.Empty;
+            if (ModelState.IsValid)
+            {
+                ModelState.Clear();
+                request.Query(out pageHtml);
+                ViewBag.pageHtml = MvcHtmlString.Create(pageHtml);
+            }
+            return View(request);
+        }
+        [HttpPost]
+        public ActionResult ListAccountUserPost(AccountUserRequest request)
+        {
+            var createRole = _unityContainer.Resolve<ListAccountUsers>();
+            string pageHtml = string.Empty;
+            var datas = createRole.AjaxGet(request, out pageHtml);
+            return Json(new { tables = datas, html = pageHtml });
+        }
+        [CheckPermission(Permissions.AccountReport)]
+        public ActionResult ListAccountUserExport(ListAccountUsers request)
+        {
+            _logger.LogWithSerialNo(LogTypes.AccountExport, SerialNoHelper.Create(), 0);
+            return ListAccountUser(request);
+        }
     }
 }

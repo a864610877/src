@@ -118,7 +118,7 @@ namespace Ecard.Mvc.Controllers
                 var ticket = ticketsService.GetByCode(request.code);
                 if (ticket != null)
                 {
-                    result.code = ticket.Code;
+                    result.codeNo = ticket.Code;
                     result.buyTime = ticket.BuyTime.ToString("yyyy-MM-dd hh:mm:ss");
                     result.ExpiredDate = ticket.ExpiredDate.ToString("yyyy-MM-dd hh:mm:ss");
                     result.name = ticket.TicketName;
@@ -156,7 +156,7 @@ namespace Ecard.Mvc.Controllers
                 }
                 result.name = cardType != null ? cardType.DisplayName : "";
                 result.buyTime = card.OpenTime.HasValue ? card.OpenTime.Value.ToString("yyyy-MM-dd hh:mm:ss") : "";
-                result.code = card.Name;
+                result.codeNo = card.Name;
                 result.ExpiredDate = card.ExpiredDate.ToString("yyyy-MM-dd hh:mm:ss");
                 result.Frequency = card.Frequency;
                 result.FrequencyUsed = card.FrequencyUsed;

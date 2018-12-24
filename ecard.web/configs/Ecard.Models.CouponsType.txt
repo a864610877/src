@@ -1,8 +1,8 @@
 ﻿All.name=全部
 All.order=1
-DiscountedVolume.name=折扣卷
+DiscountedVolume.name=折扣券
 DiscountedVolume.order=1
-FullVolumeReduction.name=满减卷
+FullVolumeReduction.name=满减券
 FullVolumeReduction.order=1
-OffsetRoll.name=抵扣卷
+OffsetRoll.name=抵扣券
 OffsetRoll.order=1

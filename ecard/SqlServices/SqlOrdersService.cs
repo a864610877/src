@@ -47,6 +47,8 @@ namespace Ecard.SqlServices
                                       new SqlParameter("@orderState",request.orderState),
                                       new SqlParameter("@type",request.type),
                                       new SqlParameter("@useScope",request.useScope),
+                                      new SqlParameter("@Bdate",request.Bdate),
+                                      new SqlParameter("@Edate",request.Edate),
                                       new SqlParameter("@pageIndex",request.pageIndex),
                                       new SqlParameter("@pageSize",request.pageSize)
                                    };

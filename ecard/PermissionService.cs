@@ -152,12 +152,12 @@ namespace Ecard
                             new Permission {DisplayName = "门票启用",    Category = "门票管理",  Name = Permissions.AdmissionTicketResume, UserTypes = adminUserType},
                             new Permission {DisplayName = "门票停售",    Category = "门票管理",  Name = Permissions.AdmissionTicketSuspend, UserTypes = adminUserType},
 
-                            new Permission {DisplayName = "优惠卷编辑",    Category = "优惠卷管理",  Name = Permissions.CouponsEdit, UserTypes = adminUserType},
-                            new Permission {DisplayName = "优惠卷列表",    Category = "优惠卷管理",  Name = Permissions.CouponsList, UserTypes = adminUserType},
-                            new Permission {DisplayName = "优惠卷添加",    Category = "优惠卷管理",  Name = Permissions.CouponsCreate, UserTypes = adminUserType},
-                            new Permission {DisplayName = "优惠卷删除",    Category = "优惠卷管理",  Name = Permissions.CouponsDelete, UserTypes = adminUserType},
-                            new Permission {DisplayName = "优惠卷启用",    Category = "优惠卷管理",  Name = Permissions.CouponsResume, UserTypes = adminUserType},
-                            new Permission {DisplayName = "优惠卷停售",    Category = "优惠卷管理",  Name = Permissions.CouponsSuspend, UserTypes = adminUserType},
+                            new Permission {DisplayName = "优惠券编辑",    Category = "优惠券管理",  Name = Permissions.CouponsEdit, UserTypes = adminUserType},
+                            new Permission {DisplayName = "优惠券列表",    Category = "优惠券管理",  Name = Permissions.CouponsList, UserTypes = adminUserType},
+                            new Permission {DisplayName = "优惠券添加",    Category = "优惠券管理",  Name = Permissions.CouponsCreate, UserTypes = adminUserType},
+                            new Permission {DisplayName = "优惠券删除",    Category = "优惠券管理",  Name = Permissions.CouponsDelete, UserTypes = adminUserType},
+                            new Permission {DisplayName = "优惠券启用",    Category = "优惠券管理",  Name = Permissions.CouponsResume, UserTypes = adminUserType},
+                            new Permission {DisplayName = "优惠券停售",    Category = "优惠券管理",  Name = Permissions.CouponsSuspend, UserTypes = adminUserType},
 
                             new Permission {DisplayName = "文章管理",    Category = "文章管理",  Name = Permissions.ArticlesEdit, UserTypes = adminUserType},
                              new Permission {DisplayName = "文章列表", Category = "文章",Name = Permissions.ListArticles, UserTypes = adminUserType},

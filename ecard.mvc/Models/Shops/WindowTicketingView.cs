@@ -125,6 +125,7 @@ namespace Ecard.Mvc.Models.Shops
                     windowTicketing.shopId = shopUser.ShopId;
                     windowTicketing.ticketName = admissionTicket.name;
                     windowTicketingService.Insert(windowTicketing);
+                    List<PritModel> dataPrint = new List<PritModel>();
                     for (int i = 0; i < num; i++)
                     {
                        var handRingPrint = new HandRingPrint();
@@ -141,10 +142,19 @@ namespace Ecard.Mvc.Models.Shops
                        handRingPrint.ticketType = 3;
                        handRingPrint.shopId = shopUser.ShopId;
                        handRingPrintService.Insert(handRingPrint);
+                        for (int j = 0; j < admissionTicket.adultNum + admissionTicket.childNum; j++)
+                        {
+                            PritModel model = new PritModel();
+                            model.effectiveTime = DateTime.Now.AddHours(3).ToString("MM月dd日hh时mm分");
+                            model.einlass = DateTime.Now.ToString("MM月dd日hh时mm分");
+                            model.mobile = mobile;
+                            model.name = displayName;
+                            model.people = admissionTicket.adultNum + admissionTicket.childNum;
+                            dataPrint.Add(model);
+                        }
                     }
                     transactionHelper.Commit();
-                    List<PritModel> data = new List<PritModel>();
-                    return new ResultMsg<List<PritModel>>() { Code = 0, CodeText = "售票成功" };
+                    return new ResultMsg<List<PritModel>>() { Code = 0, CodeText = "售票成功",data=dataPrint };
                 }
                 else
                     return new ResultMsg<List<PritModel>>() { Code = -1, CodeText = "你不是商户，不可售票" };

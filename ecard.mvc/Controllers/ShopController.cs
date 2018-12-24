@@ -308,6 +308,12 @@ namespace Ecard.Mvc.Controllers
             var datas = createRole.AjaxGet(request, out pageHtml);
             return Json(new { tables = datas, html = pageHtml });
         }
+        [HttpPost]
+        public ActionResult GetHandRingInfo(int Id)
+        {
+            var createRole = _unityContainer.Resolve<ListHandRingPrints>();
+            return Json(createRole.GetInfo(Id));
+        }
 
         public ActionResult HandRingPrint()
         {
